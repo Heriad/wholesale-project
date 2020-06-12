@@ -1,0 +1,40 @@
+.background-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(320deg, #0d2046, 55%, #011438 55%);
+}
+
+.card-panel {
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  display: grid;
+  justify-content: center;
+}
+
+.language-panel {
+  width: 100%;
+  float: right;
+  outline: none;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.mat-card-subtitle {
+  color: black;
+  font-size: 24px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+}

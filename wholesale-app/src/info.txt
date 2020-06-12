@@ -1,0 +1,19 @@
+** DO ZROBIENIA
+podłączyc baze danych
+panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
+powrót do logowania hm zarejestruj sie - "Posiadasz już konto? Zaloguj się"
+wystawic api do zakładania konta
+main page zacząć tworzyć (TODO: )
+
+** ZROBIONE
+-Favicon naprawić
+-Długość hasła i nazwy użytkownika: 30 znaków
+Z ekranu logowania/rejestracji klikniecie w logo WS przekierowuje z powrotem na główną stronę
+komponent register i drugi do przypominania hasła
+Z ekranu logowania/rejestracji klikniecie w logo WS przekierowuje z powrotem na główną stronę
+
+
+***WYMAGANIA
+-Angular ^9
+-Node ^12
+-Docker

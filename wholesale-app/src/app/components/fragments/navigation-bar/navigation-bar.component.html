@@ -1,0 +1,7 @@
+<mat-toolbar color="primary">
+  <mat-icon (click)="onMenuToggle()" svgIcon="menu" id="sidebar-menu-icon"></mat-icon>
+  <span id="logo" (click)="refresh()">WholeSale</span>
+  <span class="btn-spacer"></span>
+  <button mat-raised-button (click)="refresh()" id="btn-refresh" color="basic">Odśwież</button>
+  <button mat-raised-button (click)="logout()" id="btn-logout" color="basic">Wyloguj</button>
+</mat-toolbar>

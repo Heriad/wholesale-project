@@ -1,0 +1,91 @@
+<div class="background-page">
+  <mat-card class="card-panel">
+
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <mat-card-header class="logo">
+          <mat-card-title>
+            <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
+          </mat-card-title>
+          <mat-card-subtitle>Zarejestruj się</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+      <div class="col-2">
+        <select class="language-panel">
+          <option value="PL">PL</option>
+          <option value="ENG">ENG</option>
+        </select>
+      </div>
+    </div>
+
+    <mat-card-content>
+
+      <div class="row center">
+        <span>Aby założyć konto, wypełnij pola poniżej.</span>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Imię" maxlength="15">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Nazwisko" maxlength="15">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Hasło" maxlength="15">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Potwórz hasło" maxlength="15">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="E-mail" maxlength="15">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Nazwa firmy" maxlength="15">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Regon" maxlength="15">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="KRS" maxlength="15">
+          </mat-form-field>
+        </div>
+      </div>
+
+        <div class="row center">
+          <button class="register-btn" mat-raised-button color="primary">Załóż konto</button>
+        </div>
+
+        <div class="row center" >
+          <span id="footer-label">Posiadasz już konto?<a routerLink='/login'routerLinkActive="active" id="return-to-login">Zaloguj się</a></span>
+        </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

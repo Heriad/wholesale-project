@@ -1,0 +1,15 @@
+@import '../../../styles/header-card.scss';
+
+.login-form {
+  width: 100%;
+}
+
+.login-btn {
+  float: right;
+  margin-top: 12px;
+}
+
+.login-wrong-credentials {
+  color: red;
+  margin-top: -10px;
+}

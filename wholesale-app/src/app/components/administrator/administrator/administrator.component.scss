@@ -1,0 +1,27 @@
+.mat-column-edit {
+  width: 160px;
+}
+
+.mat-column-delete {
+  width: 160px;
+}
+
+.main-content {
+  background-color: white;
+}
+
+.tab-selected, .tab-selected:hover {
+  color: black;
+  background-color: #6b6463;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+// TODO Zahardcodować kolory, ustalić kolorystyke
+.sidebar {
+  width: 12%;
+  background-color: #474241;
+}
+

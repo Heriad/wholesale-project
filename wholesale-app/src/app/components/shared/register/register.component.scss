@@ -1,0 +1,35 @@
+@import '../../../styles/header-card.scss';
+
+.center {
+  padding: 0px 16px 0px 16px;
+  justify-content: center;
+}
+
+.name-form {
+  width: 45%;
+}
+
+.surname-form {
+  width: 45%;
+  margin-left: 10%;
+}
+
+.email-form {
+  width: 45%;
+}
+
+.register-btn {
+  float: right;
+}
+
+.data-label {
+  width: 100%;
+}
+
+#footer-label {
+  margin-top: 10px;
+}
+
+#return-to-login {
+  margin-left: 5px;
+}
