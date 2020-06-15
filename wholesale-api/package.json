@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Heriad/wholesale-project#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nano": "^8.2.2"
   }
 }
