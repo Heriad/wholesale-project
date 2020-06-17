@@ -28,14 +28,14 @@
 // export default {
 
 //   async create(req, res, next) {
-//     if (!req.query.name || !req.query.surname || !req.query.email || !req.query.password) {
+//     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password) {
 //       console.debug('Brak danych');
 //       return res.status(400).send({
 //         err: 'Brak wymaganych danych'
 //       });
 //     }
-//     let newUser = createUser(req.query.name, req.query.surname, req.query.email, 
-//       req.query.password, req.query.companyName, req.query.regon, req.query.krs, req.query.type);
+//     let newUser = createUser(req.body.name, req.body.surname, req.body.email, 
+//       req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
 //     let dbResponse = await addUser(newUser);
 //     if (dbResponse.success) {
 //       return createResponseController(responseStatus.SUCCESS, dbResponse.data, dbResponse.message);
@@ -56,14 +56,14 @@ export default {
   async create(req, res, next) {
     console.log('Test: ', req);
     console.log('Koniec req')
-    if (!req.query.name || !req.query.surname || !req.query.email || !req.query.password) {
+    if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password) {
       console.debug('Brak danych');
       return res.status(400).send({
         err: 'Brak wymaganych danych'
       });
     }
-    let newUser = createUser(req.query.name, req.query.surname, req.query.email, 
-      req.query.password, req.query.companyName, req.query.regon, req.query.krs, req.query.type);
+    let newUser = createUser(req.body.name, req.body.surname, req.body.email, 
+      req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
     let dbResponse = await addUser(newUser);
     console.log('Test res: ', dbResponse);
     if (dbResponse.success) {
@@ -71,7 +71,6 @@ export default {
     } else {
       return createResponseController(responseStatus.ERROR, dbResponse.data, dbResponse.message);
     }
-    
   }
 
   // Find user

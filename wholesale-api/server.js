@@ -5,6 +5,9 @@ import users from './src/routes/users';
 
 const server = express();
 
+// Middleware
+
+
 // Port
 const port = process.env.port || 3000;
 

@@ -2,6 +2,7 @@ import { createResponseController } from '../controllers/responseController';
 import responseStatus from '../models/responseModel';
 import couchdbConfig from '../../config/couchdbConfig';
 
+// Podłączenie nano do bazy danych
 const nano = require('nano')(couchdbConfig.url);
 const database = nano.db.use(couchdbConfig.dbName);
 
@@ -16,8 +17,9 @@ async function checkIfDataAlreadyExists(viewName, key) {
 }
 
 export async function addUser(user) {
-    var userExists = true;
+    let userExists = true;
     try {
+        console.log('UserExist: ', userExists);
         userExists = await checkIfDataAlreadyExists('users', user.email);
         if (userExists) {
             return createResponseController(responseStatus.INVALID, 'User' + user.email + 'already exists');
