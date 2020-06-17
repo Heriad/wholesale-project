@@ -1,14 +1,13 @@
-const responseController = require('../controllers/responseController');
-const responseStatus = require('../models/responseModel');
+import { createResponseController } from '../controllers/responseController';
+import responseStatus from '../models/responseModel';
+import couchdbConfig from '../../config/couchdbConfig';
 
-const dbConfig = require('config').get('database.settings');
-const dbConnectionUrl = dbConfig.scheme + "://" + dbConfig.username + ":" + dbConfig.password + "@" + dbConfig.host + ":" + dbConfig.port;
-const nano = require('nano')(dbConnectionUrl);
-const database = nano.db.use(dbConfig.dbName);
+const nano = require('nano')(couchdbConfig.url);
+const database = nano.db.use(couchdbConfig.dbName);
 
-// Funkcja sprawa czy dany element znajduje się już w bazie danych
+// Funkcja sprawdza czy dany element znajduje się już w bazie danych
 async function checkIfDataAlreadyExists(viewName, key) {
-    var dbResponse = await database.view(dbConfig.dbName, viewName, { key: key, reduce: false, include_docs: true });
+    var dbResponse = await database.view(couchdbConfig.dbName, viewName, { key: key, reduce: false, include_docs: true });
     if (dbResponse && dbResponse.rows.length > 0) {
         return true;
     } else {
@@ -16,19 +15,17 @@ async function checkIfDataAlreadyExists(viewName, key) {
     }
 }
 
-async function addUser(user) {
+export async function addUser(user) {
     var userExists = true;
     try {
         userExists = await checkIfDataAlreadyExists('users', user.email);
         if (userExists) {
-            return responseController.createResponseController(responseStatus.INVALID, 'User' + user.email + 'already exists');
+            return createResponseController(responseStatus.INVALID, 'User' + user.email + 'already exists');
         } else {
             await database.insert(user);
-            return responseController.createResponseController(responseStatus.SUCCESS)
+            return createResponseController(responseStatus.SUCCESS)
         }
     } catch (err) {
-        return responseController.createResponseController(responseStatus.ERROR, null, err);
+        return createResponseController(responseStatus.ERROR, null, err);
     }
 }
-
-module.exports.addUser = addUser;

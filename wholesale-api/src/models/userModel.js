@@ -1,4 +1,4 @@
-var uuid = require('uuid/v4')
+import { v4 as uuid } from 'uuid';
 
 function User(name, surname, email, password, companyName, regon, krs, type) {
   this._id = uuid();
@@ -13,6 +13,6 @@ function User(name, surname, email, password, companyName, regon, krs, type) {
 }
 
 // TODO hash password
-module.exports.createUser = function(name, surname, email, password, companyName, regon, krs, type) {
+export function createUser(name, surname, email, password, companyName, regon, krs, type) {
   return new User(name, surname, email, password, companyName, regon, krs, type);
 }
