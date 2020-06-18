@@ -1,10 +1,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { createDatabases } from './config/database';
 
 // Routes import
 import users from './src/routes/users';
 
 const server = express();
+
+// Create databases
+createDatabases();
 
 // Middleware
 server.use(bodyParser.json());
