@@ -19,10 +19,10 @@ async function checkIfDataAlreadyExists(viewName, key) {
 export async function addUser(user) {
     let userExists = true;
     try {
-        console.log('UserExist: ', userExists);
-        userExists = await checkIfDataAlreadyExists('users', user.email);
+        // userExists = await checkIfDataAlreadyExists('users', user.email);
+        // console.log('UserExist: ', userExists);
         if (userExists) {
-            return createResponseController(responseStatus.INVALID, 'User' + user.email + 'already exists');
+            return createResponseController(responseStatus.INVALID, 'User' + ' ' + user.email + ' ' + 'already exists');
         } else {
             await database.insert(user);
             return createResponseController(responseStatus.SUCCESS)

@@ -56,6 +56,7 @@ export default {
   async create(req, res, next) {
     console.log('Test: ', req);
     console.log('Koniec req')
+    console.log('Name: ', req.body.name);
     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password) {
       console.debug('Brak danych');
       return res.status(400).send({

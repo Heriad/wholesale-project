@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 
 // Routes import
 import users from './src/routes/users';
@@ -6,7 +7,7 @@ import users from './src/routes/users';
 const server = express();
 
 // Middleware
-
+server.use(bodyParser.json());
 
 // Port
 const port = process.env.port || 3000;
