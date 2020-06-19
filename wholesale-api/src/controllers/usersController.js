@@ -46,7 +46,7 @@
 // }
 
 
-import { addUser, getAllUsers } from '../couchdb/userDB';
+import { addUser, getAllUsers, getOneUser, removeUser } from '../couchdb/userDB';
 import { createUser } from '../models/userModel';
 
 export default {
@@ -59,7 +59,7 @@ export default {
     let newUser = createUser(req.body.name, req.body.surname, req.body.email, 
       req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
     let dbResponse = await addUser(newUser);
-    console.log('/apiCreateUser -  ', dbResponse);
+    console.log('api /addUser -  ', dbResponse);
     if (dbResponse.success) {
       return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {
@@ -68,6 +68,19 @@ export default {
   },
 
   // Find user
+  async getOne(req, res, next) {
+    if (!req.params.id) {
+      return res.status(400).send({ message: 'Required data missing' });
+    }
+    let dbResponse = await getOneUser(req.params.id);
+    console.log('api /getOneUser - ', dbResponse);
+    if (dbResponse.success) {
+      return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    } else {
+      return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+  }
+},
+
 
   // Find users
   async getAll(req, res, next) {
@@ -75,17 +88,26 @@ export default {
       return res.status(400).send({ message: 'Required data missing' });
     }
     let dbResponse = await getAllUsers(req.body.type);
-    console.log('/apiGetAllUsers - ', dbResponse);
+    console.log('api /getAllUsers - ', dbResponse);
+    if (dbResponse.success) {
+      return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    } else {
+      return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    }
+  },
+
+  // Update user
+  // Delete user
+  async remove(req, res, next) {
+    if (!req.params.id) {
+      return res.status(400).send({ message: 'Required data missing' });
+    }
+    let dbResponse = await removeUser(req.params.id);
+    console.log('api /removeUser - ', dbResponse);
     if (dbResponse.success) {
       return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {
       return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     }
   }
-
-  // Update user
-  // Delete user
-  
-
 }
-

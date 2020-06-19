@@ -1,5 +1,7 @@
 *** TODO LIST ASAP
-
+do remove potrzebny jest _rev także najpierw musi pójść get później delete, i id trzeba przekazwac raz w params a raz w body
+zrobić autentykacje za pomocą passport
+odpowiednie przekierowywac uzytkowników po typie - front end
 
 ** TODO LATER
 

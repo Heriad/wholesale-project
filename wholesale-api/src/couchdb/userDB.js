@@ -39,6 +39,25 @@ export async function addUser(user) {
     }
 }
 
+export async function getOneUser(id) {
+    const selector = {
+        _id: id
+    }
+    let user;
+    try {
+        await database.find({ selector: selector }).then((body) => {
+            user = body.docs[0];
+        });
+        if (user) {
+            return createResponseController(responseStatus.SUCCESS, 'User found', user);
+        } else {
+            return createResponseController(responseStatus.INVALID, 'User not found', null);
+        }
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
 export async function getAllUsers(type) {
     try {
         let data = [];
@@ -58,6 +77,16 @@ export async function getAllUsers(type) {
             });
         }   
         return createResponseController(responseStatus.SUCCESS, `Users found of the given type: ${type}`, data);
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
+
+export async function removeUser(id) {
+    try {
+        await database.destroy(id, '1-22506a08c56f56cc4ca016b2df2bb176'); //todo
+        return createResponseController(responseStatus.SUCCESS, `User has been removed`, null);
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
     }
