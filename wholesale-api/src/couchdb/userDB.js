@@ -1,7 +1,8 @@
 import { createResponseController } from '../controllers/responseController';
 import { userType } from '../models/userModel';
-import responseStatus from '../models/responseModel';
 import couchdbConfig from '../../config/couchdbConfig';
+import responseStatus from '../models/responseModel';
+import bcrypt from 'bcrypt';
 
 // Podłączenie nano do bazy danych
 const nano = require('nano')(couchdbConfig.url);
@@ -28,6 +29,8 @@ export async function addUser(user) {
         if (userExists) {
             return createResponseController(responseStatus.INVALID, `User ${user.email} already exists`, null);
         } else {
+            const saltRounds = 10;
+            user.password = await bcrypt.hash(user.password, saltRounds);
             await database.insert(user);
             return createResponseController(responseStatus.SUCCESS, 'The user has been created', user);
         }
