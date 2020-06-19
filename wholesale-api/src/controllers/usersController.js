@@ -45,30 +45,25 @@
 //   }
 // }
 
-import { createResponseController } from './responseController';
+
 import { createUser } from '../models/userModel';
 import { addUser } from '../couchdb/userDB';
-import responseStatus from '../models/responseModel';
 
 export default {
 
   // Create User
   async create(req, res, next) {
-    console.log('Body: ', req.body); // usunac
     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password) {
-      console.debug('Brak danych');
-      return res.status(400).send({
-        err: 'Brak wymaganych danych'
-      });
+      return res.status(400).send({ message: 'Required data missing' });
     }
     let newUser = createUser(req.body.name, req.body.surname, req.body.email, 
       req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
     let dbResponse = await addUser(newUser);
-    console.log('Test res: ', dbResponse);
+    console.log('/apiCreateUser -  ', dbResponse);
     if (dbResponse.success) {
-      return createResponseController(responseStatus.SUCCESS, dbResponse.data, dbResponse.message);
+      return res.status(201).send({ success: dbResponse.success, data: dbResponse.data, message: dbResponse.message });
     } else {
-      return createResponseController(responseStatus.ERROR, dbResponse.data, dbResponse.message);
+      return res.status(400).send({ success: dbResponse.success, data: dbResponse.data, message: dbResponse.message });
     }
   }
 

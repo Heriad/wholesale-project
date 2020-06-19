@@ -1,25 +1,27 @@
 import responseStatus from '../models/responseModel';
 
-function responseController(message, data, success) {
-    this.message = message;
-    this.data = data;
-    this.success = success;
+class ResponseController {
+    constructor(success, message, data) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+    }
 }
 
-export function createResponseController(message, data, status) {
+export function createResponseController(status, message, data) {
     if (!message) {
-        message = "No message"
+        message = "No message";
     }
     if (!data) {
-        data = {}
+        data = {};
     }
     switch(status) {
         case responseStatus.SUCCESS:
-            return new responseController(message, data, true);
+            return new ResponseController(true, message, data);
         case responseStatus.INVALID:
-            return new responseController(message, data, false);
+            return new ResponseController(false, message, data);
         case responseStatus.ERROR:
         default:
-            return new responseController(message, data, false);
+            return new ResponseController(false, message, data);
     }
 }
