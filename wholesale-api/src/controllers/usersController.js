@@ -46,14 +46,14 @@
 // }
 
 
+import { addUser, getAllUsers } from '../couchdb/userDB';
 import { createUser } from '../models/userModel';
-import { addUser } from '../couchdb/userDB';
 
 export default {
 
   // Create User
   async create(req, res, next) {
-    if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password) {
+    if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.type) {
       return res.status(400).send({ message: 'Required data missing' });
     }
     let newUser = createUser(req.body.name, req.body.surname, req.body.email, 
@@ -61,16 +61,31 @@ export default {
     let dbResponse = await addUser(newUser);
     console.log('/apiCreateUser -  ', dbResponse);
     if (dbResponse.success) {
-      return res.status(201).send({ success: dbResponse.success, data: dbResponse.data, message: dbResponse.message });
+      return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {
-      return res.status(400).send({ success: dbResponse.success, data: dbResponse.data, message: dbResponse.message });
+      return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    }
+  },
+
+  // Find user
+
+  // Find users
+  async getAll(req, res, next) {
+    if (!req.body.type) {
+      return res.status(400).send({ message: 'Required data missing' });
+    }
+    let dbResponse = await getAllUsers(req.body.type);
+    console.log('/apiGetAllUsers - ', dbResponse);
+    if (dbResponse.success) {
+      return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    } else {
+      return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     }
   }
 
-  // Find user
-  // Find users
-  // Delete user
   // Update user
+  // Delete user
+  
 
 }
 

@@ -16,3 +16,9 @@ function User(name, surname, email, password, companyName, regon, krs, type) {
 export function createUser(name, surname, email, password, companyName, regon, krs, type) {
   return new User(name, surname, email, password, companyName, regon, krs, type);
 }
+
+export const userType = {
+  ALL: 'all',
+  CLIENT: 'client',
+  EMPLOYEE: 'employee'
+}

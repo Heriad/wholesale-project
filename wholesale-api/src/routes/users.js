@@ -9,10 +9,14 @@ export default () => {
     // POST /users
     api.post('/', catchAsync(usersController.create));
 
+    // GET /users/:id w ogóle potrzebne? jednak potrzebne np. do edycji danego usera
 
-    // GET /users
-    // GET /users/:id
-    // PUT /users/:id
+    // GET /users  po typie
+    api.get('/', catchAsync(usersController.getAll));
+
+
+    
+    // PUT /users/:id do aktyalizacji danych jego np mziana hasła, czy pracownika
     // DELETE /users/:id
 
     return api;
