@@ -1,8 +1,8 @@
 ** DO ZROBIENIA
 panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
 main page zacząć tworzyć (TODO: )
-Walidacja forlumarza rejestracji
-
+Walidacja formularza rejestracji
+Po założeniu konta informacja, że konto zostało założone, może modal? i przekierowanie na strone z logowaniem
 
 
 
