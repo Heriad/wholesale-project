@@ -25,6 +25,10 @@ export class RegisterComponent implements OnInit {
   });
 
   registerUser() {
+    if (this.registerForm.controls.password.value !== this.registerForm.controls.repeatPassword.value) {
+      console.log('różne hasła!');
+      return;
+    }
     const user: User = {
       name: this.registerForm.controls.name.value,
       surname: this.registerForm.controls.surname.value,
@@ -35,7 +39,9 @@ export class RegisterComponent implements OnInit {
       krs: this.registerForm.controls.krs.value,
       type: UserRole.CLIENT,
     };
-    this.api.createUser(user);
+    this.api.createUser(user).subscribe((res) => {
+      console.log('res: ', res);
+    });
   }
 
   ngOnInit(): void {

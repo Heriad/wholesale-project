@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,8 @@ export class ApiUrlsService {
 
   // User api
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   createUser(user) {
-    console.log('REQUEST');
-    this.httpClient.post('http://localhost:3000/api/users', {
+    return this.httpClient.post(environment.baseUrl + '/api/users', {
       name: user.name,
       surname: user.surname,
       password: user.password,
@@ -28,8 +22,6 @@ export class ApiUrlsService {
       regon: user.regon,
       krs: user.krs,
       type: user.type
-    }, this.httpOptions).subscribe((data) => {
-      console.log(data);
     });
   }
 
