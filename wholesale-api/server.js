@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { createDatabases } from './config/database';
@@ -12,6 +13,7 @@ createDatabases();
 
 // Middleware
 server.use(bodyParser.json());
+server.use(cors());
 
 // Port
 const port = process.env.port || 3000;

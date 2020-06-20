@@ -34,10 +34,10 @@ import { MainPageComponent } from './components/shared/main-page/main-page.compo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],

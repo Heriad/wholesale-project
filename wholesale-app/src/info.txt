@@ -1,9 +1,11 @@
 ** DO ZROBIENIA
-podłączyc baze danych
 panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
-powrót do logowania hm zarejestruj sie - "Posiadasz już konto? Zaloguj się"
-wystawic api do zakładania konta
 main page zacząć tworzyć (TODO: )
+Walidacja forlumarza rejestracji
+
+
+
+
 
 ** ZROBIONE
 -Favicon naprawić
@@ -11,6 +13,12 @@ main page zacząć tworzyć (TODO: )
 Z ekranu logowania/rejestracji klikniecie w logo WS przekierowuje z powrotem na główną stronę
 komponent register i drugi do przypominania hasła
 Z ekranu logowania/rejestracji klikniecie w logo WS przekierowuje z powrotem na główną stronę
+podłączyc baze danych
+wystawic api do zakładania konta (cały user zrobiony)
+powrót do logowania hm zarejestruj sie - "Posiadasz już konto? Zaloguj się"
+podłączyć api createUser
+
+
 
 
 ***WYMAGANIA

@@ -1,5 +1,10 @@
-export class Client {
-  id: string;
+export enum UserRole {
+  ALL = 'all',
+  CLIENT = 'client',
+  EMPLOYEE = 'employee'
+}
+
+export class User {
   name: string;
   surname: string;
   password: string;
@@ -7,4 +12,5 @@ export class Client {
   companyName?: string;
   regon?: string;
   krs?: string;
+  type: UserRole;
 }

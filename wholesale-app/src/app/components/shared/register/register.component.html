@@ -25,61 +25,63 @@
         <span>Aby założyć konto, wypełnij pola poniżej.</span>
       </div>
 
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Imię" maxlength="15">
-          </mat-form-field>
+      <form [formGroup]="registerForm">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="Imię" maxlength="15" formControlName="name">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="Nazwisko" maxlength="15" formControlName="surname">
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Nazwisko" maxlength="15">
-          </mat-form-field>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Hasło" maxlength="15">
-          </mat-form-field>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="password" placeholder="Hasło" maxlength="15" formControlName="password">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="password" placeholder="Potwórz hasło" maxlength="15" formControlName="repeatPassword">
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Potwórz hasło" maxlength="15">
-          </mat-form-field>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="E-mail" maxlength="15">
-          </mat-form-field>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="E-mail" maxlength="15" formControlName="email">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="Nazwa firmy" maxlength="15" formControlName="companyName">
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Nazwa firmy" maxlength="15">
-          </mat-form-field>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Regon" maxlength="15">
-          </mat-form-field>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="Regon" maxlength="15" formControlName="regon">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="KRS" maxlength="15" formControlName="krs">
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="KRS" maxlength="15">
-          </mat-form-field>
-        </div>
-      </div>
 
-        <div class="row center">
-          <button class="register-btn" mat-raised-button color="primary">Załóż konto</button>
-        </div>
+          <div class="row center">
+            <button class="register-btn" mat-raised-button color="primary" (click)="registerUser()">Załóż konto</button>
+          </div>
+        </form>
 
         <div class="row center" >
           <span id="footer-label">Posiadasz już konto?<a routerLink='/login'routerLinkActive="active" id="return-to-login">Zaloguj się</a></span>
