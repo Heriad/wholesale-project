@@ -40,13 +40,10 @@ export async function addUser(user) {
 }
 
 export async function getOneUser(id) {
-    const selector = {
-        _id: id
-    }
     let user;
     try {
-        await database.find({ selector: selector }).then((body) => {
-            user = body.docs[0];
+        await database.get(id).then((body) => {
+            user = body;
         });
         if (user) {
             return createResponseController(responseStatus.SUCCESS, 'User found', user);
@@ -82,11 +79,29 @@ export async function getAllUsers(type) {
     }
 }
 
+export async function updateUser(id) {
+    try {
+        
+    } catch (err) {
+
+    }
+}
 
 export async function removeUser(id) {
     try {
-        await database.destroy(id, '1-22506a08c56f56cc4ca016b2df2bb176'); //todo
-        return createResponseController(responseStatus.SUCCESS, `User has been removed`, null);
+        const selector = {
+            _id: id
+        }
+        let user;
+        await database.find({ selector: selector }).then((body) => {
+            user = body.docs[0];
+        });
+        if (user) {
+            await database.destroy(user._id, user._rev);
+            return createResponseController(responseStatus.SUCCESS, `User has been removed`, null);
+        } else {
+            return createResponseController(responseStatus.INVALID, 'User not found', null);
+        }
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
     }

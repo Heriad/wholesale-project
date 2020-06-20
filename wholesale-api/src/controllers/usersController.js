@@ -46,7 +46,7 @@
 // }
 
 
-import { addUser, getAllUsers, getOneUser, removeUser } from '../couchdb/userDB';
+import { addUser, getOneUser, getAllUsers, updateUser, removeUser } from '../couchdb/userDB';
 import { createUser } from '../models/userModel';
 
 export default {
@@ -54,7 +54,7 @@ export default {
   // Create User
   async create(req, res, next) {
     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.type) {
-      return res.status(400).send({ message: 'Required data missing' });
+      return res.status(400).send({ message: 'Required data missing: name, surname, email, password, type' });
     }
     let newUser = createUser(req.body.name, req.body.surname, req.body.email, 
       req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
@@ -70,7 +70,7 @@ export default {
   // Find user
   async getOne(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data missing' });
+      return res.status(400).send({ message: 'Required data missing: id' });
     }
     let dbResponse = await getOneUser(req.params.id);
     console.log('api /getOneUser - ', dbResponse);
@@ -85,7 +85,7 @@ export default {
   // Find users
   async getAll(req, res, next) {
     if (!req.body.type) {
-      return res.status(400).send({ message: 'Required data missing' });
+      return res.status(400).send({ message: 'Required data missing: type' });
     }
     let dbResponse = await getAllUsers(req.body.type);
     console.log('api /getAllUsers - ', dbResponse);
@@ -97,10 +97,22 @@ export default {
   },
 
   // Update user
+  async update(req, res, next) {
+    if (!req.params.id) {
+      return res.status(400).send({ message: 'Required data missing: id' });
+    }
+    let dbResponse = await updateUser(req.params.id);
+    if (dbResponse.success) {
+      return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    } else {
+      return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    }
+  },
+
   // Delete user
   async remove(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data missing' });
+      return res.status(400).send({ message: 'Required data missing: id' });
     }
     let dbResponse = await removeUser(req.params.id);
     console.log('api /removeUser - ', dbResponse);
@@ -110,4 +122,5 @@ export default {
       return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     }
   }
+
 }
