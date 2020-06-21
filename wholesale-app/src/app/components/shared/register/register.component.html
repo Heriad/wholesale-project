@@ -8,7 +8,7 @@
           <mat-card-title>
             <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
           </mat-card-title>
-          <mat-card-subtitle>Zarejestruj się</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="!isUserCreated">Zarejestruj się</mat-card-subtitle>
         </mat-card-header>
       </div>
       <div class="col-2 language-panel-label">
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <mat-card-content>
+    <mat-card-content *ngIf="!isUserCreated">
 
       <div class="row center">
         <span>Aby założyć konto, wypełnij pola poniżej.</span>
@@ -91,6 +91,20 @@
           <span id="footer-label">Posiadasz już konto?<a routerLink='/login'routerLinkActive="active" id="return-to-login">Zaloguj się</a></span>
         </div>
 
+    </mat-card-content>
+
+    <mat-card-content *ngIf="isUserCreated">
+      <div class="row center">
+        <span>Konto zostało utworzone.</span>
+      </div>
+      <div class="row btns-label">
+        <div class="col-6">
+          <button class="main-page-btn" mat-raised-button color="primary" [routerLink]="['']">Strona główna</button>
+        </div>
+        <div class="col-6">
+          <button class="login-btn" mat-raised-button color="primary" [routerLink]="['/login']">Zaloguj się</button>
+        </div>
+      </div>
     </mat-card-content>
 
   </mat-card>

@@ -2,6 +2,7 @@ import { ApiUrlsService } from './../../../services/api-urls.service';
 import { Component, OnInit } from '@angular/core';
 import { User, UserRole } from 'src/app/models/user.model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ApiResponse } from 'src/app/models/response.model';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   registerError: Array<string> = [];
+  isUserCreated: boolean;
 
   registerUser() {
     this.registerError = [];
@@ -40,14 +42,20 @@ export class RegisterComponent implements OnInit {
       type: UserRole.CLIENT,
     };
     if (this.registerForm.valid) {
-      this.api.createUser(user).subscribe((res) => {
-        
+      this.api.createUser(user).subscribe((res: ApiResponse) => {
         console.log('res: ', res);
+        console.log('success: ', res.success);
+        console.log('message: ', res.message);
+        console.log('data:: ', res.data);
+        if (res.success) {
+          this.isUserCreated = true;
+        }
       });
     }
   }
 
   ngOnInit(): void {
+    this.isUserCreated = false;
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
