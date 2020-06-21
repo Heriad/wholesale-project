@@ -3,7 +3,8 @@ panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
 main page zacząć tworzyć (TODO: )
 Walidacja formularza rejestracji
 Po założeniu konta informacja, że konto zostało założone, może modal? i przekierowanie na strone z logowaniem
-
+informacja jeżeli dany email jest już użyty
+regon i krs -> tylko liczby
 
 
 

@@ -1,5 +1,9 @@
 @import '../../../styles/header-card.scss';
 
+.register-form {
+  margin-top: 10px;
+}
+
 .center {
   padding: 0px 16px 0px 16px;
   justify-content: center;
@@ -24,6 +28,12 @@
 
 .data-label {
   width: 100%;
+}
+
+.error-label {
+  width: 100%;
+  padding: 0px 16px 0px 16px;
+  color: red;
 }
 
 #footer-label {
