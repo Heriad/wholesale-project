@@ -50,6 +50,11 @@ export class RegisterComponent implements OnInit {
         if (res.success) {
           this.isUserCreated = true;
         }
+      }, (err) => {
+        console.log(err);
+        if (!err.error.success && err.error.message === `User ${this.registerForm.controls.email.value} already exists`) {
+          this.registerError.push('Użytkownik o danym adresie email już istnieje');
+        }
       });
     }
   }

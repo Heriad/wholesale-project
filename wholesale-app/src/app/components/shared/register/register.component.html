@@ -29,25 +29,12 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput type="text" placeholder="Imię" maxlength="15" formControlName="name">
+              <input matInput type="text" placeholder="Imię" maxlength="15" formControlName="name" required>
             </mat-form-field>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput type="text" placeholder="Nazwisko" maxlength="15" formControlName="surname">
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-6">
-            <mat-form-field class="data-label">
-              <input matInput type="password" placeholder="Hasło" maxlength="20" formControlName="password">
-            </mat-form-field>
-          </div>
-          <div class="col-6">
-            <mat-form-field class="data-label">
-              <input matInput type="password" placeholder="Potwórz hasło" maxlength="20" formControlName="repeatPassword">
+              <input matInput type="text" placeholder="Nazwisko" maxlength="15" formControlName="surname" required>
             </mat-form-field>
           </div>
         </div>
@@ -55,7 +42,20 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput type="text" placeholder="E-mail" maxlength="25" formControlName="email">
+              <input matInput type="password" placeholder="Hasło" maxlength="20" formControlName="password" required>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="password" placeholder="Potwórz hasło" maxlength="20" formControlName="repeatPassword" required>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="data-label">
+              <input matInput type="text" placeholder="E-mail" maxlength="25" formControlName="email" required>
             </mat-form-field>
           </div>
           <div class="col-6">
@@ -78,7 +78,7 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="registerError.length > 0">
+        <div class="row error-label-row" *ngIf="registerError.length > 0">
           <span class="error-label" *ngFor="let err of registerError">{{ err }}</span>
         </div>
 
@@ -95,7 +95,7 @@
 
     <mat-card-content *ngIf="isUserCreated">
       <div class="row center">
-        <span>Konto zostało utworzone.</span>
+        <span>Konto zostało utworzone pomyślnie.</span>
       </div>
       <div class="row btns-label">
         <div class="col-6">

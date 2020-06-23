@@ -3,9 +3,8 @@ panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
 main page zacząć tworzyć (TODO: )
 Walidacja formularza rejestracji
 Po założeniu konta informacja, że konto zostało założone, może modal? i przekierowanie na strone z logowaniem
-informacja jeżeli dany email jest już użyty
 regon i krs -> tylko liczby
-
+auth login
 
 
 ** ZROBIONE
@@ -18,7 +17,7 @@ podłączyc baze danych
 wystawic api do zakładania konta (cały user zrobiony)
 powrót do logowania hm zarejestruj sie - "Posiadasz już konto? Zaloguj się"
 podłączyć api createUser
-
+informacja jeżeli dany email jest już użyty
 
 
 
