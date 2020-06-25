@@ -6,7 +6,8 @@ export default {
     dbName: 'wholesale-couchdb',
     username: 'admin',
     password: 'password',
-    dbUsers: 'users',
+    dbClients: 'clients',
+    dbEmployees: 'employees',
     dbOrders: 'orders',
     dbProducts: 'products'
 }

@@ -1,10 +1,10 @@
 ** DO ZROBIENIA
 panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
 main page zacząć tworzyć (TODO: )
-Walidacja formularza rejestracji
-Po założeniu konta informacja, że konto zostało założone, może modal? i przekierowanie na strone z logowaniem
-regon i krs -> tylko liczby
 auth login
+language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być?
+
+
 
 
 ** ZROBIONE
@@ -18,8 +18,11 @@ wystawic api do zakładania konta (cały user zrobiony)
 powrót do logowania hm zarejestruj sie - "Posiadasz już konto? Zaloguj się"
 podłączyć api createUser
 informacja jeżeli dany email jest już użyty
-
-
+regon i krs -> tylko liczby
+dane CamelCase-em - dyrektywa Sentesne Case Type
+Po założeniu konta informacja, że konto zostało założone, może modal? i przekierowanie na strone z logowaniem -> card z informacja ze zostało pomysle utworzone
+Walidacja formularza rejestracji
+długość hasła np. minimum 8 znaków -> ustawione 8 znaków
 
 ***WYMAGANIA
 -Angular ^9

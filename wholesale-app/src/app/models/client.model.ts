@@ -4,7 +4,7 @@ export enum UserRole {
   EMPLOYEE = 'employee'
 }
 
-export class User {
+export class Client {
   name: string;
   surname: string;
   password: string;

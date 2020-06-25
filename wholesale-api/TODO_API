@@ -2,6 +2,11 @@
 update user api
 zrobić autentykacje za pomocą passport
 odpowiednie przekierowywac uzytkowników po typie - front end
+UŻYTKOWNICY A PRACOWNICY ODDZIELNIE TRZYMANI?? 
+podczas zwracania usera usunac hasło z response
+
+
+
 
 ** TODO LATER
 

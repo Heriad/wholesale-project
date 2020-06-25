@@ -2,7 +2,8 @@ import couchdbConfig from './couchdbConfig';
 
 // Databases names
 var couchdb = {
-    users: null,
+    clients: null,
+    employees: null,
     products: null,
     orders: null
 };

@@ -10,19 +10,25 @@ export class ApiUrlsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // User api
+  // Client api
 
-  createUser(user) {
-    return this.httpClient.post(environment.baseUrl + '/api/users', {
-      name: user.name,
-      surname: user.surname,
-      password: user.password,
-      email: user.email,
-      companyName: user.companyName,
-      regon: user.regon,
-      krs: user.krs,
-      type: user.type
+  createClient(client) {
+    return this.httpClient.post(environment.baseUrl + '/api/clients', {
+      name: client.name,
+      surname: client.surname,
+      password: client.password,
+      email: client.email,
+      companyName: client.companyName,
+      regon: client.regon,
+      krs: client.krs,
+      type: client.type
     });
   }
+
+  getClients() {
+    return this.httpClient.get(environment.baseUrl + '/api/clients');
+  }
+
+  // Employees api
 
 }

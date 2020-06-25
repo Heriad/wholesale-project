@@ -3,8 +3,8 @@
 <mat-sidenav-container>
   <mat-sidenav mode="side" [(opened)]="isOpened" class="sidebar">
    <mat-nav-list>
-    <a mat-list-item (click)="changeTab($event, 'manage-employees')" [ngClass]="{'tab-selected': activeTab === 'manage-employees'}">Zarządzaj produktami</a>
-    <a mat-list-item (click)="changeTab($event, 'tab2')" [ngClass]="{'tab-selected': activeTab === 'tab2'}">Zarządzaj pracownikami</a>
+    <a mat-list-item (click)="changeTab($event, 'tab1')" [ngClass]="{'tab-selected': activeTab === 'tab1'}">Zarządzaj produktami</a>
+    <a mat-list-item (click)="changeTab($event, 'manage-employees')" [ngClass]="{'tab-selected': activeTab === 'manage-employees'}">Zarządzaj pracownikami</a>
     <a mat-list-item (click)="changeTab($event, 'tab3')" [ngClass]="{'tab-selected': activeTab === 'tab3'}">Zarządzaj zamówieniami</a>
    </mat-nav-list>
   </mat-sidenav>

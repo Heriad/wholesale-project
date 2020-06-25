@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import { createDatabases } from './config/database';
 
 // Routes import
-import users from './src/routes/users';
+import clients from './src/routes/clients';
 
 const server = express();
 
@@ -19,7 +19,7 @@ server.use(cors());
 const port = process.env.port || 3000;
 
 // Routes config
-server.use('/api/users', users());
+server.use('/api/clients', clients());
 
 // Server listen
 server.listen(port, () => console.log(`Server is running on port ${port}`));

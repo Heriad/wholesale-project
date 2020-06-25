@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/shared/register/register.component';
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import { SentenseCaseTypeDirective } from './directives/sentense-case-type.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MainPageComponent } from './components/shared/main-page/main-page.compo
     ManageEmployeesComponent,
     RegisterComponent,
     RemindPasswordComponent,
-    MainPageComponent
+    MainPageComponent,
+    NumbersOnlyDirective,
+    SentenseCaseTypeDirective
   ],
   imports: [
     BrowserModule,
