@@ -7,7 +7,7 @@ import { LoginComponent } from './components/shared/login/login.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { AdministratorComponent } from './components/administrator/administrator/administrator.component';
 import { ClientComponent } from './components/client/client.component';
-import { AddEmployeeModalComponent } from './components/fragments/add-employee-modal/add-employee-modal.component';
+import { AddEmployeeDialogComponent } from './components/fragments/add-employee-dialog/add-employee-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './custom-material/custom-material-module';
 import { NavigationBarComponent } from './components/fragments/navigation-bar/navigation-bar.component';
@@ -19,6 +19,8 @@ import { RemindPasswordComponent } from './components/shared/remind-password/rem
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { SentenseCaseTypeDirective } from './directives/sentense-case-type.directive';
+import { ConfirmationDialogComponent } from './components/fragments/confirmation-dialog/confirmation-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -27,14 +29,15 @@ import { SentenseCaseTypeDirective } from './directives/sentense-case-type.direc
     EmployeeComponent,
     AdministratorComponent,
     ClientComponent,
-    AddEmployeeModalComponent,
+    AddEmployeeDialogComponent,
     NavigationBarComponent,
     ManageEmployeesComponent,
     RegisterComponent,
     RemindPasswordComponent,
     MainPageComponent,
     NumbersOnlyDirective,
-    SentenseCaseTypeDirective
+    SentenseCaseTypeDirective,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { SentenseCaseTypeDirective } from './directives/sentense-case-type.direc
     BrowserAnimationsModule,
     CustomMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

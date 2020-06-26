@@ -1,0 +1,44 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px;
+}
+
+.dialog {
+  height: 100%;
+}
+
+.dialog-header {
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #e9ecef;
+  justify-content: space-between;
+  height: 32.5%;
+}
+
+.dialog-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.dialog-content {
+  height: 35%;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.dialog-actions {
+  height: 32.5%;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-cancel {
+  margin-right: .25rem;
+  color: white;
+  background-color: gray;
+}
+
+.btn-accept {
+  margin-left: .25rem;
+}

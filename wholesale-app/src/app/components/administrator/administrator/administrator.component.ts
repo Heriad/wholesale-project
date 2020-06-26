@@ -22,10 +22,10 @@ export class AdministratorComponent implements OnInit {
   }
 
   changeTab(event, itemName) {
-    if (event && itemName === 'manage-employees') {
+    if (event && itemName === 'tab1') {
+      this.activeTab = 'tab1';
+    } else if (event && itemName === 'manage-employees') {
       this.activeTab = 'manage-employees';
-    } else if (event && itemName === 'tab2') {
-      this.activeTab = 'tab2';
     } else if (event && itemName === 'tab3') {
       this.activeTab = 'tab3';
     } else {

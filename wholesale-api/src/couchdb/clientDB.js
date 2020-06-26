@@ -1,7 +1,8 @@
 import { createResponseController } from '../controllers/responseController';
-import couchdbConfig from '../../config/couchdbConfig';
-import responseStatus from '../models/responseModel';
 import bcrypt from 'bcrypt';
+import responseStatus from '../models/responseModel';
+import couchdbConfig from '../../config/couchdbConfig';
+
 
 // Podłączenie nano do bazy danych
 const nano = require('nano')(couchdbConfig.url);

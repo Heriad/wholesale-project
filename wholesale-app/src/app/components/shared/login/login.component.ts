@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       console.log('Poprawne!');
       console.log('User: ', this.username);
       // TODO
-      if (this.username === 'administrator' && this.password === 'test') {
+      if (this.loginForm.controls.username.value === 'administrator' && this.loginForm.controls.password.value === 'admin') {
         console.log('test');
         this.router.navigate(['/administrator']).then((nav) => {
             console.log(nav);
