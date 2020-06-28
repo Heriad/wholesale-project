@@ -4,7 +4,7 @@ import { ConfirmationDialogComponent } from './../../fragments/confirmation-dial
 import { Component, OnInit } from '@angular/core';
 import { ApiUrlsService } from './../../../services/api-urls.service';
 import { MatDialog } from '@angular/material/dialog';
-import { GetEmployeesResponse } from 'src/app/models/response.model';
+import { GetEmployeesResponse, ApiResponse } from 'src/app/models/response.model';
 
 @Component({
   selector: 'app-manage-employees',
@@ -15,17 +15,9 @@ export class ManageEmployeesComponent implements OnInit {
 
   constructor(public api: ApiUrlsService, public dialogService: MatDialog, public dialogHelper: DialogHelperService) { }
 
-  displayedColumns: string[] = ['name', 'surname', 'email', 'workType', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'workType', 'edit', 'delete'];
   isOpened = true;
   dataSource;
-
-  // ELEMENT_DATA = [
-  //   {
-  //     id: '1234',
-  //     name: 'Lolek Kowalski',
-  //     login: 'bez loginu'
-  //   },
-  // ];
 
   // dataSource = this.ELEMENT_DATA;
 
@@ -57,8 +49,10 @@ export class ManageEmployeesComponent implements OnInit {
     dialogRef.componentInstance.title = 'Dodaj pracownika';
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.api.createEmployee(result).subscribe((res) => {
-          console.log(res);
+        this.api.createEmployee(result).subscribe((res: ApiResponse) => {
+          if (res.success) {
+            this.getEmployees();
+          }
         });
       }
     });
@@ -66,8 +60,6 @@ export class ManageEmployeesComponent implements OnInit {
 
   getEmployees() {
     this.api.getEmployees().subscribe((res: GetEmployeesResponse) => {
-      console.log('Found employees: ', res);
-      console.log('Test: ' , res.data[0].name);
       this.dataSource = res.data;
     });
   }

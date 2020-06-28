@@ -1,11 +1,31 @@
 table {
-  width: 60%;
+  width: 100%;
+}
+
+.mat-column-id {
+  width: 10%;
+}
+
+.mat-column-name {
+  width: 17.5%;
+}
+
+.mat-column-surname {
+  width: 17.5%;
+}
+
+.mat-column-email {
+  width: 15%;
+}
+
+.mat-column-workType {
+  width: 15%;
 }
 
 .mat-column-edit {
-  width: 160px;
+  width: 12.5%;
 }
 
 .mat-column-delete {
-  width: 160px;
+  width: 12.5%;
 }

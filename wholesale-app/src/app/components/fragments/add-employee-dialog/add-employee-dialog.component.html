@@ -13,25 +13,12 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Imię" formControlName="name">
+            <input matInput type="text" placeholder="Imię" maxlength="15" formControlName="name" appSentenseCaseType required>
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Nazwisko" formControlName="surname">
-          </mat-form-field>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="password" placeholder="Hasło" formControlName="password">
-          </mat-form-field>
-        </div>
-        <div class="col-6">
-          <mat-form-field class="data-label">
-            <input matInput type="password" placeholder="Potwórz hasło" formControlName="repeatPassword">
+            <input matInput type="text" placeholder="Nazwisko" maxlength="15" formControlName="surname" appSentenseCaseType required>
           </mat-form-field>
         </div>
       </div>
@@ -39,13 +26,26 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="E-mail" formControlName="email">
+            <input matInput type="password" placeholder="Hasło" minlength="8" maxlength="20" formControlName="password" required>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="password" placeholder="Potwórz hasło" minlength="8" maxlength="20" formControlName="repeatPassword" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="E-mail" maxlength="25" formControlName="email" required>
           </mat-form-field>
         </div>
         <div class="col-6">
           <mat-form-field class="data-label">
             <mat-label>Typ zatrudnienia</mat-label>
-            <mat-select formControlName="workType">
+            <mat-select formControlName="workType" required>
               <mat-option *ngFor="let workType of workTypes" [value]="workType.value">{{ workType.viewValue }}</mat-option>
             </mat-select>
           </mat-form-field>

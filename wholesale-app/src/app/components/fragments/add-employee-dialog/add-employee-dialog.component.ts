@@ -1,5 +1,5 @@
 import { Employee, UserRole } from './../../../models/employee.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -23,25 +23,27 @@ export class AddEmployeeDialogComponent implements OnInit {
   addEmployeeForm: FormGroup;
 
   addEmployee() {
-    const employee: Employee = {
-      name: this.addEmployeeForm.controls.name.value,
-      surname: this.addEmployeeForm.controls.surname.value,
-      password: this.addEmployeeForm.controls.password.value,
-      email: this.addEmployeeForm.controls.email.value,
-      workType: this.addEmployeeForm.controls.workType.value,
-      type: UserRole.EMPLOYEE
-    };
-    this.dialogRef.close(employee);
+    if (this.addEmployeeForm.valid) {
+      const employee: Employee = {
+        name: this.addEmployeeForm.controls.name.value,
+        surname: this.addEmployeeForm.controls.surname.value,
+        password: this.addEmployeeForm.controls.password.value,
+        email: this.addEmployeeForm.controls.email.value,
+        workType: this.addEmployeeForm.controls.workType.value,
+        type: UserRole.EMPLOYEE
+      };
+      this.dialogRef.close(employee);
+    }
   }
 
   ngOnInit(): void {
     this.addEmployeeForm = this.fb.group({
-      name: [''],
-      surname: [''],
-      password: [''],
-      repeatPassword: [''],
-      email: [''],
-      workType: [''],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      password: ['', Validators.required],
+      repeatPassword: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      workType: ['', Validators.required],
     });
   }
 
