@@ -1,7 +1,7 @@
 import { createResponseController } from '../controllers/responseController';
 import responseStatus from '../models/responseModel';
 import couchdbConfig from '../../config/couchdbConfig';
-
+import bcrypt from 'bcrypt';
 
 const nano = require('nano')(couchdbConfig.url);
 const database = nano.db.use(couchdbConfig.dbEmployees);

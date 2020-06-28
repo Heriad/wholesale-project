@@ -1,25 +1,25 @@
 import { Router } from 'express';
 import { catchAsync } from '../utils/errors';
-import employeesController from '../controllers';
+import employeesController from '../controllers/employeesController';
 
 const api = Router();
 
 export default () => {
 
     // POST /employee
-    api.post('/'. catchAsync(employeesController.create));
+    api.post('/', catchAsync(employeesController.create));
 
     // GET / employee/:id
-    api.get('/:id'. catchAsync(employeesController.getOne));
+    api.get('/:id', catchAsync(employeesController.getOne));
 
     // GET /employees
-    api.post('/'. catchAsync(employeesController.getAll));
+    api.get('/', catchAsync(employeesController.getAll));
 
     // PUT /employee/:id
-    api.post('/:id'. catchAsync(employeesController.update));
+    api.put('/:id', catchAsync(employeesController.update));
 
     // DELETE /employee/:id
-    api.post('/:id'. catchAsync(employeesController.remove));
+    api.delete('/:id', catchAsync(employeesController.remove));
 
     return api
 }

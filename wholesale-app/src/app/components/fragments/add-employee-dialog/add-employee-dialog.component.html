@@ -1,1 +1,63 @@
+<div class="dialog">
+
+  <div class="dialog-header">
+    <h4 class="dialog-title">{{ title }}</h4>
+    <button type="button" class="close" mat-dialog-close>
+      <span>&times;</span>
+    </button>
+  </div>
+
+  <div class="dialog-content">
+    <form [formGroup]="addEmployeeForm">
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Imię" formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="Nazwisko" formControlName="surname">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="password" placeholder="Hasło" formControlName="password">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="password" placeholder="Potwórz hasło" formControlName="repeatPassword">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <input matInput type="text" placeholder="E-mail" formControlName="email">
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <mat-form-field class="data-label">
+            <mat-label>Typ zatrudnienia</mat-label>
+            <mat-select formControlName="workType">
+              <mat-option *ngFor="let workType of workTypes" [value]="workType.value">{{ workType.viewValue }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="dialog-actions">
+    <button type="button" class="btn-cancel" mat-raised-button color="basic" mat-dialog-close>Anuluj</button>
+    <button type="button" class="btn-accept" mat-raised-button color="primary" (click)="addEmployee()">Dodaj pracownika</button>
+  </div>
+</div>
 

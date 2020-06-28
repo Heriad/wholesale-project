@@ -1,15 +1,15 @@
-import { createEmployee, getAllEmployees } from '../couchdb/employeeDB';
-
+import { addEmployee, getAllEmployees } from '../couchdb/employeeDB';
+import { createEmployee } from '../models/employeeModel';
 
 export default {
 
     // Create employee
     async create(req, res, next) {
-        if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.workType) {
-            return res.status(400).send({ message: 'Required data missing: name, surname, email, password, workType' })
+        if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.workType || !req.body.type) {
+            return res.status(400).send({ message: 'Required data missing: name, surname, email, password, workType, type' })
         }
         let newEmployee = createEmployee(req.body.name, req.body.surname, req.body.email, 
-            req.body.password, req.body.workType);
+            req.body.password, req.body.workType, req.body.type);
         let dbResponse = await addEmployee(newEmployee);
         console.log('api /addEmployee', dbResponse);
         if (dbResponse.success) {

@@ -1,7 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +28,22 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/clients');
   }
 
-  // Employees api
+  // Employee api
+
+  createEmployee(employee) {
+    console.log('createEm: ', employee);
+    return this.httpClient.post(environment.baseUrl + '/api/employees', {
+      name: employee.name,
+      surname: employee.surname,
+      password: employee.password,
+      email: employee.email,
+      workType: employee.workType,
+      type: employee.type
+    });
+  }
+
+  getEmployees() {
+    return this.httpClient.get(environment.baseUrl + '/api/employees');
+  }
 
 }

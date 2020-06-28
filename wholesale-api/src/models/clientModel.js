@@ -12,7 +12,6 @@ function Client(name, surname, email, password, companyName, regon, krs, type) {
   this.type = type;
 }
 
-// TODO hash password
 export function createClient(name, surname, email, password, companyName, regon, krs, type) {
   return new Client(name, surname, email, password, companyName, regon, krs, type);
 }

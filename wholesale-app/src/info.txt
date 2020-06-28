@@ -1,10 +1,10 @@
 ** DO ZROBIENIA
-panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia -> 07.06
+panel do wysyłania mailu oraz szkielet maila przygotować do zrobieni
 main page zacząć tworzyć (TODO: )
 auth login
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być?
-
-
+Modal z dodaniem pracownika
+userRole osobny model zrobić
 
 
 ** ZROBIONE
