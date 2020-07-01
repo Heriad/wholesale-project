@@ -52,6 +52,10 @@
         </div>
       </div>
 
+      <div class="row error-label-row" *ngIf="addEmployeeErrors.length > 0">
+        <span class="error-label" *ngFor="let err of addEmployeeErrors">{{ err }}</span>
+      </div>
+
     </form>
   </div>
 

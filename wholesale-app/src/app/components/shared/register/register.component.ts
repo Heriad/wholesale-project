@@ -15,26 +15,26 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, public api: ApiUrlsService) { }
 
   registerForm: FormGroup;
-  registerError: Array<string> = [];
+  registerErrors: Array<string> = [];
   isUserCreated: boolean;
 
   registerUser() {
-    this.registerError = [];
+    this.registerErrors = [];
     if (this.registerForm.controls.name.invalid || this.registerForm.controls.surname.invalid ||
         this.registerForm.controls.password.invalid || this.registerForm.controls.repeatPassword.invalid ||
         this.registerForm.controls.email.value.length === 0) {
-      this.registerError.push('Uzupełnij wymagane pola');
+      this.registerErrors.push('Uzupełnij wymagane pola');
     }
     if (this.registerForm.controls.email.value.length > 0 && this.registerForm.controls.email.invalid) {
-      this.registerError.push('Wprowadź poprawny adres email');
+      this.registerErrors.push('Wprowadź poprawny adres email');
     }
     if ((this.registerForm.controls.password.value.length && this.registerForm.controls.repeatPassword.value.length) < 8 &&
           (this.registerForm.controls.password.value.length || this.registerForm.controls.repeatPassword.value.length) > 0) {
-      this.registerError.push('Hasło musi posiadać minimum 8 znaków');
+      this.registerErrors.push('Hasło musi posiadać minimum 8 znaków');
     }
     if ((this.registerForm.controls.password.value !== this.registerForm.controls.repeatPassword.value) &&
         (this.registerForm.controls.password.value.length > 0 && this.registerForm.controls.repeatPassword.value.length)) {
-      this.registerError.push('Hasła nie są jednakowe');
+      this.registerErrors.push('Hasła nie są jednakowe');
     }
     const client: Client = {
       name: this.registerForm.controls.name.value,
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
       krs: this.registerForm.controls.krs.value,
       type: UserRole.CLIENT,
     };
-    if (this.registerForm.valid && this.registerError.length === 0) {
+    if (this.registerForm.valid && this.registerErrors.length === 0) {
       this.api.createClient(client).subscribe((res: ApiResponse) => {
         console.log('res: ', res); // TODO usunac
         if (res.success) {
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
       }, (err) => {
         console.log(err);
         if (!err.error.success && err.error.message === `Client ${this.registerForm.controls.email.value} already exists`) {
-          this.registerError.push('Użytkownik o danym adresie email już istnieje');
+          this.registerErrors.push('Użytkownik o danym adresie email już istnieje');
         }
       });
     }

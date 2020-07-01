@@ -36,15 +36,27 @@
 }
 
 .btn-cancel {
+  height: 36.5px;
   margin-right: .25rem;
   color: white;
   background-color: gray;
 }
 
 .btn-accept {
+  height: 36.5px;
   margin-left: .25rem;
 }
 
 .data-label {
   width: 100%;
+}
+
+.error-label {
+  width: 100%;
+  padding: 0px 16px 0px 16px;
+  color: red;
+}
+
+.error-label-row {
+  margin-bottom: 15px;
 }
