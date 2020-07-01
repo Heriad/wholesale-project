@@ -1,7 +1,8 @@
-import { Employee, UserRole } from './../../../models/employee.model';
+import { Employee } from './../../../models/employee.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
   selector: 'app-add-employee-dialog',

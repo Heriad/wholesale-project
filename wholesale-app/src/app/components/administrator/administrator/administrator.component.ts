@@ -33,11 +33,8 @@ export class AdministratorComponent implements OnInit {
     }
   }
 
-  addEmployee() {
-
-  }
-
   ngOnInit(): void {
+    this.activeTab = 'tab1';
   }
 
 }

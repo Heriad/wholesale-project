@@ -3,8 +3,8 @@ panel do wysyłania mailu oraz szkielet maila przygotować do zrobieni
 main page zacząć tworzyć (TODO: )
 auth login
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być?
-Modal z dodaniem pracownika
-userRole osobny model zrobić
+Modal z dodaniem pracownika, zostało zwalidować
+DODANIE DATY PRZY DODANIU PRACOWNIKA timestamp i wyswietlanie jej w tabelce
 
 
 ** ZROBIONE
@@ -23,6 +23,9 @@ dane CamelCase-em - dyrektywa Sentesne Case Type
 Po założeniu konta informacja, że konto zostało założone, może modal? i przekierowanie na strone z logowaniem -> card z informacja ze zostało pomysle utworzone
 Walidacja formularza rejestracji
 długość hasła np. minimum 8 znaków -> ustawione 8 znaków
+usuniecie pracownika -> api zrobione
+userRole osobny model zrobić -> user-role.model.ts zrobione
+
 
 ***WYMAGANIA
 -Angular ^9

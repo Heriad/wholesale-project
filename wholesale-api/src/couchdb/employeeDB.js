@@ -44,10 +44,32 @@ export async function getAllEmployees() {
         let data = [];
         await database.find({selector: {}}).then((body) => {
             body.docs.forEach((doc) => {
+                delete doc.password;
                 data.push(doc);
             });
         });
         return createResponseController(responseStatus.SUCCESS, 'All employees found', data);
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
+// Usunięcie wybranego pracownika z bazy danych
+export async function removeEmployee(id) {
+    try {
+        const selector = {
+            _id: id,
+        }
+        let employee;
+        await database.find({ selector: selector }).then((body) => {
+            employee = body.docs[0];
+        });
+        if (employee) {
+            await database.destroy(employee._id, employee._rev);
+            return createResponseController(responseStatus.SUCCESS, `Employee has been removed`, null);
+        } else {
+            return createResponseController(responseStatus.INVALID, 'Employee not found', null);
+        }
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
     }

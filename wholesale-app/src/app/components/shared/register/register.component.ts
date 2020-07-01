@@ -1,8 +1,9 @@
 import { ApiUrlsService } from './../../../services/api-urls.service';
 import { Component, OnInit } from '@angular/core';
-import { Client, UserRole } from 'src/app/models/client.model';
+import { Client } from 'src/app/models/client.model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiResponse } from 'src/app/models/response.model';
+import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
   selector: 'app-register',

@@ -1,5 +1,5 @@
 import { WorkType } from './employee.model';
-import { UserRole } from './client.model';
+import { UserRole } from './user-role.model';
 
 export class ApiResponse {
   success: boolean;

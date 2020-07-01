@@ -46,4 +46,8 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/employees');
   }
 
+  removeEmployee(id) {
+    return this.httpClient.delete(environment.baseUrl + '/api/employees/' + id);
+  }
+
 }

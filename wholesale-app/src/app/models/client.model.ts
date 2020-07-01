@@ -1,8 +1,4 @@
-export enum UserRole {
-  ALL = 'all',
-  CLIENT = 'client',
-  EMPLOYEE = 'employee'
-}
+import { UserRole } from './user-role.model';
 
 export class Client {
   name: string;

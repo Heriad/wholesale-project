@@ -1,3 +1,4 @@
+import { WorkType } from './../../../models/employee.model';
 import { AddEmployeeDialogComponent } from './../../fragments/add-employee-dialog/add-employee-dialog.component';
 import { DialogHelperService } from './../../../services/dialog-helper.service';
 import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
@@ -18,24 +19,28 @@ export class ManageEmployeesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'surname', 'email', 'workType', 'edit', 'delete'];
   isOpened = true;
   dataSource;
-
-  // dataSource = this.ELEMENT_DATA;
+  workType: typeof WorkType = WorkType;
 
   editEmployee() {
     console.log('Tutaj będzie super modal');
   }
 
-  removeEmployee() {
+  removeEmployee(element) {
     const dialogRef = this.dialogService.open((ConfirmationDialogComponent), {
       width: '500px',
       height: '220px',
-      disableClose: true
+      disableClose: true,
     });
+    console.log(element);
     dialogRef.componentInstance.title = 'Potwierdź';
     dialogRef.componentInstance.text = 'Czy jesteś pewny?';
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // api do usuniecia pracownika
+        this.api.removeEmployee(element._id).subscribe((res: ApiResponse) => {
+          if (res.success) {
+            this.getEmployees();
+          }
+        });
       }
     });
   }
@@ -43,7 +48,7 @@ export class ManageEmployeesComponent implements OnInit {
   addEmployee() {
     const dialogRef = this.dialogService.open((AddEmployeeDialogComponent), {
       width: '550px',
-      height: '500px',
+      height: '380px',
       disableClose: true
     });
     dialogRef.componentInstance.title = 'Dodaj pracownika';

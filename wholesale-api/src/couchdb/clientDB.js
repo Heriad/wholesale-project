@@ -43,6 +43,7 @@ export async function getOneClient(id) {
     let client;
     try {
         await database.get(id).then((body) => {
+            delete body.password;
             client = body;
         });
         if (client) {
@@ -60,6 +61,7 @@ export async function getAllClients() {
         let data = [];
         await database.find({selector: {}}).then((body) => {
             body.docs.forEach((doc) => {
+                delete doc.password;
                 data.push(doc);
             });
         });
