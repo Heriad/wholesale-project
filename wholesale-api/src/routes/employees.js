@@ -6,19 +6,19 @@ const api = Router();
 
 export default () => {
 
-    // POST /employee
+    // POST /employees
     api.post('/', catchAsync(employeesController.create));
 
-    // GET / employee/:id
+    // GET / employees/:id
     api.get('/:id', catchAsync(employeesController.getOne));
 
     // GET /employees
     api.get('/', catchAsync(employeesController.getAll));
 
-    // PUT /employee/:id
-    api.put('/:id', catchAsync(employeesController.update));
+    // PUT /employees
+    api.put('/', catchAsync(employeesController.update));
 
-    // DELETE /employee/:id
+    // DELETE /employees/:id
     api.delete('/:id', catchAsync(employeesController.remove));
 
     return api

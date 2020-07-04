@@ -54,6 +54,16 @@ export async function getAllEmployees() {
     }
 }
 
+// Aktualizacja danych wybranego pracownika
+export async function updateEmployee(employee) {
+    try {
+        await database.insert(employee);
+        return createResponseController(responseStatus.SUCCESS, 'Employee has been updated', null);
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
 // Usunięcie wybranego pracownika z bazy danych
 export async function removeEmployee(id) {
     try {

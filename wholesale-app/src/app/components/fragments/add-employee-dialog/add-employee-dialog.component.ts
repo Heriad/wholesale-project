@@ -1,7 +1,8 @@
-import { Employee } from './../../../models/employee.model';
+import { Inject } from '@angular/core';
+import { Employee, UpdatedEmployee } from './../../../models/employee.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
@@ -13,13 +14,15 @@ export class AddEmployeeDialogComponent implements OnInit {
 
   @Input() title: string;
   @Input() text: string;
+  @Input() isEdit: boolean;
 
   workTypes = [
     { value: 'full-time', viewValue: 'Pełen etat'},
     { value: 'part-time', viewValue: 'Część etatu'}
   ];
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddEmployeeDialogComponent>) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   addEmployeeForm: FormGroup;
   addEmployeeErrors: Array<string> = [];
@@ -52,27 +55,52 @@ export class AddEmployeeDialogComponent implements OnInit {
       this.dialogRef.updateSize('550px', '380px');
     }
     if (this.addEmployeeForm.valid && this.addEmployeeErrors.length === 0) {
-      const employee: Employee = {
-        name: this.addEmployeeForm.controls.name.value,
-        surname: this.addEmployeeForm.controls.surname.value,
-        password: this.addEmployeeForm.controls.password.value,
-        email: this.addEmployeeForm.controls.email.value,
-        workType: this.addEmployeeForm.controls.workType.value,
-        type: UserRole.EMPLOYEE
-      };
-      this.dialogRef.close(employee);
+      if (!this.isEdit) {
+        const employee: Employee = {
+          name: this.addEmployeeForm.controls.name.value,
+          surname: this.addEmployeeForm.controls.surname.value,
+          password: this.addEmployeeForm.controls.password.value,
+          email: this.addEmployeeForm.controls.email.value,
+          workType: this.addEmployeeForm.controls.workType.value,
+          type: UserRole.EMPLOYEE
+        };
+        this.dialogRef.close(employee);
+      } else if (this.isEdit) {
+        const updatedEmployee: UpdatedEmployee = {
+          id: this.data._id,
+          rev: this.data._rev,
+          name: this.addEmployeeForm.controls.name.value,
+          surname: this.addEmployeeForm.controls.surname.value,
+          password: this.addEmployeeForm.controls.password.value,
+          email: this.addEmployeeForm.controls.email.value,
+          workType: this.addEmployeeForm.controls.workType.value,
+          type: UserRole.EMPLOYEE
+        };
+        this.dialogRef.close(updatedEmployee);
+      }
     }
   }
 
   ngOnInit(): void {
-    this.addEmployeeForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      password: ['', Validators.required],
-      repeatPassword: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      workType: ['', Validators.required],
-    });
+    if (this.data) {
+      this.addEmployeeForm = this.fb.group({
+        name: [this.data.name, Validators.required],
+        surname: [this.data.surname, Validators.required],
+        password: ['', Validators.required],
+        repeatPassword: ['', Validators.required],
+        email: [this.data.email, [Validators.required, Validators.email]],
+        workType: [this.data.workType, Validators.required],
+      });
+    } else {
+      this.addEmployeeForm = this.fb.group({
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
+        password: ['', Validators.required],
+        repeatPassword: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        workType: ['', Validators.required],
+      });
+    }
   }
 
 }

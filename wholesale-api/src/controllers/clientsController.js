@@ -6,7 +6,7 @@ export default {
   // Create client
   async create(req, res, next) {
     if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.type) {
-      return res.status(400).send({ message: 'Required data missing: name, surname, email, password, type' });
+      return res.status(400).send({ message: 'Required data: name, surname, email, password, type' });
     }
     let newClient = createClient(req.body.name, req.body.surname, req.body.email, 
       req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
@@ -22,7 +22,7 @@ export default {
   // Find client
   async getOne(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data missing: id' });
+      return res.status(400).send({ message: 'Required data: id' });
     }
     let dbResponse = await getOneClient(req.params.id);
     console.log('api /getOneClient - ', dbResponse);
@@ -48,7 +48,7 @@ export default {
   // Update client
   async update(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data missing: id' });
+      return res.status(400).send({ message: 'Required data: id' });
     }
     let dbResponse = await updateClient(req.params.id);
     if (dbResponse.success) {
@@ -61,7 +61,7 @@ export default {
   // Delete client
   async remove(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data missing: id' });
+      return res.status(400).send({ message: 'Required data: id' });
     }
     let dbResponse = await removeClient(req.params.id);
     console.log('api /removeClient - ', dbResponse);

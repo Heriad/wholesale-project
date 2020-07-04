@@ -46,6 +46,19 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/employees');
   }
 
+  updateEmployee(employee) {
+    return this.httpClient.put(environment.baseUrl + '/api/employees', {
+      id: employee.id,
+      rev: employee.rev,
+      name: employee.name,
+      surname: employee.surname,
+      password: employee.password,
+      email: employee.email,
+      workType: employee.workType,
+      type: employee.type
+    });
+  }
+
   removeEmployee(id) {
     return this.httpClient.delete(environment.baseUrl + '/api/employees/' + id);
   }

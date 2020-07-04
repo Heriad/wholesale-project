@@ -28,7 +28,7 @@
 
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef>Edytuj</th>
-    <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" (click)="editEmployee()">Edytuj pracownika</button></td>
+    <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" (click)="editEmployee(element)">Edytuj pracownika</button></td>
   </ng-container>
 
   <ng-container matColumnDef="delete">

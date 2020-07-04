@@ -21,8 +21,24 @@ export class ManageEmployeesComponent implements OnInit {
   dataSource;
   workType: typeof WorkType = WorkType;
 
-  editEmployee() {
-    console.log('Tutaj będzie super modal');
+  editEmployee(element) {
+    const dialogRef = this.dialogService.open((AddEmployeeDialogComponent), {
+      width: '550px',
+      height: '380px',
+      disableClose: true,
+      data: element,
+    });
+    dialogRef.componentInstance.title = 'Edytuj pracownika';
+    dialogRef.componentInstance.isEdit = true;
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.api.updateEmployee(result).subscribe((res: ApiResponse) => {
+          if (res.success) {
+            this.getEmployees();
+          }
+        });
+      }
+    });
   }
 
   removeEmployee(element) {
@@ -31,9 +47,9 @@ export class ManageEmployeesComponent implements OnInit {
       height: '220px',
       disableClose: true,
     });
-    console.log(element);
     dialogRef.componentInstance.title = 'Potwierdź';
-    dialogRef.componentInstance.text = 'Czy jesteś pewny?';
+    dialogRef.componentInstance.text = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie pracownika: ' +
+        element.name + ' ' + element.surname;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.api.removeEmployee(element._id).subscribe((res: ApiResponse) => {

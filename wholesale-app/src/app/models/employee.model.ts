@@ -9,6 +9,17 @@ export class Employee {
   type: UserRole;
 }
 
+export class UpdatedEmployee {
+  id: string;
+  rev: string;
+  name: string;
+  surname: string;
+  password: string;
+  email: string;
+  workType: WorkType;
+  type: UserRole;
+}
+
 export enum WorkType {
   FULLTIME = 'full-time',
   PARTTIME = 'part-time'
