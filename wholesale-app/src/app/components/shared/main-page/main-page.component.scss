@@ -1,0 +1,15 @@
+.header-container{
+  width: 98%;
+  margin: auto;
+  overflow: hidden;
+  background-image: url('../../../../assets/imgs/header-image.jpg');
+  margin-top: 20px;
+  height: 350px;
+  filter: brightness(60%);
+}
+
+.company-name {
+  font-size: 46px;
+  color: white;
+  filter: brightness(100%);
+}
