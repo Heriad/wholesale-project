@@ -2,13 +2,13 @@
 update user api
 zrobić autentykacje za pomocą passport
 odpowiednie przekierowywac uzytkowników po typie - front end
-wyrzucic funckje checkifDataalredy exist przekazać tam database i selector i wrzucic ją do utils
+
 
 
 *** DONE
 UŻYTKOWNICY A PRACOWNICY ODDZIELNIE TRZYMANI?? -> tak osobno, dwa magazyny dokumentów
 podczas zwracania klienta i pracownika usunac hasło z response -> zrobione delete object.password
-
+wyrzucic funckje checkifDataalredy exist przekazać tam database i selector i wrzucic ją do utils -> done wrzucone do utils/util.js
 
 
 ** TODO LATER

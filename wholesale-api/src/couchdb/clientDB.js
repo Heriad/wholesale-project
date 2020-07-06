@@ -1,4 +1,5 @@
 import { createResponseController } from '../controllers/responseController';
+import { checkIfDataAlreadyExists } from '../utils/util';
 import bcrypt from 'bcrypt';
 import responseStatus from '../models/responseModel';
 import couchdbConfig from '../../config/couchdbConfig';
@@ -7,16 +8,6 @@ import couchdbConfig from '../../config/couchdbConfig';
 // Podłączenie nano do bazy danych
 const nano = require('nano')(couchdbConfig.url);
 const database = nano.db.use(couchdbConfig.dbClients);
-
-// Funkcja sprawdza czy dany element znajduje się już w bazie danych
-async function checkIfDataAlreadyExists(selector) {
-    let dbResponse = await database.find({ selector: selector });
-    if (dbResponse && dbResponse.docs.length > 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 // Dodanie klienta do bazy danych
 export async function addClient(client) {
