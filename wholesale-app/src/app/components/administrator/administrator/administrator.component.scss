@@ -1,13 +1,7 @@
-.mat-column-edit {
-  width: 160px;
-}
-
-.mat-column-delete {
-  width: 160px;
-}
-
 .main-content {
   background-color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .tab-selected, .tab-selected:hover {

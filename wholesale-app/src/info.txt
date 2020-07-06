@@ -1,10 +1,14 @@
 ** DO ZROBIENIA
 panel do wysyłania mailu oraz szkielet maila przygotować do zrobieni
-main page zacząć tworzyć (TODO: )
+main page zacząć tworzyć (dwa pomysły, który wybrać?)
 auth login
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być?
-DODANIE DATY PRZY DODANIU PRACOWNIKA timestamp i wyswietlanie jej w tabelce
-Modal z dodaniem pracownika -> dodawanie errorów powoduje powiększanie sie przycisków i tytułu
+DODANIE DATY PRZY DODANIU PRACOWNIKA timestamp i wyswietlanie jej w tabelce tzn. data utworzenia
+paginacja tabeli pracowników, robić w ogóle??
+usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem
+usunąć wszystkie todo i consolelogi
+sidebar -> responsywny jak i wszystko inne..
+
 
 ** ZROBIONE
 -Favicon naprawić
@@ -25,6 +29,11 @@ długość hasła np. minimum 8 znaków -> ustawione 8 znaków
 usuniecie pracownika -> api zrobione
 userRole osobny model zrobić -> user-role.model.ts zrobione
 Modal z dodaniem pracownika, zostało zwalidować -> zrobione
+Modal z dodaniem pracownika -> dodawanie errorów powoduje powiększanie sie przycisków i tytułu -> naprawione
+filter -> full-time/part-time -> naprawione filtruje po polsku
+filtrowanie tabli pracowników -> zrobione
+spinner podczas ładowania danych do tabeli -> dodany employee tabela
+
 
 ***WYMAGANIA
 -Angular ^9

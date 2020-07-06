@@ -22,8 +22,14 @@ export class ManageEmployeesComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'surname', 'email', 'workType', 'edit', 'delete'];
   dataSource = new MatTableDataSource();
-  isOpened = true;
   workType: typeof WorkType = WorkType;
+  isLoading: boolean;
+  isOpened = true;
+
+  filterData(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
 
   editEmployee(element) {
     const dialogRef = this.dialogService.open((AddEmployeeDialogComponent), {
@@ -84,11 +90,18 @@ export class ManageEmployeesComponent implements OnInit {
   }
 
   getEmployees() {
+    this.isLoading = true;
     this.api.getEmployees().subscribe((res: GetEmployeesResponse) => {
       this.dataSource.data = res.data;
       this.dataSource.data.forEach((el: any, index) => {
         el.position = index + 1;
+        if (el.workType === WorkType.FULLTIME) {
+          el.workType = 'Pełen etat';
+        } else {
+          el.workType = 'Część etatu';
+        }
       });
+      this.isLoading = false;
     });
   }
 

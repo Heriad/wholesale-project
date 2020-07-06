@@ -2,7 +2,7 @@ table {
   width: 100%;
 }
 
-.mat-column-id {
+.mat-column-position {
   width: 10%;
 }
 
@@ -33,9 +33,22 @@ table {
 .btn-add-row {
   margin-left: 10px;
   margin-top: 1%;
-  margin-bottom: 1%;
 }
 
 .btn-add-employee {
   padding-left: 5px;
+}
+
+::ng-deep.mat-sort-header-button {
+  outline: none !important;
+}
+
+.filter-data {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
 }

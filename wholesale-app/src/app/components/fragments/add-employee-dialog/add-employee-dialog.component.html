@@ -46,7 +46,7 @@
           <mat-form-field class="data-label">
             <mat-label>Typ zatrudnienia</mat-label>
             <mat-select formControlName="workType" required>
-              <mat-option *ngFor="let workType of workTypes" [value]="workType.value">{{ workType.viewValue }}</mat-option>
+              <mat-option *ngFor="let workType of workTypes" [value]=" !isEdit ? workType.value : workType.viewValue">{{ workType.viewValue }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
