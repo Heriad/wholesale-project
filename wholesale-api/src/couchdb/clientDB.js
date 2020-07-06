@@ -16,7 +16,7 @@ export async function addClient(client) {
         email: client.email
     }
     try {
-        clientExists = await checkIfDataAlreadyExists(selector);
+        clientExists = await checkIfDataAlreadyExists(selector, database);
         if (clientExists) {
             return createResponseController(responseStatus.INVALID, `Client ${client.email} already exists`, null);
         } else {
@@ -62,6 +62,7 @@ export async function getAllClients() {
     }
 }
 
+//TODO
 export async function updateClient(id) {
     try {
         

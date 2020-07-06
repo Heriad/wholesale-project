@@ -14,7 +14,7 @@ export async function addEmployee(employee) {
         email: employee.email
     }
     try {
-        employeeExists = await checkIfDataAlreadyExists(selector);
+        employeeExists = await checkIfDataAlreadyExists(selector, database);
         if (employeeExists) {
             return createResponseController(responseStatus.INVALID, `Employee ${employee.email} already exists`, null);
         } else {
