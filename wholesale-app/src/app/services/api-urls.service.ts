@@ -31,7 +31,6 @@ export class ApiUrlsService {
   // Employee api
 
   createEmployee(employee) {
-    console.log('createEm: ', employee);
     return this.httpClient.post(environment.baseUrl + '/api/employees', {
       name: employee.name,
       surname: employee.surname,

@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "nano": "^8.2.2",
-    "uuid": "^8.1.0"
+    "uuid": "^8.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
