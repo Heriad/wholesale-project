@@ -19,7 +19,7 @@ export async function addProduct(product) {
         if (productExists) {
             return createResponseController(responseStatus.INVALID, `Product ${product.name} already exists`, null);
         } else {
-            await database.insert(product)
+            await database.insert(product);
             return createResponseController(responseStatus.SUCCESS, 'The product has been created', product);
         }
     } catch (err) {

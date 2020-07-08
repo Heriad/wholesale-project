@@ -1,11 +1,9 @@
 <div class="row btn-add-row">
-  <div col="col">
-    <button mat-raised-button color="primary" class="btn-add-employee" (click)="addEmployee()">
+  <div class="col">
+    <button mat-raised-button color="primary" class="btn-add-data" (click)="addEmployee()">
       <mat-icon>add</mat-icon>
       Dodaj pracownika
     </button>
-  </div>
-  <div class="col">
     <mat-form-field class="filter-data">
       <mat-label>Filtruj</mat-label>
       <input matInput type="text" (keyup)="filterData($event)">
@@ -13,7 +11,7 @@
   </div>
 </div>
 
-<table mat-table [dataSource]="dataSource" matSort>
+<table mat-table matSort [dataSource]="dataSource">
 
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>

@@ -20,6 +20,7 @@ import { MainPageComponent } from './components/shared/main-page/main-page.compo
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { SentenseCaseTypeDirective } from './directives/sentense-case-type.directive';
 import { ConfirmationDialogComponent } from './components/fragments/confirmation-dialog/confirmation-dialog.component';
+import { ManageProductsComponent } from './components/administrator/manage-products/manage-products.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ConfirmationDialogComponent } from './components/fragments/confirmation
     MainPageComponent,
     NumbersOnlyDirective,
     SentenseCaseTypeDirective,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ManageProductsComponent
   ],
   imports: [
     BrowserModule,

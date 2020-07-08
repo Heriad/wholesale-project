@@ -22,8 +22,8 @@ export class AdministratorComponent implements OnInit {
   }
 
   changeTab(event, itemName) {
-    if (event && itemName === 'tab1') {
-      this.activeTab = 'tab1';
+    if (event && itemName === 'manage-products') {
+      this.activeTab = 'manage-products';
     } else if (event && itemName === 'manage-employees') {
       this.activeTab = 'manage-employees';
     } else if (event && itemName === 'tab3') {
@@ -34,7 +34,7 @@ export class AdministratorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activeTab = 'tab1';
+    this.activeTab = 'manage-products';
   }
 
 }

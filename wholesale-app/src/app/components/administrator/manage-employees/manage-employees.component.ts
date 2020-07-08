@@ -92,16 +92,18 @@ export class ManageEmployeesComponent implements OnInit {
   getEmployees() {
     this.isLoading = true;
     this.api.getEmployees().subscribe((res: GetEmployeesResponse) => {
-      this.dataSource.data = res.data;
-      this.dataSource.data.forEach((el: any, index) => {
-        el.position = index + 1;
-        if (el.workType === WorkType.FULLTIME) {
-          el.workType = 'Pełen etat';
-        } else {
-          el.workType = 'Część etatu';
-        }
-      });
-      this.isLoading = false;
+      if (res.success) {
+        this.dataSource.data = res.data;
+        this.dataSource.data.forEach((el: any, index) => {
+          el.position = index + 1;
+          if (el.workType === WorkType.FULLTIME) {
+            el.workType = 'Pełen etat';
+          } else {
+            el.workType = 'Część etatu';
+          }
+        });
+        this.isLoading = false;
+      }
     });
   }
 

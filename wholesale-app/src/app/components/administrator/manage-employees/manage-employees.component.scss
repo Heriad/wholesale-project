@@ -1,6 +1,4 @@
-table {
-  width: 100%;
-}
+@import '../../../styles/data-table.scss';
 
 .mat-column-position {
   width: 10%;
@@ -28,31 +26,4 @@ table {
 
 .mat-column-delete {
   width: 12.5%;
-}
-
-.btn-add-row {
-  margin-left: 10px;
-  margin-top: 1%;
-}
-
-.btn-add-employee {
-  padding-left: 5px;
-}
-
-.empty-data-source {
-  margin-left: 10px;;
-}
-
-::ng-deep.mat-sort-header-button {
-  outline: none !important;
-}
-
-.filter-data {
-  margin-left: 10px;
-  margin-top: -10px;
-}
-
-.loading-spinner {
-  display: flex;
-  justify-content: center;
 }

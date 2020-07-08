@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+}
+
+.btn-add-row {
+  margin-left: 10px;
+  margin-top: 1%;
+}
+
+.filter-data {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+::ng-deep.mat-sort-header-button {
+  outline: none !important;
+}
+
+.empty-data-source {
+  margin-left: 10px;;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-add-data {
+  padding-left: 5px;
+}
