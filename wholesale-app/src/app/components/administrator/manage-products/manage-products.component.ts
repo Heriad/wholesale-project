@@ -1,6 +1,11 @@
+import { AddProductDialogComponent } from './../../fragments/add-product-dialog/add-product-dialog.component';
+import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
+import { ApiUrlsService } from './../../../services/api-urls.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { GetProductsResponse, ApiResponse } from 'src/app/models/response.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-products',
@@ -9,7 +14,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ManageProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public api: ApiUrlsService, public dialogService: MatDialog) { }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -22,13 +27,58 @@ export class ManageProductsComponent implements OnInit {
     this.dataSource.filter = value.trim().toLowerCase();
   }
 
+  addProduct() {
+    const dialogRef = this.dialogService.open((AddProductDialogComponent), {
+      width: '550px',
+      height: '450px',
+      disableClose: true
+    });
+    dialogRef.componentInstance.title = 'Dodaj produkt';
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.api.createProduct(result).subscribe((res: ApiResponse) => {
+        //   if (res.success) {
+        //     this.getProducts();
+        //   }
+        // });
+      }
+    });
+  }
+
+  editProduct(element) {
+    // TODO
+  }
+
+  removeProduct(element) {
+    const dialogRef = this.dialogService.open((ConfirmationDialogComponent), {
+      width: '500px',
+      height: '220px',
+      disableClose: true,
+    });
+    dialogRef.componentInstance.title = 'Potwierdź';
+    dialogRef.componentInstance.text = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie produktu: ' + element.name;
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.api.removeProduct(element._id).subscribe((res: ApiResponse) => {
+          if (res.success) {
+            this.getProducts();
+          }
+        });
+      }
+    });
+  }
+
   getProducts() {
     this.isLoading = true;
-    // CALL API TODO
-    // if (res.success) {
-    //   this.isLoading = false;
-    // }
-    //
+    this.api.getProducts().subscribe((res: GetProductsResponse) => {
+      if (res.success) {
+        this.dataSource.data = res.data;
+        this.dataSource.data.forEach((el: any, index) => {
+          el.position = index + 1;
+        });
+        this.isLoading = false;
+      }
+    });
   }
 
   ngOnInit(): void {

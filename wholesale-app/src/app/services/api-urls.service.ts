@@ -62,4 +62,17 @@ export class ApiUrlsService {
     return this.httpClient.delete(environment.baseUrl + '/api/employees/' + id);
   }
 
+  // Product api
+
+  // create
+  // getOne
+  getProducts() {
+    return this.httpClient.get(environment.baseUrl + '/api/products');
+  }
+
+  removeProduct(id) {
+    return this.httpClient.delete(environment.baseUrl + '/api/products/' + id);
+  }
+
+
 }

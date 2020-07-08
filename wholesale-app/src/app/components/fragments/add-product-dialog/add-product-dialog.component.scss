@@ -2,7 +2,7 @@
 @import '../../../styles//dialog.scss';
 
 .dialog-header {
-  height: 18%;
+  height: 15%;
   padding: 1rem;
   display: flex;
   align-items: flex-start;
@@ -11,13 +11,13 @@
 }
 
 .dialog-content {
-  height: 64%;
+  height: 70%;
   padding: 1rem;
   border-bottom: 1px solid #e9ecef;
 }
 
 .dialog-actions {
-  height: 18%;
+  height: 15%;
   padding: 1rem;
   display: flex;
   justify-content: flex-end;

@@ -1,6 +1,9 @@
 *** TODO LIST ASAP
 update user api
 getOne employee api
+upate product api
+create product dodanei zdjecia jako attachment
+w api w którym pobieramy dane jednego elementu getOne, przy podaniu id obsłuzyć błąd
 zrobić autentykacje za pomocą passport
 odpowiednie przekierowywac uzytkowników po typie - front end
 jeżeli checkbox z zapamietaj mnie jest zaznaczony i logowanie udane, to do pamieci podręczej przeglądarki zapisujemy nazwe użytkownika czyli maila

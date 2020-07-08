@@ -21,6 +21,8 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { SentenseCaseTypeDirective } from './directives/sentense-case-type.directive';
 import { ConfirmationDialogComponent } from './components/fragments/confirmation-dialog/confirmation-dialog.component';
 import { ManageProductsComponent } from './components/administrator/manage-products/manage-products.component';
+import { AddProductDialogComponent } from './components/fragments/add-product-dialog/add-product-dialog.component';
+import { PriceOnlyDirective } from './directives/price-only.directive';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { ManageProductsComponent } from './components/administrator/manage-produ
     NumbersOnlyDirective,
     SentenseCaseTypeDirective,
     ConfirmationDialogComponent,
-    ManageProductsComponent
+    ManageProductsComponent,
+    AddProductDialogComponent,
+    PriceOnlyDirective
   ],
   imports: [
     BrowserModule,

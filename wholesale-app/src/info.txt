@@ -8,7 +8,9 @@ paginacja tabeli pracowników, robić w ogóle??
 usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem
 usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
-
+Dokończyć moda lz dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
+w zakładce zarządzanie produktami zmenić timestamp na dd.mm.yyyy
+dodanie errorów na modalu dodawania produktu
 
 ** ZROBIONE
 -Favicon naprawić
