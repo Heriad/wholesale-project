@@ -55,6 +55,10 @@
 
 </table>
 
+<div *ngIf="this.dataSource.data.length === 0 && !this.isLoading" class="empty-data-source">
+  <span>Brak danych</span>
+</div>
+
 <div *ngIf="isLoading" class="loading-spinner">
-  <mat-progress-spinner  color="primary" mode="indeterminate"></mat-progress-spinner>
+  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
 </div>

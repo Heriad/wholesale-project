@@ -9,7 +9,7 @@ export default () => {
     // POST /employees
     api.post('/', catchAsync(employeesController.create));
 
-    // GET / employees/:id
+    // GET /employees/:id
     api.get('/:id', catchAsync(employeesController.getOne));
 
     // GET /employees
