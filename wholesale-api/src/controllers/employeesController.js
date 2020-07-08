@@ -1,5 +1,5 @@
-import { addEmployee, getAllEmployees, updateEmployee, removeEmployee } from '../couchdb/employeeDB';
 import { createEmployee } from '../models/employeeModel';
+import { addEmployee, getAllEmployees, updateEmployee, removeEmployee } from '../couchdb/employeeDB';
 
 export default {
 

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { catchAsync } from '../utils/errors';
-import productsController from '../controllers/productsEontroller';
+import productsController from '../controllers/productsController';
 
 const api = Router();
 

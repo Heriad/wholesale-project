@@ -1,5 +1,5 @@
-import { addClient, getOneClient, getAllClients, updateClient, removeClient } from '../couchdb/clientDB';
 import { createClient } from '../models/clientModel';
+import { addClient, getOneClient, getAllClients, updateClient, removeClient } from '../couchdb/clientDB';
 
 export default {
 
