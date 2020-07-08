@@ -30,7 +30,7 @@ export default {
       return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {
       return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
-  }
+    }
 },
 
 

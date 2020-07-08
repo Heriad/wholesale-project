@@ -32,7 +32,7 @@ export async function addEmployee(employee) {
 export async function getAllEmployees() {
     try {
         let data = [];
-        await database.find({selector: {}}).then((body) => {
+        await database.find({ selector: {} }).then((body) => {
             body.docs.forEach((doc) => {
                 delete doc.password;
                 data.push(doc);
@@ -58,7 +58,7 @@ export async function updateEmployee(employee) {
 export async function removeEmployee(id) {
     try {
         const selector = {
-            _id: id,
+            _id: id
         }
         let employee;
         await database.find({ selector: selector }).then((body) => {

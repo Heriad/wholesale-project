@@ -50,7 +50,7 @@ export async function getOneClient(id) {
 export async function getAllClients() {
     try {
         let data = [];
-        await database.find({selector: {}}).then((body) => {
+        await database.find({ selector: {} }).then((body) => {
             body.docs.forEach((doc) => {
                 delete doc.password;
                 data.push(doc);

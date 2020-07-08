@@ -1,9 +1,7 @@
-
+import { checkIfDataAlreadyExists } from '../utils/util';
 import { createResponseController } from '../controllers/responseController';
-import  { checkIfDataAlreadyExists } from '../utils/util';
-import couchdbConfig from '../../config/couchdbConfig';
 import responseStatus from '../models/responseModel';
-
+import couchdbConfig from '../../config/couchdbConfig';
 
 const nano = require('nano')(couchdbConfig.url);
 const database = nano.db.use(couchdbConfig.dbProducts);
@@ -21,6 +19,56 @@ export async function addProduct(product) {
         } else {
             await database.insert(product);
             return createResponseController(responseStatus.SUCCESS, 'The product has been created', product);
+        }
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
+export async function getOneProduct(id) {
+    let product;
+    try {
+        await database.get(id).then((body) => {
+            product = body;
+        });
+        if (product) {
+            return createResponseController(responseStatus.SUCCESS, 'Product found', product);
+        } else {
+            return createResponseController(responseStatus.INVALID, 'Product not found', null);
+        }
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
+export async function getAllProducts() {
+    try {
+        let data = [];
+        await database.find({ selector: {} }).then((body) => {
+            body.docs.forEach((doc) => {
+                data.push(doc);
+            });
+        })
+        return createResponseController(responseStatus.SUCCESS, 'All products found', data);
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
+export async function removeProduct(id) {
+    try {
+        const selector = {
+            _id: id
+        }
+        let product;
+        await database.find({ selector: selector }).then((body) => {
+            product = body.docs[0];
+        });
+        if (product) {
+            await database.destroy(product._id, product._rev);
+            return createResponseController(responseStatus.SUCCESS, 'Product has been removed', null);
+        } else {
+            return createResponseController(responseStatus.INVALID, 'Product not found', null);
         }
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
