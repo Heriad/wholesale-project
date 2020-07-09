@@ -5,10 +5,10 @@ export default {
 
     // Create products
     async create(req, res, next) {
-        if (!req.body.name || !req.body.description || !req.body.price || !req.body.image || !req.body.producer || !req.body.timestamp) {
-            return res.status(400).send({ message: 'Required data: name, description, price, image, producer, timestamp' });
+        if (!req.body.name || !req.body.description || !req.body.price || !req.body.image || !req.body.producer || !req.body.createdDate) {
+            return res.status(400).send({ message: 'Required data: name, description, price, image, producer, createdDate' });
         }
-        let newProduct = createProduct(req.body.name, req.body.description, req.body.price, req.body.image, req.body.producer, req.body.timestamp);
+        let newProduct = createProduct(req.body.name, req.body.description, req.body.price, req.body.image, req.body.producer, req.body.createdDate);
         let dbResponse = await addProduct(newProduct);
         console.log('api /addProduct', dbResponse);
         if (dbResponse.success) {

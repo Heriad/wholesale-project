@@ -36,11 +36,12 @@ export class ManageProductsComponent implements OnInit {
     dialogRef.componentInstance.title = 'Dodaj produkt';
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // this.api.createProduct(result).subscribe((res: ApiResponse) => {
-        //   if (res.success) {
-        //     this.getProducts();
-        //   }
-        // });
+        this.api.createProduct(result).subscribe((res: ApiResponse) => {
+          console.log('Response: ', res);
+          if (res.success) {
+            this.getProducts();
+          }
+        });
       }
     });
   }

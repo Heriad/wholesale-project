@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Nazwa" maxlength="55" formControlName="name" required>
+            <input matInput type="text" placeholder="Nazwa" maxlength="55" formControlName="name" appSentenseCaseType required>
           </mat-form-field>
         </div>
       </div>
@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Producent" maxlength="25" formControlName="producer" required>
+            <input matInput type="text" placeholder="Producent" maxlength="25" formControlName="producer" appSentenseCaseType required>
           </mat-form-field>
         </div>
         <div class="col-6">
@@ -35,14 +35,14 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <textarea matInput cdkTextareaAutosize dkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" maxlength="1000" formControlName="description" required></textarea>
+            <textarea matInput cdkTextareaAutosize dkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" maxlength="1000" formControlName="description" appSentenseCaseType required></textarea>
           </mat-form-field>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
-          <input type="file" formControlName="image">
+          <input type="file" (change)="onFileSelected($event)">
         </div>
       </div>
 

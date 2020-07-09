@@ -1,1 +1,37 @@
 @import '../../../styles/data-table.scss';
+
+.mat-column-position {
+  width: 5%;
+}
+
+.mat-column-name {
+  width: 15%;
+}
+
+.mat-column-image {
+  width: 15%;
+}
+
+.mat-column-descritpion {
+  width: 20%;
+}
+
+.mat-column-price {
+  width: 5%;
+}
+
+.mat-column-producer {
+  width: 10%;
+}
+
+.mat-column-timestamp {
+  width: 10%;
+}
+
+.mat-column-edit {
+  width: 10%;
+}
+
+.mat-column-delete {
+  width: 10%;
+}

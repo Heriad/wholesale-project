@@ -33,6 +33,6 @@ export class GetProductsResponse {
     image: File;
     price: number;
     producer: string;
-    timestamp: number;
+    createdDate: Date;
   }>;
 }

@@ -1,6 +1,9 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Product } from '../models/product.model';
+import { Employee, UpdatedEmployee } from '../models/employee.model';
+import { Client } from '../models/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ export class ApiUrlsService {
 
   // Client api
 
-  createClient(client) {
+  createClient(client: Client) {
     return this.httpClient.post(environment.baseUrl + '/api/clients', {
       name: client.name,
       surname: client.surname,
@@ -30,7 +33,7 @@ export class ApiUrlsService {
 
   // Employee api
 
-  createEmployee(employee) {
+  createEmployee(employee: Employee) {
     return this.httpClient.post(environment.baseUrl + '/api/employees', {
       name: employee.name,
       surname: employee.surname,
@@ -45,7 +48,7 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/employees');
   }
 
-  updateEmployee(employee) {
+  updateEmployee(employee: UpdatedEmployee) {
     return this.httpClient.put(environment.baseUrl + '/api/employees', {
       id: employee.id,
       rev: employee.rev,
@@ -58,19 +61,34 @@ export class ApiUrlsService {
     });
   }
 
-  removeEmployee(id) {
+  removeEmployee(id: string) {
     return this.httpClient.delete(environment.baseUrl + '/api/employees/' + id);
   }
 
   // Product api
 
-  // create
+  createProduct(product: Product) {
+    return this.httpClient.post(environment.baseUrl + '/api/products', {
+      name: product.name,
+      description: product.description,
+      image: {
+        lastModified: product.image.lastModified,
+        name: product.image.name,
+        size: product.image.size,
+        type: product.image.type
+      },
+      price: product.price,
+      producer: product.producer,
+      createdDate: product.createdDate
+    });
+  }
+
   // getOne
   getProducts() {
     return this.httpClient.get(environment.baseUrl + '/api/products');
   }
 
-  removeProduct(id) {
+  removeProduct(id: string) {
     return this.httpClient.delete(environment.baseUrl + '/api/products/' + id);
   }
 

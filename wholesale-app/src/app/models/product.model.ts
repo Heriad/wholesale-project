@@ -4,5 +4,5 @@ export class Product {
   image: File;
   price: number;
   producer: string;
-  timestamp: number;
+  createdDate: number;
 }

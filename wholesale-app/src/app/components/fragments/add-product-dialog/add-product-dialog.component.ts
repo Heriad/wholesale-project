@@ -19,17 +19,22 @@ export class AddProductDialogComponent implements OnInit {
 
   addProductForm: FormGroup;
   addProductErrors: Array<string> = [];
+  selectedFile = null;
+
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+  }
 
   addProduct() {
     const product: Product = {
       name: this.addProductForm.controls.name.value,
       description: this.addProductForm.controls.description.value,
-      image: this.addProductForm.controls.image.value,
+      image: this.selectedFile,
       price: this.addProductForm.controls.price.value,
       producer: this.addProductForm.controls.producer.value,
-      timestamp: Date.now()
+      createdDate: Date.now()
     };
-    console.log('Produkt: ', product);
+    this.dialogRef.close(product);
   }
 
   ngOnInit(): void {
