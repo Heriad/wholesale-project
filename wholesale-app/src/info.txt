@@ -1,16 +1,17 @@
 ** DO ZROBIENIA
-panel do wysyłania mailu oraz szkielet maila przygotować do zrobieni
+panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia
 main page zacząć tworzyć (dwa pomysły, który wybrać?)
 auth login
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być?
-DODANIE DATY PRZY DODANIU PRACOWNIKA timestamp i wyswietlanie jej w tabelce tzn. data utworzenia
 paginacja tabeli pracowników, robić w ogóle??
 usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem
 usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
-Dokończyć moda lz dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
-w zakładce zarządzanie produktami zmenić timestamp na dd.mm.yyyy
+Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
 dodanie errorów na modalu dodawania produktu
+wielkośc zdjęc w tabeli z produktami - ograniczyć jakoś
+
+
 
 ** ZROBIONE
 -Favicon naprawić
@@ -35,6 +36,8 @@ Modal z dodaniem pracownika -> dodawanie errorów powoduje powiększanie sie prz
 filter -> full-time/part-time -> naprawione filtruje po polsku
 filtrowanie tabli pracowników -> zrobione
 spinner podczas ładowania danych do tabeli -> dodany employee tabela
+w zakładce zarządzanie produktami zmenić timestamp na dd.mm.yyyy -> zrobione DD/MM/YYYY
+
 
 
 ***WYMAGANIA

@@ -6,7 +6,6 @@ import couchdbConfig from '../../config/couchdbConfig';
 const nano = require('nano')(couchdbConfig.url);
 const database = nano.db.use(couchdbConfig.dbProducts);
 
-// TODO attachment użyć multipart
 export async function addProduct(product, productImage) {
     let productExists = true;
     const selector = {

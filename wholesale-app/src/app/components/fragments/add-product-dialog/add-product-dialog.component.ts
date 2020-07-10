@@ -1,4 +1,3 @@
-import { Product } from './../../../models/product.model';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -27,22 +26,24 @@ export class AddProductDialogComponent implements OnInit {
   }
 
   addProduct() {
-    const formData = new FormData();
-    formData.append('productImage', this.addProductForm.get('productImage').value);
-    formData.append('name', this.addProductForm.controls.name.value);
-    formData.append('description', this.addProductForm.controls.description.value);
-    formData.append('price', this.addProductForm.controls.price.value);
-    formData.append('producer', this.addProductForm.controls.producer.value);
-    formData.append('createdDate', String(Date.now()));
-    // const product: Product = {
-    //   name: this.addProductForm.controls.name.value,
-    //   description: this.addProductForm.controls.description.value,
-    //   image: this.addProductForm.controls.image.value,
-    //   price: this.addProductForm.controls.price.value,
-    //   producer: this.addProductForm.controls.producer.value,
-    //   createdDate: Date.now()
-    // };
-    this.dialogRef.close(formData);
+    this.addProductErrors = [];
+    if (this.addProductForm.controls.name.invalid || this.addProductForm.controls.description.invalid ||
+        this.addProductForm.controls.price.invalid || this.addProductForm.controls.producer.invalid) {
+      this.addProductErrors.push('Uzupełnij wymagane pola');
+    }
+    if (!this.addProductForm.controls.productImage.value) {
+      this.addProductErrors.push('Nie dodano zdjęcia');
+    }
+    if (this.addProductForm.valid && this.addProductErrors.length === 0) {
+      const formData = new FormData();
+      formData.append('productImage', this.addProductForm.get('productImage').value);
+      formData.append('name', this.addProductForm.controls.name.value);
+      formData.append('description', this.addProductForm.controls.description.value);
+      formData.append('price', this.addProductForm.controls.price.value);
+      formData.append('producer', this.addProductForm.controls.producer.value);
+      formData.append('createdDate', String(Date.now()));
+      this.dialogRef.close(formData);
+    }
   }
 
   ngOnInit(): void {
@@ -52,7 +53,7 @@ export class AddProductDialogComponent implements OnInit {
       this.addProductForm = this.fb.group({
         name: ['', Validators.required],
         description: ['', Validators.required],
-        productImage: ['', Validators.required],
+        productImage: [undefined, Validators.required],
         price: ['', Validators.required],
         producer: ['', Validators.required],
       });
