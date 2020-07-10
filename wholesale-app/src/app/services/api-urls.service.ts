@@ -68,19 +68,7 @@ export class ApiUrlsService {
   // Product api
 
   createProduct(product: Product) {
-    return this.httpClient.post(environment.baseUrl + '/api/products', {
-      name: product.name,
-      description: product.description,
-      image: {
-        lastModified: product.image.lastModified,
-        name: product.image.name,
-        size: product.image.size,
-        type: product.image.type
-      },
-      price: product.price,
-      producer: product.producer,
-      createdDate: product.createdDate
-    });
+    return this.httpClient.post(environment.baseUrl + '/api/products', product);
   }
 
   // getOne

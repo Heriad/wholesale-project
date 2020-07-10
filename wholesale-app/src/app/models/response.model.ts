@@ -28,9 +28,9 @@ export class GetProductsResponse {
   data: Array<{
     _id: string;
     _rev: string;
+    _attachments: any;
     name: string;
     description: string;
-    image: File;
     price: number;
     producer: string;
     createdDate: Date;

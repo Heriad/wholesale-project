@@ -47,6 +47,8 @@ export async function getAllEmployees() {
 // Aktualizacja danych wybranego pracownika
 export async function updateEmployee(employee) {
     try {
+        const saltRounds = 10;
+        employee.password = await bcrypt.hash(employee.password, saltRounds);
         await database.insert(employee);
         return createResponseController(responseStatus.SUCCESS, 'Employee has been updated', null);
     } catch (err) {

@@ -19,22 +19,30 @@ export class AddProductDialogComponent implements OnInit {
 
   addProductForm: FormGroup;
   addProductErrors: Array<string> = [];
-  selectedFile = null;
 
   onFileSelected(event) {
-    this.selectedFile = event.target.files[0];
+    console.log(event)
+    const selectedFile = event.target.files[0];
+    this.addProductForm.get('productImage').setValue(selectedFile);
   }
 
   addProduct() {
-    const product: Product = {
-      name: this.addProductForm.controls.name.value,
-      description: this.addProductForm.controls.description.value,
-      image: this.selectedFile,
-      price: this.addProductForm.controls.price.value,
-      producer: this.addProductForm.controls.producer.value,
-      createdDate: Date.now()
-    };
-    this.dialogRef.close(product);
+    const formData = new FormData();
+    formData.append('productImage', this.addProductForm.get('productImage').value);
+    formData.append('name', this.addProductForm.controls.name.value);
+    formData.append('description', this.addProductForm.controls.description.value);
+    formData.append('price', this.addProductForm.controls.price.value);
+    formData.append('producer', this.addProductForm.controls.producer.value);
+    formData.append('createdDate', String(Date.now()));
+    // const product: Product = {
+    //   name: this.addProductForm.controls.name.value,
+    //   description: this.addProductForm.controls.description.value,
+    //   image: this.addProductForm.controls.image.value,
+    //   price: this.addProductForm.controls.price.value,
+    //   producer: this.addProductForm.controls.producer.value,
+    //   createdDate: Date.now()
+    // };
+    this.dialogRef.close(formData);
   }
 
   ngOnInit(): void {
@@ -44,7 +52,7 @@ export class AddProductDialogComponent implements OnInit {
       this.addProductForm = this.fb.group({
         name: ['', Validators.required],
         description: ['', Validators.required],
-        image: ['', Validators.required],
+        productImage: ['', Validators.required],
         price: ['', Validators.required],
         producer: ['', Validators.required],
       });

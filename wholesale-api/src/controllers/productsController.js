@@ -5,11 +5,14 @@ export default {
 
     // Create products
     async create(req, res, next) {
-        if (!req.body.name || !req.body.description || !req.body.price || !req.body.image || !req.body.producer || !req.body.createdDate) {
-            return res.status(400).send({ message: 'Required data: name, description, price, image, producer, createdDate' });
+        console.log('Request form-data: ', req.body);
+        console.log('File form-data: ', req.file);
+        if (!req.body.name || !req.body.description || !req.body.price || !req.file || !req.body.producer || !req.body.createdDate) {
+            return res.status(400).send({ message: 'Required data: name, description, price, file, producer, createdDate' });
         }
-        let newProduct = createProduct(req.body.name, req.body.description, req.body.price, req.body.image, req.body.producer, req.body.createdDate);
-        let dbResponse = await addProduct(newProduct);
+        let newProduct = createProduct(req.body.name, req.body.description, req.body.price, req.body.producer, req.body.createdDate, req.body.image);
+        let productImage = req.file;
+        let dbResponse = await addProduct(newProduct, productImage);
         console.log('api /addProduct', dbResponse);
         if (dbResponse.success) {
             return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });

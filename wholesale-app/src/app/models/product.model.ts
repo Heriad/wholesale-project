@@ -1,7 +1,7 @@
 export class Product {
   name: string;
   description: string;
-  image: File;
+  productImage: File;
   price: number;
   producer: string;
   createdDate: number;

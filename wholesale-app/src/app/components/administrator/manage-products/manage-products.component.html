@@ -25,7 +25,7 @@
 
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Zdjęcie</th>
-    <td mat-cell *matCellDef="let element">{{ element.image }}</td>
+    <td mat-cell *matCellDef="let element"><img [src]="element.image"></td>
   </ng-container>
 
   <ng-container matColumnDef="description">

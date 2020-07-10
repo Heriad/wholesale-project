@@ -7,7 +7,7 @@ const nano = require('nano')(couchdbConfig.url);
 const database = nano.db.use(couchdbConfig.dbProducts);
 
 // TODO attachment użyć multipart
-export async function addProduct(product) {
+export async function addProduct(product, productImage) {
     let productExists = true;
     const selector = {
         name: product.name
@@ -17,7 +17,7 @@ export async function addProduct(product) {
         if (productExists) {
             return createResponseController(responseStatus.INVALID, `Product ${product.name} already exists`, null);
         } else {
-            await database.insert(product);
+                await database.multipart.insert(product, [{ name: productImage.fieldname, data: productImage.buffer, content_type: productImage.mimetype }], product._id);
             return createResponseController(responseStatus.SUCCESS, 'The product has been created', product);
         }
     } catch (err) {
@@ -44,11 +44,15 @@ export async function getOneProduct(id) {
 export async function getAllProducts() {
     try {
         let data = [];
-        await database.find({ selector: {} }).then((body) => {
-            body.docs.forEach((doc) => {
-                data.push(doc);
+            await database.find({ selector: {} }).then(async (body) => {
+                for (let doc of body.docs) {
+                    await database.multipart.get(doc._id).then((buffer) => {
+                        doc._attachments.productImage.buffer = buffer;
+                        console.log('Buffer: ', buffer);
+                    });
+                    data.push(doc);
+                }
             });
-        })
         return createResponseController(responseStatus.SUCCESS, 'All products found', data);
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);

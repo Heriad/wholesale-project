@@ -37,7 +37,6 @@ export class ManageProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.api.createProduct(result).subscribe((res: ApiResponse) => {
-          console.log('Response: ', res);
           if (res.success) {
             this.getProducts();
           }
@@ -73,9 +72,11 @@ export class ManageProductsComponent implements OnInit {
     this.isLoading = true;
     this.api.getProducts().subscribe((res: GetProductsResponse) => {
       if (res.success) {
+        console.log('res: ', res.data);
         this.dataSource.data = res.data;
         this.dataSource.data.forEach((el: any, index) => {
-          el.position = index + 1;
+        el.position = index + 1;
+        console.log('Buffer: ', el._attachments.productImage.buffer.data);
         });
         this.isLoading = false;
       }

@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import { catchAsync } from '../utils/errors';
 import productsController from '../controllers/productsController';
+import multer from 'multer';
 
 const api = Router();
+const upload = multer();
 
 export default () => {
 
     // POST /products
-    api.post('/', catchAsync(productsController.create));
+    api.post('/', upload.single('productImage'), catchAsync(productsController.create));
 
     // GET /products/:id
     api.get('/:id', catchAsync(productsController.getOne));
