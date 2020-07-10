@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { AddProductDialogComponent } from './../../fragments/add-product-dialog/add-product-dialog.component';
 import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
 import { ApiUrlsService } from './../../../services/api-urls.service';
@@ -14,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ManageProductsComponent implements OnInit {
 
-  constructor(public api: ApiUrlsService, public dialogService: MatDialog) { }
+  constructor(public api: ApiUrlsService, public dialogService: MatDialog, private domSanitizer: DomSanitizer) { }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -76,8 +77,8 @@ export class ManageProductsComponent implements OnInit {
         this.dataSource.data = res.data;
         this.dataSource.data.forEach((el: any, index) => {
         el.position = index + 1;
-        console.log('Buffer: ', el._attachments.productImage.buffer.data);
-        });
+        el.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + el._attachments.productImage.buffer);
+      });
         this.isLoading = false;
       }
     });

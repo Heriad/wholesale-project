@@ -46,9 +46,8 @@ export async function getAllProducts() {
         let data = [];
             await database.find({ selector: {} }).then(async (body) => {
                 for (let doc of body.docs) {
-                    await database.multipart.get(doc._id).then((buffer) => {
-                        doc._attachments.productImage.buffer = buffer;
-                        console.log('Buffer: ', buffer);
+                    await database.attachment.get(doc._id, 'productImage').then((el) => {
+                        doc._attachments.productImage.buffer = el.toString('base64');
                     });
                     data.push(doc);
                 }
