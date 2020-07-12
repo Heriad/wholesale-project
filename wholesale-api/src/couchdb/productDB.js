@@ -16,7 +16,7 @@ export async function addProduct(product, productImage) {
         if (productExists) {
             return createResponseController(responseStatus.INVALID, `Product ${product.name} already exists`, null);
         } else {
-                await database.multipart.insert(product, [{ name: productImage.fieldname, data: productImage.buffer, content_type: productImage.mimetype }], product._id);
+            await database.multipart.insert(product, [{ name: productImage.fieldname, data: productImage.buffer, content_type: productImage.mimetype }], product._id);
             return createResponseController(responseStatus.SUCCESS, 'The product has been created', product);
         }
     } catch (err) {
@@ -52,6 +52,15 @@ export async function getAllProducts() {
                 }
             });
         return createResponseController(responseStatus.SUCCESS, 'All products found', data);
+    } catch (err) {
+        return createResponseController(responseStatus.ERROR, err, null);
+    }
+}
+
+export async function updateProduct(updatedProduct, updatedImageProduct) {
+    try {
+        await database.multipart.insert(updatedProduct, [{ name: updatedImageProduct.fieldname, data: updatedImageProduct.buffer, content_type: updatedImageProduct.mimetype }], product._id);
+        return createResponseController(responseStatus.SUCCESS, 'Product has been updated', null);
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
     }

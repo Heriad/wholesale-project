@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../models/product.model';
+import { Product, UpdatedProduct } from '../models/product.model';
 import { Employee, UpdatedEmployee } from '../models/employee.model';
 import { Client } from '../models/client.model';
 
@@ -48,16 +48,16 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/employees');
   }
 
-  updateEmployee(employee: UpdatedEmployee) {
+  updateEmployee(updatedEmployee: UpdatedEmployee) {
     return this.httpClient.put(environment.baseUrl + '/api/employees', {
-      id: employee.id,
-      rev: employee.rev,
-      name: employee.name,
-      surname: employee.surname,
-      password: employee.password,
-      email: employee.email,
-      workType: employee.workType,
-      type: employee.type
+      id: updatedEmployee.id,
+      rev: updatedEmployee.rev,
+      name: updatedEmployee.name,
+      surname: updatedEmployee.surname,
+      password: updatedEmployee.password,
+      email: updatedEmployee.email,
+      workType: updatedEmployee.workType,
+      type: updatedEmployee.type
     });
   }
 
@@ -74,6 +74,10 @@ export class ApiUrlsService {
   // getOne
   getProducts() {
     return this.httpClient.get(environment.baseUrl + '/api/products');
+  }
+
+  updateProduct(updatedProduct: UpdatedProduct) {
+    return this.httpClient.put(environment.baseUrl + '/api/products/', updatedProduct);
   }
 
   removeProduct(id: string) {

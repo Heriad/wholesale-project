@@ -1,4 +1,4 @@
-import { createEmployee } from '../models/employeeModel';
+import { createEmployee, updateEmployeeData } from '../models/employeeModel';
 import { addEmployee, getAllEmployees, updateEmployee, removeEmployee } from '../couchdb/employeeDB';
 
 export default {
@@ -38,17 +38,9 @@ export default {
         if (!req.body.id || !req.body.rev || !req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.workType || !req.body.type) {
             return res.status(400).send({ message: 'Required data: id, rev, name, surname, email, password, workType, type' });
         }
-        let employee = {
-            _id: req.body.id,
-            _rev: req.body.rev,
-            name: req.body.name,
-            surname: req.body.surname,
-            email: req.body.email,
-            password: req.body.password,
-            workType: req.body.workType,
-            type: req.body.type
-        }
-        let dbResponse = await updateEmployee(employee);
+        let updatedEmployee = updateEmployeeData(req.body.id, req.body.rev, req.body.name, req.body.surname, req.body.email,
+             req.body.password, req.body.workType, req.body.type);
+        let dbResponse = await updateEmployee(updatedEmployee);
         console.log('api /updateEmployee', dbResponse);
         if (dbResponse.success) {
             return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });

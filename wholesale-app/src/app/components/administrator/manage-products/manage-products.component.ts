@@ -55,8 +55,14 @@ export class ManageProductsComponent implements OnInit {
     });
     dialogRef.componentInstance.title = 'Edytuj produkt';
     dialogRef.componentInstance.isEdit = true;
-    dialogRef.afterClosed().subscribe(() => {
-
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.api.updateEmployee(result).subscribe((res: ApiResponse) => {
+          if (res.success) {
+            this.getProducts();
+          }
+        });
+      }
     });
   }
 
@@ -83,7 +89,6 @@ export class ManageProductsComponent implements OnInit {
     this.isLoading = true;
     this.api.getProducts().subscribe((res: GetProductsResponse) => {
       if (res.success) {
-        console.log('res: ', res.data);
         this.dataSource.data = res.data;
         this.dataSource.data.forEach((el: any, index) => {
         el.position = index + 1;
