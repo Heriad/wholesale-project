@@ -10,7 +10,8 @@ sidebar -> responsywny jak i wszystko inne..
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
 dodanie errorów na modalu dodawania produktu
 wielkośc zdjęc w tabeli z produktami - ograniczyć jakoś
-
+klikeniecie zdjecia w tabeli powieksza jednym
+modal z dodawaniem produktu dół dłuższy
 
 
 ** ZROBIONE

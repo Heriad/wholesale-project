@@ -31,7 +31,7 @@ export class ManageProductsComponent implements OnInit {
   addProduct() {
     const dialogRef = this.dialogService.open((AddProductDialogComponent), {
       width: '550px',
-      height: '450px',
+      height: '380px',
       disableClose: true
     });
     dialogRef.componentInstance.title = 'Dodaj produkt';
@@ -47,7 +47,17 @@ export class ManageProductsComponent implements OnInit {
   }
 
   editProduct(element) {
-    // TODO
+    const dialogRef = this.dialogService.open((AddProductDialogComponent), {
+      width: '550px',
+      height: '380px',
+      disableClose: true,
+      data: element
+    });
+    dialogRef.componentInstance.title = 'Edytuj produkt';
+    dialogRef.componentInstance.isEdit = true;
+    dialogRef.afterClosed().subscribe(() => {
+
+    });
   }
 
   removeProduct(element) {

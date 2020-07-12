@@ -20,7 +20,6 @@ export class AddProductDialogComponent implements OnInit {
   addProductErrors: Array<string> = [];
 
   onFileSelected(event) {
-    console.log(event)
     const selectedFile = event.target.files[0];
     this.addProductForm.get('productImage').setValue(selectedFile);
   }
@@ -33,6 +32,15 @@ export class AddProductDialogComponent implements OnInit {
     }
     if (!this.addProductForm.controls.productImage.value) {
       this.addProductErrors.push('Nie dodano zdjęcia');
+    }
+    if (this.addProductErrors.length > 0) {
+      let height = 380;
+      const errHeight = 24;
+      height = height + (errHeight * this.addProductErrors.length);
+      const newHeight = String(height);
+      this.dialogRef.updateSize('550px', newHeight + 'px');
+    } else {
+      this.dialogRef.updateSize('550px', '380px');
     }
     if (this.addProductForm.valid && this.addProductErrors.length === 0) {
       const formData = new FormData();
@@ -48,7 +56,13 @@ export class AddProductDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isEdit) {
-
+      this.addProductForm = this.fb.group({
+        name: [this.data.name, Validators.required],
+        description: [this.data.description, Validators.required],
+        productImage: [undefined, Validators.required], // TODO IMAGE
+        price: [this.data.price, Validators.required],
+        producer: [this.data.producer, Validators.required],
+      });
     } else {
       this.addProductForm = this.fb.group({
         name: ['', Validators.required],
