@@ -77,7 +77,8 @@ export class ApiUrlsService {
   }
 
   updateProduct(updatedProduct: UpdatedProduct) {
-    return this.httpClient.put(environment.baseUrl + '/api/products/', updatedProduct);
+    console.log('test:' ,updatedProduct)
+    return this.httpClient.put(environment.baseUrl + '/api/products', updatedProduct);
   }
 
   removeProduct(id: string) {

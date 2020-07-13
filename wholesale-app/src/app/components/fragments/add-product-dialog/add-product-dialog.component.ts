@@ -44,17 +44,29 @@ export class AddProductDialogComponent implements OnInit {
     }
     if (this.addProductForm.valid && this.addProductErrors.length === 0) {
       const formData = new FormData();
-      formData.append('productImage', this.addProductForm.get('productImage').value);
-      formData.append('name', this.addProductForm.controls.name.value);
-      formData.append('description', this.addProductForm.controls.description.value);
-      formData.append('price', this.addProductForm.controls.price.value);
-      formData.append('producer', this.addProductForm.controls.producer.value);
-      formData.append('createdDate', String(Date.now()));
+      if (!this.isEdit) {
+        formData.append('productImage', this.addProductForm.get('productImage').value);
+        formData.append('name', this.addProductForm.controls.name.value);
+        formData.append('description', this.addProductForm.controls.description.value);
+        formData.append('price', this.addProductForm.controls.price.value);
+        formData.append('producer', this.addProductForm.controls.producer.value);
+        formData.append('createdDate', String(Date.now()));
+      } else {
+        formData.append('id', this.data._id);
+        formData.append('rev', this.data._rev);
+        formData.append('productImage', this.addProductForm.get('productImage').value);
+        formData.append('name', this.addProductForm.controls.name.value);
+        formData.append('description', this.addProductForm.controls.description.value);
+        formData.append('price', this.addProductForm.controls.price.value);
+        formData.append('producer', this.addProductForm.controls.producer.value);
+        formData.append('createdDate', String(Date.now()));
+      }
       this.dialogRef.close(formData);
     }
   }
 
   ngOnInit(): void {
+    console.log('data:', this.data)
     if (this.isEdit) {
       this.addProductForm = this.fb.group({
         name: [this.data.name, Validators.required],

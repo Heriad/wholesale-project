@@ -65,7 +65,7 @@ export class AddEmployeeDialogComponent implements OnInit {
           type: UserRole.EMPLOYEE
         };
         this.dialogRef.close(employee);
-      } else if (this.isEdit) {
+      } else {
         const updatedEmployee: UpdatedEmployee = {
           id: this.data._id,
           rev: this.data._rev,

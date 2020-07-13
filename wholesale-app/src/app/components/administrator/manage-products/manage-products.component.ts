@@ -57,7 +57,7 @@ export class ManageProductsComponent implements OnInit {
     dialogRef.componentInstance.isEdit = true;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.api.updateEmployee(result).subscribe((res: ApiResponse) => {
+        this.api.updateProduct(result).subscribe((res: ApiResponse) => {
           if (res.success) {
             this.getProducts();
           }
@@ -92,6 +92,7 @@ export class ManageProductsComponent implements OnInit {
         this.dataSource.data = res.data;
         this.dataSource.data.forEach((el: any, index) => {
         el.position = index + 1;
+        // todo 
         el.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + el._attachments.productImage.buffer);
       });
         this.isLoading = false;
