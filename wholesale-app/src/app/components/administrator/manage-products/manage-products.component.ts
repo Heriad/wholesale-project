@@ -91,12 +91,11 @@ export class ManageProductsComponent implements OnInit {
       if (res.success) {
         this.dataSource.data = res.data;
         this.dataSource.data.forEach((el: any, index) => {
-        el.position = index + 1;
-        // todo 
-        el.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + el._attachments.productImage.buffer);
-      });
-        this.isLoading = false;
+          el.position = index + 1;
+          el.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + el._attachments.productImage.buffer);
+        });
       }
+      this.isLoading = false;
     });
   }
 

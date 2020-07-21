@@ -1,6 +1,57 @@
-<div class="header-container">
-  <span class="company-name">Wholesale</span>
+<div class="background-page">
+  <mat-card class="card-panel">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <mat-card-header class="logo">
+          <mat-card-title>
+            <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
+          </mat-card-title>
+          <mat-card-subtitle>Wholesale</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+      <div class="col-2 language-panel-label">
+        <a routerLink="/login" routerLinkActive="active">Zaloguj się</a><br>
+        <a routerLink="/register" routerLinkActive="active">Zarejestruj się</a>
+        <br><a routerLink="" routerLinkActive="active">Koszyk</a>
+        <select class="language-panel">
+          <option value="PL">PL</option>
+          <option value="ENG">ENG</option>
+        </select>
+      </div>
+    </div>
+    <mat-card-content *ngIf="!isLoading">
+      <div class="row">
+        <div class="col-12">
+          <span class="products-label">Dostępne produkty w ofercie:</span>
+        </div>
+
+      </div>
+      <div *ngIf="productList.length > 0">
+        <div class="row space-line">
+          <div class="col-3" >
+            <img [src]="productList[0].productImage" style="width: 200px; height: 280px;">
+            <span class="product-name">{{ this.productList[0].name }}</span>
+          </div>
+          <div class="col-3">b</div>
+          <div class="col-3">c</div>
+          <div class="col-3">d</div>
+        </div>
+        <div class="row space-line">
+          <div class="col-3">e</div>
+          <div class="col-3">f</div>
+          <div class="col-3">g</div>
+          <div class="col-3">h</div>
+        </div>
+      </div>
+      <div *ngIf="productList.length === 0">
+        <span>Brak produktów do wyświetlenia</span>
+      </div>
+    </mat-card-content>
+    <div *ngIf="isLoading" class="row loading-spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-card>
 </div>
 
-<a routerLink="/login" routerLinkActive="active">Zaloguj się</a><br>
-<a routerLink="/register" routerLinkActive="active">Zarejestruj się</a>
+

@@ -102,8 +102,8 @@ export class ManageEmployeesComponent implements OnInit {
             el.workType = 'Część etatu';
           }
         });
-        this.isLoading = false;
       }
+      this.isLoading = false;
     });
   }
 

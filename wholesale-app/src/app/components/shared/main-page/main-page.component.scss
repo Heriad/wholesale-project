@@ -1,15 +1,74 @@
-.header-container{
-  width: 98%;
-  margin: auto;
-  overflow: hidden;
-  background-image: url('../../../../assets/imgs/header-image.jpg');
-  margin-top: 20px;
-  height: 350px;
-  filter: brightness(60%);
+// .header-container{
+//   width: 98%;
+//   margin: auto;
+//   overflow: hidden;
+//   background-image: url('../../../../assets/imgs/header-image.jpg');
+//   margin-top: 20px;
+//   height: 350px;
+//   filter: brightness(60%);
+// }
+
+// .company-name {
+//   font-size: 46px;
+//   color: white;
+//   filter: brightness(100%);
+// }
+
+
+.background-page {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(320deg, #0d2046, 55%, #011438 55%);
 }
 
-.company-name {
-  font-size: 46px;
-  color: white;
-  filter: brightness(100%);
+.card-panel {
+  width: 80%;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -25%);
+}
+
+.logo {
+  display: grid;
+  justify-content: center;
+}
+
+.language-panel {
+  width: 25%;
+  float: right;
+  outline: none;
+}
+
+.language-panel-label {
+  padding-left: 0px;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.mat-card-subtitle {
+  color: black;
+  font-size: 24px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.space-line {
+  margin-top: 20px;
+}
+
+.products-label {
+  font-size: 20px;
+}
+
+.product-name {
+  display: block;
+}
+
+.col-3 {
+  word-wrap: break-word;
 }

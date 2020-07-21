@@ -1,5 +1,10 @@
 table {
   width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  word-wrap: break-word !important;
 }
 
 .btn-add-row {
