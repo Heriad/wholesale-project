@@ -1,4 +1,4 @@
-<div class="background-page">
+<!-- <div class="background-page">
   <mat-card class="card-panel">
     <div class="row">
       <div class="col-2"></div>
@@ -13,6 +13,8 @@
       <div class="col-2 language-panel-label">
         <a routerLink="/login" routerLinkActive="active">Zaloguj się</a><br>
         <a routerLink="/register" routerLinkActive="active">Zarejestruj się</a>
+        <mat-icon class="account-icon">account_box</mat-icon>
+        <mat-icon class="cart-icon">add_shopping_cart</mat-icon>
         <br><a routerLink="" routerLinkActive="active">Koszyk</a>
         <select class="language-panel">
           <option value="PL">PL</option>
@@ -29,19 +31,10 @@
       </div>
       <div *ngIf="productList.length > 0">
         <div class="row space-line">
-          <div class="col-3" >
-            <img [src]="productList[0].productImage" style="width: 200px; height: 280px;">
-            <span class="product-name">{{ this.productList[0].name }}</span>
+          <div *ngFor="let product of productList" class="col-3">
+            <img [src]="product.productImage" style="width: 200px; height: 280px;">
+            <span class="product-name">{{ this.product.name }}</span>
           </div>
-          <div class="col-3">b</div>
-          <div class="col-3">c</div>
-          <div class="col-3">d</div>
-        </div>
-        <div class="row space-line">
-          <div class="col-3">e</div>
-          <div class="col-3">f</div>
-          <div class="col-3">g</div>
-          <div class="col-3">h</div>
         </div>
       </div>
       <div *ngIf="productList.length === 0">
@@ -52,6 +45,33 @@
       <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
     </div>
   </mat-card>
+</div> -->
+
+<div class="header-container">
+  <span class="company-name">Wholesale</span>
 </div>
 
+<div class="row">
+  <div class="col-12">
+    <span class="products-label">Dostępne produkty w ofercie:</span>
+  </div>
 
+</div>
+<div *ngIf="productList.length > 0">
+  <div class="row space-line">
+    <div *ngFor="let product of productList" class="col-3">
+      
+      <img [src]="product.productImage" style="width: 200px; height: 280px;">
+      <span class="product-name">{{ this.product.name }}</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="productList.length === 0">
+  <span>Brak produktów do wyświetlenia</span>
+</div>
+
+<a routerLink="/login" routerLinkActive="active">Zaloguj się</a><br>
+<a routerLink="/register" routerLinkActive="active">Zarejestruj się</a>
+<mat-icon class="account-icon">account_box</mat-icon>
+<mat-icon class="cart-icon">add_shopping_cart</mat-icon>
+<br><a routerLink="" routerLinkActive="active">Koszyk</a>

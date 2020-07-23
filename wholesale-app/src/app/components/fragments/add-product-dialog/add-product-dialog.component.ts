@@ -20,6 +20,8 @@ export class AddProductDialogComponent implements OnInit {
   addProductErrors: Array<string> = [];
 
   onFileSelected(event) {
+    console.log(event.loaded);
+    console.log(event.total);
     const selectedFile = event.target.files[0];
     this.addProductForm.get('productImage').setValue(selectedFile);
   }
@@ -66,7 +68,6 @@ export class AddProductDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('data:', this.data)
     if (this.isEdit) {
       this.addProductForm = this.fb.group({
         name: [this.data.name, Validators.required],
