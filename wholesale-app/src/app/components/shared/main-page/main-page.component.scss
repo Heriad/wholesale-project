@@ -16,10 +16,9 @@
 
 
 .background-page {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-image: linear-gradient(320deg, #0d2046, 55%, #011438 55%);
-  background-size: cover;
 }
 
 .card-panel {
@@ -35,13 +34,9 @@
 }
 
 .language-panel {
-  width: 25%;
+  width: 18%;
   float: right;
   outline: none;
-}
-
-.language-panel-label {
-  padding-left: 0px;
 }
 
 .mat-card-title {
@@ -74,11 +69,15 @@
   word-wrap: break-word;
 }
 
-.account-icon {
-  font-size: 40px;
-  margin-right: 20px;
+.main-menu-list {
+  padding-left: 0px;
 }
 
-.cart-icon {
-  font-size: 40px;
+.main-menu-icon {
+  vertical-align: bottom;
+}
+
+.router-link {
+  color: inherit;
+  margin-right: 5px;
 }
