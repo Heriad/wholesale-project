@@ -5,6 +5,7 @@ import { LoginComponent } from './components/shared/login/login.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { RegisterComponent } from './components/shared/register/register.component';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
+import { ProductItemComponent } from './components/client/product-item/product-item.component';
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
 import { AdministratorComponent } from './components/administrator/administrator/administrator.component';
 import { ManageEmployeesComponent } from './components/administrator/manage-employees/manage-employees.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'client', component: ClientComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'employee', component: EmployeeComponent },
+  { path: 'product-item/:id', component: ProductItemComponent },
   { path: 'administrator', component: AdministratorComponent },
   { path: 'remind-password', component: RemindPasswordComponent },
   { path: 'administrator/manage-employees', component: ManageEmployeesComponent }

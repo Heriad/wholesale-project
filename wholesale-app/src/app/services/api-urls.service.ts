@@ -71,13 +71,15 @@ export class ApiUrlsService {
     return this.httpClient.post(environment.baseUrl + '/api/products', product);
   }
 
-  // getOne
+  getProduct(id: string) {
+    return this.httpClient.get(environment.baseUrl + '/api/products/' + id);
+  }
+
   getProducts() {
     return this.httpClient.get(environment.baseUrl + '/api/products');
   }
 
   updateProduct(updatedProduct: UpdatedProduct) {
-    console.log('test:' ,updatedProduct)
     return this.httpClient.put(environment.baseUrl + '/api/products', updatedProduct);
   }
 

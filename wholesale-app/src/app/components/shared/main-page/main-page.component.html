@@ -13,7 +13,7 @@
       <div class="col-3 main-menu-list">
         <a routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>Zaloguj się</span></a>
         <a routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>Rejestracja</span></a>
-        <a routerLink="" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>Koszyk</span></a>
+        <a routerLink="/chart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>Koszyk</span></a>
         <select class="language-panel">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>
@@ -49,12 +49,12 @@
 <!--  TODO OGARNAC TEN KOD ŁADNIE -->
       <div class="row">
         <div *ngFor="let product of productList" class="col-md-3">
-          <a routerLink="/login" routerLinkActive="true">
-            <div class="card mb-3 box-shadow">
-              <img [src]="product.productImage" style="width: 100%; height: 280px;" [alt]="product.name"/>
+          <a [routerLink]="['product-item', product._id]" routerLinkActive="true" class="router-product">
+            <div class="card mb-3 box-shadow selected">
+              <img [src]="product.productImage" class="router-product" style="width: 100%; height: 280px;" [alt]="product.name"/>
               <div class="card-body">
                 <p class="card-product-name">{{ product.name }}</p>
-                <p class="card-product-name">{{ product.price }}zł</p>
+                <p class="card-product-price float-right">{{ product.price }} zł</p>
               </div>
             </div>
           </a>

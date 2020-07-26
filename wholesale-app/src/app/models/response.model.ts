@@ -36,3 +36,18 @@ export class GetProductsResponse {
     createdDate: Date;
   }>;
 }
+
+export class GetProductResponse {
+  success: boolean;
+  message: string;
+  data: {
+    _id: string;
+    _rev: string;
+    _attachments: any;
+    name: string;
+    description: string;
+    price: number;
+    producer: string;
+    createdDate: Date;
+  };
+}

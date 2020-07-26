@@ -27,8 +27,11 @@ export async function addProduct(product, productImage) {
 export async function getOneProduct(id) {
     let product;
     try {
-        await database.get(id).then((body) => {
+        await database.get(id).then(async (body) => {
             product = body;
+            await database.attachment.get(product._id, 'productImage').then((el) => {
+                product._attachments.productImage.buffer = el.toString('base64');
+            });
         });
         if (product) {
             return createResponseController(responseStatus.SUCCESS, 'Product found', product);

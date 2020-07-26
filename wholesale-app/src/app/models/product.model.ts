@@ -17,3 +17,8 @@ export class UpdatedProduct {
   producer: string;
   createdDate: number;
 }
+
+export class ShoppingChart {
+  id: string;
+  quantity: number;
+}

@@ -81,3 +81,23 @@
   color: inherit;
   margin-right: 5px;
 }
+
+.router-product {
+  color: inherit;
+}
+
+.router-product:hover {
+  text-decoration: none;
+}
+
+.selected:hover {
+  opacity: 0.7;
+}
+
+.card-body {
+  padding-bottom: 0px;
+}
+
+.card-product-price {
+  font-weight: bold;
+}

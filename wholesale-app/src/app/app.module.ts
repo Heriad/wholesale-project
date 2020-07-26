@@ -23,6 +23,7 @@ import { ConfirmationDialogComponent } from './components/fragments/confirmation
 import { ManageProductsComponent } from './components/administrator/manage-products/manage-products.component';
 import { AddProductDialogComponent } from './components/fragments/add-product-dialog/add-product-dialog.component';
 import { PriceOnlyDirective } from './directives/price-only.directive';
+import { ProductItemComponent } from './components/client/product-item/product-item.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { PriceOnlyDirective } from './directives/price-only.directive';
     ConfirmationDialogComponent,
     ManageProductsComponent,
     AddProductDialogComponent,
-    PriceOnlyDirective
+    PriceOnlyDirective,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,
