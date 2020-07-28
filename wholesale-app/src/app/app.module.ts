@@ -24,6 +24,7 @@ import { ManageProductsComponent } from './components/administrator/manage-produ
 import { AddProductDialogComponent } from './components/fragments/add-product-dialog/add-product-dialog.component';
 import { PriceOnlyDirective } from './directives/price-only.directive';
 import { ProductItemComponent } from './components/client/product-item/product-item.component';
+import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ProductItemComponent } from './components/client/product-item/product-i
     ManageProductsComponent,
     AddProductDialogComponent,
     PriceOnlyDirective,
-    ProductItemComponent
+    ProductItemComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

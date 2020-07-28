@@ -1,5 +1,5 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { ShoppingChart } from './../../../models/product.model';
+import { ShoppingCart } from './../../../models/product.model';
 import { GetProductResponse } from './../../../models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,9 +15,9 @@ export class ProductItemComponent implements OnInit {
   productId: string;
   isLoading: boolean;
   product;
-  shoppingChart: Array<ShoppingChart> = [];
-  shoppingChartPrice: number;
-  shoppingChartQuantity: number;
+  shoppingCart: Array<ShoppingCart> = [];
+  shoppingCartPrice: number;
+  shoppingCartQuantity: number;
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
               private router: Router) {
 
@@ -27,24 +27,24 @@ export class ProductItemComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  addToShoppintChart() {
-    this.shoppingChart.push({
+  addToShoppintCart() {
+    this.shoppingCart.push({
       id: this.productId,
       quantity: 1
     });
-    this.shoppingChartPrice += this.product.price;
-    this.shoppingChartQuantity += 1;
-    localStorage.setItem('shoppingChart', JSON.stringify(this.shoppingChart));
-    localStorage.setItem('shoppingChartQuantity', JSON.stringify(this.shoppingChartQuantity));
-    localStorage.setItem('shoppingChartPrice', JSON.stringify(this.shoppingChartPrice));
-    this.updateChart();
+    this.shoppingCartPrice += this.product.price;
+    this.shoppingCartQuantity += 1;
+    localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
+    localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
+    localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
+    this.updateCart();
   }
 
-  updateChart() {
-    this.shoppingChartPrice = JSON.parse(localStorage.getItem('shoppingChartPrice')) !== null ?
-        JSON.parse(localStorage.getItem('shoppingChartPrice')) : 0;
-    this.shoppingChartQuantity = JSON.parse(localStorage.getItem('shoppingChartQuantity')) !== null ?
-        JSON.parse(localStorage.getItem('shoppingChartQuantity')) : 0;
+  updateCart() {
+    this.shoppingCartPrice = JSON.parse(localStorage.getItem('shoppingCartPrice')) !== null ?
+        JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
+    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
+        JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
   }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class ProductItemComponent implements OnInit {
           this.product.price = parseInt(this.product.price, 10);
           this.product.productImage = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
           this.product._attachments.productImage.buffer);
-          this.updateChart();
+          this.updateCart();
         }
         this.isLoading = false;
       });

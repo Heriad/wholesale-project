@@ -8,7 +8,7 @@ usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
 klikeniecie zdjecia w tabeli powieksza jednym
-
+dodac quantity w product-item
 
 
 ** ZROBIONE

@@ -15,7 +15,7 @@
       </div>
       <div class="col-4">
         <a routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>Zaloguj się</span></a>
-        <a routerLink="/chart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ shoppingChartPrice | currency: 'PLN' }} ({{ shoppingChartQuantity }})</span></a>
+        <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ shoppingCartPrice | currency: 'PLN' }} ({{ shoppingCartQuantity }})</span></a>
         <select class="language-panel">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>
@@ -33,7 +33,7 @@
           <p class="product-description">{{ this.product.description }}</p>
           <p>Producent: {{ this.product.producer }}</p>
           <p class="product-price">{{ this.product.price | currency: 'PLN' }}</p>
-          <button mat-raised-button class="btn-add-product" (click)="addToShoppintChart()">Dodaj do koszyka</button>
+          <button mat-raised-button class="btn-add-product" (click)="addToShoppintCart()">Dodaj do koszyka</button>
         </div>
       </div>
     </div>

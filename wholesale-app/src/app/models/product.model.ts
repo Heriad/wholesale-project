@@ -18,7 +18,7 @@ export class UpdatedProduct {
   createdDate: number;
 }
 
-export class ShoppingChart {
+export class ShoppingCart {
   id: string;
   quantity: number;
 }
