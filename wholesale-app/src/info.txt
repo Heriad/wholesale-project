@@ -1,15 +1,14 @@
 ** DO ZROBIENIA
 panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia
-main page zacząć tworzyć (dwa pomysły, który wybrać?)
 auth login
-language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być?
+language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem
 usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
-Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
+Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 klikeniecie zdjecia w tabeli powieksza jednym
-poprawić main-page, bo była scrolowana card -> morał -> bootstrap lepszy
-
+jakoś na main-page zrobić napis dostępne produkty w ofercie czy coś, by to jakoś wgylądało
+co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy, że admin to polak? xd przemyslec sprawe
 
 ** ZROBIONE
 -Favicon naprawić
@@ -40,8 +39,9 @@ modal z dodawaniem produktu dół dłuższy -> zrobione powiększa się jeżeli 
 paginacja tabeli pracowników, robić w ogóle?? -> nie tam
 dodanie errorów na modalu dodawania produktu -> dodane
 dodac quantity w product-item -> zrobione
-
-
+przemieszczony został loading spinner nad tabelkę, a nie pod, aby widać było, że api z nowymi danymi jej pobierane i ekran się odświeży
+poprawić main-page, bo była scrolowana card -> morał -> bootstrap lepszy
+main page zacząć tworzyć (dwa pomysły, który wybrać?) -> zrobione, byleby było
 
 ***WYMAGANIA
 -Angular ^9

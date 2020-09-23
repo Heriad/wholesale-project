@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       console.log('Poprawne!');
       console.log('User: ', this.email);
       // TODO
-      if (this.loginForm.controls.email.value === 'administrator' && this.loginForm.controls.password.value === 'admin') {
+      if (this.loginForm.controls.email.value === 'administrator' && this.loginForm.controls.password.value === 'admin4322') {
         console.log('test: ', this.isRememberSelected);
         // Jeżeli checkbox jest zaznaczony, zapamiętaj nazwę użytkownika/Email
         if (this.isRememberSelected) {

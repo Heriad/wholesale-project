@@ -7,7 +7,7 @@ w api w którym pobieramy dane jednego elementu getOne, przy podaniu id obsłuzy
 zrobić autentykacje za pomocą passport
 odpowiednie przekierowywac uzytkowników po typie - front end
 jeżeli checkbox z zapamietaj mnie jest zaznaczony i logowanie udane, to do pamieci podręczej przeglądarki zapisujemy nazwe użytkownika czyli maila
-
+zrobić obsługę błedów errHandler -> na gui i porobić sceeny by do dokumentu wstawić, bo przecież aplikacja bedzie działac tak super, że nigdy błedu api nie bedzie
 
 *** DONE
 UŻYTKOWNICY A PRACOWNICY ODDZIELNIE TRZYMANI?? -> tak osobno, dwa magazyny dokumentów
