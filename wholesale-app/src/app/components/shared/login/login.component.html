@@ -22,7 +22,7 @@
     <mat-card-content>
       <form [formGroup]="loginForm">
         <mat-form-field class="login-form">
-          <input matInput type="text" formControlName="username" placeholder="Nazwa użytkownika" maxlength="30">
+          <input matInput type="text" formControlName="email" placeholder="E-mail" maxlength="30" [ngModel]="email">
           <mat-icon matSuffix>account_circle</mat-icon>
         </mat-form-field>
         <mat-form-field class="login-form">
@@ -31,7 +31,7 @@
         </mat-form-field>
         <!-- TODO WRONG-CREDENTIALS -->
         <div *ngIf="wrongCredentials" class="login-wrong-credentials"><span>Nieprawidłowe dane</span><br></div>
-        <mat-checkbox color="primary">Zapamiętaj mnie</mat-checkbox>
+        <mat-checkbox color="primary" [checked]="isRememberSelected" (change)="changeRememberState($event)">Zapamiętaj mnie</mat-checkbox>
         <button class="login-btn" mat-raised-button color="primary" (click)="login()">Zaloguj</button>
         <br><span><a href="/remind-password">Nie pamiętasz hasła?</a></span>
       </form>

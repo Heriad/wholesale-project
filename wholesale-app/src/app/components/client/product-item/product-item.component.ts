@@ -18,6 +18,8 @@ export class ProductItemComponent implements OnInit {
   shoppingCart: Array<ShoppingCart> = [];
   shoppingCartPrice: number;
   shoppingCartQuantity: number;
+  quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
+  selectedQuantity = 1;
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
               private router: Router) {
 
@@ -32,8 +34,8 @@ export class ProductItemComponent implements OnInit {
       id: this.productId,
       quantity: 1
     });
-    this.shoppingCartPrice += this.product.price;
-    this.shoppingCartQuantity += 1;
+    this.shoppingCartPrice += this.product.price * this.selectedQuantity;
+    this.shoppingCartQuantity += this.selectedQuantity;
     localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
     localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
     localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));

@@ -8,7 +8,7 @@ usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie
 klikeniecie zdjecia w tabeli powieksza jednym
-dodac quantity w product-item
+poprawić main-page, bo była scrolowana card -> morał -> bootstrap lepszy
 
 
 ** ZROBIONE
@@ -39,7 +39,7 @@ wielkość zdjęc w tabeli z produktami - ograniczyć jakoś -> zrobione
 modal z dodawaniem produktu dół dłuższy -> zrobione powiększa się jeżeli pojawiają się info o błędzie
 paginacja tabeli pracowników, robić w ogóle?? -> nie tam
 dodanie errorów na modalu dodawania produktu -> dodane
-
+dodac quantity w product-item -> zrobione
 
 
 

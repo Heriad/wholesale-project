@@ -26,13 +26,19 @@
     <div *ngIf="product">
       <div class="row">
         <div class="col-4">
-          <img [src]="product.productImage" style="width: 350px; height: 280px;">
+          <img [src]="product.productImage" style="width: 100%; height: 280px;">
         </div>
         <div class="col-8">
           <p class="product-name">{{ this.product.name }}</p>
           <p class="product-description">{{ this.product.description }}</p>
           <p>Producent: {{ this.product.producer }}</p>
           <p class="product-price">{{ this.product.price | currency: 'PLN' }}</p>
+          <mat-form-field>
+            <mat-label>Ilość</mat-label>
+            <mat-select [(ngModel)]="selectedQuantity" matNativeControl>
+              <mat-option *ngFor="let number of quantity" [value]="number" selected>{{ number }}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
           <button mat-raised-button class="btn-add-product" (click)="addToShoppintCart()">Dodaj do koszyka</button>
         </div>
       </div>

@@ -12,27 +12,41 @@ export class LoginComponent implements OnInit {
 
   wrongCredentials = false;
   // usunac to i zrobić auth
-  username: string;
+  email: string;
   password: string;
+
+  isRememberSelected = false;
 
   constructor(private router: Router, private fb: FormBuilder) { }
 
   loginForm = this.fb.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     password: ['', Validators.required]
   });
 
+  changeRememberState(event) {
+    if (event) {
+      this.isRememberSelected = !this.isRememberSelected;
+    }
+  }
+
   login() {
-    if (this.loginForm.controls.username.invalid || this.loginForm.controls.password.invalid) {
+    if (this.loginForm.controls.email.invalid || this.loginForm.controls.password.invalid) {
       this.wrongCredentials = true;
       console.log('Niepoprawne!');
     } else {
       this.wrongCredentials = false;
       console.log('Poprawne!');
-      console.log('User: ', this.username);
+      console.log('User: ', this.email);
       // TODO
-      if (this.loginForm.controls.username.value === 'administrator' && this.loginForm.controls.password.value === 'admin') {
-        console.log('test');
+      if (this.loginForm.controls.email.value === 'administrator' && this.loginForm.controls.password.value === 'admin') {
+        console.log('test: ', this.isRememberSelected);
+        // Jeżeli checkbox jest zaznaczony, zapamiętaj nazwę użytkownika/Email
+        if (this.isRememberSelected) {
+          localStorage.setItem('userEmail', JSON.stringify(this.loginForm.controls.email.value));
+        } else {
+          localStorage.removeItem('userEmail');
+        }
         this.router.navigate(['/administrator']).then((nav) => {
             console.log(nav);
           }, err => {
@@ -43,6 +57,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.email = JSON.parse(localStorage.getItem('userEmail'));
+    if (this.email) {
+      this.loginForm.controls.email.setValue(this.email);
+      this.isRememberSelected = true;
+    }
   }
 
 }

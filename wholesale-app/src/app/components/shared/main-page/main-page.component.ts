@@ -12,6 +12,7 @@ export class MainPageComponent implements OnInit {
 
   productList;
   isLoading: boolean;
+  shoppingCartQuantity: number;
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer) { }
 
@@ -28,6 +29,8 @@ export class MainPageComponent implements OnInit {
       }
       this.isLoading = false;
     });
+    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
+        JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
   }
 
 }
