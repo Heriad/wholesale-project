@@ -69,7 +69,6 @@ export class ManageProductsComponent implements OnInit {
   removeProduct(element) {
     const dialogRef = this.dialogService.open((ConfirmationDialogComponent), {
       width: '500px',
-      height: '220px',
       disableClose: true,
     });
     dialogRef.componentInstance.title = 'Potwierdź';

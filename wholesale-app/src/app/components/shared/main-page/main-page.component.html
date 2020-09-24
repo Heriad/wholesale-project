@@ -1,4 +1,5 @@
-<div class="background-page">
+<div class="background-page" (scroll)="onScroll($event)">
+  <div id="topOfTheScreen"></div>
   <mat-card class="card-panel">
     <div class="row">
       <div class="col-4"></div>
@@ -22,8 +23,9 @@
     </div>
 
     <mat-card-content *ngIf="!isLoading">
-      <div class="row">
-        <div class="col-12">
+
+      <div *ngIf="productList.length > 0" class="row">
+        <div class="col-12" style="text-align: center;">
           <span class="products-label">Dostępne produkty w ofercie:</span>
         </div>
       </div>
@@ -43,7 +45,17 @@
       </div>
 
       <div *ngIf="productList.length === 0">
-        <span>Brak produktów do wyświetlenia</span>
+        <div class="row shopping-bag-icon-row">
+          <div class="col-12 center">
+            <mat-icon class="shopping-bag-icon">shopping_bag</mat-icon>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 center">
+            <p class="empty-product-list">Przepraszamy, obecnie w naszej ofercie nie posiadamy żadnych produktów.</p>
+          </div>
+        </div>
+
       </div>
     </mat-card-content>
 
@@ -52,4 +64,9 @@
     </div>
 
   </mat-card>
+
+  <button *ngIf="isScrollBtnAvailable" id="scrollToUpBtn" (click)="scrollToTop()">
+    <mat-icon id="arrowUpIcon">arrow_upward</mat-icon>
+  </button>
+
 </div>

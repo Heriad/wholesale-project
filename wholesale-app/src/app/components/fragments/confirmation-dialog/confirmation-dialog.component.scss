@@ -12,7 +12,6 @@
   align-items: flex-start;
   border-bottom: 1px solid #e9ecef;
   justify-content: space-between;
-  height: 32.5%;
 }
 
 .dialog-title {
@@ -21,13 +20,12 @@
 }
 
 .dialog-content {
-  height: 35%;
   padding: 1rem;
   border-bottom: 1px solid #e9ecef;
+  word-break: break-word;
 }
 
 .dialog-actions {
-  height: 32.5%;
   padding: 1rem;
   display: flex;
   justify-content: flex-end;

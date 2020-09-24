@@ -12,9 +12,26 @@ export class MainPageComponent implements OnInit {
 
   productList;
   isLoading: boolean;
+  isScrollBtnAvailable: boolean;
   shoppingCartQuantity: number;
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer) { }
+
+  onScroll(event) {
+    if ((event.target as Element).scrollTop > 0) {
+      this.isScrollBtnAvailable = true;
+    } else {
+      this.isScrollBtnAvailable = false;
+    }
+  }
+
+  scrollToTop() {
+    const element = document.querySelector('#topOfTheScreen');
+    element.scrollIntoView({
+      block: 'start',
+      behavior: 'smooth'
+    });
+  }
 
   ngOnInit(): void {
     this.isLoading = true;
