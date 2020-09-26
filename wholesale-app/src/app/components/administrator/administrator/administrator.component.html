@@ -1,5 +1,4 @@
 <app-navigation-bar (isMenuOpened)="openMenuSideBar($event)"></app-navigation-bar>
-
 <mat-sidenav-container>
   <mat-sidenav mode="side" [(opened)]="isOpened" class="sidebar">
    <mat-nav-list>
@@ -11,7 +10,6 @@
   <mat-sidenav-content class="main-content">
     <app-manage-products *ngIf="activeTab === 'manage-products'"></app-manage-products>
     <app-manage-employees *ngIf="activeTab === 'manage-employees'"></app-manage-employees>
-
   </mat-sidenav-content>
 </mat-sidenav-container>
 

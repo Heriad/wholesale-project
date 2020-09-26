@@ -26,14 +26,15 @@
 }
 
 .language-panel {
-  width: 20%;
+  width: fit-content;
   float: right;
   outline: none;
 }
 
 .router-link {
   color: inherit;
-  margin-right: 15git px;
+  margin-right: 1%;
+  display: inline-block;
 }
 
 .main-menu-icon {

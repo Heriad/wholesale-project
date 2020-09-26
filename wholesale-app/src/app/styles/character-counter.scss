@@ -1,0 +1,6 @@
+@import './variables.scss';
+
+.character-counter {
+  color: map-get($colors, darkgray);
+  font-size: 15px;
+}

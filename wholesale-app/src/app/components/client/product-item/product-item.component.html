@@ -15,6 +15,7 @@
       </div>
       <div class="col-4">
         <a routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>Zaloguj się</span></a>
+        <a routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>Rejestracja</span></a>
         <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ shoppingCartPrice | currency: 'PLN' }} ({{ shoppingCartQuantity }})</span></a>
         <select class="language-panel">
           <option value="PL">PL</option>
@@ -39,7 +40,7 @@
               <mat-option *ngFor="let number of quantity" [value]="number" selected>{{ number }}</mat-option>
             </mat-select>
           </mat-form-field><br>
-          <button mat-raised-button class="btn-add-product" (click)="addToShoppintCart()">Dodaj do koszyka</button>
+          <button mat-raised-button class="btn-add-product" (click)="addToShoppingCart()">Dodaj do koszyka</button>
         </div>
       </div>
     </div>

@@ -34,7 +34,6 @@ export class ManageEmployeesComponent implements OnInit {
   editEmployee(element) {
     const dialogRef = this.dialogService.open((AddEmployeeDialogComponent), {
       width: '550px',
-      height: '380px',
       disableClose: true,
       data: element,
     });
@@ -54,7 +53,6 @@ export class ManageEmployeesComponent implements OnInit {
   removeEmployee(element) {
     const dialogRef = this.dialogService.open((ConfirmationDialogComponent), {
       width: '500px',
-      height: '220px',
       disableClose: true,
     });
     dialogRef.componentInstance.title = 'Potwierdź';
@@ -74,7 +72,6 @@ export class ManageEmployeesComponent implements OnInit {
   addEmployee() {
     const dialogRef = this.dialogService.open((AddEmployeeDialogComponent), {
       width: '550px',
-      height: '380px',
       disableClose: true
     });
     dialogRef.componentInstance.title = 'Dodaj pracownika';

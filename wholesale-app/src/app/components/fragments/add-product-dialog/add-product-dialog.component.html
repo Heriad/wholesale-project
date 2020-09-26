@@ -13,30 +13,34 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Nazwa" maxlength="55" formControlName="name" appSentenseCaseType required>
+            <input matInput #productName type="text" placeholder="Nazwa" maxlength="55" formControlName="name" appSentenseCaseType required>
           </mat-form-field>
+          <span *ngIf="productName.value.length > 0" class="float-right character-counter">Limit znaków: {{ productName.value.length }}/{{ productNameMaxLength }}</span>
         </div>
       </div>
 
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput type="text" placeholder="Producent" maxlength="25" formControlName="producer" appSentenseCaseType required>
+            <input matInput #producerName type="text" placeholder="Producent" maxlength="25" formControlName="producer" appSentenseCaseType required>
           </mat-form-field>
+          <span *ngIf="producerName.value.length > 0" class="float-right character-counter">Limit znaków: {{ producerName.value.length }}/{{ producerNameMaxLength }}</span>
         </div>
         <div class="col-6">
           <mat-form-field class="data-label">
             <!-- todo directive price only z 2 miejscami decimals -->
-            <input matInput type="text" placeholder="Cena" maxlength="8" formControlName="price" appNumbersOnly required>
+            <input matInput #price type="text" placeholder="Cena" maxlength="8" formControlName="price" appNumbersOnly required>
           </mat-form-field>
+          <span *ngIf="price.value.length > 0" class="float-right character-counter">Limit znaków: {{ price.value.length }}/{{ priceMaxLength }}</span>
         </div>
       </div>
 
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <textarea matInput cdkTextareaAutosize dkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" maxlength="1000" formControlName="description" appSentenseCaseType required></textarea>
+            <textarea matInput #description cdkTextareaAutosize dkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" maxlength="1000" formControlName="description" appSentenseCaseType required></textarea>
           </mat-form-field>
+          <span *ngIf="description.value.length > 0" class="float-right character-counter">Limit znaków: {{ description.value.length }}/{{ descriptionMaxLength }}</span>
         </div>
       </div>
 

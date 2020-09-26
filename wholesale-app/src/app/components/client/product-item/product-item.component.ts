@@ -29,7 +29,7 @@ export class ProductItemComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  addToShoppintCart() {
+  addToShoppingCart() {
     this.shoppingCart.push({
       id: this.productId,
       quantity: 1
@@ -66,7 +66,4 @@ export class ProductItemComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy() {
-  //   this.route.unsubscribe();
-  // }
 }

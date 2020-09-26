@@ -36,3 +36,26 @@
 .error-label-row {
   margin-bottom: 15px;
 }
+
+.dialog-header {
+  border-bottom: 1px solid #e9ecef;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  display: flex;
+}
+
+.dialog-content {
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem;
+}
+
+.dialog-actions {
+  justify-content: flex-end;
+  padding: 1rem;
+  display: flex;
+}
+
+.close {
+  outline: none;
+}

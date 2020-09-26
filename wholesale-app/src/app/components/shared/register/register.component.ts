@@ -18,6 +18,14 @@ export class RegisterComponent implements OnInit {
   registerErrors: Array<string> = [];
   isUserCreated: boolean;
 
+  clientNameMaxLength = 15;
+  clientSurnameMaxLength = 15;
+  clientPasswordMaxLength = 20;
+  clientEmailMaxLength = 25;
+  companyNameMaxLength = 30;
+  regonMaxLength = 14;
+  krsMaxLength = 10;
+
   registerUser() {
     this.registerErrors = [];
     if (this.registerForm.controls.name.invalid || this.registerForm.controls.surname.invalid ||

@@ -5,16 +5,14 @@ usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przy
 usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
-klikeniecie zdjecia w tabeli powieksza jednym
 co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy, że admin to polak? xd przemyslec sprawe
-dodac character counter do formularzy -> w projekcie dla kdpw zrobilem takie coś znaleźć trzeba
-przy edycji produktu naprawić linię szarą, może spróbować to zrobić tak jak przy confirmation modalu
-do language panel dopisac wszędzie width fit-content
 center z text align z main page i shopping cart wrzucic do jednej klasy i z importowac
 
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
+klikeniecie zdjecia w tabeli powieksza jednym
+dodac do koszyka przycisk zaloguj/zarejestruj ?
 
 
 ** ZROBIONE
@@ -51,6 +49,11 @@ poprawić main-page, bo była scrolowana card -> morał -> bootstrap lepszy
 main page zacząć tworzyć (dwa pomysły, który wybrać?) -> zrobione, byleby było
 Do main-page dodać na dole kółeczko z strzałką w górę, które pozwoli wrócić na górę strony, tzn. przescrolluje strone z powrotem na samą górę
 jakoś na main-page zrobić napis dostępne produkty w ofercie czy coś, by to jakoś wyglądało -> na szybko zrobione, nic lepszego nie ogarnie sie chyba
+do language panel dopisac wszędzie width fit-content
+przy edycji produktu naprawić linię szarą, może spróbować to zrobić tak jak przy confirmation modalu, dodać parę linijek na opis, zamiast jednej -> jednak bez nowych linijek
+dodac character counter do formularzy
+po odświeżeniu na stronie z tabelkami u administratora niech zapamietuje zakładke, na której sie było
+po odpaleniu modalu/dialogu zaznacza X usunac to -> outline: none
 
 
 ***WYMAGANIA

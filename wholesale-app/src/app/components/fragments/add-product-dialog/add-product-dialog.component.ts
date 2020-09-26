@@ -19,6 +19,11 @@ export class AddProductDialogComponent implements OnInit {
   addProductForm: FormGroup;
   addProductErrors: Array<string> = [];
 
+  productNameMaxLength = 55;
+  producerNameMaxLength = 25;
+  priceMaxLength = 8;
+  descriptionMaxLength = 1000;
+
   onFileSelected(event) {
     console.log(event.loaded);
     console.log(event.total);
@@ -34,15 +39,6 @@ export class AddProductDialogComponent implements OnInit {
     }
     if (!this.addProductForm.controls.productImage.value) {
       this.addProductErrors.push('Nie dodano zdjęcia');
-    }
-    if (this.addProductErrors.length > 0) {
-      let height = 380;
-      const errHeight = 24;
-      height = height + (errHeight * this.addProductErrors.length);
-      const newHeight = String(height);
-      this.dialogRef.updateSize('550px', newHeight + 'px');
-    } else {
-      this.dialogRef.updateSize('550px', '380px');
     }
     if (this.addProductForm.valid && this.addProductErrors.length === 0) {
       const formData = new FormData();

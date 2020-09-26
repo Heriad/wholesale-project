@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavigationBarComponent implements OnInit {
 
   @Output() isMenuOpened = new EventEmitter<boolean>();
+
   opened = true;
 
   constructor(public router: Router) { }
