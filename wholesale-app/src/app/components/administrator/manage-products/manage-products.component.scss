@@ -12,7 +12,7 @@
   width: 10%;
 }
 
-.mat-column-descritpion {
+.mat-column-description {
   width: 20%;
 }
 
@@ -36,8 +36,19 @@
   width: 10%;
 }
 
+.padding-table-data {
+  padding-right: 5px;
+}
+
 .image-data {
   width: 80px;
   height: 80px;
   padding: 5px 0px 5px 0px;
+}
+
+.truncate-table-data {
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

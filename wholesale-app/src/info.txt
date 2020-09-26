@@ -6,13 +6,15 @@ usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne..
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy, że admin to polak? xd przemyslec sprawe
-center z text align z main page i shopping cart wrzucic do jednej klasy i z importowac
+center z text align z main page i shopping cart wrzucic do jednej klasy i z importowac + back-btn
 
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
-klikeniecie zdjecia w tabeli powieksza jednym
-dodac do koszyka przycisk zaloguj/zarejestruj ?
+kliknięcie zdjecia w tabeli powieksza jednym
+dokończyć ekran z podglądem koszyka
+dodać przycisk wstecz na ekranie zalogowania, rejestracji i przypomnienia hasła
+z ekranu z product-item klikniecie na logo przkierowuje na main-page
 
 
 ** ZROBIONE
@@ -54,6 +56,9 @@ przy edycji produktu naprawić linię szarą, może spróbować to zrobić tak j
 dodac character counter do formularzy
 po odświeżeniu na stronie z tabelkami u administratora niech zapamietuje zakładke, na której sie było
 po odpaleniu modalu/dialogu zaznacza X usunac to -> outline: none
+dodac do koszyka przycisk zaloguj/zarejestruj ? -> dodane
+w tabeli ograniczyc opis/nazwe produktu, by nie była taka długa
+Uładnić ekran z dodawaniem produktu do koszyka -> zrobiony elegancko, bug fixy porobione
 
 
 ***WYMAGANIA

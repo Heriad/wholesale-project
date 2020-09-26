@@ -4,6 +4,7 @@ import { Client } from 'src/app/models/client.model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiResponse } from 'src/app/models/response.model';
 import { UserRole } from 'src/app/models/user-role.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { UserRole } from 'src/app/models/user-role.model';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, public api: ApiUrlsService) { }
+  constructor(private fb: FormBuilder, public api: ApiUrlsService, private location: Location) { }
 
   registerForm: FormGroup;
   registerErrors: Array<string> = [];
@@ -25,6 +26,10 @@ export class RegisterComponent implements OnInit {
   companyNameMaxLength = 30;
   regonMaxLength = 14;
   krsMaxLength = 10;
+
+  goBack() {
+    this.location.back();
+  }
 
   registerUser() {
     this.registerErrors = [];

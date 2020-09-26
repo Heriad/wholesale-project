@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   isRememberSelected = false;
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private location: Location) { }
 
   loginForm = this.fb.group({
     email: ['', Validators.required],
@@ -28,6 +29,10 @@ export class LoginComponent implements OnInit {
     if (event) {
       this.isRememberSelected = !this.isRememberSelected;
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   login() {

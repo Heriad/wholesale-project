@@ -5,7 +5,7 @@
 }
 
 .card-panel {
-  width: 60%;
+  width: 80%;
   left: 50%;
   top: 25%;
   transform: translate(-50%, -25%);
@@ -57,4 +57,14 @@
   width: 80px;
   height: 80px;
   padding: 5px 0px 5px 0px;
+}
+
+.main-menu-icon {
+  vertical-align: bottom;
+}
+
+.router-link {
+  color: inherit;
+  margin-right: 1%;
+  display: inline-block;
 }

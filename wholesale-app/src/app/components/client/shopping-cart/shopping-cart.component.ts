@@ -15,9 +15,10 @@ export class ShoppingCartComponent implements OnInit {
 
   shoppingCart: Array<ShoppingCart>;
   displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'price', 'delete'];
-  // displayedColumns: string[] = ['position'];
   dataSource = new MatTableDataSource();
   isLoading: boolean;
+  shoppingCartQuantity: number;
+  shoppingCartPrice: number;
   productList = [];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -25,6 +26,10 @@ export class ShoppingCartComponent implements OnInit {
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
+        JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
+    this.shoppingCartPrice = JSON.parse(localStorage.getItem('shoppingCartPrice')) !== null ?
+        JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
     this.dataSource.data = [];
     this.isLoading = true;
     this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) !== null ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
@@ -43,10 +48,7 @@ export class ShoppingCartComponent implements OnInit {
       console.log(this.dataSource.data)
       this.isLoading = false;
     });
-    
     this.dataSource.sort = this.sort;
-
-    
   }
 
 }
