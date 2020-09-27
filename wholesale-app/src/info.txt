@@ -13,8 +13,6 @@ center z text align z main page i shopping cart wrzucic do jednej klasy i z impo
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 kliknięcie zdjecia w tabeli powieksza jednym
 dokończyć ekran z podglądem koszyka
-dodać przycisk wstecz na ekranie zalogowania, rejestracji i przypomnienia hasła
-z ekranu z product-item klikniecie na logo przkierowuje na main-page
 
 
 ** ZROBIONE
@@ -59,6 +57,8 @@ po odpaleniu modalu/dialogu zaznacza X usunac to -> outline: none
 dodac do koszyka przycisk zaloguj/zarejestruj ? -> dodane
 w tabeli ograniczyc opis/nazwe produktu, by nie była taka długa
 Uładnić ekran z dodawaniem produktu do koszyka -> zrobiony elegancko, bug fixy porobione
+dodać przycisk wstecz na ekranie zalogowania, rejestracji i przypomnienia hasła
+z ekranu z product-item klikniecie na logo przekierowuje na main-page
 
 
 ***WYMAGANIA
