@@ -5,6 +5,7 @@ import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { GetProductResponse } from 'src/app/models/response.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatSort } from '@angular/material/sort';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -23,7 +24,11 @@ export class ShoppingCartComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer) { }
+  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private location: Location) { }
+
+  goBack() {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
@@ -33,6 +38,7 @@ export class ShoppingCartComponent implements OnInit {
     this.dataSource.data = [];
     this.isLoading = true;
     this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) !== null ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
+    console.log('Test: ', this.shoppingCart)
     this.shoppingCart.forEach((el, index) => {
       let product: any;
       this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {
@@ -45,7 +51,6 @@ export class ShoppingCartComponent implements OnInit {
           this.dataSource.data.push(product);
         }
       });
-      console.log(this.dataSource.data)
       this.isLoading = false;
     });
     this.dataSource.sort = this.sort;

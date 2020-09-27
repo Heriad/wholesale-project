@@ -1,8 +1,10 @@
 <div class="background-page">
   <mat-card class="card-panel">
     <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4">
+      <div class="col-5">
+        <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon mat Suffix>keyboard_arrow_left</mat-icon>Wstecz</button>
+      </div>
+      <div class="col-2">
         <mat-card-header class="logo">
           <mat-card-title>
             <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
@@ -10,7 +12,7 @@
           <mat-card-subtitle>Wholesale</mat-card-subtitle>
         </mat-card-header>
       </div>
-      <div class="col-4">
+      <div class="col-5">
         <a routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>Zaloguj się</span></a>
         <a routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>Rejestracja</span></a>
         <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ shoppingCartPrice | currency: 'PLN' }} ({{ shoppingCartQuantity }})</span></a>
@@ -29,7 +31,7 @@
       </div>
       <div class="row">
         <div class="col-12 center">
-          <p class="main-cart-text">Twój koszyk jest pusty</p>
+          <p class="main-cart-text">Twój koszyk jest pusty.</p>
           <p>Dodaj do niego produkty, aby móc rozpocząć składanie zamówienia.</p>
         </div>
       </div>

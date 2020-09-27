@@ -35,7 +35,8 @@ export default {
 
     // Get products
     async getAll(req, res, next) {
-        let dbResponse = await getAllProducts();
+        console.log('Test: ', req.params);
+        let dbResponse = await getAllProducts(req.params);
         console.log('api /getAllProducts', dbResponse);
         if (dbResponse.success) {
             return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });

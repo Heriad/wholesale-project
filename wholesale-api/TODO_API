@@ -1,19 +1,22 @@
 *** TODO LIST ASAP
 update user api
 getOne employee api
-upate product api
-create product dodanei zdjecia jako attachment
+update product api
+create product dodanie zdjęcia jako attachment
 w api w którym pobieramy dane jednego elementu getOne, przy podaniu id obsłuzyć błąd
 zrobić autentykacje za pomocą passport
 odpowiednie przekierowywac uzytkowników po typie - front end
-jeżeli checkbox z zapamietaj mnie jest zaznaczony i logowanie udane, to do pamieci podręczej przeglądarki zapisujemy nazwe użytkownika czyli maila
 zrobić obsługę błedów errHandler -> na gui i porobić sceeny by do dokumentu wstawić, bo przecież aplikacja bedzie działac tak super, że nigdy błedu api nie bedzie
+getProducts jak pusty request to all zwraca, a jak w requescie jest tablica z idkami to konkretne
+
 
 *** DONE
 UŻYTKOWNICY A PRACOWNICY ODDZIELNIE TRZYMANI?? -> tak osobno, dwa magazyny dokumentów
 podczas zwracania klienta i pracownika usunac hasło z response -> zrobione delete object.password
 wyrzucic funckje checkifDataalredy exist przekazać tam database i selector i wrzucic ją do utils -> done wrzucone do utils/util.js
 hash hasła po update employee -> zrobione
+jeżeli checkbox z zapamietaj mnie jest zaznaczony i logowanie udane, to do pamieci podręczej przeglądarki zapisujemy nazwe użytkownika czyli maila
+
 
 ** TODO LATER
 

@@ -43,9 +43,11 @@ export async function getOneProduct(id) {
     }
 }
 
-export async function getAllProducts() {
+export async function getAllProducts(productList) {
     try {
-        let data = [];
+        console.log('test: ', productList)
+        // if (Object.keys(productList).length === 0) {
+            let data = [];
             await database.find({ selector: {} }).then(async (body) => {
                 for (let doc of body.docs) {
                     await database.attachment.get(doc._id, 'productImage').then((el) => {
@@ -54,6 +56,7 @@ export async function getAllProducts() {
                     data.push(doc);
                 }
             });
+        // }
         return createResponseController(responseStatus.SUCCESS, 'All products found', data);
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
