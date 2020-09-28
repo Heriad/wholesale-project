@@ -42,7 +42,7 @@
 
     <div *ngIf="shoppingCart.length > 0">
       <mat-card-content>
-        <table *ngIf="this.dataSource.data.length !== 0" mat-table matSort [dataSource]="dataSource">
+        <table *ngIf="this.dataSource.data.length === this.shoppingCart.length" mat-table matSort [dataSource]="dataSource">
 
           <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>

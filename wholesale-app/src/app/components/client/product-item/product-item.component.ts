@@ -30,10 +30,20 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToShoppingCart() {
-    this.shoppingCart.push({
-      id: this.productId,
-      quantity: 1
+    this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
+    let isAlreadyInCart = false;
+    this.shoppingCart.forEach(product => {
+      if (product.id === this.productId) {
+        product.quantity += this.selectedQuantity;
+        isAlreadyInCart = true;
+      }
     });
+    if (!isAlreadyInCart) {
+      this.shoppingCart.push({
+        id: this.productId,
+        quantity: this.selectedQuantity
+      });
+    }
     this.shoppingCartPrice += this.product.price * this.selectedQuantity;
     this.shoppingCartQuantity += this.selectedQuantity;
     localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));

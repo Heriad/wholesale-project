@@ -35,7 +35,6 @@ export default {
 
     // Get products
     async getAll(req, res, next) {
-        console.log('Test: ', req.params);
         let dbResponse = await getAllProducts(req.params);
         console.log('api /getAllProducts', dbResponse);
         if (dbResponse.success) {

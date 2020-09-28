@@ -38,22 +38,28 @@ export class ShoppingCartComponent implements OnInit {
     this.dataSource.data = [];
     this.isLoading = true;
     this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) !== null ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
-    console.log('Test: ', this.shoppingCart)
-    this.shoppingCart.forEach((el, index) => {
-      let product: any;
-      this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {
-        if (res.success) {
-          product = res.data;
-          product.quantity = el.quantity;
-          product.position  = index + 1;
-          product.totalPrice = product.quantity * product.price;
-          product.image =  this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + res.data._attachments.productImage.buffer);
-          this.dataSource.data.push(product);
-        }
-      });
-      this.isLoading = false;
+    const promise = new Promise((resolve, reject) => {
+        this.shoppingCart.forEach((el, index) => {
+            let product: any;
+            this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {
+              if (res.success) {
+                product = res.data;
+                product.quantity = el.quantity;
+                product.position  = index + 1;
+                product.totalPrice = product.quantity * product.price;
+                product.image =  this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
+                        res.data._attachments.productImage.buffer);
+                this.productList.push(product);
+              }
+            });
+        });
+        resolve();
+    }).then(() => {
+        this.dataSource.data = this.productList;
+        this.isLoading = false;
+        this.dataSource.sort = this.sort;
+        console.log('testtt: ', this.dataSource.data)
     });
-    this.dataSource.sort = this.sort;
   }
 
 }

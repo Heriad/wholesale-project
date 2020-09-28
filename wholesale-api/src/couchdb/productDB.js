@@ -45,18 +45,15 @@ export async function getOneProduct(id) {
 
 export async function getAllProducts(productList) {
     try {
-        console.log('test: ', productList)
-        // if (Object.keys(productList).length === 0) {
-            let data = [];
-            await database.find({ selector: {} }).then(async (body) => {
-                for (let doc of body.docs) {
-                    await database.attachment.get(doc._id, 'productImage').then((el) => {
-                        doc._attachments.productImage.buffer = el.toString('base64');
-                    });
-                    data.push(doc);
-                }
-            });
-        // }
+        let data = [];
+        await database.find({ selector: {} }).then(async (body) => {
+            for (let doc of body.docs) {
+                await database.attachment.get(doc._id, 'productImage').then((el) => {
+                    doc._attachments.productImage.buffer = el.toString('base64');
+                });
+                data.push(doc);
+            }
+        });
         return createResponseController(responseStatus.SUCCESS, 'All products found', data);
     } catch (err) {
         return createResponseController(responseStatus.ERROR, err, null);
