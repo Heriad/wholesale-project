@@ -53,7 +53,7 @@ export class ManageEmployeesComponent implements OnInit {
   removeEmployee(element) {
     const dialogRef = this.dialogService.open((ConfirmationDialogComponent), {
       width: '500px',
-      disableClose: true,
+      disableClose: true
     });
     dialogRef.componentInstance.title = 'Potwierdź';
     dialogRef.componentInstance.text = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie pracownika: ' +

@@ -9,8 +9,8 @@ import { ProductItemComponent } from './components/client/product-item/product-i
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
 import { AdministratorComponent } from './components/administrator/administrator/administrator.component';
+import { CompleteTheOrderComponent } from './components/client/complete-the-order/complete-the-order.component';
 import { ManageEmployeesComponent } from './components/administrator/manage-employees/manage-employees.component';
-
 
 
 // TODO POPRAWIC ROUTING admi/manage jest nie uzywany jako osobna podstrona
@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'product-item/:id', component: ProductItemComponent },
   { path: 'administrator', component: AdministratorComponent },
   { path: 'remind-password', component: RemindPasswordComponent },
+  { path: 'complete-the-order', component: CompleteTheOrderComponent },
   { path: 'administrator/manage-employees', component: ManageEmployeesComponent }
 ];
 
