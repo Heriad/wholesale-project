@@ -61,7 +61,6 @@ export class RegisterComponent implements OnInit {
     };
     if (this.registerForm.valid && this.registerErrors.length === 0) {
       this.api.createClient(client).subscribe((res: ApiResponse) => {
-        console.log('res: ', res); // TODO usunac
         if (res.success) {
           this.isUserCreated = true;
         }

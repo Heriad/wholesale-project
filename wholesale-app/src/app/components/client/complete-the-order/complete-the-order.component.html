@@ -2,10 +2,10 @@
   <mat-card class="card-panel">
 
     <div class="row">
-      <div class="col-5">
+      <div class="col-4">
         <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon mat Suffix>keyboard_arrow_left</mat-icon>Wstecz</button>
       </div>
-      <div class="col-2">
+      <div class="col-4">
         <mat-card-header class="logo">
           <mat-card-title>
             <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
@@ -13,7 +13,7 @@
           <mat-card-subtitle>Finalizacja zamówienia</mat-card-subtitle>
         </mat-card-header>
       </div>
-      <div class="col-5">
+      <div class="col-4">
         <select class="language-panel">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>
@@ -23,17 +23,34 @@
 
     <mat-horizontal-stepper [linear]="true">
       <mat-step label="Twoje dane">
+      </mat-step>
 
-      </mat-step>
       <mat-step label="Dostawa">
-        <ng-template MatStepLabel></ng-template>
+        <span>Wybierz sposób dostawy:</span><br>
+        <mat-radio-group color="primary" [(ngModel)]="selectedDeliveryType">
+          <mat-radio-button value="1">Odbiór osobisty</mat-radio-button>
+          <mat-radio-button value="2">Dostawa pod wskazany adres</mat-radio-button>
+        </mat-radio-group>
+        <div *ngIf="selectedDeliveryType === '1'">
+          <span>Poinformujemy Cię, gdy Twoje zamówienie będzie będzie gotowe do odbioru.</span>
+        </div>
       </mat-step>
+
       <mat-step label="Płatność">
-        <ng-template MatStepLabel></ng-template>
-      </mat-step >
-      <mat-step label="Uwagi do zamówienia">
-        <ng-template MatStepLabel></ng-template>
       </mat-step>
+
+      <mat-step label="Uwagi do zamówienia">
+        <div class="row center-content">
+          <mat-form-field class="order-notes">
+            <mat-label>Uwagi do zamówienia</mat-label>
+            <textarea cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" maxlength="1000" matInput></textarea>
+          </mat-form-field>
+        </div>
+        <div class="row center-content">
+          <button mat-raised-button color="primary">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
+        </div>
+      </mat-step>
+
     </mat-horizontal-stepper>
 
   </mat-card>

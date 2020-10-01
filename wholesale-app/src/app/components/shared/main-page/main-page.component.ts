@@ -36,7 +36,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.api.getProducts().subscribe((res: GetProductsResponse) => {
-      console.log(res);
       if (res.success) {
         this.productList = res.data;
         this.productList.forEach((product) => {

@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <textarea matInput #description cdkTextareaAutosize dkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" maxlength="1000" formControlName="description" appSentenseCaseType required></textarea>
+            <textarea matInput #description cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" maxlength="1000" formControlName="description" appSentenseCaseType required></textarea>
           </mat-form-field>
           <span *ngIf="description.value.length > 0" class="float-right character-counter">Limit znaków: {{ description.value.length }}/{{ descriptionMaxLength }}</span>
         </div>

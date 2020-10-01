@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
 })
 export class CompleteTheOrderComponent implements OnInit {
 
+  selectedDeliveryType;
+
   constructor(private location: Location) { }
 
   goBack() {
