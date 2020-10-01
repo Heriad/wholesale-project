@@ -16,7 +16,7 @@
       <div class="col-5">
         <a routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>Zaloguj się</span></a>
         <a routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>Rejestracja</span></a>
-        <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ shoppingCartPrice | currency: 'PLN' }} ({{ shoppingCartQuantity }})</span></a>
+        <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>({{ shoppingCartQuantity }}) {{ shoppingCartPrice | number: '3.0-0' }} zł</span></a>
         <select class="language-panel">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>
@@ -33,7 +33,7 @@
           <p class="product-name">{{ this.product.name }}</p>
           <p class="product-description">{{ this.product.description }}</p>
           <p>Producent: {{ this.product.producer }}</p>
-          <p class="product-price">{{ this.product.price | currency: 'PLN' }}</p>
+          <p class="product-price">{{ this.product.price | number: '3.0-0' }} zł</p>
           <mat-form-field>
             <mat-label>Ilość</mat-label>
             <mat-select [(ngModel)]="selectedQuantity" matNativeControl>

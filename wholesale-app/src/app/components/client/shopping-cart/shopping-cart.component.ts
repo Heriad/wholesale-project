@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class ShoppingCartComponent implements OnInit {
 
   shoppingCart: Array<ShoppingCart>;
-  displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'price', 'delete'];
+  displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'totalPrice', 'delete'];
   dataSource = new MatTableDataSource();
   isLoading: boolean;
   shoppingCartQuantity: number;
@@ -26,7 +26,7 @@ export class ShoppingCartComponent implements OnInit {
   productList = [];
   updatedCart: Array<ShoppingCart>;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private location: Location,
               public dialogService: MatDialog, private router: Router) { }
@@ -51,43 +51,70 @@ export class ShoppingCartComponent implements OnInit {
         this.shoppingCart.splice(this.shoppingCart.findIndex(product => product.id === element._id), 1);
         this.productList.splice(this.productList.findIndex(product => product._id === element._id), 1);
         this.shoppingCartQuantity -= element.quantity;
-        this.shoppingCartPrice -= element.price;
+        this.shoppingCartPrice -= element.totalPrice;
         localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
         localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
         localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
+        this.productList.sort(this.compareProductList);
+        this.dataSource.data.forEach((el: any, index) => {
+          el.position = index + 1;
+        });
         this.dataSource.data = this.productList;
       }
     });
   }
 
-  ngOnInit(): void {
+  getProducts() {
+    return new Promise((resolve, reject) => {
+      this.shoppingCart.forEach((el, index) => {
+        let product: any;
+        this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {
+          if (res.success) {
+            product = res.data;
+            product.quantity = el.quantity;
+            product.position = index + 1;
+            product.unitPrice = Number(product.price);
+            product.totalPrice = product.quantity * product.price;
+            product.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
+              res.data._attachments.productImage.buffer);
+            this.productList.push(product);
+          }
+        });
+      });
+      setInterval(() => {
+        if (this.shoppingCart.length === this.productList.length) {
+          resolve();
+          clearInterval();
+        }
+      }, 200);
+    });
+  }
+
+  getCartData() {
     this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
         JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
     this.shoppingCartPrice = JSON.parse(localStorage.getItem('shoppingCartPrice')) !== null ?
         JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
-    this.dataSource.data = [];
-    this.isLoading = true;
     this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) !== null ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
-    const promise = new Promise((resolve, reject) => {
-      this.shoppingCart.forEach((el, index) => {
-          let product: any;
-          this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {
-            if (res.success) {
-              product = res.data;
-              product.quantity = el.quantity;
-              product.position  = index + 1;
-              product.totalPrice = product.quantity * product.price;
-              product.image =  this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
-                  res.data._attachments.productImage.buffer);
-              this.productList.push(product);
-            }
-          });
-      });
-      resolve();
-    }).then(() => {
-        this.dataSource.data = this.productList;
-        this.isLoading = false;
-        this.dataSource.sort = this.sort;
+  }
+
+  compareProductList(a, b) {
+    if (a.position < b.position) {
+      return -1;
+    }
+    if (a.position > b.position) {
+      return 1;
+    }
+    return 0;
+  }
+
+  ngOnInit(): void {
+    this.isLoading = true;
+    this.getCartData();
+    this.getProducts().then(() => {
+      this.productList.sort(this.compareProductList);
+      this.dataSource.data = this.productList;
+      this.isLoading = false;
     });
   }
 

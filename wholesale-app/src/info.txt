@@ -12,7 +12,6 @@ center z text align z main page i shopping cart wrzucic do jednej klasy i z impo
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 kliknięcie zdjecia w tabeli powieksza jednym
-dokończyć ekran z podglądem koszyka -> coś jest nie tak z shoppingCart w localStorage -> zwiększać quanityt w przypadku tych samyc id produktu -> indexy
 
 
 ** ZROBIONE
@@ -59,6 +58,8 @@ w tabeli ograniczyc opis/nazwe produktu, by nie była taka długa
 Uładnić ekran z dodawaniem produktu do koszyka -> zrobiony elegancko, bug fixy porobione
 dodać przycisk wstecz na ekranie zalogowania, rejestracji i przypomnienia hasła
 z ekranu z product-item klikniecie na logo przekierowuje na main-page
+poprawić route koszyka - pipe number 3.0-0 -> wszędzie poprawione
+dokończyć ekran z podglądem koszyka -> coś jest nie tak z shoppingCart w localStorage -> zwiększać quantity w przypadku tych samych id produktu -> indexy
 
 
 ***WYMAGANIA
