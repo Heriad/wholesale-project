@@ -25,14 +25,58 @@
       <mat-step label="Twoje dane">
       </mat-step>
 
-      <mat-step label="Dostawa">
-        <span>Wybierz sposób dostawy:</span><br>
-        <mat-radio-group color="primary" [(ngModel)]="selectedDeliveryType">
-          <mat-radio-button value="1">Odbiór osobisty</mat-radio-button>
-          <mat-radio-button value="2">Dostawa pod wskazany adres</mat-radio-button>
-        </mat-radio-group>
-        <div *ngIf="selectedDeliveryType === '1'">
-          <span>Poinformujemy Cię, gdy Twoje zamówienie będzie będzie gotowe do odbioru.</span>
+      <mat-step [stepControl]="deliveryFormGroup" label="Dostawa">
+        <div [formGroup]="deliveryFormGroup" class="center-content">
+          <span class="headline">Wybierz sposób dostawy:</span>
+          <mat-radio-group color="primary" class="delivery-type" formControlName="deliveryType" (change)="validateDeliveryType()" required>
+            <mat-radio-button [value]="DeliveryType.PERSONAL">Odbiór osobisty</mat-radio-button>
+            <mat-radio-button [value]="DeliveryType.SUPPLY">Dostawa pod wskazany adres</mat-radio-button>
+          </mat-radio-group>
+          <div *ngIf="deliveryTypeError.length > 0"><span class="error">{{ deliveryTypeError }}</span></div>
+          <div *ngIf="deliveryFormGroup.value.deliveryType === DeliveryType.PERSONAL">
+            <span>Poinformujemy Cię, gdy Twoje zamówienie będzie będzie gotowe do odbioru.</span>
+          </div>
+          <div *ngIf="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY">
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-4">
+                <mat-form-field class="address-data">
+                  <input matInput #streetAndNumber type="text" placeholder="Ulica i numer" [maxLength]="streetAndNumberMaxLength" required>
+                </mat-form-field>
+                <span *ngIf="streetAndNumber.value.length > 0" class="float-right character-counter">Limit znaków: {{ streetAndNumber.value.length }}/{{ streetAndNumberMaxLength }}</span>
+              </div>
+              <div class="col-4"></div>
+            </div>
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-2">
+                <mat-form-field class="address-data">
+                  <input matInput #postalCode type="text" placeholder="Kod pocztowy" [maxLength]="postalCodeMaxLength" required>
+                </mat-form-field>
+                <span *ngIf="postalCode.value.length > 0" class="float-right character-counter">Limit znaków: {{ postalCode.value.length }}/{{ postalCodeMaxLength }}</span>
+              </div>
+              <div class="col-2">
+                <mat-form-field class="address-data">
+                  <input matInput #townName type="text" placeholder="Miejscowość" [maxLength]="townNameMaxLength" required>
+                </mat-form-field>
+                <span *ngIf="townName.value.length > 0" class="float-right character-counter">Limit znaków: {{ townName.value.length }}/{{ townNameMaxLength }}</span>
+              </div>
+              <div class="col-4"></div>
+            </div>
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-4">
+                <mat-form-field class="address-data">
+                  <mat-label>Kraj</mat-label>
+                  <mat-select>
+                    <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-4"></div>
+            </div>
+          </div>
+          <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validateDeliveryType()">Przejdź dalej</button>
         </div>
       </mat-step>
 
@@ -47,7 +91,7 @@
           </mat-form-field>
         </div>
         <div class="row center-content">
-          <button mat-raised-button color="primary">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
+          <button mat-raised-button color="primary" type="button">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
         </div>
       </mat-step>
 

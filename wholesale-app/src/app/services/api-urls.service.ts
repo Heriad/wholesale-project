@@ -10,7 +10,23 @@ import { Client } from '../models/client.model';
 })
 export class ApiUrlsService {
 
-  constructor(private httpClient: HttpClient) { }
+  countries = [];
+
+  constructor(private httpClient: HttpClient) {
+    this.getAssets();
+  }
+
+  // Asset api
+
+  getAssets() {
+    this.getAsset('assets/dictionary/countries.json', this.countries);
+  }
+
+  getAsset(path: string, variable) {
+    this.httpClient.get(path).subscribe(data => {
+      Object.assign(variable, data);
+    });
+  }
 
   // Client api
 
@@ -87,5 +103,10 @@ export class ApiUrlsService {
     return this.httpClient.delete(environment.baseUrl + '/api/products/' + id);
   }
 
+  // Countries api
+
+  getCountries() {
+    return this.countries;
+  }
 
 }

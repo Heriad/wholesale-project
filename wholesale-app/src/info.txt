@@ -3,15 +3,25 @@ panel do wysyłania mailu oraz szkielet maila przygotować do zrobienia
 auth login
 usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem
 usunąć wszystkie todo i consolelogi
-sidebar -> responsywny jak i wszystko inne..
+sidebar -> responsywny jak i wszystko inne.. -> odpuszczam
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy, że admin to polak? xd przemyslec sprawe
 center z text align z main page i shopping cart wrzucic do jednej klasy i z importowac + back-btn
+poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
+rozplanowac dane do modelu ryzyka
+Modal z czekaniem po złozeniu zamówienia i ekran/modal z potwierdzeniem ,ze zamówiono zgłoszenie
+wylogowywanie
+podglad złozonych zamówień, podział na obecne/historia
+ekran u administratora z podgladem zamówień
+ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
+stworzyc model ryzyka
+do maxLength w html dać parametry a nie zahardcodowaną liczbe -> bedzie wtedy spójnie i łatwiej zmieniać
 
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 kliknięcie zdjecia w tabeli powieksza jednym
+napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, dostawa-> ,płatność->, uwago do zamówienia -> done)
 
 
 ** ZROBIONE
