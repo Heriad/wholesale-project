@@ -13,13 +13,13 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #employeeName type="text" placeholder="Imię" maxlength="15" formControlName="name" appSentenseCaseType required>
+            <input matInput #employeeName type="text" placeholder="Imię" [maxLength]="employeeNameMaxLength" formControlName="name" appSentenseCaseType required>
           </mat-form-field>
           <span *ngIf="employeeName.value.length > 0" class="float-right character-counter">Limit znaków: {{ employeeName.value.length }}/{{ employeeNameMaxLength }}</span>
         </div>
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #employeeSurname type="text" placeholder="Nazwisko" maxlength="15" formControlName="surname" appSentenseCaseType required>
+            <input matInput #employeeSurname type="text" placeholder="Nazwisko" [maxLength]="employeeSurnameMaxLength" formControlName="surname" appSentenseCaseType required>
           </mat-form-field>
           <span *ngIf="employeeSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ employeeSurname.value.length }}/{{ employeeSurnameMaxLength }}</span>
         </div>
@@ -28,13 +28,13 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #password type="password" placeholder="Hasło" minlength="8" maxlength="20" formControlName="password" required>
+            <input matInput #password type="password" placeholder="Hasło" minlength="8" [maxLength]="passwordMaxLength" formControlName="password" required>
           </mat-form-field>
           <span *ngIf="password.value.length > 0" class="float-right character-counter">Limit znaków: {{ password.value.length }}/{{ passwordMaxLength }}</span>
         </div>
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #repeatPassword type="password" placeholder="Potwórz hasło" minlength="8" maxlength="20" formControlName="repeatPassword" required>
+            <input matInput #repeatPassword type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="passwordMaxLength" formControlName="repeatPassword" required>
           </mat-form-field>
           <span *ngIf="repeatPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ repeatPassword.value.length }}/{{ passwordMaxLength }}</span>
         </div>
@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #email type="text" placeholder="E-mail" maxlength="25" formControlName="email" required>
+            <input matInput #email type="text" placeholder="E-mail" [maxLength]="emailMaxLength" formControlName="email" required>
           </mat-form-field>
           <span *ngIf="email.value.length > 0" class="float-right character-counter">Limit znaków: {{ email.value.length }}/{{ emailMaxLength }}</span>
         </div>

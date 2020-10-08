@@ -31,13 +31,13 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientName type="text" placeholder="Imię" maxlength="15" formControlName="name" appSentenseCaseType required>
+              <input matInput #clientName type="text" placeholder="Imię" [maxLength]="clientNameMaxLength" formControlName="name" appSentenseCaseType required>
             </mat-form-field>
             <span *ngIf="clientName.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientSurname type="text" placeholder="Nazwisko" maxlength="15" formControlName="surname" appSentenseCaseType required>
+              <input matInput #clientSurname type="text" placeholder="Nazwisko" [maxLength]="clientSurnameMaxLength" formControlName="surname" appSentenseCaseType required>
             </mat-form-field>
             <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
           </div>
@@ -46,13 +46,13 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientPassword type="password" placeholder="Hasło" minlength="8" maxlength="20" formControlName="password" required>
+              <input matInput #clientPassword type="password" placeholder="Hasło" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="password" required>
             </mat-form-field>
             <span *ngIf="clientPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput type="password" placeholder="Potwórz hasło" minlength="8" maxlength="20" formControlName="repeatPassword" required>
+              <input matInput type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="repeatPassword" required>
             </mat-form-field>
             <span *ngIf="clientPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
           </div>
@@ -61,13 +61,13 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientEmail type="text" placeholder="E-mail" maxlength="25" formControlName="email" required>
+              <input matInput #clientEmail type="text" placeholder="E-mail" [maxLength]="clientEmailMaxLength" formControlName="email" required>
             </mat-form-field>
             <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #companyName type="text" placeholder="Nazwa firmy" maxlength="30" formControlName="companyName">
+              <input matInput #companyName type="text" placeholder="Nazwa firmy" [maxLength]="companyNameMaxLength" formControlName="companyName">
             </mat-form-field>
             <span *ngIf="companyName.value.length > 0" class="float-right character-counter">Limit znaków: {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
           </div>
@@ -76,13 +76,13 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #regon type="text" placeholder="Regon" maxlength="14" formControlName="regon" appNumbersOnly>
+              <input matInput #regon type="text" placeholder="Regon" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
             </mat-form-field>
             <span *ngIf="regon.value.length > 0" class="float-right character-counter">Limit znaków: {{ regon.value.length }}/{{ regonMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #krs type="text" placeholder="KRS" maxlength="10" formControlName="krs" appNumbersOnly>
+              <input matInput #krs type="text" placeholder="KRS" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
             </mat-form-field>
             <span *ngIf="krs.value.length > 0" class="float-right character-counter">Limit znaków: {{ krs.value.length }}/{{ krsMaxLength }}</span>
           </div>

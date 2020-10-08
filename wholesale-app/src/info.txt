@@ -15,13 +15,12 @@ podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 stworzyc model ryzyka
-do maxLength w html dać parametry a nie zahardcodowaną liczbe -> bedzie wtedy spójnie i łatwiej zmieniać
 
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 kliknięcie zdjecia w tabeli powieksza jednym
-napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, dostawa-> ,płatność->, uwago do zamówienia -> done)
+napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 
 
 ** ZROBIONE
@@ -70,6 +69,7 @@ dodać przycisk wstecz na ekranie zalogowania, rejestracji i przypomnienia hasł
 z ekranu z product-item klikniecie na logo przekierowuje na main-page
 poprawić route koszyka - pipe number 3.0-0 -> wszędzie poprawione
 dokończyć ekran z podglądem koszyka -> coś jest nie tak z shoppingCart w localStorage -> zwiększać quantity w przypadku tych samych id produktu -> indexy
+do maxLength w html dać parametry a nie zahardcodowaną liczbe -> bedzie wtedy spójnie i łatwiej zmieniać
 
 
 ***WYMAGANIA
