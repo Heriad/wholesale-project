@@ -23,7 +23,7 @@
     "@angular/router": "^9.1.12",
     "bootstrap": "^4.5.2",
     "rxjs": "^6.6.3",
-    "tslib": "^1.13.0",
+    "tslib": "^1.14.0",
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
@@ -33,7 +33,7 @@
     "@angular/language-service": "^9.1.12",
     "@types/jasmine": "^3.5.14",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.12.62",
+    "@types/node": "^12.12.66",
     "codelyzer": "^5.2.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
