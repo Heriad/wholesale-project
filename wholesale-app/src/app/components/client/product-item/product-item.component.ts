@@ -4,6 +4,8 @@ import { GetProductResponse } from './../../../models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-item',
@@ -21,7 +23,7 @@ export class ProductItemComponent implements OnInit {
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
   selectedQuantity = 1;
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
-              private router: Router) {
+              private router: Router, public dialogService: MatDialog) {
 
   }
 
@@ -57,6 +59,13 @@ export class ProductItemComponent implements OnInit {
         JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
     this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
         JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
+  }
+
+  imagePreview(image) {
+    const dialogRef = this.dialogService.open((ImagePreviewDialogComponent), {
+      disableClose: true
+    });
+    dialogRef.componentInstance.image = image;
   }
 
   ngOnInit(): void {

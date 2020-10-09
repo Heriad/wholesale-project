@@ -27,7 +27,7 @@
     <div *ngIf="product" class="product-specification-container">
       <div class="row">
         <div class="col-4">
-          <img [src]="product.productImage" class="product-image">
+          <img [src]="product.productImage" class="product-image" (click)="imagePreview(product.productImage)">
         </div>
         <div class="col-8 wrap-text">
           <p class="product-name">{{ this.product.name }}</p>

@@ -1,3 +1,4 @@
+import { ImagePreviewDialogComponent } from './../../fragments/image-preview-dialog/image-preview-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AddProductDialogComponent } from './../../fragments/add-product-dialog/add-product-dialog.component';
 import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
@@ -94,6 +95,13 @@ export class ManageProductsComponent implements OnInit {
       }
       this.isLoading = false;
     });
+  }
+
+  imagePreview(image) {
+    const dialogRef = this.dialogService.open((ImagePreviewDialogComponent), {
+      disableClose: true
+    });
+    dialogRef.componentInstance.image = image;
   }
 
   ngOnInit(): void {

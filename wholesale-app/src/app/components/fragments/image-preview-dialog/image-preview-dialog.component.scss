@@ -1,0 +1,23 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px;
+  width: 100%;
+  height: auto;
+}
+
+::ng-deep .cdk-overlay-dark-backdrop {
+  background-color: rgba(0,0,0,0.9);
+}
+
+.close {
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  color: #f1f1f1;
+  font-size: 50px;
+}
+
+.close:hover {
+  color: #d1d0d0;
+}

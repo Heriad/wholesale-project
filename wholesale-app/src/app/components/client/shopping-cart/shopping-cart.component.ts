@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../fragments/confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -37,6 +38,13 @@ export class ShoppingCartComponent implements OnInit {
 
   completeTheOrder() {
     this.router.navigate(['/complete-the-order']);
+  }
+
+  imagePreview(image) {
+    const dialogRef = this.dialogService.open((ImagePreviewDialogComponent), {
+      disableClose: true
+    });
+    dialogRef.componentInstance.image = image;
   }
 
   removeProductFromCart(element) {
