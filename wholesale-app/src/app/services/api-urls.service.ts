@@ -4,15 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { Product, UpdatedProduct } from '../models/product.model';
 import { Employee, UpdatedEmployee } from '../models/employee.model';
 import { Client } from '../models/client.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiUrlsService {
 
+  user;
   countries = [];
 
   constructor(private httpClient: HttpClient) {
+    this.user = JSON.parse(localStorage.getItem('userData'));
     this.getAssets();
   }
 
@@ -107,6 +110,24 @@ export class ApiUrlsService {
 
   getCountries() {
     return this.countries;
+  }
+
+  // Login api
+
+  login(user) {
+    this.user = user;
+    return new Observable<boolean>(observer => {
+      observer.next(true);
+    });
+  }
+
+  // Logout api
+
+  logout() {
+    this.user = null;
+    return new Observable<boolean>(observer => {
+      observer.next(true);
+    });
   }
 
 }

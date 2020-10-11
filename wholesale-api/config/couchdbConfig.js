@@ -8,6 +8,7 @@ export default {
     password: 'password',
     dbClients: 'clients',
     dbEmployees: 'employees',
+    dbAdmins: 'admins',
     dbOrders: 'orders',
-    dbProducts: 'products'
+    dbProducts: 'products',
 }

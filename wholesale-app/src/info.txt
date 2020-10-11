@@ -1,6 +1,5 @@
 ** DO ZROBIENIA
 panel do wysyłania maila oraz szkielet maila przygotować do zrobienia
-auth login
 usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem -> odpuszczam
 usunąć wszystkie todo i consolelogi
 sidebar -> responsywny jak i wszystko inne.. -> odpuszczam
@@ -13,8 +12,8 @@ wylogowywanie
 podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
-
-
+rejestracja powtórzenie hasła character counter zle dziala
+zmienic type user na role user-a -> na końcu pracy
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
@@ -22,6 +21,8 @@ napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, 
 poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
 stworzyc model ryzyka
 poprawić Sentense na Sentence to dyrektywa
+auth login
+
 
 ** ZROBIONE
 -Favicon naprawić
