@@ -1,3 +1,5 @@
+import { UserRole } from 'src/app/models/user-role.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ShoppingCart } from './../../../models/product.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,11 +28,12 @@ export class ShoppingCartComponent implements OnInit {
   shoppingCartPrice: number;
   productList = [];
   updatedCart: Array<ShoppingCart>;
+  isClientLoggedIn: boolean;
 
   @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private location: Location,
-              public dialogService: MatDialog, private router: Router) { }
+              public dialogService: MatDialog, private router: Router, private authService: AuthService) { }
 
   goBack() {
     this.location.back();
@@ -116,8 +119,24 @@ export class ShoppingCartComponent implements OnInit {
     return 0;
   }
 
+  logoutClient() {
+    this.authService.logoutUser().subscribe(() => {
+      if (this.api.user.type === UserRole.ADMIN || this.api.user.type === UserRole.EMPLOYEE) {
+        this.router.navigate(['/login']);
+      } else {
+        this.router.navigate(['/']);
+      }
+      this.api.logout();
+    });
+  }
+
   ngOnInit(): void {
     this.isLoading = true;
+    if (this.api.user) {
+      this.isClientLoggedIn = true;
+    } else {
+      this.isClientLoggedIn = false;
+    }
     this.getCartData();
     this.getProducts().then(() => {
       this.productList.sort(this.compareProductList);

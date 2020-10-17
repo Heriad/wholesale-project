@@ -13,12 +13,13 @@ podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 zmienic type user na role user-a -> na końcu pracy
+przy edycji pracownika zmienia z pełnego etatu na czesc etatu do poprawy
+poprawić dlugosc hasel by byłaj jednakowa, pracownika
 
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, dostawa-> done, płatność->, uwagi do zamówienia -> done)
-poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
 stworzyc model ryzyka
 auth login
 
@@ -73,6 +74,7 @@ do maxLength w html dać parametry a nie zahardcodowaną liczbe -> bedzie wtedy 
 powiększanie zdjęc po kliknięciu na nie -> zrobione imagePreview()
 poprawić Sentense na Sentence to dyrektywa -> zrobione
 rejestracja powtórzenie hasła character counter zle dziala -> poprawione
+poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
 
 
 ***WYMAGANIA

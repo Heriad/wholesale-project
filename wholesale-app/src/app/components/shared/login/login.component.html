@@ -24,11 +24,11 @@
     <mat-card-content>
       <form [formGroup]="loginForm">
         <mat-form-field class="login-form">
-          <input matInput type="text" formControlName="userEmail" placeholder="E-mail" maxlength="30">
+          <input matInput type="text" formControlName="userEmail" placeholder="E-mail" [maxLength]="emailMaxLength">
           <mat-icon matSuffix>account_circle</mat-icon>
         </mat-form-field>
         <mat-form-field class="login-form">
-          <input matInput type="password" formControlName="userPassword" placeholder="Hasło" maxlength="30">
+          <input matInput type="password" formControlName="userPassword" placeholder="Hasło" [maxLength]="passwordMaxLength">
           <mat-icon matSuffix>https</mat-icon>
         </mat-form-field>
         <div class="row" *ngIf="loginErrors.length > 0">

@@ -22,7 +22,6 @@ export class NavigationBarComponent implements OnInit {
       this.api.logout();
       this.router.navigate(['/login']);
     });
-
   }
 
   refresh() {

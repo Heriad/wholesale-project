@@ -18,10 +18,4 @@ export class AppComponent {
 
   title = 'wholesale-project';
 
-  @HostListener('window:beforeunload', [ '$event' ])
-  beforeUnloadHandler(event) {
-    if (event) {
-      localStorage.removeItem('userData');
-    }
-  }
 }

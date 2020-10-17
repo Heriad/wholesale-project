@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
 
   isRememberSelected = false;
   loginErrors: Array<string> = [];
+  emailMaxLength = 30;
+  passwordMaxLength = 20;
 
   constructor(private router: Router, private fb: FormBuilder, private location: Location, private authService: AuthService,
               public api: ApiUrlsService) { }

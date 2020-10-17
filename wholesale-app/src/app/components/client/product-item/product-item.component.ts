@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
   selector: 'app-product-item',
@@ -22,8 +24,9 @@ export class ProductItemComponent implements OnInit {
   shoppingCartQuantity: number;
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
   selectedQuantity = 1;
+  isClientLoggedIn: boolean;
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
-              private router: Router, public dialogService: MatDialog) {
+              public dialogService: MatDialog, private router: Router, private authService: AuthService) {
 
   }
 
@@ -68,8 +71,22 @@ export class ProductItemComponent implements OnInit {
     dialogRef.componentInstance.image = image;
   }
 
+  logoutClient() {
+    this.authService.logoutUser().subscribe(() => {
+      if (this.api.user.type === UserRole.ADMIN || this.api.user.type === UserRole.EMPLOYEE) {
+        this.router.navigate(['/login']);
+      } else {
+        this.router.navigate(['/']);
+      }
+      this.api.logout();
+    });
+  }
+
   ngOnInit(): void {
     this.isLoading = true;
+    if (this.api.user) {
+      this.isClientLoggedIn = true;
+    }
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       this.api.getProduct(this.productId).subscribe((res: GetProductResponse) => {
