@@ -13,13 +13,13 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #employeeName type="text" placeholder="Imię" [maxLength]="employeeNameMaxLength" formControlName="name" appSentenseCaseType required>
+            <input matInput #employeeName type="text" placeholder="Imię" [maxLength]="employeeNameMaxLength" formControlName="name" appSentenceCaseType required>
           </mat-form-field>
           <span *ngIf="employeeName.value.length > 0" class="float-right character-counter">Limit znaków: {{ employeeName.value.length }}/{{ employeeNameMaxLength }}</span>
         </div>
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #employeeSurname type="text" placeholder="Nazwisko" [maxLength]="employeeSurnameMaxLength" formControlName="surname" appSentenseCaseType required>
+            <input matInput #employeeSurname type="text" placeholder="Nazwisko" [maxLength]="employeeSurnameMaxLength" formControlName="surname" appSentenceCaseType required>
           </mat-form-field>
           <span *ngIf="employeeSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ employeeSurname.value.length }}/{{ employeeSurnameMaxLength }}</span>
         </div>

@@ -18,7 +18,7 @@ import { RegisterComponent } from './components/shared/register/register.compone
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
-import { SentenseCaseTypeDirective } from './directives/sentense-case-type.directive';
+import { SentenceCaseTypeDirective } from './directives/sentence-case-type.directive';
 import { ConfirmationDialogComponent } from './components/fragments/confirmation-dialog/confirmation-dialog.component';
 import { ManageProductsComponent } from './components/administrator/manage-products/manage-products.component';
 import { AddProductDialogComponent } from './components/fragments/add-product-dialog/add-product-dialog.component';
@@ -43,7 +43,7 @@ import { ImagePreviewDialogComponent } from './components/fragments/image-previe
     RemindPasswordComponent,
     MainPageComponent,
     NumbersOnlyDirective,
-    SentenseCaseTypeDirective,
+    SentenceCaseTypeDirective,
     ConfirmationDialogComponent,
     ManageProductsComponent,
     AddProductDialogComponent,

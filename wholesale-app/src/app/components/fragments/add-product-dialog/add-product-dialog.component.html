@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <input matInput #productName type="text" placeholder="Nazwa" [maxLength]="productNameMaxLength" formControlName="name" appSentenseCaseType required>
+            <input matInput #productName type="text" placeholder="Nazwa" [maxLength]="productNameMaxLength" formControlName="name" appSentenceCaseType required>
           </mat-form-field>
           <span *ngIf="productName.value.length > 0" class="float-right character-counter">Limit znaków: {{ productName.value.length }}/{{ productNameMaxLength }}</span>
         </div>
@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="data-label">
-            <input matInput #producerName type="text" placeholder="Producent" [maxLength]="producerNameMaxLength" formControlName="producer" appSentenseCaseType required>
+            <input matInput #producerName type="text" placeholder="Producent" [maxLength]="producerNameMaxLength" formControlName="producer" appSentenceCaseType required>
           </mat-form-field>
           <span *ngIf="producerName.value.length > 0" class="float-right character-counter">Limit znaków: {{ producerName.value.length }}/{{ producerNameMaxLength }}</span>
         </div>
@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-12">
           <mat-form-field class="data-label">
-            <textarea matInput #description cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" [maxLength]="descriptionMaxLength" formControlName="description" appSentenseCaseType required></textarea>
+            <textarea matInput #description cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Opis" [maxLength]="descriptionMaxLength" formControlName="description" appSentenceCaseType required></textarea>
           </mat-form-field>
           <span *ngIf="description.value.length > 0" class="float-right character-counter">Limit znaków: {{ description.value.length }}/{{ descriptionMaxLength }}</span>
         </div>

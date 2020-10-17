@@ -31,13 +31,13 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientName type="text" placeholder="Imię" [maxLength]="clientNameMaxLength" formControlName="name" appSentenseCaseType required>
+              <input matInput #clientName type="text" placeholder="Imię" [maxLength]="clientNameMaxLength" formControlName="name" appSentenceCaseType required>
             </mat-form-field>
             <span *ngIf="clientName.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientSurname type="text" placeholder="Nazwisko" [maxLength]="clientSurnameMaxLength" formControlName="surname" appSentenseCaseType required>
+              <input matInput #clientSurname type="text" placeholder="Nazwisko" [maxLength]="clientSurnameMaxLength" formControlName="surname" appSentenceCaseType required>
             </mat-form-field>
             <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
           </div>
@@ -52,9 +52,9 @@
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="repeatPassword" required>
+              <input matInput #clientRepeatPassword type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="clientRepeatPasswordMaxLength" formControlName="repeatPassword" required>
             </mat-form-field>
-            <span *ngIf="clientPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
+            <span *ngIf="clientRepeatPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientRepeatPassword.value.length }}/{{ clientRepeatPasswordMaxLength }}</span>
           </div>
         </div>
 

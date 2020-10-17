@@ -12,15 +12,14 @@ wylogowywanie
 podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
-rejestracja powtórzenie hasła character counter zle dziala
 zmienic type user na role user-a -> na końcu pracy
+
 
 ** W TRAKCIE
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
 stworzyc model ryzyka
-poprawić Sentense na Sentence to dyrektywa
 auth login
 
 
@@ -72,6 +71,9 @@ poprawić route koszyka - pipe number 3.0-0 -> wszędzie poprawione
 dokończyć ekran z podglądem koszyka -> coś jest nie tak z shoppingCart w localStorage -> zwiększać quantity w przypadku tych samych id produktu -> indexy
 do maxLength w html dać parametry a nie zahardcodowaną liczbe -> bedzie wtedy spójnie i łatwiej zmieniać
 powiększanie zdjęc po kliknięciu na nie -> zrobione imagePreview()
+poprawić Sentense na Sentence to dyrektywa -> zrobione
+rejestracja powtórzenie hasła character counter zle dziala -> poprawione
+
 
 ***WYMAGANIA
 -Angular ^9
