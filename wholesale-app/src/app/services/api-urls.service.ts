@@ -125,6 +125,7 @@ export class ApiUrlsService {
 
   logout() {
     this.user = null;
+    localStorage.removeItem('userData');
     return new Observable<boolean>(observer => {
       observer.next(true);
     });

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -17,4 +17,11 @@ export class AppComponent {
   }
 
   title = 'wholesale-project';
+
+  @HostListener('window:beforeunload', [ '$event' ])
+  beforeUnloadHandler(event) {
+    if (event) {
+      localStorage.removeItem('userData');
+    }
+  }
 }

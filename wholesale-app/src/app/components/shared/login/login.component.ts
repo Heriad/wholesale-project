@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/administrator']);
             break;
         }
-        return false;
+        return true;
       } else {
         return false;
       }
@@ -82,33 +82,6 @@ export class LoginComponent implements OnInit {
         this.loginErrors.push('Uzupełnij wymagane pola');
       }
     }
-
-
-    // todo wywalic jak nieptozrebne
-    // STARE LOGOWANIE BEZ UWIERZYTELNIANIA
-    // if (this.loginForm.controls.email.invalid || this.loginForm.controls.password.invalid) {
-    //   this.wrongCredentials = true;
-    //   console.log('Niepoprawne!');
-    // } else {
-    //   this.wrongCredentials = false;
-    //   console.log('Poprawne!');
-    //   console.log('User: ', this.email);
-    //   // TODO
-    //   if (this.loginForm.controls.email.value === 'administrator' && this.loginForm.controls.password.value === 'admin4322') {
-    //     console.log('test: ', this.isRememberSelected);
-    //     // Jeżeli checkbox jest zaznaczony, zapamiętaj nazwę użytkownika/Email
-    //     if (this.isRememberSelected) {
-    //       localStorage.setItem('userEmail', JSON.stringify(this.loginForm.controls.email.value));
-    //     } else {
-    //       localStorage.removeItem('userEmail');
-    //     }
-    //     this.router.navigate(['/administrator']).then((nav) => {
-    //         console.log(nav);
-    //       }, err => {
-    //         console.log(err);
-    //     });
-    //   }
-    // }
   }
 
   ngOnInit(): void {

@@ -7,10 +7,13 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+  isLoggedIn: boolean;
+
   constructor(private httpClient: HttpClient) { }
 
   setUserData(userData) {
     localStorage.setItem('userData', JSON.stringify(userData));
+    this.isLoggedIn = true;
   }
 
   isAuthenticated(): boolean {

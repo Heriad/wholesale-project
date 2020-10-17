@@ -1,5 +1,7 @@
+import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,10 +15,14 @@ export class NavigationBarComponent implements OnInit {
 
   opened = true;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public api: ApiUrlsService, private authService: AuthService) { }
 
   logout() {
-    this.router.navigate(['']);
+    this.authService.logoutUser().subscribe(() => {
+      this.api.logout();
+      this.router.navigate(['/login']);
+    });
+
   }
 
   refresh() {
