@@ -52,9 +52,9 @@
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientRepeatPassword type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="clientRepeatPasswordMaxLength" formControlName="repeatPassword" required>
+              <input matInput #clientRepeatPassword type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="repeatPassword" required>
             </mat-form-field>
-            <span *ngIf="clientRepeatPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientRepeatPassword.value.length }}/{{ clientRepeatPasswordMaxLength }}</span>
+            <span *ngIf="clientRepeatPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientRepeatPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
           </div>
         </div>
 

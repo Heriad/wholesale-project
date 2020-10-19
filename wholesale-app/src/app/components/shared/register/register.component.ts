@@ -18,12 +18,10 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   registerErrors: Array<string> = [];
   isUserCreated: boolean;
-
   clientNameMaxLength = 15;
   clientSurnameMaxLength = 15;
   clientPasswordMaxLength = 20;
-  clientRepeatPasswordMaxLength = 20;
-  clientEmailMaxLength = 25;
+  clientEmailMaxLength = 30;
   companyNameMaxLength = 30;
   regonMaxLength = 14;
   krsMaxLength = 10;

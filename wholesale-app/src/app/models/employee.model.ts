@@ -24,9 +24,3 @@ export enum WorkType {
   FULLTIME = 'full-time',
   PARTTIME = 'part-time'
 }
-
-// Nieużywane
-export const WorkTypeText = new Map<WorkType, string>([
-  [WorkType.FULLTIME, 'Pełen etat'],
-  [WorkType.PARTTIME, 'Część etatu']
-]);

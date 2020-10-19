@@ -8,13 +8,10 @@ co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy
 center z text align z main page i shopping cart wrzucic do jednej klasy i z importowac + back-btn
 rozplanowac dane do modelu ryzyka
 Modal z czekaniem po złozeniu zamówienia i ekran/modal z potwierdzeniem, że zamówiono zgłoszenie
-wylogowywanie
 podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 zmienic type user na role user-a -> na końcu pracy
-przy edycji pracownika zmienia z pełnego etatu na czesc etatu do poprawy
-poprawić dlugosc hasel by byłaj jednakowa, pracownika
 
 
 ** W TRAKCIE
@@ -22,6 +19,7 @@ language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały ca
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> z logowania, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 stworzyc model ryzyka
 auth login
+wylogowywanie
 
 
 ** ZROBIONE
@@ -75,6 +73,8 @@ powiększanie zdjęc po kliknięciu na nie -> zrobione imagePreview()
 poprawić Sentense na Sentence to dyrektywa -> zrobione
 rejestracja powtórzenie hasła character counter zle dziala -> poprawione
 poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
+poprawić dlugosc hasel by byłaj jednakowa, pracownika -> hasło 20 znaków, mail 30
+przy edycji pracownika zmienia z pełnego etatu na czesc etatu do poprawy
 
 
 ***WYMAGANIA

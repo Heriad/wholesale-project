@@ -30,7 +30,7 @@ export class AddEmployeeDialogComponent implements OnInit {
   employeeNameMaxLength = 15;
   employeeSurnameMaxLength = 15;
   passwordMaxLength = 20;
-  emailMaxLength = 25;
+  emailMaxLength = 30;
 
   addEmployee() {
     this.addEmployeeErrors = [];
@@ -85,7 +85,8 @@ export class AddEmployeeDialogComponent implements OnInit {
         password: ['', Validators.required],
         repeatPassword: ['', Validators.required],
         email: [this.data.email, [Validators.required, Validators.email]],
-        workType: [this.data.workType, Validators.required],
+        workType: [this.data.workType === this.workTypes[0].viewValue ? this.workTypes[0].value : this.workTypes[1].value,
+                  Validators.required],
       });
     } else {
       this.addEmployeeForm = this.fb.group({
