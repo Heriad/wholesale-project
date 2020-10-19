@@ -39,22 +39,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    // NOWE LOGOWANIE
     this.loginErrors = [];
     if (this.loginForm.valid) {
       this.authService.authenticateUser(this.loginForm.controls.userEmail.value, this.loginForm.controls.userPassword.value)
       .then((response: ApiResponse) => {
     if (response.success) {
-
       if (this.isRememberSelected) {
         localStorage.setItem('userEmail', JSON.stringify(this.loginForm.controls.userEmail.value));
       } else if (JSON.parse(localStorage.getItem('userEmail'))) {
         localStorage.removeItem('userEmail');
       }
-
       this.authService.setUserData(response.data);
       this.api.login(response.data);
-
       if (this.api.user) {
         switch (this.api.user.type) {
           case UserRole.CLIENT:
@@ -71,9 +67,9 @@ export class LoginComponent implements OnInit {
       } else {
         return false;
       }
-
     }
   }, (err) => {
+    this.loginForm.controls.userPassword.patchValue('');
     this.loginErrors.push('Połączenie nazwy użytkownika i hasła jest nieprawidłowe');
   });
     } else {

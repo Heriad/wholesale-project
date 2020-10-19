@@ -77,27 +77,26 @@ export class CompleteTheOrderComponent implements OnInit {
 
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
-      if (this.api.user.type === UserRole.ADMIN || this.api.user.type === UserRole.EMPLOYEE) {
-        this.router.navigate(['/login']);
-      } else {
-        this.router.navigate(['/']);
-      }
       this.api.logout();
+      this.isClientLoggedIn = false;
+      this.router.navigate(['/']);
     });
   }
 
   ngOnInit(): void {
     if (this.api.user) {
-      this.isClientLoggedIn = true;
       this.client = this.api.user;
+      this.isClientLoggedIn = true;
+    } else {
+      this.isClientLoggedIn = false;
     }
     this.clientDataFormGroup = this.fb.group({
       name: [this.client.name, Validators.required],
       surname: [this.client.surname, Validators.required],
       email: [this.client.email, Validators.required],
       companyName: [this.client.companyName, Validators.required],
-      regon: [this.client.regon, Validators.required],
-      krs: [this.client.krs, Validators.required]
+      regon: [this.client.regon],
+      krs: [this.client.krs]
     });
     this.deliveryFormGroup = this.fb.group({
       deliveryType: ['', Validators.required]

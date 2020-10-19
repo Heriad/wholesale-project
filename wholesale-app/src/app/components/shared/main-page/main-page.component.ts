@@ -40,12 +40,9 @@ export class MainPageComponent implements OnInit {
 
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
-      if (this.api.user.type === UserRole.ADMIN || this.api.user.type === UserRole.EMPLOYEE) {
-        this.router.navigate(['/login']);
-      } else {
-        this.router.navigate(['/']);
-      }
       this.api.logout();
+      this.isClientLoggedIn = false;
+      this.router.navigate(['/']);
     });
   }
 
@@ -53,6 +50,8 @@ export class MainPageComponent implements OnInit {
     this.isLoading = true;
     if (this.api.user) {
       this.isClientLoggedIn = true;
+    } else {
+      this.isClientLoggedIn = false;
     }
     this.api.getProducts().subscribe((res: GetProductsResponse) => {
       if (res.success) {

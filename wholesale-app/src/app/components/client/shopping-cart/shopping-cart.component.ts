@@ -121,12 +121,9 @@ export class ShoppingCartComponent implements OnInit {
 
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
-      if (this.api.user.type === UserRole.ADMIN || this.api.user.type === UserRole.EMPLOYEE) {
-        this.router.navigate(['/login']);
-      } else {
-        this.router.navigate(['/']);
-      }
       this.api.logout();
+      this.isClientLoggedIn = false;
+      this.router.navigate(['/']);
     });
   }
 

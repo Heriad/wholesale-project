@@ -60,13 +60,13 @@
               <div class="row">
                 <div class="col-6">
                   <mat-form-field class="user-data-label user-data-label-space">
-                    <input matInput #regon type="text" placeholder="Regon" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly required>
+                    <input matInput #regon type="text" placeholder="Regon" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
                   </mat-form-field>
                   <span *ngIf="regon.value.length > 0" class="float-right character-counter">Limit znaków: {{ regon.value.length }}/{{ regonMaxLength }}</span>
                 </div>
                 <div class="col-6">
                   <mat-form-field class="user-data-label">
-                    <input matInput #krs type="text" placeholder="Krs" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly required>
+                    <input matInput #krs type="text" placeholder="Krs" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
                   </mat-form-field>
                   <span *ngIf="krs.value.length > 0" class="float-right character-counter">Limit znaków: {{ krs.value.length }}/{{ krsMaxLength }}</span>
                 </div>
@@ -88,7 +88,7 @@
           <span class="headline">Wybierz sposób dostawy:</span>
           <mat-radio-group color="primary" class="delivery-type" formControlName="deliveryType" (change)="validateDeliveryType()" required>
             <mat-radio-button [value]="DeliveryType.PERSONAL">Odbiór osobisty</mat-radio-button>
-            <mat-radio-button [value]="DeliveryType.SUPPLY">Dostawa pod wskazany adres</mat-radio-button>
+            <mat-radio-button [value]="DeliveryType.SUPPLY" class="delivery-type-label">Dostawa pod wskazany adres</mat-radio-button>
           </mat-radio-group>
           <div *ngIf="deliveryTypeError.length > 0"><span class="error">{{ deliveryTypeError }}</span></div>
         </div>

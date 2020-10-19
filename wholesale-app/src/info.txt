@@ -12,9 +12,6 @@ podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 zmienic type user na role user-a -> na końcu pracy
-jak wpisze sie zle haslo przy logowaniu to czysci pole z haslem
-przy rejestracji nie wymagany krs regon a przy Twoje dane na finalziacji są ujednolicić to
-logoutClient poprawić po nieotrzebny if tam jest, wiadomo przeciez na jakiej roli jest ta funkcja
 
 
 ** W TRAKCIE
@@ -77,7 +74,11 @@ poprawić Sentense na Sentence to dyrektywa -> zrobione
 rejestracja powtórzenie hasła character counter zle dziala -> poprawione
 poprawić wszystkie ekrany z overflow auto, jak sie otworzy konsole wysoko i zescrolluje na dół to ucina tło
 poprawić dlugosc hasel by byłaj jednakowa, pracownika -> hasło 20 znaków, mail 30
-przy edycji pracownika zmienia z pełnego etatu na czesc etatu do poprawy
+przy edycji pracownika zmienia z pełnego etatu na czesc etatu do poprawy -> poprawione
+jak wpisze sie zle haslo przy logowaniu to czysci pole z haslem -> zrobione
+po zmianie sposobu dostawy form jest na czerwono poprawić -> jest jednak jedynie po przejściu dalej i powróceniu, takzę nei ma nic do poprawy
+logoutClient poprawić po niepotrzebny if tam jest, wiadomo przeciez na jakiej roli jest ta funkcja
+przy rejestracji nie wymagany krs regon a przy Twoje dane na finalziacji są ujednolicić to -> nie wymagamy krs i regonu zawsze
 
 
 ***WYMAGANIA
