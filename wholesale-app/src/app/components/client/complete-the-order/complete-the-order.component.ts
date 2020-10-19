@@ -3,6 +3,9 @@ import { DeliveryType } from './../../../models/order.model';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
   selector: 'app-complete-the-order',
@@ -10,6 +13,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./complete-the-order.component.scss']
 })
 export class CompleteTheOrderComponent implements OnInit {
+
+  client; // todo type
+  clientDataFormGroup: FormGroup;
+  clientDataError = '';
+
+  clientNameMaxLength = 15;
+  clientSurnameMaxLength = 15;
+  clientEmailMaxLength = 30;
+  companyNameMaxLength = 30;
+  regonMaxLength = 14;
+  krsMaxLength = 10;
 
   DeliveryType = DeliveryType;
   deliveryFormGroup: FormGroup;
@@ -23,12 +37,23 @@ export class CompleteTheOrderComponent implements OnInit {
   townNameMaxLength = 20;
   notesToOrderMaxLength = 1000;
 
-  constructor(private location: Location, private fb: FormBuilder, public api: ApiUrlsService) {
+  isClientLoggedIn: boolean;
+
+  constructor(private location: Location, private fb: FormBuilder, public api: ApiUrlsService,
+              private router: Router, private authService: AuthService) {
     this.countries = this.api.getCountries();
   }
 
   goBack() {
     this.location.back();
+  }
+
+  validateUserData() {
+    if (this.clientDataFormGroup.invalid) {
+      this.clientDataError = 'Uzupełnij wymagane pola';
+    } else {
+      this.clientDataError = '';
+    }
   }
 
   validateDeliveryType() {
@@ -50,7 +75,30 @@ export class CompleteTheOrderComponent implements OnInit {
     }
   }
 
+  logoutClient() {
+    this.authService.logoutUser().subscribe(() => {
+      if (this.api.user.type === UserRole.ADMIN || this.api.user.type === UserRole.EMPLOYEE) {
+        this.router.navigate(['/login']);
+      } else {
+        this.router.navigate(['/']);
+      }
+      this.api.logout();
+    });
+  }
+
   ngOnInit(): void {
+    if (this.api.user) {
+      this.isClientLoggedIn = true;
+      this.client = this.api.user;
+    }
+    this.clientDataFormGroup = this.fb.group({
+      name: [this.client.name, Validators.required],
+      surname: [this.client.surname, Validators.required],
+      email: [this.client.email, Validators.required],
+      companyName: [this.client.companyName, Validators.required],
+      regon: [this.client.regon, Validators.required],
+      krs: [this.client.krs, Validators.required]
+    });
     this.deliveryFormGroup = this.fb.group({
       deliveryType: ['', Validators.required]
     });

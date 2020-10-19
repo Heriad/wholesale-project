@@ -35,6 +35,20 @@
   outline: none;
 }
 
+.router-link {
+  color: inherit;
+  margin-right: 1%;
+  display: inline-block;
+}
+
+.main-menu-icon {
+  vertical-align: bottom;
+}
+
+.main-menu {
+  text-align: center;
+}
+
 .back-btn {
   padding-left: 5px;
 }
@@ -75,4 +89,17 @@
 
 #mat-radio-3 {
   margin-left: 10px;
+}
+
+.user-data-label {
+  width: 100%;
+}
+
+.user-data-label-space {
+  margin-right: 20px;
+}
+
+.user-data-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

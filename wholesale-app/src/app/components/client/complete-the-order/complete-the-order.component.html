@@ -1,11 +1,10 @@
 <div class="background-page">
   <mat-card class="card-panel">
-
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon mat Suffix>keyboard_arrow_left</mat-icon>Wstecz</button>
       </div>
-      <div class="col-4">
+      <div class="col-6">
         <mat-card-header class="logo">
           <mat-card-title>
             <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
@@ -13,16 +12,75 @@
           <mat-card-subtitle>Finalizacja zamówienia</mat-card-subtitle>
         </mat-card-header>
       </div>
-      <div class="col-4">
+      <div class="col-3 main-menu">
+        <a *ngIf="isClientLoggedIn" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>Wyloguj się</span></a>
         <select class="language-panel">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>
         </select>
       </div>
     </div>
-
     <mat-horizontal-stepper [linear]="true">
-      <mat-step label="Twoje dane">
+      <mat-step [stepControl]="clientDataFormGroup" label="Twoje dane">
+        <div class="center-content">
+          <span class="headline">Zweryfikuj poprawność danych</span>
+        </div>
+        <div [formGroup]="clientDataFormGroup">
+          <div class="row user-data-form">
+            <div class="col-3"></div>
+            <div class="col-6 center-content">
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field class="user-data-label user-data-label-space">
+                    <input matInput #clientName type="text" placeholder="Imię" [maxLength]="clientNameMaxLength" formControlName="name" required>
+                  </mat-form-field>
+                  <span *ngIf="clientName.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
+                </div>
+                <div class="col-6">
+                  <mat-form-field class="user-data-label">
+                    <input matInput #clientSurname type="text" placeholder="Nazwisko" [maxLength]="clientSurnameMaxLength" formControlName="surname" required>
+                  </mat-form-field>
+                  <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field class="user-data-label user-data-label-space">
+                    <input matInput #clientEmail type="text" placeholder="E-mail" [maxLength]="clientEmailMaxLength" formControlName="email" required>
+                  </mat-form-field>
+                  <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
+                </div>
+                <div class="col-6">
+                  <mat-form-field class="user-data-label">
+                    <input matInput #companyName type="text" placeholder="Nazwa firmy" [maxLength]="companyNameMaxLength" formControlName="companyName" required>
+                  </mat-form-field>
+                  <span *ngIf="companyName.value.length > 0" class="float-right character-counter">Limit znaków: {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <mat-form-field class="user-data-label user-data-label-space">
+                    <input matInput #regon type="text" placeholder="Regon" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly required>
+                  </mat-form-field>
+                  <span *ngIf="regon.value.length > 0" class="float-right character-counter">Limit znaków: {{ regon.value.length }}/{{ regonMaxLength }}</span>
+                </div>
+                <div class="col-6">
+                  <mat-form-field class="user-data-label">
+                    <input matInput #krs type="text" placeholder="Krs" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly required>
+                  </mat-form-field>
+                  <span *ngIf="krs.value.length > 0" class="float-right character-counter">Limit znaków: {{ krs.value.length }}/{{ krsMaxLength }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-3"></div>
+          </div>
+          <div class="row center-content">
+            <div *ngIf="clientDataError.length > 0"><span class="error">{{ clientDataError }}</span></div>
+            <div class="col-12">
+              <button mat-raised-button color="primary" type="button" class="next-stepper-btn" (click)="validateUserData()" matStepperNext>Przejdź dalej</button>
+            </div>
+          </div>
+        </div>
       </mat-step>
 
       <mat-step [stepControl]="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY ? deliveryFormGroup && supplyAddressFormGroup : deliveryFormGroup" label="Dostawa">
@@ -100,6 +158,5 @@
       </mat-step>
 
     </mat-horizontal-stepper>
-
   </mat-card>
 </div>
