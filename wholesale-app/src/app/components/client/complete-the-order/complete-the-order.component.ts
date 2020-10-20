@@ -32,6 +32,8 @@ export class CompleteTheOrderComponent implements OnInit {
   deliveryAddressError = '';
   countries: any[];
 
+  paymentFormGroup: FormGroup;
+
   streetAndNumberMaxLength = 40;
   postalCodeMaxLength = 6;
   townNameMaxLength = 20;
@@ -106,6 +108,9 @@ export class CompleteTheOrderComponent implements OnInit {
       postalCode: ['', Validators.required],
       townName: ['', Validators.required],
       country: ['PL', Validators.required]
+    });
+    this.paymentFormGroup = this.fb.group({
+
     });
   }
 

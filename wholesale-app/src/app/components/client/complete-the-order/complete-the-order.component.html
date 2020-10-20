@@ -22,10 +22,8 @@
     </div>
     <mat-horizontal-stepper [linear]="true">
       <mat-step [stepControl]="clientDataFormGroup" label="Twoje dane">
-        <div class="center-content">
-          <span class="headline">Zweryfikuj poprawność danych</span>
-        </div>
         <div [formGroup]="clientDataFormGroup">
+          <span class="headline center-content">Zweryfikuj poprawność danych</span>
           <div class="row user-data-form">
             <div class="col-3"></div>
             <div class="col-6 center-content">
@@ -142,6 +140,12 @@
       </mat-step>
 
       <mat-step label="Płatność">
+        <div [formGroup]="paymentFormGroup" class="center-content" required>
+          <mat-radio-group color="primary">
+            <mat-radio-button>Przelew z góry</mat-radio-button>
+            <mat-radio-button>Odroczona płatność</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </mat-step>
 
       <mat-step label="Uwagi do zamówienia">
