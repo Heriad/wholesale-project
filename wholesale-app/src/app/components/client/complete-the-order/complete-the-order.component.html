@@ -83,10 +83,10 @@
 
       <mat-step [stepControl]="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY ? deliveryFormGroup && supplyAddressFormGroup : deliveryFormGroup" label="Dostawa">
         <div [formGroup]="deliveryFormGroup" class="center-content">
-          <span class="headline">Wybierz sposób dostawy:</span>
+          <span class="headline">Wybierz sposób dostawy</span>
           <mat-radio-group color="primary" class="delivery-type" formControlName="deliveryType" (change)="validateDeliveryType()" required>
             <mat-radio-button [value]="DeliveryType.PERSONAL">Odbiór osobisty</mat-radio-button>
-            <mat-radio-button [value]="DeliveryType.SUPPLY" class="delivery-type-label">Dostawa pod wskazany adres</mat-radio-button>
+            <mat-radio-button [value]="DeliveryType.SUPPLY" class="checkbox-type-label">Dostawa pod wskazany adres</mat-radio-button>
           </mat-radio-group>
           <div *ngIf="deliveryTypeError.length > 0"><span class="error">{{ deliveryTypeError }}</span></div>
         </div>
@@ -135,16 +135,35 @@
             </div>
             <div *ngIf="deliveryAddressError.length > 0"><span class="error">{{ deliveryAddressError }}</span></div>
           </div>
-          <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validateDeliveryAddress()">Przejdź dalej</button>
+        </div>
+        <div class="row center-content">
+          <div class="col-12">
+            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validateDeliveryAddress()">Przejdź dalej</button>
+          </div>
         </div>
       </mat-step>
 
-      <mat-step label="Płatność">
+      <mat-step [stepControl]="paymentFormGroup" label="Płatność">
         <div [formGroup]="paymentFormGroup" class="center-content" required>
-          <mat-radio-group color="primary">
-            <mat-radio-button>Przelew z góry</mat-radio-button>
-            <mat-radio-button>Odroczona płatność</mat-radio-button>
+          <span class="headline">Wybierz sposób płatności</span>
+          <mat-radio-group color="primary" formControlName="paymentType">
+            <mat-radio-button [value]="PaymentType.TRANSFER">Płatność przelewem</mat-radio-button>
+            <mat-radio-button [value]="PaymentType.RECEIPT" class="checkbox-type-label">Płatność przy odbiorze</mat-radio-button>
+            <mat-radio-button [value]="PaymentType.DEFER" class="checkbox-type-label">Odroczona płatność</mat-radio-button>
           </mat-radio-group>
+        </div>
+        <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.TRANSFER" class="center-content">
+          <span>Dane do przelewu zostaną wysłane mailowo.</span>
+        </div>
+        <div class="center-content">
+          <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
+            formularz z danymi do modelu ryzyka todo
+          </div>
+        </div>
+        <div class="row center-content">
+          <div class="col-12">
+            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePayment()">Przejdź dalej</button>
+          </div>
         </div>
       </mat-step>
 

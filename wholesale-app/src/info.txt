@@ -12,6 +12,8 @@ podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 zmienic type user na role user-a -> na końcu pracy
+poprawić model order -> osobno model do platnosci i zamowien
+dodac kółeczko do scrollowania w góre może na ekranie admina?
 
 
 ** W TRAKCIE

@@ -1,11 +1,10 @@
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
-import { DeliveryType } from './../../../models/order.model';
+import { DeliveryType, PaymentType } from './../../../models/order.model';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
   selector: 'app-complete-the-order',
@@ -32,6 +31,7 @@ export class CompleteTheOrderComponent implements OnInit {
   deliveryAddressError = '';
   countries: any[];
 
+  PaymentType = PaymentType;
   paymentFormGroup: FormGroup;
 
   streetAndNumberMaxLength = 40;
@@ -77,6 +77,10 @@ export class CompleteTheOrderComponent implements OnInit {
     }
   }
 
+  validatePayment() {
+
+  }
+
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
       this.api.logout();
@@ -110,7 +114,7 @@ export class CompleteTheOrderComponent implements OnInit {
       country: ['PL', Validators.required]
     });
     this.paymentFormGroup = this.fb.group({
-
+      paymentType: ['', Validators.required]
     });
   }
 
