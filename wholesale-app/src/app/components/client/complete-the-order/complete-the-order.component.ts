@@ -39,8 +39,6 @@ export class CompleteTheOrderComponent implements OnInit {
   townNameMaxLength = 20;
   notesToOrderMaxLength = 1000;
 
-  isClientLoggedIn: boolean;
-
   constructor(private location: Location, private fb: FormBuilder, public api: ApiUrlsService,
               private router: Router, private authService: AuthService) {
     this.countries = this.api.getCountries();
@@ -84,7 +82,6 @@ export class CompleteTheOrderComponent implements OnInit {
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
       this.api.logout();
-      this.isClientLoggedIn = false;
       this.router.navigate(['/']);
     });
   }
@@ -92,9 +89,6 @@ export class CompleteTheOrderComponent implements OnInit {
   ngOnInit(): void {
     if (this.api.user) {
       this.client = this.api.user;
-      this.isClientLoggedIn = true;
-    } else {
-      this.isClientLoggedIn = false;
     }
     this.clientDataFormGroup = this.fb.group({
       name: [this.client.name, Validators.required],

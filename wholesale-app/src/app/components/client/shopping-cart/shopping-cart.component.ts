@@ -28,7 +28,6 @@ export class ShoppingCartComponent implements OnInit {
   shoppingCartPrice: number;
   productList = [];
   updatedCart: Array<ShoppingCart>;
-  isClientLoggedIn: boolean;
 
   @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
@@ -122,18 +121,12 @@ export class ShoppingCartComponent implements OnInit {
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
       this.api.logout();
-      this.isClientLoggedIn = false;
       this.router.navigate(['/']);
     });
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    if (this.api.user) {
-      this.isClientLoggedIn = true;
-    } else {
-      this.isClientLoggedIn = false;
-    }
     this.getCartData();
     this.getProducts().then(() => {
       this.productList.sort(this.compareProductList);

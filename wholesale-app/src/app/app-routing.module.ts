@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClientComponent } from './components/client/client.component';
 import { LoginComponent } from './components/shared/login/login.component';
+import { LoggedInAuthGuard } from './services/logged-in-auth-guard.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { RegisterComponent } from './components/shared/register/register.component';
@@ -14,13 +15,13 @@ import { CompleteTheOrderComponent } from './components/client/complete-the-orde
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'client', component: ClientComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'product-item/:id', component: ProductItemComponent },
   { path: 'remind-password', component: RemindPasswordComponent },
   { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [LoggedInAuthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [LoggedInAuthGuard] },
   { path: 'administrator', component: AdministratorComponent, canActivate: [AuthGuard] },
   { path: 'complete-the-order', component: CompleteTheOrderComponent, canActivate: [AuthGuard] },
 ];

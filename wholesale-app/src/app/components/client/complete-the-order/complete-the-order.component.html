@@ -13,7 +13,7 @@
         </mat-card-header>
       </div>
       <div class="col-3 main-menu">
-        <a *ngIf="isClientLoggedIn" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>Wyloguj się</span></a>
+        <a *ngIf="this.api.user" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>Wyloguj się</span></a>
         <select class="language-panel">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>

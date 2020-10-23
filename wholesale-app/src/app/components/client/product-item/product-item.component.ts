@@ -24,7 +24,7 @@ export class ProductItemComponent implements OnInit {
   shoppingCartQuantity: number;
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
   selectedQuantity = 1;
-  isClientLoggedIn: boolean;
+
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
               public dialogService: MatDialog, private router: Router, private authService: AuthService) {
 
@@ -74,16 +74,12 @@ export class ProductItemComponent implements OnInit {
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
       this.api.logout();
-      this.isClientLoggedIn = false;
       this.router.navigate(['/']);
     });
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    if (this.api.user) {
-      this.isClientLoggedIn = true;
-    }
     this.route.params.subscribe(params => {
       this.productId = params['id'];
       this.api.getProduct(this.productId).subscribe((res: GetProductResponse) => {

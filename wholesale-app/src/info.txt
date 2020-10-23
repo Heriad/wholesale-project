@@ -20,8 +20,7 @@ dodac kółeczko do scrollowania w góre może na ekranie admina?
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> done, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 stworzyc model ryzyka
-auth login
-wylogowywanie
+modal po dodaniu do koszyka informujacy, że i jaki produkt został dodany i można przejść do koszyka badz kontunuowac zakupy
 
 
 ** ZROBIONE
@@ -81,6 +80,10 @@ jak wpisze sie zle haslo przy logowaniu to czysci pole z haslem -> zrobione
 po zmianie sposobu dostawy form jest na czerwono poprawić -> jest jednak jedynie po przejściu dalej i powróceniu, takzę nei ma nic do poprawy
 logoutClient poprawić po niepotrzebny if tam jest, wiadomo przeciez na jakiej roli jest ta funkcja
 przy rejestracji nie wymagany krs regon a przy Twoje dane na finalziacji są ujednolicić to -> nie wymagamy krs i regonu zawsze
+auth login -> zrobione i nawet po f5 dziala
+wylogowywanie -> git, chociaz trzeba api jeszcze zrobic, by doistep do api był ograniczony
+po zalogowaniu wraca na strone, z której przeszło się na logowanie -> returnUrl zrobione
+jak jest sie zalogowanym to nie mozna wchodzic na ekran rejestracji lub logowania -> drugi logged-in-auth-guard zrobiony, tylko powinno byc jako guard w folderze auth a nie servce
 
 
 ***WYMAGANIA

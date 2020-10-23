@@ -17,7 +17,6 @@ export class MainPageComponent implements OnInit {
   isLoading: boolean;
   isScrollBtnAvailable: boolean;
   shoppingCartQuantity: number;
-  isClientLoggedIn: boolean;
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private router: Router,
               private authService: AuthService) { }
@@ -41,18 +40,12 @@ export class MainPageComponent implements OnInit {
   logoutClient() {
     this.authService.logoutUser().subscribe(() => {
       this.api.logout();
-      this.isClientLoggedIn = false;
       this.router.navigate(['/']);
     });
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    if (this.api.user) {
-      this.isClientLoggedIn = true;
-    } else {
-      this.isClientLoggedIn = false;
-    }
     this.api.getProducts().subscribe((res: GetProductsResponse) => {
       if (res.success) {
         this.productList = res.data;

@@ -1,12 +1,12 @@
-import { UserRole } from 'src/app/models/user-role.model';
-import { ApiUrlsService } from 'src/app/services/api-urls.service';
-import { AuthService } from './../../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserRole } from 'src/app/models/user-role.model';
 import { ApiResponse } from 'src/app/models/response.model';
+import { AuthService } from './../../../services/auth.service';
+import { ApiUrlsService } from 'src/app/services/api-urls.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +15,15 @@ import { ApiResponse } from 'src/app/models/response.model';
 })
 export class LoginComponent implements OnInit {
 
+  returnUrl: string;
   isRememberSelected = false;
   loginErrors: Array<string> = [];
   emailMaxLength = 30;
   passwordMaxLength = 20;
+  returnUrlKey = 'returnUrl';
 
   constructor(private router: Router, private fb: FormBuilder, private location: Location, private authService: AuthService,
-              public api: ApiUrlsService) { }
+              public api: ApiUrlsService, private route: ActivatedRoute) { }
 
   loginForm = this.fb.group({
     userEmail: ['', [Validators.required, Validators.email]],
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
       if (this.api.user) {
         switch (this.api.user.type) {
           case UserRole.CLIENT:
-            this.router.navigate(['/']);
+            this.router.navigateByUrl(this.returnUrl);
             break;
           case UserRole.EMPLOYEE:
             this.router.navigate(['/employee']);
@@ -83,6 +85,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams[this.returnUrlKey] || '/';
     if (JSON.parse(localStorage.getItem('userEmail'))) {
       this.loginForm.controls.userEmail.setValue(JSON.parse(localStorage.getItem('userEmail')));
       this.isRememberSelected = true;
