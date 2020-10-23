@@ -1,3 +1,4 @@
+import { CartNotificationDialogComponent } from '../../fragments/cart-notification-dialog/cart-notification-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ShoppingCart } from './../../../models/product.model';
 import { GetProductResponse } from './../../../models/response.model';
@@ -7,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserRole } from 'src/app/models/user-role.model';
 
 @Component({
   selector: 'app-product-item',
@@ -55,6 +55,11 @@ export class ProductItemComponent implements OnInit {
     localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
     localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
     this.updateCart();
+    const dialogRef = this.dialogService.open((CartNotificationDialogComponent), {
+      width: '500px',
+      disableClose: true
+    });
+    dialogRef.componentInstance.productName = this.product.name;
   }
 
   updateCart() {

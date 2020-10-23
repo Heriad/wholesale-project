@@ -27,6 +27,7 @@ import { ProductItemComponent } from './components/client/product-item/product-i
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { CompleteTheOrderComponent } from './components/client/complete-the-order/complete-the-order.component';
 import { ImagePreviewDialogComponent } from './components/fragments/image-preview-dialog/image-preview-dialog.component';
+import { CartNotificationDialogComponent } from './components/fragments/cart-notification-dialog/cart-notification-dialog.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ImagePreviewDialogComponent } from './components/fragments/image-previe
     ProductItemComponent,
     ShoppingCartComponent,
     CompleteTheOrderComponent,
-    ImagePreviewDialogComponent
+    ImagePreviewDialogComponent,
+    CartNotificationDialogComponent
   ],
   imports: [
     BrowserModule,
