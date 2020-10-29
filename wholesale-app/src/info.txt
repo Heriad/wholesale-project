@@ -20,6 +20,7 @@ dodac kółeczko do scrollowania w góre może na ekranie admina?
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> done, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 stworzyc model ryzyka
+składanie zamówienia -> modal z czekaniem -> potwierdzeniem zlozenia zamówieniaDONE -> przekierowanie na główną stronęDONE  -> wyczyszczenie koszyka
 
 
 ** ZROBIONE

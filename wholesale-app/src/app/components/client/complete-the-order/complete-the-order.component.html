@@ -176,7 +176,7 @@
           <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">Limit znaków: {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
         </div>
         <div class="row center-content">
-          <button mat-raised-button color="primary" type="button">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
+          <button mat-raised-button color="primary" type="button" (click)="submitOrder()">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
         </div>
       </mat-step>
 

@@ -28,6 +28,7 @@ import { ShoppingCartComponent } from './components/client/shopping-cart/shoppin
 import { CompleteTheOrderComponent } from './components/client/complete-the-order/complete-the-order.component';
 import { ImagePreviewDialogComponent } from './components/fragments/image-preview-dialog/image-preview-dialog.component';
 import { CartNotificationDialogComponent } from './components/fragments/cart-notification-dialog/cart-notification-dialog.component';
+import { OrderNotificationDialogComponent } from './components/fragments/order-notification-dialog/order-notification-dialog.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { CartNotificationDialogComponent } from './components/fragments/cart-not
     ShoppingCartComponent,
     CompleteTheOrderComponent,
     ImagePreviewDialogComponent,
-    CartNotificationDialogComponent
+    CartNotificationDialogComponent,
+    OrderNotificationDialogComponent
   ],
   imports: [
     BrowserModule,

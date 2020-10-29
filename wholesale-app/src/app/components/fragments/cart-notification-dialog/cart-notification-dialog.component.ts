@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class CartNotificationDialogComponent implements OnInit {
 
   @Input() productName: string;
+  @Input() productQuantity: number;
+  @Input() productImage: string;
 
   constructor(private router: Router, public dialogRef: MatDialogRef<CartNotificationDialogComponent>) { }
 

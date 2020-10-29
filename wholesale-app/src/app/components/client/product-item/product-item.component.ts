@@ -59,6 +59,8 @@ export class ProductItemComponent implements OnInit {
       width: '500px',
       disableClose: true
     });
+    dialogRef.componentInstance.productImage = this.product.image;
+    dialogRef.componentInstance.productQuantity = this.selectedQuantity;
     dialogRef.componentInstance.productName = this.product.name;
   }
 
@@ -91,7 +93,7 @@ export class ProductItemComponent implements OnInit {
         if (res.success) {
           this.product = res.data;
           this.product.price = parseInt(this.product.price, 10);
-          this.product.productImage = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
+          this.product.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
           this.product._attachments.productImage.buffer);
           this.updateCart();
         }

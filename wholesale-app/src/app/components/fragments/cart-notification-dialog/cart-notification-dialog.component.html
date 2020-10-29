@@ -6,7 +6,20 @@
     </button>
   </div>
   <div class="dialog-content">
-    <span>Przedmiot {{ productName }} został dodany do koszyka.</span>
+    <div class="row">
+      <div class="col-2">
+        <img [src]="productImage" class="product-image">
+      </div>
+      <div class="col-10">
+        <span class="product-name">{{ productName }}</span>
+        <span class="product-quantity">Ilość: {{ productQuantity }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <span>Przedmiot został dodany do koszyka.</span>
+      </div>
+    </div>
   </div>
   <div class="dialog-actions">
     <button type="button" color="basic" class="navigate-to-cart-btn" (click)="goToShoppingCart()" mat-raised-button>Przejdź do koszyka</button>

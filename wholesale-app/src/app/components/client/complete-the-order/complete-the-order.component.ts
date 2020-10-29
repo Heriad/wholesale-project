@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderNotificationDialogComponent } from '../../fragments/order-notification-dialog/order-notification-dialog.component';
 
 @Component({
   selector: 'app-complete-the-order',
@@ -40,7 +42,7 @@ export class CompleteTheOrderComponent implements OnInit {
   notesToOrderMaxLength = 1000;
 
   constructor(private location: Location, private fb: FormBuilder, public api: ApiUrlsService,
-              private router: Router, private authService: AuthService) {
+              private router: Router, private authService: AuthService, public dialogService: MatDialog) {
     this.countries = this.api.getCountries();
   }
 
@@ -77,6 +79,21 @@ export class CompleteTheOrderComponent implements OnInit {
 
   validatePayment() {
 
+  }
+
+  submitOrder() {
+    // todo w srodku subscribe po wywolaniu api z zlozeniem zamowienia
+    localStorage.removeItem('shoppingCart');
+    localStorage.removeItem('shoppingCartPrice');
+    localStorage.removeItem('shoppingCartQuantity');
+
+    const dialogRef = this.dialogService.open((OrderNotificationDialogComponent), {
+      width: '500px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 
   logoutClient() {
