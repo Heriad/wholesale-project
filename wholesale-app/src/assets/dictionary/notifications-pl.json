@@ -1,0 +1,24 @@
+{
+  "loginComponent": {
+    "loginLabel": "Zaloguj się",
+    "passwordLabel": "Hasło",
+    "rememberMe": "Zapamiętaj mnie",
+    "forgotPassword": "Nie pamiętasz hasła?",
+    "loginBtn": "Zaloguj",
+    "requiredFields": "Uzupełnij wymagane pola",
+    "wrongEmail": "Wprowadź poprawny adres e-mail",
+    "incorrectCredentials": "Połączenie nazwy użytkownika i hasła jest nieprawidłowe"
+  },
+
+  "mainPageComponent": {
+    "wholesaleOffer": "Dostępne produkty w ofercie:"
+  },
+
+  "navigationBarComponent": {
+    "backBtn": "Wstecz",
+    "loginLink": "Zaloguj się",
+    "registrationLink": "Rejestracja",
+    "shoppingCartLink": "Koszyk"
+  }
+
+}

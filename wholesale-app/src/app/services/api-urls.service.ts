@@ -13,15 +13,19 @@ export class ApiUrlsService {
 
   user;
   countries = [];
+  notificationsPl = {};
+  notificationsEn = {};
 
   constructor(private httpClient: HttpClient) {
-    this.user = JSON.parse(localStorage.getItem('userData'));
     this.getAssets();
+    this.user = JSON.parse(localStorage.getItem('userData'));
   }
 
   // Asset api
 
-  getAssets() {
+   getAssets() {
+    this.getAsset('assets/dictionary/notifications-pl.json', this.notificationsPl);
+    this.getAsset('assets/dictionary/notifications-en.json', this.notificationsEn);
     this.getAsset('assets/dictionary/countries.json', this.countries);
   }
 
@@ -110,6 +114,14 @@ export class ApiUrlsService {
 
   getCountries() {
     return this.countries;
+  }
+
+  getNotificationsPL() {
+    return this.notificationsPl;
+  }
+
+  getNotificationsEn() {
+    return this.notificationsEn;
   }
 
   // Login api

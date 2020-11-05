@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { UserRole } from 'src/app/models/user-role.model';
 import { ApiResponse } from 'src/app/models/response.model';
 import { AuthService } from './../../../services/auth.service';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
+import { Language } from 'src/app/models/language.model';
+
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,9 @@ import { ApiUrlsService } from 'src/app/services/api-urls.service';
 })
 export class LoginComponent implements OnInit {
 
+  selectedLanguage: Language;
+  notifications;
+  loginForm: FormGroup;
   returnUrl: string;
   isRememberSelected = false;
   loginErrors: Array<string> = [];
@@ -23,12 +28,24 @@ export class LoginComponent implements OnInit {
   returnUrlKey = 'returnUrl';
 
   constructor(private router: Router, private fb: FormBuilder, private location: Location, private authService: AuthService,
-              public api: ApiUrlsService, private route: ActivatedRoute) { }
+              public api: ApiUrlsService, private route: ActivatedRoute) {
+    if (sessionStorage.getItem('selectedLanguage')) {
+      this.selectedLanguage = sessionStorage.getItem('selectedLanguage') as Language;
+    } else {
+      this.selectedLanguage = Language.PL;
+    }
+    this.changeLanguage();
+  }
 
-  loginForm = this.fb.group({
-    userEmail: ['', [Validators.required, Validators.email]],
-    userPassword: ['', Validators.required]
-  });
+  changeLanguage() {
+    sessionStorage.setItem('selectedLanguage', this.selectedLanguage);
+    if (this.selectedLanguage === 'PL') {
+      this.notifications = this.api.getNotificationsPL();
+    } else if (this.selectedLanguage === 'ENG') {
+      this.notifications = this.api.getNotificationsEn();
+    }
+    this.loginErrors = [];
+  }
 
   changeRememberState(event) {
     if (event) {
@@ -72,19 +89,23 @@ export class LoginComponent implements OnInit {
     }
   }, (err) => {
     this.loginForm.controls.userPassword.patchValue('');
-    this.loginErrors.push('Połączenie nazwy użytkownika i hasła jest nieprawidłowe');
+    this.loginErrors.push(this.notifications.loginComponent.incorrectCredentials);
   });
     } else {
       if (this.loginForm.controls.userEmail.invalid && this.loginForm.controls.userEmail.value.length > 0) {
-        this.loginErrors.push('Wprowadź popawny adres e-mail');
+        this.loginErrors.push(this.notifications.loginComponent.wrongEmail);
       }
       if (this.loginForm.controls.userEmail.value.length === 0 || this.loginForm.controls.userPassword.value.length === 0) {
-        this.loginErrors.push('Uzupełnij wymagane pola');
+        this.loginErrors.push(this.notifications.loginComponent.requiredFields);
       }
     }
   }
 
   ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      userEmail: ['', [Validators.required, Validators.email]],
+      userPassword: ['', Validators.required]
+    });
     this.returnUrl = this.route.snapshot.queryParams[this.returnUrlKey] || '/';
     if (JSON.parse(localStorage.getItem('userEmail'))) {
       this.loginForm.controls.userEmail.setValue(JSON.parse(localStorage.getItem('userEmail')));

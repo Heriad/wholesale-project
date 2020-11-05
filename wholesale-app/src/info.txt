@@ -1,26 +1,25 @@
 ** DO ZROBIENIA
 panel do wysyłania maila oraz szkielet maila przygotować do zrobienia
-usuwanie elementów w tabeli checkbox, zaznaczyć wszystkie i usunac jednym przyciskiem -> odpuszczam
 usunąć wszystkie todo i consolelogi
-sidebar -> responsywny jak i wszystko inne.. -> odpuszczam
-Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
-co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy, że admin to polak? xd przemyslec sprawe
-center z text align z main page i shopping cart wrzucic do jednej klasy i z importowac + back-btn
-rozplanowac dane do modelu ryzyka
-Modal z czekaniem po złozeniu zamówienia i ekran/modal z potwierdzeniem, że zamówiono zgłoszenie
 podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 zmienic type user na role user-a -> na końcu pracy
 poprawić model order -> osobno model do platnosci i zamowien
 dodac kółeczko do scrollowania w góre może na ekranie admina?
+zrobić po zmianie jezyka tłumaczenie errorów, trzeba validacje wyciagnac przed funkcje
+poprawic login page jak sie scrolluje % przybliża oddala to psuje sie
 
 
 ** W TRAKCIE
-language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka
+language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka tylko dla roli klienta
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> done, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 stworzyc model ryzyka
 składanie zamówienia -> modal z czekaniem -> potwierdzeniem zlozenia zamówieniaDONE -> przekierowanie na główną stronęDONE  -> wyczyszczenie koszyka
+co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy, że admin to polak? xd przemyslec sprawe -> tłumaczenie tylko dla roli klienta
+rozplanowac dane do modelu ryzyka
+Modal z czekaniem po złozeniu zamówienia i ekran/modal z potwierdzeniem, że zamówiono zgłoszenie
+Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 
 
 ** ZROBIONE
@@ -91,3 +90,7 @@ modal po dodaniu do koszyka informujacy, że i jaki produkt został dodany i mo�
 -Angular ^9
 -Node ^12
 -Docker
+
+
+*** PO ODDANIU POPRAWIĆ
+ZROBIĆ NAVIGATION BAR OBECNY ZAMIENIĆ DLA ADMINA I ZWYKŁY ZROBIĆ DLA UŻYTKOWNIKA(KLIENTA BY NIE BYŁO W KAŻDYM KOMPONENCIE FUNKCJI Z JEZYKIEM ITP.)

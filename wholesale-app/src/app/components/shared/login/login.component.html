@@ -3,18 +3,18 @@
 
     <div class="row">
       <div class="col-2">
-        <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>Wstecz</button>
+        <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>{{ notifications.navigationBarComponent.backBtn }}</button>
       </div>
       <div class="col-8">
         <mat-card-header class="logo">
           <mat-card-title>
             <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
           </mat-card-title>
-          <mat-card-subtitle>Zaloguj się</mat-card-subtitle>
+          <mat-card-subtitle>{{ notifications.loginComponent.loginLabel }}</mat-card-subtitle>
         </mat-card-header>
       </div>
       <div class="col-2 language-panel-label">
-        <select class="language-panel">
+        <select class="language-panel" (change)="changeLanguage()" [(ngModel)]="selectedLanguage">
           <option value="PL">PL</option>
           <option value="ENG">ENG</option>
         </select>
@@ -28,15 +28,15 @@
           <mat-icon matSuffix>account_circle</mat-icon>
         </mat-form-field>
         <mat-form-field class="login-form">
-          <input matInput type="password" formControlName="userPassword" placeholder="Hasło" [maxLength]="passwordMaxLength">
+          <input matInput type="password" formControlName="userPassword" placeholder="{{ notifications.loginComponent.passwordLabel }}" [maxLength]="passwordMaxLength">
           <mat-icon matSuffix>https</mat-icon>
         </mat-form-field>
         <div class="row" *ngIf="loginErrors.length > 0">
           <span class="error-label" *ngFor="let err of loginErrors">{{ err }}</span>
         </div>
-        <mat-checkbox color="primary" [checked]="isRememberSelected" (change)="changeRememberState($event)">Zapamiętaj mnie</mat-checkbox>
-        <button class="login-btn" mat-raised-button color="primary" (click)="login()">Zaloguj</button>
-        <br><span><a href="/remind-password">Nie pamiętasz hasła?</a></span>
+        <mat-checkbox color="primary" [checked]="isRememberSelected" (change)="changeRememberState($event)">{{ notifications.loginComponent.rememberMe }}</mat-checkbox>
+        <button class="login-btn" mat-raised-button color="primary" (click)="login()">{{ notifications.loginComponent.loginBtn }}</button>
+        <br><span><a href="/remind-password">{{ notifications.loginComponent.forgotPassword }}</a></span>
       </form>
     </mat-card-content>
 

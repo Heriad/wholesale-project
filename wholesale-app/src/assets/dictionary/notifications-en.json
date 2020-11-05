@@ -1,0 +1,24 @@
+{
+  "loginComponent": {
+    "loginLabel": "Sign in",
+    "passwordLabel": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot your password?",
+    "loginBtn": "Log in",
+    "requiredFields": "Complete required fields",
+    "wrongEmail": "Please enter a valid email address",
+    "incorrectCredentials": "Incorrect credentials"
+  },
+
+  "mainPageComponent": {
+    "wholesaleOffer": "Offer of products:"
+  },
+
+  "navigationBarComponent": {
+    "backBtn": "Back",
+    "loginLink": "Sign in",
+    "registrationLink": "Registration",
+    "shoppingCartLink": "Cart"
+  }
+
+}
