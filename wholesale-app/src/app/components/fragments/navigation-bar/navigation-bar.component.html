@@ -1,7 +1,25 @@
-<mat-toolbar color="primary">
-  <mat-icon (click)="onMenuToggle()" svgIcon="menu" id="sidebar-menu-icon"></mat-icon>
-  <span id="logo" (click)="refresh()">WholeSale</span>
-  <span class="btn-spacer"></span>
-  <button mat-raised-button (click)="refresh()" id="btn-refresh" color="basic">Odśwież</button>
-  <button mat-raised-button (click)="logout()" id="btn-logout" color="basic">Wyloguj</button>
-</mat-toolbar>
+<div class="row">
+  <div class="col-5">
+    <button *ngIf="isBackBtnAvailable && !isAccountCreated" mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>{{ notifications.navigationBarComponent.backBtn }}</button>
+  </div>
+  <div class="col-2">
+    <mat-card-header class="logo">
+      <mat-card-title>
+        <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
+      </mat-card-title>
+    </mat-card-header>
+  </div>
+  <div class="col-5 main-menu">
+    <a *ngIf="!api.user && isLoginLinkAvailable" routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>{{ notifications.navigationBarComponent.loginLink }}</span></a>
+    <a *ngIf="!api.user && isRegisterLinkAvailable" routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>{{ notifications.navigationBarComponent.registrationLink }}</span></a>
+    <a *ngIf="isShoppingCartLinkAvailable" routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ notifications.navigationBarComponent.shoppingCartLink }} ({{ shoppingCartQuantity }})</span></a>
+    <a *ngIf="api.user && isLogoutLinkAvailable" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>{{ notifications.navgationBarComponent.logout }}</span></a>
+    <select class="language-panel" (change)="changeLanguage()" [(ngModel)]="selectedLanguage">
+      <option value="PL">PL</option>
+      <option value="ENG">ENG</option>
+    </select>
+  </div>
+</div>
+<div class="row subtitle">
+  <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+</div>

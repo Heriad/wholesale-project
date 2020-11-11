@@ -5,6 +5,8 @@ import { Product, UpdatedProduct } from '../models/product.model';
 import { Employee, UpdatedEmployee } from '../models/employee.model';
 import { Client } from '../models/client.model';
 import { Observable } from 'rxjs';
+import notificationsPl from '../../assets/dictionary/notifications-pl.json';
+import notificationsEn from '../../assets/dictionary/notifications-en.json';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class ApiUrlsService {
 
   user;
   countries = [];
-  notificationsPl = {};
-  notificationsEn = {};
+  notificationsPl = notificationsPl;
+  notificationsEn = notificationsEn;
 
   constructor(private httpClient: HttpClient) {
     this.getAssets();
@@ -24,8 +26,6 @@ export class ApiUrlsService {
   // Asset api
 
    getAssets() {
-    this.getAsset('assets/dictionary/notifications-pl.json', this.notificationsPl);
-    this.getAsset('assets/dictionary/notifications-en.json', this.notificationsEn);
     this.getAsset('assets/dictionary/countries.json', this.countries);
   }
 

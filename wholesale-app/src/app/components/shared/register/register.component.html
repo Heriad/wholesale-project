@@ -1,121 +1,94 @@
 <div class="background-page">
   <mat-card class="card-panel">
-
-    <div class="row">
-      <div class="col-2">
-        <button *ngIf="!isUserCreated" mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>Wstecz</button>
+    <app-navigation-bar
+    [isBackBtnAvailable]="true"
+    [isAccountCreated]="isAccountCreated"
+    (emitNotifications)="getNotifications($event)">
+    </app-navigation-bar>
+    <mat-card-content *ngIf="!isAccountCreated">
+      <div class="row center register-description">
+        <span>{{ notifications.registerComponent.description }}</span>
       </div>
-      <div class="col-8">
-        <mat-card-header class="logo">
-          <mat-card-title>
-            <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
-          </mat-card-title>
-          <mat-card-subtitle *ngIf="!isUserCreated">Zarejestruj się</mat-card-subtitle>
-        </mat-card-header>
-      </div>
-      <div class="col-2 language-panel-label">
-        <select class="language-panel">
-          <option value="PL">PL</option>
-          <option value="ENG">ENG</option>
-        </select>
-      </div>
-    </div>
-
-    <mat-card-content *ngIf="!isUserCreated">
-
-      <div class="row center">
-        <span>Aby założyć konto, wypełnij pola poniżej.</span>
-      </div>
-
       <form [formGroup]="registerForm" class="register-form">
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientName type="text" placeholder="Imię" [maxLength]="clientNameMaxLength" formControlName="name" appSentenceCaseType required>
+              <input matInput #clientName type="text" placeholder="{{ notifications.registerComponent.nameLabel }}" [maxLength]="clientNameMaxLength" formControlName="name" appSentenceCaseType required>
             </mat-form-field>
-            <span *ngIf="clientName.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
+            <span *ngIf="clientName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientSurname type="text" placeholder="Nazwisko" [maxLength]="clientSurnameMaxLength" formControlName="surname" appSentenceCaseType required>
+              <input matInput #clientSurname type="text" placeholder="{{ notifications.registerComponent.surnameLabel }}" [maxLength]="clientSurnameMaxLength" formControlName="surname" appSentenceCaseType required>
             </mat-form-field>
-            <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
+            <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
           </div>
         </div>
-
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientPassword type="password" placeholder="Hasło" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="password" required>
+              <input matInput #clientPassword type="password" placeholder="{{ notifications.registerComponent.passwordLabel }}" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="password" required>
             </mat-form-field>
-            <span *ngIf="clientPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
+            <span *ngIf="clientPassword.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientRepeatPassword type="password" placeholder="Potwórz hasło" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="repeatPassword" required>
+              <input matInput #clientRepeatPassword type="password" placeholder="{{ notifications.registerComponent.repeatPasswordLabel }}" minlength="8" [maxLength]="clientPasswordMaxLength" formControlName="repeatPassword" required>
             </mat-form-field>
-            <span *ngIf="clientRepeatPassword.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientRepeatPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
+            <span *ngIf="clientRepeatPassword.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientRepeatPassword.value.length }}/{{ clientPasswordMaxLength }}</span>
           </div>
         </div>
-
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #clientEmail type="text" placeholder="E-mail" [maxLength]="clientEmailMaxLength" formControlName="email" required>
+              <input matInput #clientEmail type="text" placeholder="{{ notifications.registerComponent.emailLabel }}" [maxLength]="clientEmailMaxLength" formControlName="email" required>
             </mat-form-field>
-            <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
+            <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #companyName type="text" placeholder="Nazwa firmy" [maxLength]="companyNameMaxLength" formControlName="companyName">
+              <input matInput #companyName type="text" placeholder="{{ notifications.registerComponent.companyLabel }}" [maxLength]="companyNameMaxLength" formControlName="companyName">
             </mat-form-field>
-            <span *ngIf="companyName.value.length > 0" class="float-right character-counter">Limit znaków: {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
+            <span *ngIf="companyName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
           </div>
         </div>
-
         <div class="row">
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #regon type="text" placeholder="Regon" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
+              <input matInput #regon type="text" placeholder="{{ notifications.registerComponent.regonLabel }}" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
             </mat-form-field>
-            <span *ngIf="regon.value.length > 0" class="float-right character-counter">Limit znaków: {{ regon.value.length }}/{{ regonMaxLength }}</span>
+            <span *ngIf="regon.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ regon.value.length }}/{{ regonMaxLength }}</span>
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #krs type="text" placeholder="KRS" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
+              <input matInput #krs type="text" placeholder="{{ notifications.registerComponent.krsLabel }}" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
             </mat-form-field>
-            <span *ngIf="krs.value.length > 0" class="float-right character-counter">Limit znaków: {{ krs.value.length }}/{{ krsMaxLength }}</span>
+            <span *ngIf="krs.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ krs.value.length }}/{{ krsMaxLength }}</span>
           </div>
         </div>
-
         <div class="row error-label-row" *ngIf="registerErrors.length > 0">
           <span class="error-label" *ngFor="let err of registerErrors">{{ err }}</span>
         </div>
-
-          <div class="row center" style="margin-top: 15px;">
-            <button class="register-btn" mat-raised-button color="primary" (click)="registerUser()">Załóż konto</button>
-          </div>
-        </form>
-
-        <div class="row center">
-          <span id="footer-label">Posiadasz już konto?<a routerLink='/login' routerLinkActive="active" id="return-to-login">Zaloguj się</a></span>
+        <div class="row center" style="margin-top: 15px;">
+          <button class="register-btn" mat-raised-button color="primary" (click)="registerUser()">{{ notifications.registerComponent.createAccount }}</button>
         </div>
-
-    </mat-card-content>
-
-    <mat-card-content *ngIf="isUserCreated">
+      </form>
       <div class="row center">
-        <span>Konto zostało utworzone pomyślnie.</span>
+        <span id="footer-label">{{ notifications.registerComponent.accountExists }}<a routerLink='/login' routerLinkActive="active" id="return-to-login">{{ notifications.registerComponent.loginLink }}</a></span>
+      </div>
+    </mat-card-content>
+    <mat-card-content *ngIf="isAccountCreated">
+      <div class="row center register-description">
+        <span>{{ notifications.registerComponent.accountCreatedSuccessfully }}</span>
       </div>
       <div class="row btns-label">
         <div class="col-6">
-          <button class="main-page-btn" mat-raised-button color="primary" [routerLink]="['']">Strona główna</button>
+          <button class="main-page-btn" mat-raised-button color="primary" [routerLink]="['']">{{ notifications.registerComponent.mainPageBtn }}</button>
         </div>
         <div class="col-6">
-          <button class="login-btn" mat-raised-button color="primary" [routerLink]="['/login']">Zaloguj się</button>
+          <button class="login-btn" mat-raised-button color="primary" [routerLink]="['/login']">{{ notifications.registerComponent.loginBtn }}</button>
         </div>
       </div>
     </mat-card-content>
-
   </mat-card>
 </div>

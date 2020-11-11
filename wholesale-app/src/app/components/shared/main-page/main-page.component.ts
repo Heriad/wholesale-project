@@ -16,19 +16,12 @@ export class MainPageComponent implements OnInit {
 
   productList;
   notifications;
-  selectedLanguage: Language;
+
   isLoading: boolean;
   isScrollBtnAvailable: boolean;
-  shoppingCartQuantity: number;
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private router: Router,
-              private authService: AuthService) {
-    if (sessionStorage.getItem('selectedLanguage')) {
-      this.selectedLanguage = sessionStorage.getItem('selectedLanguage') as Language;
-    } else {
-      this.selectedLanguage = Language.PL;
-    }
-  }
+              private authService: AuthService) {}
 
   onScroll(event) {
     if ((event.target as Element).scrollTop > 0) {
@@ -53,26 +46,12 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  setLanguageStorage() {
-    sessionStorage.setItem('selectedLanguage', this.selectedLanguage);
-  }
-
-  getNotifications() {
-    if (this.selectedLanguage === 'PL') {
-      this.notifications = this.api.getNotificationsPL();
-    } else if (this.selectedLanguage === 'ENG') {
-      this.notifications = this.api.getNotificationsEn();
-    }
-  }
-
-  changeLanguage() {
-    this.setLanguageStorage();
-    this.getNotifications();
+  getNotifications(notifications) {
+    this.notifications = notifications;
   }
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.getNotifications();
     this.api.getProducts().subscribe((res: GetProductsResponse) => {
       if (res.success) {
         this.productList = res.data;
@@ -83,8 +62,6 @@ export class MainPageComponent implements OnInit {
       }
       this.isLoading = false;
     });
-    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
-      JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
   }
 
 }

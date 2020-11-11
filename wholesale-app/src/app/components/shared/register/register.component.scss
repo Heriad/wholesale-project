@@ -1,5 +1,6 @@
+@import '../../../styles/card.scss';
+@import '../../../styles/background-page.scss';
 @import '../../../styles/character-counter.scss';
-@import '../../../styles/header-card.scss';
 
 .register-form {
   margin-top: 10px;
@@ -53,6 +54,10 @@
 
 .back-btn {
   padding-left: 5px;
+}
+
+.register-description {
+  margin-top: -16px !important;
 }
 
 #footer-label {

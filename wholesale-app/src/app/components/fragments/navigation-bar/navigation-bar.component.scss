@@ -1,19 +1,45 @@
-.btn-spacer {
-  flex: 1 1 auto;
+.logo {
+  display: grid;
+  justify-content: center;
 }
 
-#sidebar-menu-icon {
-  cursor: pointer;
+.main-menu {
+  text-align: center;
 }
 
-#logo {
-  margin-left: 15px;
-  cursor: pointer;
+.main-menu-icon {
+  vertical-align: bottom;
 }
 
-#btn-refresh {
-  margin-right: 20px;
+.router-link {
+  color: inherit;
+  margin-right: 1%;
+  display: inline-block;
 }
 
-#btn-logout {}
+.language-panel {
+  width: fit-content;
+  float: right;
+  outline: none;
+}
 
+.back-btn {
+  padding-left: 5px;
+}
+
+.mat-card-title {
+  text-align: center;
+}
+
+.mat-card-subtitle {
+  color: black;
+  font-size: 24px;
+}
+
+.subtitle {
+  color: black;
+  font-size: 24px;
+  margin-top: -5px;
+  margin-bottom: 16px;
+  justify-content: center;
+}

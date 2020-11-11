@@ -10,7 +10,7 @@ import { ClientComponent } from './components/client/client.component';
 import { AddEmployeeDialogComponent } from './components/fragments/add-employee-dialog/add-employee-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './custom-material/custom-material-module';
-import { NavigationBarComponent } from './components/fragments/navigation-bar/navigation-bar.component';
+import { NavigationBarAdministratorComponent } from './components/fragments/navigation-bar-administrator/navigation-bar-administrator.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ManageEmployeesComponent } from './components/administrator/manage-employees/manage-employees.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,7 @@ import { CompleteTheOrderComponent } from './components/client/complete-the-orde
 import { ImagePreviewDialogComponent } from './components/fragments/image-preview-dialog/image-preview-dialog.component';
 import { CartNotificationDialogComponent } from './components/fragments/cart-notification-dialog/cart-notification-dialog.component';
 import { OrderNotificationDialogComponent } from './components/fragments/order-notification-dialog/order-notification-dialog.component';
+import { NavigationBarComponent } from './components/fragments/navigation-bar/navigation-bar.component';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { OrderNotificationDialogComponent } from './components/fragments/order-n
     AdministratorComponent,
     ClientComponent,
     AddEmployeeDialogComponent,
-    NavigationBarComponent,
+    NavigationBarAdministratorComponent,
     ManageEmployeesComponent,
     RegisterComponent,
     RemindPasswordComponent,
@@ -55,7 +56,8 @@ import { OrderNotificationDialogComponent } from './components/fragments/order-n
     CompleteTheOrderComponent,
     ImagePreviewDialogComponent,
     CartNotificationDialogComponent,
-    OrderNotificationDialogComponent
+    OrderNotificationDialogComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,

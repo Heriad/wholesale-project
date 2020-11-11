@@ -1,4 +1,10 @@
 {
+  "application": {
+    "name": "Wholesale"
+  },
+  "characterCounter": {
+    "characterLimit": "Character limit:"
+  },
   "loginComponent": {
     "loginLabel": "Sign in",
     "passwordLabel": "Password",
@@ -9,16 +15,39 @@
     "wrongEmail": "Please enter a valid email address",
     "incorrectCredentials": "Incorrect credentials"
   },
-
-  "mainPageComponent": {
-    "wholesaleOffer": "Offer of products:"
+  "registerComponent": {
+    "register": "....Zarejestruj się",
+    "registered" : "....Zarejestrowano",
+    "description": "....Aby założyć konto, wypełnij pola poniżej.",
+    "nameLabel": "....Imię",
+    "surnameLabel": "....Nazwisko",
+    "passwordLabel": "....Hasło",
+    "repeatPasswordLabel": "....Potwórz hasło",
+    "emailLabel": "....E-mail",
+    "companyLabel": "....Nazwa firmy",
+    "regonLabel": "....Regon",
+    "krsLabel": "....KRS",
+    "createAccount": "....Załóż konto",
+    "accountExists": "....Posiadasz już konto?",
+    "mainPageBtn": "....Strona główna",
+    "loginLink": "....Zaloguj się",
+    "loginBtn": "....Zaloguj się",
+    "accountCreatedSuccessfully": "....Konto zostało utworzone pomyślnie.",
+    "requiredFields": "....Uzupełnij wymagane pola",
+    "wrongEmail": "....Wprowadź poprawny adres e-mail",
+    "passwordToShort": "....Hasło musi posiadać minimum 8 znaków",
+    "passwordNotMatch": "....Hasła nie są jednakowe",
+    "userAlreadyExists": "....Użytkownik o danym adresie email już istnieje"
   },
-
+  "mainPageComponent": {
+    "wholesaleOffer": "Offer of products:",
+    "emptyProductList": "Sorry, we do not currently have any products in our range."
+  },
   "navigationBarComponent": {
     "backBtn": "Back",
     "loginLink": "Sign in",
     "registrationLink": "Registration",
-    "shoppingCartLink": "Cart"
+    "shoppingCartLink": "Cart",
+    "logoutLink": "Log out"
   }
-
 }

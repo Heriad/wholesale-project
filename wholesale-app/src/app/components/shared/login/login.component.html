@@ -1,26 +1,9 @@
 <div class="background-page">
   <mat-card class="card-panel">
-
-    <div class="row">
-      <div class="col-2">
-        <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>{{ notifications.navigationBarComponent.backBtn }}</button>
-      </div>
-      <div class="col-8">
-        <mat-card-header class="logo">
-          <mat-card-title>
-            <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
-          </mat-card-title>
-          <mat-card-subtitle>{{ notifications.loginComponent.loginLabel }}</mat-card-subtitle>
-        </mat-card-header>
-      </div>
-      <div class="col-2 language-panel-label">
-        <select class="language-panel" (change)="changeLanguage()" [(ngModel)]="selectedLanguage">
-          <option value="PL">PL</option>
-          <option value="ENG">ENG</option>
-        </select>
-      </div>
-    </div>
-
+    <app-navigation-bar
+      [isBackBtnAvailable]="true"
+      (emitNotifications)="getNotifications($event)">
+    </app-navigation-bar>
     <mat-card-content>
       <form [formGroup]="loginForm">
         <mat-form-field class="login-form">
@@ -39,6 +22,5 @@
         <br><span><a href="/remind-password">{{ notifications.loginComponent.forgotPassword }}</a></span>
       </form>
     </mat-card-content>
-
   </mat-card>
 </div>

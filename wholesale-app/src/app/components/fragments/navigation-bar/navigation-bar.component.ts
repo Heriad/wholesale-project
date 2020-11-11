@@ -1,8 +1,9 @@
-import { ApiUrlsService } from 'src/app/services/api-urls.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Language } from 'src/app/models/language.model';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { ApiUrlsService } from 'src/app/services/api-urls.service';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -11,29 +12,81 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  @Output() isMenuOpened = new EventEmitter<boolean>();
+  @Input() isAccountCreated: boolean;
+  @Input() isBackBtnAvailable: boolean;
+  @Input() isLoginLinkAvailable: boolean;
+  @Input() isRegisterLinkAvailable: boolean;
+  @Input() isLogoutLinkAvailable: boolean;
+  @Input() isShoppingCartLinkAvailable: boolean;
 
-  opened = true;
+  @Output() emitNotifications = new EventEmitter<object>();
 
-  constructor(public router: Router, public api: ApiUrlsService, private authService: AuthService) { }
+  notifications;
+  subtitle: string;
+  selectedLanguage: Language;
+  shoppingCartQuantity: number;
 
-  logout() {
+  constructor(public api: ApiUrlsService, private authService: AuthService, private router: Router,
+              private location: Location) {
+    if (sessionStorage.getItem('selectedLanguage')) {
+      this.selectedLanguage = sessionStorage.getItem('selectedLanguage') as Language;
+    } else {
+      this.selectedLanguage = Language.PL;
+    }
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  logoutClient() {
     this.authService.logoutUser().subscribe(() => {
       this.api.logout();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     });
   }
 
-  refresh() {
-    window.location.reload();
+  setLanguageStorage() {
+    sessionStorage.setItem('selectedLanguage', this.selectedLanguage);
   }
 
-  onMenuToggle() {
-    this.opened = !this.opened;
-    this.isMenuOpened.emit(this.opened);
+  getNotifications() {
+    if (this.selectedLanguage === 'PL') {
+      this.notifications = this.api.getNotificationsPL();
+    } else if (this.selectedLanguage === 'ENG') {
+      this.notifications = this.api.getNotificationsEn();
+    }
+    this.emitNotifications.emit(this.notifications);
+  }
+
+  changeLanguage() {
+    this.setLanguageStorage();
+    this.getNotifications();
+    this.getSubtitle();
+  }
+
+  getSubtitle() {
+    switch (this.router.url) {
+      case '/': {
+        this.subtitle = this.notifications.application.name;
+        break;
+      }
+      case '/login': {
+        this.subtitle = this.notifications.loginComponent.loginLabel;
+        break;
+      }
+      case '/register': {
+        // tslint:disable-next-line:max-line-length
+        this.subtitle = !this.isAccountCreated ? this.notifications.registerComponent.register : this.notifications.registerComponent.registered;
+      }
+    }
   }
 
   ngOnInit(): void {
+    this.getNotifications();
+    this.getSubtitle();
+    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
+      JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
   }
 
 }

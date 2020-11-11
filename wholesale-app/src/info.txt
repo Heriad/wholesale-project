@@ -9,9 +9,7 @@ poprawić model order -> osobno model do platnosci i zamowien
 dodac kółeczko do scrollowania w góre może na ekranie admina?
 zrobić po zmianie jezyka tłumaczenie errorów, trzeba validacje wyciagnac przed funkcje
 poprawic login page jak sie scrolluje % przybliża oddala to psuje sie
-
-
-** W TRAKCIE
+dodac lazy-loading
 language-panel dodać nie stałe px tylko w zależności od vh vw, moze cały card tak powinien być? -> poprawić opcje w nagłówki i panel języka + stworzyć tłumaczenia -> funkcjonalność zmiany języka tylko dla roli klienta
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> done, dostawa-> done, płatność->, uwagi do zamówienia -> done)
 stworzyc model ryzyka
@@ -20,6 +18,14 @@ co z tłumaczeniem na stronie administratora, formularze i tabelki -> zakładamy
 rozplanowac dane do modelu ryzyka
 Modal z czekaniem po złozeniu zamówienia i ekran/modal z potwierdzeniem, że zamówiono zgłoszenie
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
+tooltip na dlugi opis produktu u admina
+styles/header-card chyba nie potrzebne bo mamy nowa navigartionbar
+z roli klienta posusuwac zbędne klasy
+ogarnac u admina kolory i panel
+
+
+** W TRAKCIE
+ZROBIĆ NAVIGATION BAR OBECNY ZAMIENIĆ DLA ADMINA I ZWYKŁY ZROBIĆ DLA UŻYTKOWNIKA(KLIENTA BY NIE BYŁO W KAŻDYM KOMPONENCIE FUNKCJI Z JEZYKIEM ITP.)
 
 
 ** ZROBIONE
@@ -91,6 +97,3 @@ modal po dodaniu do koszyka informujacy, że i jaki produkt został dodany i mo�
 -Node ^12
 -Docker
 
-
-*** PO ODDANIU POPRAWIĆ
-ZROBIĆ NAVIGATION BAR OBECNY ZAMIENIĆ DLA ADMINA I ZWYKŁY ZROBIĆ DLA UŻYTKOWNIKA(KLIENTA BY NIE BYŁO W KAŻDYM KOMPONENCIE FUNKCJI Z JEZYKIEM ITP.)

@@ -1,41 +1,24 @@
 <div class="background-page" (scroll)="onScroll($event)">
   <div id="topOfTheScreen"></div>
   <mat-card class="card-panel">
-    <div class="row">
-      <div class="col-5"></div>
-      <div class="col-2">
-        <mat-card-header class="logo">
-          <mat-card-title>
-            <img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px">
-          </mat-card-title>
-          <mat-card-subtitle>Wholesale</mat-card-subtitle>
-        </mat-card-header>
-      </div>
-      <div class="col-5 main-menu">
-        <a *ngIf="!this.api.user" routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>{{ notifications.navigationBarComponent.loginLink }}</span></a>
-        <a *ngIf="!this.api.user" routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>{{ notifications.navigationBarComponent.registrationLink }}</span></a>
-        <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ notifications.navigationBarComponent.shoppingCartLink }} ({{ shoppingCartQuantity }})</span></a>
-        <a *ngIf="this.api.user" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>Wyloguj się</span></a>
-        <select class="language-panel" (change)="changeLanguage()" [(ngModel)]="selectedLanguage">
-          <option value="PL">PL</option>
-          <option value="ENG">ENG</option>
-        </select>
-      </div>
-    </div>
-
+    <app-navigation-bar
+      [isLoginLinkAvailable]="true"
+      [isLogoutLinkAvailable]="true"
+      [isRegisterLinkAvailable]="true"
+      [isShoppingCartLinkAvailable]="true"
+      (emitNotifications)="getNotifications($event)">
+    </app-navigation-bar>
     <mat-card-content *ngIf="!isLoading">
-
       <div *ngIf="productList.length > 0" class="row">
         <div class="col-12" style="text-align: center;">
           <span class="products-label">{{ notifications.mainPageComponent.wholesaleOffer }}</span>
         </div>
       </div>
-
       <div class="row">
         <div *ngFor="let product of productList" class="col-md-3">
           <a [routerLink]="['product-item', product._id]" routerLinkActive="true" class="router-product">
             <div class="card mb-3 box-shadow selected">
-              <img [src]="product.productImage" class="router-product" style="width: 100%; height: 280px;" [alt]="product.name"/>
+              <img [src]="product.productImage" class="router-product image-product" [alt]="product.name"/>
               <div class="card-body">
                 <p class="card-product-name">{{ product.name }}</p>
                 <p class="card-product-price float-right">{{ product.price }} zł</p>
@@ -44,7 +27,6 @@
           </a>
         </div>
       </div>
-
       <div *ngIf="productList.length === 0">
         <div class="row shopping-bag-icon-row">
           <div class="col-12 center">
@@ -53,21 +35,16 @@
         </div>
         <div class="row">
           <div class="col-12 center">
-            <p class="empty-product-list">Przepraszamy, obecnie w naszej ofercie nie posiadamy żadnych produktów.</p>
+            <p class="empty-product-list">{{ notifications.mainPageComponent.emptyProductList }}</p>
           </div>
         </div>
-
       </div>
     </mat-card-content>
-
     <div *ngIf="isLoading" class="row loading-spinner">
       <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
     </div>
-
   </mat-card>
-
   <button *ngIf="isScrollBtnAvailable" id="scrollToUpBtn" (click)="scrollToTop()">
     <mat-icon id="arrowUpIcon">arrow_upward</mat-icon>
   </button>
-
 </div>
