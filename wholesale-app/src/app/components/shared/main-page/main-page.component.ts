@@ -1,11 +1,9 @@
-import { GetProductsResponse } from 'src/app/models/response.model';
-import { ApiUrlsService } from './../../../services/api-urls.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserRole } from 'src/app/models/user-role.model';
-import { Language } from 'src/app/models/language.model';
+import { GetProductsResponse } from 'src/app/models/response.model';
+import { ApiUrlsService } from './../../../services/api-urls.service';
 
 @Component({
   selector: 'app-main-page',
@@ -36,13 +34,6 @@ export class MainPageComponent implements OnInit {
     element.scrollIntoView({
       block: 'start',
       behavior: 'smooth'
-    });
-  }
-
-  logoutClient() {
-    this.authService.logoutUser().subscribe(() => {
-      this.api.logout();
-      this.router.navigate(['/']);
     });
   }
 

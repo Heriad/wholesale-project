@@ -1,16 +1,14 @@
-import { UserRole } from 'src/app/models/user-role.model';
+import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
-import { ShoppingCart } from './../../../models/product.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ShoppingCart } from './../../../models/product.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { GetProductResponse } from 'src/app/models/response.model';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatSort } from '@angular/material/sort';
-import { Location } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../fragments/confirmation-dialog/confirmation-dialog.component';
-import { Router } from '@angular/router';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
 
 @Component({
@@ -20,22 +18,25 @@ import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialo
 })
 export class ShoppingCartComponent implements OnInit {
 
-  shoppingCart: Array<ShoppingCart>;
-  displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'totalPrice', 'delete'];
-  dataSource = new MatTableDataSource();
+  notifications;
   isLoading: boolean;
-  shoppingCartQuantity: number;
   shoppingCartPrice: number;
-  productList = [];
+  shoppingCartQuantity: number;
   updatedCart: Array<ShoppingCart>;
+  shoppingCart: Array<ShoppingCart>;
+  dataSource = new MatTableDataSource();
+
+  productList = [];
+  displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'totalPrice', 'delete'];
 
   @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
-  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private location: Location,
-              public dialogService: MatDialog, private router: Router, private authService: AuthService) { }
+  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, public dialogService: MatDialog,
+              private router: Router, private authService: AuthService) {}
 
-  goBack() {
-    this.location.back();
+
+  getNotifications(notifications) {
+    this.notifications = notifications;
   }
 
   completeTheOrder() {
@@ -116,13 +117,6 @@ export class ShoppingCartComponent implements OnInit {
       return 1;
     }
     return 0;
-  }
-
-  logoutClient() {
-    this.authService.logoutUser().subscribe(() => {
-      this.api.logout();
-      this.router.navigate(['/']);
-    });
   }
 
   ngOnInit(): void {

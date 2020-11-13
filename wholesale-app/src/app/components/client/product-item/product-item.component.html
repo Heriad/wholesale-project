@@ -1,30 +1,14 @@
 <div class="background-page">
   <mat-card class="card-panel">
-
-    <div class="row">
-      <div class="col-5">
-        <button mat-raised-button color="primary" class="back-button" (click)="backToMainPage()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>Wstecz</button>
-      </div>
-      <div class="col-2">
-        <mat-card-header class="logo">
-          <mat-card-title>
-            <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
-          </mat-card-title>
-          <mat-card-subtitle>Wholesale</mat-card-subtitle>
-        </mat-card-header>
-      </div>
-      <div class="col-5 main-menu">
-        <a *ngIf="!this.api.user" routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>Zaloguj się</span></a>
-        <a *ngIf="!this.api.user" routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>Rejestracja</span></a>
-        <a routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>({{ shoppingCartQuantity }}) {{ shoppingCartPrice | number: '3.0-0' }} zł</span></a>
-        <a *ngIf="this.api.user" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>Wyloguj się</span></a>
-        <select class="language-panel">
-          <option value="PL">PL</option>
-          <option value="ENG">ENG</option>
-        </select>
-      </div>
-    </div>
-
+    <app-navigation-bar
+      #navBar
+      [isBackBtnAvailable]="true"
+      [isLoginLinkAvailable]="true"
+      [isRegisterLinkAvailable]="true"
+      [isShoppingCartPriceLinkAvailable]="true"
+      [isLogoutLinkAvailable]="true"
+      (emitNotifications)="getNotifications($event)">
+    </app-navigation-bar>
     <div *ngIf="product" class="product-specification-container">
       <div class="row">
         <div class="col-4">
@@ -33,22 +17,20 @@
         <div class="col-8 wrap-text">
           <p class="product-name">{{ this.product.name }}</p>
           <p class="product-description">{{ this.product.description }}</p>
-          <p>Producent: {{ this.product.producer }}</p>
-          <p class="product-price">{{ this.product.price | number: '3.0-0' }} zł</p>
+          <p>{{ notifications.productItemComponent.producer }}: {{ this.product.producer }}</p>
+          <p class="product-price">{{ this.product.price }} zł</p>
           <mat-form-field>
-            <mat-label>Ilość</mat-label>
+            <mat-label>{{ notifications.productItemComponent.quantity }}</mat-label>
             <mat-select [(ngModel)]="selectedQuantity" matNativeControl>
               <mat-option *ngFor="let number of quantity" [value]="number" selected>{{ number }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <button mat-raised-button class="btn-add-product" (click)="addToShoppingCart()">Dodaj do koszyka</button>
+          <button mat-raised-button class="btn-add-product" (click)="addToShoppingCart(); navBar.updateCart();">{{ notifications.productItemComponent.addToCartBtn }}</button>
         </div>
       </div>
     </div>
-
     <div *ngIf="isLoading" class="row loading-spinner">
       <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
     </div>
-
   </mat-card>
 </div>

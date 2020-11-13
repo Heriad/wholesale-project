@@ -1,13 +1,13 @@
-import { CartNotificationDialogComponent } from '../../fragments/cart-notification-dialog/cart-notification-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { ShoppingCart } from './../../../models/product.model';
 import { GetProductResponse } from './../../../models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from 'src/app/services/auth.service';
+import { CartNotificationDialogComponent } from '../../fragments/cart-notification-dialog/cart-notification-dialog.component';
 
 @Component({
   selector: 'app-product-item',
@@ -16,22 +16,24 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProductItemComponent implements OnInit {
 
+  product;
+  notifications;
+
   productId: string;
   isLoading: boolean;
-  product;
-  shoppingCart: Array<ShoppingCart> = [];
   shoppingCartPrice: number;
   shoppingCartQuantity: number;
-  quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
+
+  idKey = 'id';
   selectedQuantity = 1;
+  shoppingCart: Array<ShoppingCart> = [];
+  quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
 
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
-              public dialogService: MatDialog, private router: Router, private authService: AuthService) {
+              public dialogService: MatDialog, private router: Router, private authService: AuthService) {}
 
-  }
-
-  backToMainPage() {
-    this.router.navigate(['/']);
+  getNotifications(notifications) {
+    this.notifications = notifications;
   }
 
   addToShoppingCart() {
@@ -54,7 +56,6 @@ export class ProductItemComponent implements OnInit {
     localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
     localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
     localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
-    this.updateCart();
     const dialogRef = this.dialogService.open((CartNotificationDialogComponent), {
       width: '500px',
       disableClose: true
@@ -66,9 +67,9 @@ export class ProductItemComponent implements OnInit {
 
   updateCart() {
     this.shoppingCartPrice = JSON.parse(localStorage.getItem('shoppingCartPrice')) !== null ?
-        JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
+      JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
     this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
-        JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
+      JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
   }
 
   imagePreview(image) {
@@ -78,17 +79,10 @@ export class ProductItemComponent implements OnInit {
     dialogRef.componentInstance.image = image;
   }
 
-  logoutClient() {
-    this.authService.logoutUser().subscribe(() => {
-      this.api.logout();
-      this.router.navigate(['/']);
-    });
-  }
-
   ngOnInit(): void {
     this.isLoading = true;
     this.route.params.subscribe(params => {
-      this.productId = params['id'];
+      this.productId = params[this.idKey];
       this.api.getProduct(this.productId).subscribe((res: GetProductResponse) => {
         if (res.success) {
           this.product = res.data;

@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
-import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { Language } from 'src/app/models/language.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserRole } from 'src/app/models/user-role.model';
@@ -33,17 +33,12 @@ export class LoginComponent implements OnInit {
   returnUrlKey = 'returnUrl';
 
   constructor(private router: Router, private fb: FormBuilder, private location: Location, private authService: AuthService,
-              public api: ApiUrlsService, private route: ActivatedRoute) {
-  }
+              public api: ApiUrlsService, private route: ActivatedRoute) {}
 
   changeRememberState(event) {
     if (event) {
       this.isRememberSelected = !this.isRememberSelected;
     }
-  }
-
-  goBack() {
-    this.location.back();
   }
 
   getNotifications(notifications) {

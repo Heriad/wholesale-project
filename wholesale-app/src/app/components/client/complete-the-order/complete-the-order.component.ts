@@ -1,11 +1,9 @@
-import { ApiUrlsService } from 'src/app/services/api-urls.service';
-import { DeliveryType, PaymentType } from './../../../models/order.model';
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiUrlsService } from 'src/app/services/api-urls.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DeliveryType, PaymentType } from './../../../models/order.model';
 import { OrderNotificationDialogComponent } from '../../fragments/order-notification-dialog/order-notification-dialog.component';
 
 @Component({
@@ -16,38 +14,38 @@ import { OrderNotificationDialogComponent } from '../../fragments/order-notifica
 export class CompleteTheOrderComponent implements OnInit {
 
   client; // todo type
-  clientDataFormGroup: FormGroup;
-  clientDataError = '';
+  notifications;
 
+  krsMaxLength = 10;
+  regonMaxLength = 14;
   clientNameMaxLength = 15;
-  clientSurnameMaxLength = 15;
   clientEmailMaxLength = 30;
   companyNameMaxLength = 30;
-  regonMaxLength = 14;
-  krsMaxLength = 10;
+  clientSurnameMaxLength = 15;
 
+  countries: any[];
   DeliveryType = DeliveryType;
+  paymentFormGroup: FormGroup;
   deliveryFormGroup: FormGroup;
+  clientDataFormGroup: FormGroup;
   supplyAddressFormGroup: FormGroup;
+
+  clientDataError = '';
   deliveryTypeError = '';
   deliveryAddressError = '';
-  countries: any[];
-
   PaymentType = PaymentType;
-  paymentFormGroup: FormGroup;
 
-  streetAndNumberMaxLength = 40;
-  postalCodeMaxLength = 6;
   townNameMaxLength = 20;
+  postalCodeMaxLength = 6;
   notesToOrderMaxLength = 1000;
+  streetAndNumberMaxLength = 40;
 
-  constructor(private location: Location, private fb: FormBuilder, public api: ApiUrlsService,
-              private router: Router, private authService: AuthService, public dialogService: MatDialog) {
+  constructor(private fb: FormBuilder, public api: ApiUrlsService, private router: Router, public dialogService: MatDialog) {
     this.countries = this.api.getCountries();
   }
 
-  goBack() {
-    this.location.back();
+  getNotifications(notifications) {
+    this.notifications = notifications;
   }
 
   validateUserData() {
@@ -92,13 +90,6 @@ export class CompleteTheOrderComponent implements OnInit {
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.router.navigate(['/']);
-    });
-  }
-
-  logoutClient() {
-    this.authService.logoutUser().subscribe(() => {
-      this.api.logout();
       this.router.navigate(['/']);
     });
   }

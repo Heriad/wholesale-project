@@ -1,72 +1,57 @@
 <div class="background-page">
   <mat-card class="card-panel">
-    <div class="row">
-      <div class="col-3">
-        <button mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon mat Suffix>keyboard_arrow_left</mat-icon>Wstecz</button>
-      </div>
-      <div class="col-6">
-        <mat-card-header class="logo">
-          <mat-card-title>
-            <a routerLink="/"><img src="../../../assets/imgs/logo-ws.png" width="50px" height="50px"></a>
-          </mat-card-title>
-          <mat-card-subtitle>Finalizacja zamówienia</mat-card-subtitle>
-        </mat-card-header>
-      </div>
-      <div class="col-3 main-menu">
-        <a *ngIf="this.api.user" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>Wyloguj się</span></a>
-        <select class="language-panel">
-          <option value="PL">PL</option>
-          <option value="ENG">ENG</option>
-        </select>
-      </div>
-    </div>
+    <app-navigation-bar
+      [isBackBtnAvailable]="true"
+      [isLogoutLinkAvailable]="true"
+      (emitNotifications)="getNotifications($event)">
+    </app-navigation-bar>
     <mat-horizontal-stepper [linear]="true">
-      <mat-step [stepControl]="clientDataFormGroup" label="Twoje dane">
+      <mat-step [stepControl]="clientDataFormGroup" label="{{ notifications.completeTheOrderComponent.clientDataStep }}">
         <div [formGroup]="clientDataFormGroup">
-          <span class="headline center-content">Zweryfikuj poprawność danych</span>
+          <span class="headline center-content">{{ notifications.completeTheOrderComponent.verifyDataCorrectness }}</span>
           <div class="row user-data-form">
             <div class="col-3"></div>
             <div class="col-6 center-content">
               <div class="row">
                 <div class="col-6">
                   <mat-form-field class="user-data-label user-data-label-space">
-                    <input matInput #clientName type="text" placeholder="Imię" [maxLength]="clientNameMaxLength" formControlName="name" required>
+                    <input matInput #clientName type="text" placeholder="{{ notifications.completeTheOrderComponent.nameLabel }}" [maxLength]="clientNameMaxLength" formControlName="name" required>
                   </mat-form-field>
-                  <span *ngIf="clientName.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
+                  <span *ngIf="clientName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
                 </div>
                 <div class="col-6">
                   <mat-form-field class="user-data-label">
-                    <input matInput #clientSurname type="text" placeholder="Nazwisko" [maxLength]="clientSurnameMaxLength" formControlName="surname" required>
+                    <input matInput #clientSurname type="text" placeholder="{{ notifications.completeTheOrderComponent.surnameLabel }}" [maxLength]="clientSurnameMaxLength" formControlName="surname" required>
                   </mat-form-field>
-                  <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
+                  <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6">
                   <mat-form-field class="user-data-label user-data-label-space">
-                    <input matInput #clientEmail type="text" placeholder="E-mail" [maxLength]="clientEmailMaxLength" formControlName="email" required>
+                    <input matInput #clientEmail type="text" placeholder="{{ notifications.completeTheOrderComponent.emailLabel }}" [maxLength]="clientEmailMaxLength" formControlName="email" required>
                   </mat-form-field>
-                  <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">Limit znaków: {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
+                  <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
                 </div>
                 <div class="col-6">
                   <mat-form-field class="user-data-label">
-                    <input matInput #companyName type="text" placeholder="Nazwa firmy" [maxLength]="companyNameMaxLength" formControlName="companyName" required>
+                    <input matInput #companyName type="text" placeholder="{{ notifications.completeTheOrderComponent.companyLabel }}" [maxLength]="companyNameMaxLength" formControlName="companyName" required>
                   </mat-form-field>
-                  <span *ngIf="companyName.value.length > 0" class="float-right character-counter">Limit znaków: {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
+                  <span *ngIf="companyName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
                 </div>
               </div>
               <div class="row">
                 <div class="col-6">
                   <mat-form-field class="user-data-label user-data-label-space">
-                    <input matInput #regon type="text" placeholder="Regon" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
+                    <input matInput #regon type="text" placeholder="{{ notifications.completeTheOrderComponent.regonLabel }}" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
                   </mat-form-field>
-                  <span *ngIf="regon.value.length > 0" class="float-right character-counter">Limit znaków: {{ regon.value.length }}/{{ regonMaxLength }}</span>
+                  <span *ngIf="regon.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ regon.value.length }}/{{ regonMaxLength }}</span>
                 </div>
                 <div class="col-6">
                   <mat-form-field class="user-data-label">
-                    <input matInput #krs type="text" placeholder="Krs" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
+                    <input matInput #krs type="text" placeholder="{{ notifications.completeTheOrderComponent.krsLabel }}" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
                   </mat-form-field>
-                  <span *ngIf="krs.value.length > 0" class="float-right character-counter">Limit znaków: {{ krs.value.length }}/{{ krsMaxLength }}</span>
+                  <span *ngIf="krs.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ krs.value.length }}/{{ krsMaxLength }}</span>
                 </div>
               </div>
             </div>
@@ -75,23 +60,23 @@
           <div class="row center-content">
             <div *ngIf="clientDataError.length > 0"><span class="error">{{ clientDataError }}</span></div>
             <div class="col-12">
-              <button mat-raised-button color="primary" type="button" class="next-stepper-btn" (click)="validateUserData()" matStepperNext>Przejdź dalej</button>
+              <button mat-raised-button color="primary" type="button" class="next-stepper-btn" (click)="validateUserData()" matStepperNext>{{ notifications.completeTheOrderComponent.goFurther }}</button>
             </div>
           </div>
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY ? deliveryFormGroup && supplyAddressFormGroup : deliveryFormGroup" label="Dostawa">
+      <mat-step [stepControl]="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY ? deliveryFormGroup && supplyAddressFormGroup : deliveryFormGroup" label="{{ notifications.completeTheOrderComponent.deliveryStep}}">
         <div [formGroup]="deliveryFormGroup" class="center-content">
-          <span class="headline">Wybierz sposób dostawy</span>
+          <span class="headline">{{ notifications.completeTheOrderComponent.chooseDeliveryMethod }}</span>
           <mat-radio-group color="primary" class="delivery-type" formControlName="deliveryType" (change)="validateDeliveryType()" required>
-            <mat-radio-button [value]="DeliveryType.PERSONAL">Odbiór osobisty</mat-radio-button>
-            <mat-radio-button [value]="DeliveryType.SUPPLY" class="checkbox-type-label">Dostawa pod wskazany adres</mat-radio-button>
+            <mat-radio-button [value]="DeliveryType.PERSONAL">{{ notifications.completeTheOrderComponent.personalCollection }}</mat-radio-button>
+            <mat-radio-button [value]="DeliveryType.SUPPLY" class="checkbox-type-label">{{ notifications.completeTheOrderComponent.supplyDelivery }}</mat-radio-button>
           </mat-radio-group>
           <div *ngIf="deliveryTypeError.length > 0"><span class="error">{{ deliveryTypeError }}</span></div>
         </div>
         <div *ngIf="deliveryFormGroup.value.deliveryType === DeliveryType.PERSONAL" class="center-content">
-          <span>Poinformujemy Cię, gdy Twoje zamówienie będzie będzie gotowe do odbioru.</span>
+          <span>{{ notifications.completeTheOrderComponent.personaCollectionDescription }}</span>
         </div>
         <div [formGroup]="supplyAddressFormGroup" class="center-content">
           <div *ngIf="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY">
@@ -101,7 +86,7 @@
                 <mat-form-field class="address-data">
                   <input matInput #streetAndNumber type="text" placeholder="Ulica i numer" formControlName="streetAndNumber" [maxLength]="streetAndNumberMaxLength" required>
                 </mat-form-field>
-                <span *ngIf="streetAndNumber.value.length > 0" class="float-right character-counter">Limit znaków: {{ streetAndNumber.value.length }}/{{ streetAndNumberMaxLength }}</span>
+                <span *ngIf="streetAndNumber.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ streetAndNumber.value.length }}/{{ streetAndNumberMaxLength }}</span>
               </div>
               <div class="col-4"></div>
             </div>
@@ -111,13 +96,13 @@
                 <mat-form-field class="address-data">
                   <input matInput #postalCode type="text" placeholder="Kod pocztowy" formControlName="postalCode" [maxLength]="postalCodeMaxLength" required>
                 </mat-form-field>
-                <span *ngIf="postalCode.value.length > 0" class="float-right character-counter">Limit znaków: {{ postalCode.value.length }}/{{ postalCodeMaxLength }}</span>
+                <span *ngIf="postalCode.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ postalCode.value.length }}/{{ postalCodeMaxLength }}</span>
               </div>
               <div class="col-2">
                 <mat-form-field class="address-data">
                   <input matInput #townName type="text" placeholder="Miejscowość" formControlName="townName" [maxLength]="townNameMaxLength" required>
                 </mat-form-field>
-                <span *ngIf="townName.value.length > 0" class="float-right character-counter">Limit znaków: {{ townName.value.length }}/{{ townNameMaxLength }}</span>
+                <span *ngIf="townName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ townName.value.length }}/{{ townNameMaxLength }}</span>
               </div>
               <div class="col-4"></div>
             </div>
@@ -138,12 +123,12 @@
         </div>
         <div class="row center-content">
           <div class="col-12">
-            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validateDeliveryAddress()">Przejdź dalej</button>
+            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validateDeliveryAddress()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
           </div>
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="paymentFormGroup" label="Płatność">
+      <mat-step [stepControl]="paymentFormGroup" label="{{ notifications.completeTheOrderComponent.paymentStep }}">
         <div [formGroup]="paymentFormGroup" class="center-content" required>
           <span class="headline">Wybierz sposób płatności</span>
           <mat-radio-group color="primary" formControlName="paymentType">
@@ -162,18 +147,18 @@
         </div>
         <div class="row center-content">
           <div class="col-12">
-            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePayment()">Przejdź dalej</button>
+            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePayment()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
           </div>
         </div>
       </mat-step>
 
-      <mat-step label="Uwagi do zamówienia">
+      <mat-step label="{{ notifications.completeTheOrderComponent.orderNotesStep }}">
         <div class="row center-content">
           <mat-form-field class="order-notes">
             <mat-label>Uwagi do zamówienia</mat-label>
             <textarea #notesToOrder cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" [maxLength]="notesToOrderMaxLength" matInput></textarea>
           </mat-form-field>
-          <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">Limit znaków: {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
+          <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
         </div>
         <div class="row center-content">
           <button mat-raised-button color="primary" type="button" (click)="submitOrder()">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>

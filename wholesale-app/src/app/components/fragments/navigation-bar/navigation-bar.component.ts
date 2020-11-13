@@ -18,11 +18,13 @@ export class NavigationBarComponent implements OnInit {
   @Input() isRegisterLinkAvailable: boolean;
   @Input() isLogoutLinkAvailable: boolean;
   @Input() isShoppingCartLinkAvailable: boolean;
+  @Input() isShoppingCartPriceLinkAvailable: boolean;
 
   @Output() emitNotifications = new EventEmitter<object>();
 
   notifications;
   subtitle: string;
+  shoppingCartPrice: number;
   selectedLanguage: Language;
   shoppingCartQuantity: number;
 
@@ -59,6 +61,13 @@ export class NavigationBarComponent implements OnInit {
     this.emitNotifications.emit(this.notifications);
   }
 
+  updateCart() {
+    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
+      JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
+    this.shoppingCartPrice = JSON.parse(localStorage.getItem('shoppingCartPrice')) !== null ?
+      JSON.parse(localStorage.getItem('shoppingCartPrice')) : 0;
+  }
+
   changeLanguage() {
     this.setLanguageStorage();
     this.getNotifications();
@@ -66,18 +75,27 @@ export class NavigationBarComponent implements OnInit {
   }
 
   getSubtitle() {
-    switch (this.router.url) {
-      case '/': {
+    switch (this.router.url.split('/')[1]) {
+      case '': {
         this.subtitle = this.notifications.application.name;
         break;
       }
-      case '/login': {
+      case 'login': {
         this.subtitle = this.notifications.loginComponent.loginLabel;
         break;
       }
-      case '/register': {
+      case 'register': {
         // tslint:disable-next-line:max-line-length
         this.subtitle = !this.isAccountCreated ? this.notifications.registerComponent.register : this.notifications.registerComponent.registered;
+        break;
+      }
+      case 'product-item': {
+        this.subtitle = this.notifications.application.name;
+        break;
+      }
+      case 'complete-the-order': {
+        this.subtitle = this.notifications.completeTheOrderComponent.completeTheOrder;
+        break;
       }
     }
   }
@@ -85,8 +103,7 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit(): void {
     this.getNotifications();
     this.getSubtitle();
-    this.shoppingCartQuantity = JSON.parse(localStorage.getItem('shoppingCartQuantity')) !== null ?
-      JSON.parse(localStorage.getItem('shoppingCartQuantity')) : 0;
+    this.updateCart();
   }
 
 }

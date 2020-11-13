@@ -13,7 +13,8 @@
     <a *ngIf="!api.user && isLoginLinkAvailable" routerLink="/login" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">account_box</mat-icon><span>{{ notifications.navigationBarComponent.loginLink }}</span></a>
     <a *ngIf="!api.user && isRegisterLinkAvailable" routerLink="/register" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">assignment</mat-icon><span>{{ notifications.navigationBarComponent.registrationLink }}</span></a>
     <a *ngIf="isShoppingCartLinkAvailable" routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>{{ notifications.navigationBarComponent.shoppingCartLink }} ({{ shoppingCartQuantity }})</span></a>
-    <a *ngIf="api.user && isLogoutLinkAvailable" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>{{ notifications.navgationBarComponent.logout }}</span></a>
+    <a *ngIf="isShoppingCartPriceLinkAvailable" routerLink="/shopping-cart" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">shopping_cart</mat-icon><span>({{ shoppingCartQuantity }}) {{ shoppingCartPrice }} zł</span></a>
+    <a *ngIf="api.user && isLogoutLinkAvailable" routerLink="/" routerLinkActive="active" class="router-link" (click)="logoutClient()"><mat-icon class="main-menu-icon">exit_to_app</mat-icon><span>{{ notifications.navigationBarComponent.logoutLink }}</span></a>
     <select class="language-panel" (change)="changeLanguage()" [(ngModel)]="selectedLanguage">
       <option value="PL">PL</option>
       <option value="ENG">ENG</option>

@@ -1,11 +1,9 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/models/client.model';
 import { UserRole } from 'src/app/models/user-role.model';
 import { ApiResponse } from 'src/app/models/response.model';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiUrlsService } from './../../../services/api-urls.service';
-
 
 @Component({
   selector: 'app-register',
@@ -14,27 +12,22 @@ import { ApiUrlsService } from './../../../services/api-urls.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, public api: ApiUrlsService, private location: Location) { }
-
   notifications;
 
   registerForm: FormGroup;
-  registerErrors: Array<string> = [];
   isAccountCreated: boolean;
   userAlreadyExists: boolean;
+  registerErrors: Array<string> = [];
 
+  krsMaxLength = 10;
+  regonMaxLength = 14;
   clientNameMaxLength = 15;
-  clientSurnameMaxLength = 15;
-  clientPasswordMaxLength = 20;
   clientEmailMaxLength = 30;
   companyNameMaxLength = 30;
-  regonMaxLength = 14;
-  krsMaxLength = 10;
+  clientSurnameMaxLength = 15;
+  clientPasswordMaxLength = 20;
 
-
-  goBack() {
-    this.location.back();
-  }
+  constructor(private fb: FormBuilder, public api: ApiUrlsService) {}
 
   getNotifications(notifications) {
     this.notifications = notifications;
