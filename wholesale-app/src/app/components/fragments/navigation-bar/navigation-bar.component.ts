@@ -89,8 +89,16 @@ export class NavigationBarComponent implements OnInit {
         this.subtitle = !this.isAccountCreated ? this.notifications.registerComponent.register : this.notifications.registerComponent.registered;
         break;
       }
+      case 'remind-password': {
+        this.subtitle = this.notifications.remindPasswordComponent.remindPassword;
+        break;
+      }
       case 'product-item': {
         this.subtitle = this.notifications.application.name;
+        break;
+      }
+      case 'shopping-cart': {
+        this.subtitle = this.notifications.shoppingCartComponent.cart;
         break;
       }
       case 'complete-the-order': {

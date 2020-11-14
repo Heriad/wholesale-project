@@ -39,6 +39,11 @@
     "passwordNotMatch": "Hasła nie są jednakowe",
     "userAlreadyExists": "Użytkownik o danym adresie email już istnieje"
   },
+  "remindPasswordComponent": {
+    "remindPassword": "Przypomnij hasło",
+    "remindPasswordDescription": "Podaj adres e-mail użyty podczas zakładania konta, a wyślemy Ci wiadomość jak zresetować hasło.",
+    "resetPassword": "Zresetuj hasło"
+  },
   "mainPageComponent": {
     "wholesaleOffer": "Dostępne produkty w ofercie:",
     "emptyProductList": "Przepraszamy, obecnie w naszej ofercie nie posiadamy żadnych produktów."
@@ -49,6 +54,7 @@
     "addToCartBtn": "Dodaj do koszyka"
   },
   "shoppingCartComponent": {
+    "cart": "Koszyk",
     "emptyCart": "Twój koszyk jest pusty.",
     "emptyCartDescription": "Dodaj do niego produkty, aby móc rozpocząć składanie zamówienia.",
     "startShoppingBtn": "Rozpocznij zakupy",
@@ -80,18 +86,14 @@
     "personalCollection": "Odbiór osobisty",
     "supplyDelivery": "Dostawa pod wskazany adres",
     "personaCollectionDescription": "Poinformujemy Cię, gdy Twoje zamówienie będzie będzie gotowe do odbioru.",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": "",
-    "": ""
+    "streetAndNumber": "Ulica i numer",
+    "postalCode": "Kod pocztowy",
+    "townName": "Miejscowość",
+    "country": "Kraj",
+    "orderNotesLabel": "Uwagi do zamówienia",
+    "submitOrder": "Złóż zamówienie",
+    "orderProcess": "Składanie zamówienia",
+    "wait": "Czekaj..."
   },
   "navigationBarComponent": {
     "backBtn": "Wstecz",

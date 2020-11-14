@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DeliveryType, PaymentType } from './../../../models/order.model';
+import { WaitResponseDialogComponent } from '../../fragments/wait-response-dialog/wait-response-dialog.component';
 import { OrderNotificationDialogComponent } from '../../fragments/order-notification-dialog/order-notification-dialog.component';
 
 @Component({
@@ -81,6 +82,14 @@ export class CompleteTheOrderComponent implements OnInit {
 
   submitOrder() {
     // todo w srodku subscribe po wywolaniu api z zlozeniem zamowienia
+
+    const waitDialogRef = this.dialogService.open((WaitResponseDialogComponent), {
+      width: '500px',
+      disableClose: true
+    });
+    waitDialogRef.componentInstance.headerText = this.notifications.completeTheOrderComponent.orderProcess;
+    waitDialogRef.componentInstance.contentText = this.notifications.completeTheOrderComponent.wait;
+
     localStorage.removeItem('shoppingCart');
     localStorage.removeItem('shoppingCartPrice');
     localStorage.removeItem('shoppingCartQuantity');

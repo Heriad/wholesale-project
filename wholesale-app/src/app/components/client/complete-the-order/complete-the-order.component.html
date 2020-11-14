@@ -84,7 +84,7 @@
               <div class="col-4"></div>
               <div class="col-4">
                 <mat-form-field class="address-data">
-                  <input matInput #streetAndNumber type="text" placeholder="Ulica i numer" formControlName="streetAndNumber" [maxLength]="streetAndNumberMaxLength" required>
+                  <input matInput #streetAndNumber type="text" placeholder="{{ notifications.completeTheOrderComponent.streetAndNumber }}" formControlName="streetAndNumber" [maxLength]="streetAndNumberMaxLength" required>
                 </mat-form-field>
                 <span *ngIf="streetAndNumber.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ streetAndNumber.value.length }}/{{ streetAndNumberMaxLength }}</span>
               </div>
@@ -94,13 +94,13 @@
               <div class="col-4"></div>
               <div class="col-2">
                 <mat-form-field class="address-data">
-                  <input matInput #postalCode type="text" placeholder="Kod pocztowy" formControlName="postalCode" [maxLength]="postalCodeMaxLength" required>
+                  <input matInput #postalCode type="text" placeholder="{{ notifications.completeTheOrderComponent.postalCode }}" formControlName="postalCode" [maxLength]="postalCodeMaxLength" required>
                 </mat-form-field>
                 <span *ngIf="postalCode.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ postalCode.value.length }}/{{ postalCodeMaxLength }}</span>
               </div>
               <div class="col-2">
                 <mat-form-field class="address-data">
-                  <input matInput #townName type="text" placeholder="Miejscowość" formControlName="townName" [maxLength]="townNameMaxLength" required>
+                  <input matInput #townName type="text" placeholder="{{ notifications.completeTheOrderComponent.townName }}" formControlName="townName" [maxLength]="townNameMaxLength" required>
                 </mat-form-field>
                 <span *ngIf="townName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ townName.value.length }}/{{ townNameMaxLength }}</span>
               </div>
@@ -110,7 +110,7 @@
               <div class="col-4"></div>
               <div class="col-4">
                 <mat-form-field class="address-data">
-                  <mat-label>Kraj</mat-label>
+                  <mat-label>{{ notifications.completeTheOrderComponent.country }}</mat-label>
                   <mat-select formControlName="country" required>
                     <mat-option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</mat-option>
                   </mat-select>
@@ -153,15 +153,19 @@
       </mat-step>
 
       <mat-step label="{{ notifications.completeTheOrderComponent.orderNotesStep }}">
-        <div class="row center-content">
-          <mat-form-field class="order-notes">
-            <mat-label>Uwagi do zamówienia</mat-label>
-            <textarea #notesToOrder cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" [maxLength]="notesToOrderMaxLength" matInput></textarea>
-          </mat-form-field>
-          <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <mat-form-field class="order-notes">
+              <mat-label>{{ notifications.completeTheOrderComponent.orderNotesLabel }}</mat-label>
+              <textarea #notesToOrder cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" [maxLength]="notesToOrderMaxLength" matInput></textarea>
+            </mat-form-field>
+            <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
+          </div>
+          <div class="col-3"></div>
         </div>
         <div class="row center-content">
-          <button mat-raised-button color="primary" type="button" (click)="submitOrder()">Złóż zamówienie<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
+          <button mat-raised-button color="primary" type="button" (click)="submitOrder()">{{ notifications.completeTheOrderComponent.submitOrder }}<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>
         </div>
       </mat-step>
 

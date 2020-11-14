@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-remind-password',
@@ -8,10 +7,12 @@ import {Location} from '@angular/common';
 })
 export class RemindPasswordComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  notifications;
 
-  goBack() {
-    this.location.back();
+  constructor() { }
+
+  getNotifications(notifications) {
+    this.notifications = notifications;
   }
 
   ngOnInit(): void {
