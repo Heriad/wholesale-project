@@ -101,5 +101,17 @@
     "registrationLink": "Registration",
     "shoppingCartLink": "Cart",
     "logoutLink": "Log out"
+  },
+  "cartNotificationDialogComponent": {
+    "title": "Item has been added to your cart",
+    "quantity": "Quantity",
+    "goToShoppingCart": "Go to shopping cart",
+    "continueShopping": "Continue shopping"
+  },
+  "confirmationDialogComponent": {
+    "verify": "Confirm",
+    "removeItemFromCartDescription": "Are you sure? Confirmation will remove the item from the cart.",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }

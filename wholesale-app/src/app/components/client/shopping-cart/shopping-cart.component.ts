@@ -2,12 +2,12 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ShoppingCart } from './../../../models/product.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { GetProductResponse } from 'src/app/models/response.model';
+import { NavigationBarComponent } from '../../fragments/navigation-bar/navigation-bar.component';
 import { ConfirmationDialogComponent } from '../../fragments/confirmation-dialog/confirmation-dialog.component';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
 
@@ -29,10 +29,11 @@ export class ShoppingCartComponent implements OnInit {
   productList = [];
   displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'totalPrice', 'delete'];
 
+  @ViewChild('navBar', { static: true }) navBar: NavigationBarComponent;
   @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, public dialogService: MatDialog,
-              private router: Router, private authService: AuthService) {}
+              private router: Router) {}
 
 
   getNotifications(notifications) {
@@ -53,10 +54,11 @@ export class ShoppingCartComponent implements OnInit {
   removeProductFromCart(element) {
     const dialogRef = this.dialogService.open(ConfirmationDialogComponent, {
       width: '500px',
-      disableClose: true
+      disableClose: true,
+      data: this.notifications
     });
-    dialogRef.componentInstance.title = 'Potwierdź';
-    dialogRef.componentInstance.text = 'Czy aby na pewno? Potwierdzenie spowoduje usunięcie produktu z koszyka.';
+    dialogRef.componentInstance.title = this.notifications.confirmationDialogComponent.verify;
+    dialogRef.componentInstance.content =  this.notifications.confirmationDialogComponent.removeItemFromCartDescription;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.shoppingCart.splice(this.shoppingCart.findIndex(product => product.id === element._id), 1);
@@ -71,6 +73,7 @@ export class ShoppingCartComponent implements OnInit {
           el.position = index + 1;
         });
         this.dataSource.data = this.productList;
+        this.navBar.updateCart();
       }
     });
   }
@@ -90,7 +93,7 @@ export class ShoppingCartComponent implements OnInit {
               res.data._attachments.productImage.buffer);
             this.productList.push(product);
           }
-        });
+        }, (err) => reject);
       });
       setInterval(() => {
         if (this.shoppingCart.length === this.productList.length) {

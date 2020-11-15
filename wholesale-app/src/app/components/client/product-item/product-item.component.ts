@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 import { ShoppingCart } from './../../../models/product.model';
 import { GetProductResponse } from './../../../models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
@@ -30,7 +29,7 @@ export class ProductItemComponent implements OnInit {
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
 
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
-              public dialogService: MatDialog, private router: Router, private authService: AuthService) {}
+              public dialogService: MatDialog) {}
 
   getNotifications(notifications) {
     this.notifications = notifications;
@@ -58,7 +57,8 @@ export class ProductItemComponent implements OnInit {
     localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
     const dialogRef = this.dialogService.open((CartNotificationDialogComponent), {
       width: '500px',
-      disableClose: true
+      disableClose: true,
+      data: this.notifications
     });
     dialogRef.componentInstance.productImage = this.product.image;
     dialogRef.componentInstance.productQuantity = this.selectedQuantity;

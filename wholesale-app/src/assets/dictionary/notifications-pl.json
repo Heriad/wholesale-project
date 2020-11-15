@@ -101,5 +101,17 @@
     "registrationLink": "Rejestracja",
     "shoppingCartLink": "Koszyk",
     "logoutLink": "Wyloguj się"
+  },
+  "cartNotificationDialogComponent": {
+    "title": "Przedmiot został dodany do koszyka",
+    "quantity": "Ilość",
+    "goToShoppingCart": "Przejdź do koszyka",
+    "continueShopping": "Kontynuuj zakupy"
+  },
+  "confirmationDialogComponent": {
+    "verify": "Potwierdź",
+    "removeItemFromCartDescription": "Czy aby na pewno? Potwierdzenie spowoduje usunięcie produktu z koszyka.",
+    "cancel": "Anuluj",
+    "confirm": "Zatwierdź"
   }
 }

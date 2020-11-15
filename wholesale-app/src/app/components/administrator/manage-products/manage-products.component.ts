@@ -71,7 +71,7 @@ export class ManageProductsComponent implements OnInit {
       disableClose: true,
     });
     dialogRef.componentInstance.title = 'Potwierdź';
-    dialogRef.componentInstance.text = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie produktu: ' + element.name;
+    dialogRef.componentInstance.content = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie produktu: ' + element.name;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.api.removeProduct(element._id).subscribe((res: ApiResponse) => {

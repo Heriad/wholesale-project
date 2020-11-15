@@ -4,9 +4,9 @@
       #navBar
       [isBackBtnAvailable]="true"
       [isLoginLinkAvailable]="true"
+      [isLogoutLinkAvailable]="true"
       [isRegisterLinkAvailable]="true"
       [isShoppingCartPriceLinkAvailable]="true"
-      [isLogoutLinkAvailable]="true"
       (emitNotifications)="getNotifications($event)">
     </app-navigation-bar>
     <div *ngIf="product" class="product-specification-container">

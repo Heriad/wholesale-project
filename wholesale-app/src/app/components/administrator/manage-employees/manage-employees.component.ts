@@ -56,7 +56,7 @@ export class ManageEmployeesComponent implements OnInit {
       disableClose: true
     });
     dialogRef.componentInstance.title = 'Potwierdź';
-    dialogRef.componentInstance.text = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie pracownika: ' +
+    dialogRef.componentInstance.content = 'Czy jesteś pewny? Potwierdzenie spowoduje usunięcie pracownika: ' +
         element.name + ' ' + element.surname;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

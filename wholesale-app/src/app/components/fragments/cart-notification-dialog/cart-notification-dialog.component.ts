@@ -1,6 +1,6 @@
-import { MatDialogRef } from '@angular/material/dialog';
-import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cart-notification-dialog',
@@ -10,10 +10,11 @@ import { Router } from '@angular/router';
 export class CartNotificationDialogComponent implements OnInit {
 
   @Input() productName: string;
-  @Input() productQuantity: number;
   @Input() productImage: string;
+  @Input() productQuantity: number;
 
-  constructor(private router: Router, public dialogRef: MatDialogRef<CartNotificationDialogComponent>) { }
+  constructor(private router: Router, public dialogRef: MatDialogRef<CartNotificationDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public notifications: any) { }
 
   goToShoppingCart() {
     this.router.navigate(['/shopping-cart']);

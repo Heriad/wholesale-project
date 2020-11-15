@@ -20,8 +20,8 @@ dodac lazy-loading
 
 
 ** ZROBIONE
--Favicon naprawić
--Długość hasła i nazwy użytkownika: 30 znaków
+Favicon naprawić
+Długość hasła i nazwy użytkownika: 30 znaków
 Z ekranu logowania/rejestracji klikniecie w logo WS przekierowuje z powrotem na główną stronę
 komponent register i drugi do przypominania hasła
 Z ekranu logowania/rejestracji klikniecie w logo WS przekierowuje z powrotem na główną stronę

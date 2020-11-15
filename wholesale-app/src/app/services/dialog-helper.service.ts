@@ -13,7 +13,7 @@ export class DialogHelperService {
   openConfirmation(title?: string, text?: string) {
     const dialogRef = this.dialogService.open(ConfirmationDialogComponent);
     dialogRef.componentInstance.title = title ? title : 'Potwierdź';
-    dialogRef.componentInstance.text = text ? text : 'Czy jesteś pewny?';
+    dialogRef.componentInstance.content = text ? text : 'Czy jesteś pewny?';
   }
 
 }

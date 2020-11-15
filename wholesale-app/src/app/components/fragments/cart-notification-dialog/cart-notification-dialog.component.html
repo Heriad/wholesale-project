@@ -1,6 +1,6 @@
 <div class="dialog">
   <div class="dialog-header">
-    <h4 class="dialog-title">Dodano do koszyka</h4>
+    <h4 class="dialog-title">{{ notifications.cartNotificationDialogComponent.title }}</h4>
     <button type="button" class="close" mat-dialog-close>
       <span>&times;</span>
     </button>
@@ -12,17 +12,12 @@
       </div>
       <div class="col-10">
         <span class="product-name">{{ productName }}</span>
-        <span class="product-quantity">Ilość: {{ productQuantity }}</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <span>Przedmiot został dodany do koszyka.</span>
+        <span class="product-quantity">{{ notifications.cartNotificationDialogComponent.quantity }}: {{ productQuantity }}</span>
       </div>
     </div>
   </div>
   <div class="dialog-actions">
-    <button type="button" color="basic" class="navigate-to-cart-btn" (click)="goToShoppingCart()" mat-raised-button>Przejdź do koszyka</button>
-    <button type="button" color="primary" mat-raised-button mat-dialog-close>Kontynuuj zakupy</button>
+    <button type="button" color="basic" class="navigate-to-cart-btn" (click)="goToShoppingCart()" mat-raised-button>{{ notifications.cartNotificationDialogComponent.goToShoppingCart }}</button>
+    <button type="button" color="primary" mat-raised-button mat-dialog-close>{{ notifications.cartNotificationDialogComponent.continueShopping }}</button>
   </div>
 </div>
