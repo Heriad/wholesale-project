@@ -93,7 +93,15 @@
     "orderNotesLabel": "Uwagi do zamówienia",
     "submitOrder": "Złóż zamówienie",
     "orderProcess": "Składanie zamówienia",
-    "wait": "Czekaj..."
+    "wait": "Czekaj...",
+    "requiredFields": "Uzupełnij wymagane pola",
+    "wrongEmail": "Wprowadź poprawny adres e-mail",
+    "deliveryType": "Uzupełnienie sposobu dostawy jest wymagane, aby przejść dalej.",
+    "paymentType": "Wybierz sposób płatności",
+    "bankTransferPayment": "Płatność przelewem",
+    "uponDeliveryPayment": "Płatność przy odbiorze",
+    "deferredPayment": "Odroczona płatność",
+    "transferDataViaMail": "Dane do przelewu zostaną wysłane mailowo."
   },
   "navigationBarComponent": {
     "backBtn": "Wstecz",

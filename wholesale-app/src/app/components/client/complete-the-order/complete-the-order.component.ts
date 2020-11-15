@@ -19,27 +19,26 @@ export class CompleteTheOrderComponent implements OnInit {
 
   krsMaxLength = 10;
   regonMaxLength = 14;
+  townNameMaxLength = 20;
+  postalCodeMaxLength = 6;
   clientNameMaxLength = 15;
   clientEmailMaxLength = 30;
   companyNameMaxLength = 30;
   clientSurnameMaxLength = 15;
+  notesToOrderMaxLength = 1000;
+  streetAndNumberMaxLength = 40;
 
   countries: any[];
-  DeliveryType = DeliveryType;
   paymentFormGroup: FormGroup;
   deliveryFormGroup: FormGroup;
   clientDataFormGroup: FormGroup;
   supplyAddressFormGroup: FormGroup;
 
-  clientDataError = '';
+  clientDataErrors = [];
   deliveryTypeError = '';
   deliveryAddressError = '';
   PaymentType = PaymentType;
-
-  townNameMaxLength = 20;
-  postalCodeMaxLength = 6;
-  notesToOrderMaxLength = 1000;
-  streetAndNumberMaxLength = 40;
+  DeliveryType = DeliveryType;
 
   constructor(private fb: FormBuilder, public api: ApiUrlsService, private router: Router, public dialogService: MatDialog) {
     this.countries = this.api.getCountries();
@@ -47,13 +46,22 @@ export class CompleteTheOrderComponent implements OnInit {
 
   getNotifications(notifications) {
     this.notifications = notifications;
+    if (this.clientDataErrors.length > 0) {
+      this.validateUserData();
+    }
+    if (this.deliveryTypeError.length > 0 || this.deliveryAddressError.length > 0) {
+      this.validateDeliveryAddress();
+    }
   }
 
   validateUserData() {
-    if (this.clientDataFormGroup.invalid) {
-      this.clientDataError = 'Uzupełnij wymagane pola';
-    } else {
-      this.clientDataError = '';
+    this.clientDataErrors = [];
+    if (this.clientDataFormGroup.controls.name.invalid || this.clientDataFormGroup.controls.surname.invalid ||
+        this.clientDataFormGroup.controls.companyName.invalid || this.clientDataFormGroup.controls.email.value.length === 0) {
+      this.clientDataErrors.push(this.notifications.completeTheOrderComponent.requiredFields);
+    }
+    if (this.clientDataFormGroup.controls.email.invalid) {
+      this.clientDataErrors.push(this.notifications.completeTheOrderComponent.wrongEmail);
     }
   }
 
@@ -66,9 +74,9 @@ export class CompleteTheOrderComponent implements OnInit {
 
   validateDeliveryAddress() {
     if (this.deliveryFormGroup.controls.deliveryType.invalid) {
-      this.deliveryTypeError = 'Uzupełnienie sposobu dostawy jest wymagane, aby przejść dalej.';
+      this.deliveryTypeError = this.notifications.completeTheOrderComponent.deliveryType;
     } else if (this.supplyAddressFormGroup.invalid) {
-      this.deliveryAddressError = 'Uzupełnij wymagane pola';
+      this.deliveryAddressError = this.notifications.completeTheOrderComponent.requiredFields;
       this.deliveryTypeError = '';
     } else {
       this.deliveryTypeError = '';
@@ -110,7 +118,7 @@ export class CompleteTheOrderComponent implements OnInit {
     this.clientDataFormGroup = this.fb.group({
       name: [this.client.name, Validators.required],
       surname: [this.client.surname, Validators.required],
-      email: [this.client.email, Validators.required],
+      email: [this.client.email, [Validators.required, Validators.email]],
       companyName: [this.client.companyName, Validators.required],
       regon: [this.client.regon],
       krs: [this.client.krs]

@@ -58,7 +58,9 @@
             <div class="col-3"></div>
           </div>
           <div class="row center-content">
-            <div *ngIf="clientDataError.length > 0"><span class="error">{{ clientDataError }}</span></div>
+            <div *ngIf="clientDataErrors.length > 0">
+              <span *ngFor="let error of clientDataErrors" class="error">{{ error }}</span>
+            </div>
             <div class="col-12">
               <button mat-raised-button color="primary" type="button" class="next-stepper-btn" (click)="validateUserData()" matStepperNext>{{ notifications.completeTheOrderComponent.goFurther }}</button>
             </div>
@@ -130,19 +132,38 @@
 
       <mat-step [stepControl]="paymentFormGroup" label="{{ notifications.completeTheOrderComponent.paymentStep }}">
         <div [formGroup]="paymentFormGroup" class="center-content" required>
-          <span class="headline">Wybierz sposób płatności</span>
+          <span class="headline">{{ notifications.completeTheOrderComponent.paymentType }}</span>
           <mat-radio-group color="primary" formControlName="paymentType">
-            <mat-radio-button [value]="PaymentType.TRANSFER">Płatność przelewem</mat-radio-button>
-            <mat-radio-button [value]="PaymentType.RECEIPT" class="checkbox-type-label">Płatność przy odbiorze</mat-radio-button>
-            <mat-radio-button [value]="PaymentType.DEFER" class="checkbox-type-label">Odroczona płatność</mat-radio-button>
+            <mat-radio-button [value]="PaymentType.TRANSFER">{{ notifications.completeTheOrderComponent.bankTransferPayment }}</mat-radio-button>
+            <mat-radio-button [value]="PaymentType.RECEIPT" class="checkbox-type-label">{{ notifications.completeTheOrderComponent.uponDeliveryPayment }}</mat-radio-button>
+            <mat-radio-button [value]="PaymentType.DEFER" class="checkbox-type-label">{{ notifications.completeTheOrderComponent.deferredPayment }}</mat-radio-button>
           </mat-radio-group>
         </div>
         <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.TRANSFER" class="center-content">
-          <span>Dane do przelewu zostaną wysłane mailowo.</span>
+          <span>{{ notifications.completeTheOrderComponent.transferDataViaMail }}</span>
         </div>
         <div class="center-content">
           <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
-            formularz z danymi do modelu ryzyka todo
+            <span>Uzupełnienie dodatkowych danych jest wymagane dla tego tej formy płatności.</span>
+            <div class="row">
+              <div class="col-3"></div>
+              <div class="col-6">
+                <span style="margin-right: 20px;">Wartość zamówienia: 500zł</span>
+                <span>Wybierz ilość rat:</span>
+                <mat-slider style="min-width: 40%;"
+                  color="primary"
+                  [min]="0"
+                  [max]="12"
+                  [step]="1"
+                  [tickInterval]="1"
+                  [thumbLabel]="true">
+                </mat-slider>
+              </div>
+              <div class="col-3"></div>
+            </div>
+            <div>
+              <span>Uzupełnij dane ze sprawozdania finansowego z (todo automatycznie z date) 2019 roku</span>
+            </div>
           </div>
         </div>
         <div class="row center-content">

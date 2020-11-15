@@ -93,7 +93,15 @@
     "orderNotesLabel": "Order notes",
     "submitOrder": "Place order",
     "orderProcess": "Order processing",
-    "wait": "Wait..."
+    "wait": "Wait...",
+    "requiredFields": "Complete required fields",
+    "wrongEmail": "Please enter a valid email address",
+    "deliveryType": "You must choose the shipping method to proceed.",
+    "paymentType": "Choose payment method",
+    "bankTransferPayment": "Payment by bank transfer",
+    "uponDeliveryPayment": "Payment on delivery",
+    "deferredPayment": "Deferred payment",
+    "transferDataViaMail": "The transfer data will be sent by email."
   },
   "navigationBarComponent": {
     "backBtn": "Back",
