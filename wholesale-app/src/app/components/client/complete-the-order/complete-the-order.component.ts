@@ -22,18 +22,22 @@ export class CompleteTheOrderComponent implements OnInit {
   townNameMaxLength = 20;
   postalCodeMaxLength = 6;
   clientNameMaxLength = 15;
+  numberOfInstallments = 0;
   clientEmailMaxLength = 30;
   companyNameMaxLength = 30;
   clientSurnameMaxLength = 15;
   notesToOrderMaxLength = 1000;
   streetAndNumberMaxLength = 40;
 
+  lastYear: number;
   countries: any[];
+  shoppingCartPrice: number;
   paymentFormGroup: FormGroup;
   deliveryFormGroup: FormGroup;
   clientDataFormGroup: FormGroup;
   supplyAddressFormGroup: FormGroup;
 
+  installmentInfo = '';
   clientDataErrors = [];
   deliveryTypeError = '';
   deliveryAddressError = '';
@@ -115,6 +119,8 @@ export class CompleteTheOrderComponent implements OnInit {
     if (this.api.user) {
       this.client = this.api.user;
     }
+    this.lastYear = new Date().getFullYear() - 1;
+    this.shoppingCartPrice = localStorage.getItem('shoppingCartPrice') ? parseInt(localStorage.getItem('shoppingCartPrice'), 10) : 0;
     this.clientDataFormGroup = this.fb.group({
       name: [this.client.name, Validators.required],
       surname: [this.client.surname, Validators.required],

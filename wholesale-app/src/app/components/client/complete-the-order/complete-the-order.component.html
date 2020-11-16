@@ -144,25 +144,28 @@
         </div>
         <div class="center-content">
           <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
-            <span>Uzupełnienie dodatkowych danych jest wymagane dla tego tej formy płatności.</span>
+            <span>Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
             <div class="row">
               <div class="col-3"></div>
-              <div class="col-6">
-                <span style="margin-right: 20px;">Wartość zamówienia: 500zł</span>
-                <span>Wybierz ilość rat:</span>
+              <div class="col-12">
+                <span style="margin-right: 20px;">Wartość Twojego zamówienia wynosi: {{ shoppingCartPrice }}zł</span>
+                <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
                 <mat-slider style="min-width: 40%;"
                   color="primary"
                   [min]="0"
-                  [max]="12"
+                  [max]="24"
                   [step]="1"
                   [tickInterval]="1"
-                  [thumbLabel]="true">
+                  [thumbLabel]="true"
+                  [(ngModel)]="numberOfInstallments">
                 </mat-slider>
+                <mat-icon matSuffix color="primary" [matTooltip]="installmentInfo" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
+                <span *ngIf="numberOfInstallments > 0">Wysokość pojedyńczej raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</span>
               </div>
               <div class="col-3"></div>
             </div>
             <div>
-              <span>Uzupełnij dane ze sprawozdania finansowego z (todo automatycznie z date) 2019 roku</span>
+              <span>Uzupełnij poniższe dane ze sprawozdania finansowego z {{ lastYear }} roku.</span>
             </div>
           </div>
         </div>

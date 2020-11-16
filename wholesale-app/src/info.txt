@@ -8,8 +8,7 @@ zmienic type user na role user-a -> na końcu pracy
 poprawić model order -> osobno model do platnosci i zamowien
 dodac kółeczko do scrollowania w góre może na ekranie admina?
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> done, dostawa-> done, płatność->, uwagi do zamówienia -> done)
-stworzyc model ryzyka
-rozplanowac dane do modelu ryzyka
+
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 z roli klienta posusuwac zbędne klasy CSS
 ogarnac u admina kolory i panel
@@ -17,6 +16,8 @@ ogarnac u admina kolory i panel
 
 ** W TRAKCIE
 dodac lazy-loading
+stworzyc model ryzyka
+rozplanowac dane do modelu ryzyka
 
 
 ** ZROBIONE
