@@ -36,8 +36,8 @@ export class CompleteTheOrderComponent implements OnInit {
   deliveryFormGroup: FormGroup;
   clientDataFormGroup: FormGroup;
   supplyAddressFormGroup: FormGroup;
+  financialDataFormGroup: FormGroup;
 
-  installmentInfo = '';
   clientDataErrors = [];
   deliveryTypeError = '';
   deliveryAddressError = '';
@@ -140,6 +140,16 @@ export class CompleteTheOrderComponent implements OnInit {
     });
     this.paymentFormGroup = this.fb.group({
       paymentType: ['', Validators.required]
+    });
+    this.financialDataFormGroup = this.fb.group({
+      data1: ['', Validators.required],
+      data2: ['', Validators.required],
+      data3: ['', Validators.required],
+      data4: ['', Validators.required],
+      data5: ['', Validators.required],
+      data6: ['', Validators.required],
+      data7: ['', Validators.required],
+      data8: ['', Validators.required]
     });
   }
 

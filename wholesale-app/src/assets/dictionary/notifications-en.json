@@ -101,7 +101,8 @@
     "bankTransferPayment": "Payment by bank transfer",
     "uponDeliveryPayment": "Payment on delivery",
     "deferredPayment": "Deferred payment",
-    "transferDataViaMail": "The transfer data will be sent by email."
+    "transferDataViaMail": "The transfer data will be sent by email.",
+    "paymentTooltip": "Installments are included in a monthly context."
   },
   "navigationBarComponent": {
     "backBtn": "Back",

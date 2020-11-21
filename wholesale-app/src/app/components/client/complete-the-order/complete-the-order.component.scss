@@ -1,56 +1,12 @@
 @import '../../../styles/input-autofill.scss';
+@import '../../../styles/background-page.scss';
 @import '../../../styles//character-counter.scss';
-
-.background-page {
-  height: 100vh;
-  background-image: linear-gradient(320deg, #0d2046, 55%, #011438 55%);
-  overflow: auto;
-}
 
 .card-panel {
   width: 80%;
   left: 10%;
   top: 10%;
-  margin-bottom: 5%;
-}
-
-.mat-card-title {
-  text-align: center;
-}
-
-.mat-card-subtitle {
-  color: black;
-  font-size: 24px;
-  text-align: center;
-}
-
-.logo {
-  display: grid;
-  justify-content: center;
-}
-
-.language-panel {
-  width: fit-content;
-  float: right;
-  outline: none;
-}
-
-.router-link {
-  color: inherit;
-  margin-right: 1%;
-  display: inline-block;
-}
-
-.main-menu-icon {
-  vertical-align: bottom;
-}
-
-.main-menu {
-  text-align: center;
-}
-
-.back-btn {
-  padding-left: 5px;
+  margin-bottom: 10%;
 }
 
 .order-notes {
@@ -95,7 +51,7 @@
   margin-left: 10px;
 }
 
-.user-data-label {
+.data-label {
   width: 100%;
 }
 
@@ -106,4 +62,14 @@
 .user-data-form {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.align-right {
+  text-align: right;
+  padding-right: 0px;
+}
+
+.align-left {
+  text-align: left;
+  padding-left: 5px;;
 }

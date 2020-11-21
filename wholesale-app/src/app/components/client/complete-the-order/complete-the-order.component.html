@@ -14,13 +14,13 @@
             <div class="col-6 center-content">
               <div class="row">
                 <div class="col-6">
-                  <mat-form-field class="user-data-label user-data-label-space">
+                  <mat-form-field class="data-label user-data-label-space">
                     <input matInput #clientName type="text" placeholder="{{ notifications.completeTheOrderComponent.nameLabel }}" [maxLength]="clientNameMaxLength" formControlName="name" required>
                   </mat-form-field>
                   <span *ngIf="clientName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientName.value.length }}/{{ clientNameMaxLength }}</span>
                 </div>
                 <div class="col-6">
-                  <mat-form-field class="user-data-label">
+                  <mat-form-field class="data-label">
                     <input matInput #clientSurname type="text" placeholder="{{ notifications.completeTheOrderComponent.surnameLabel }}" [maxLength]="clientSurnameMaxLength" formControlName="surname" required>
                   </mat-form-field>
                   <span *ngIf="clientSurname.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientSurname.value.length }}/{{ clientSurnameMaxLength }}</span>
@@ -28,13 +28,13 @@
               </div>
               <div class="row">
                 <div class="col-6">
-                  <mat-form-field class="user-data-label user-data-label-space">
+                  <mat-form-field class="data-label user-data-label-space">
                     <input matInput #clientEmail type="text" placeholder="{{ notifications.completeTheOrderComponent.emailLabel }}" [maxLength]="clientEmailMaxLength" formControlName="email" required>
                   </mat-form-field>
                   <span *ngIf="clientEmail.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ clientEmail.value.length }}/{{ clientEmailMaxLength }}</span>
                 </div>
                 <div class="col-6">
-                  <mat-form-field class="user-data-label">
+                  <mat-form-field class="data-label">
                     <input matInput #companyName type="text" placeholder="{{ notifications.completeTheOrderComponent.companyLabel }}" [maxLength]="companyNameMaxLength" formControlName="companyName" required>
                   </mat-form-field>
                   <span *ngIf="companyName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
@@ -42,13 +42,13 @@
               </div>
               <div class="row">
                 <div class="col-6">
-                  <mat-form-field class="user-data-label user-data-label-space">
+                  <mat-form-field class="data-label user-data-label-space">
                     <input matInput #regon type="text" placeholder="{{ notifications.completeTheOrderComponent.regonLabel }}" [maxLength]="regonMaxLength" formControlName="regon" appNumbersOnly>
                   </mat-form-field>
                   <span *ngIf="regon.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ regon.value.length }}/{{ regonMaxLength }}</span>
                 </div>
                 <div class="col-6">
-                  <mat-form-field class="user-data-label">
+                  <mat-form-field class="data-label">
                     <input matInput #krs type="text" placeholder="{{ notifications.completeTheOrderComponent.krsLabel }}" [maxLength]="krsMaxLength" formControlName="krs" appNumbersOnly>
                   </mat-form-field>
                   <span *ngIf="krs.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ krs.value.length }}/{{ krsMaxLength }}</span>
@@ -145,12 +145,11 @@
         <div class="center-content">
           <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
             <span>Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
+
             <div class="row">
-              <div class="col-3"></div>
               <div class="col-12">
-                <span style="margin-right: 20px;">Wartość Twojego zamówienia wynosi: {{ shoppingCartPrice }}zł</span>
                 <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
-                <mat-slider style="min-width: 40%;"
+                <mat-slider style="min-width: 32%;"
                   color="primary"
                   [min]="0"
                   [max]="24"
@@ -159,14 +158,101 @@
                   [thumbLabel]="true"
                   [(ngModel)]="numberOfInstallments">
                 </mat-slider>
-                <mat-icon matSuffix color="primary" [matTooltip]="installmentInfo" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
-                <span *ngIf="numberOfInstallments > 0">Wysokość pojedyńczej raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</span>
+                <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
               </div>
-              <div class="col-3"></div>
             </div>
-            <div>
-              <span>Uzupełnij poniższe dane ze sprawozdania finansowego z {{ lastYear }} roku.</span>
+
+            <div *ngIf="numberOfInstallments > 0" class="row">
+              <div class="col-12">
+                <span style="padding-right: 22%;">Wysokość pojedyńczej raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</span>
+              </div>
             </div>
+
+            <div style="margin-top: 10px;">
+              <span>Uzupełnij poniższe pola wykorzystując dane ze złożonego sprawozdania finansowego z {{ lastYear }} roku.</span>
+            </div>
+
+            <div [formGroup]="paymentFormGroup">
+
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data1">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data2">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3"></div>
+              </div>
+              
+
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data1">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data2">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data1">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data2">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data1">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field class="data-label">
+                        <input matInput placeholder="data2">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3"></div>
+              </div>
+
+            </div>
+
           </div>
         </div>
         <div class="row center-content">

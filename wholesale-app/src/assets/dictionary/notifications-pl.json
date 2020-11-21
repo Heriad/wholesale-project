@@ -101,7 +101,8 @@
     "bankTransferPayment": "Płatność przelewem",
     "uponDeliveryPayment": "Płatność przy odbiorze",
     "deferredPayment": "Odroczona płatność",
-    "transferDataViaMail": "Dane do przelewu zostaną wysłane mailowo."
+    "transferDataViaMail": "Dane do przelewu zostaną wysłane mailowo.",
+    "paymentTooltip": "Raty uwzględnione są w kontekście miesięcznym."
   },
   "navigationBarComponent": {
     "backBtn": "Wstecz",
