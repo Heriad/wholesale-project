@@ -1,6 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ShoppingCart } from 'src/app/models/product.model';
+import { GetProductResponse } from 'src/app/models/response.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DeliveryType, PaymentType } from './../../../models/order.model';
@@ -17,6 +20,7 @@ export class CompleteTheOrderComponent implements OnInit {
   client; // todo type
   notifications;
 
+  orderPrice = 0;
   krsMaxLength = 10;
   regonMaxLength = 14;
   townNameMaxLength = 20;
@@ -31,20 +35,24 @@ export class CompleteTheOrderComponent implements OnInit {
 
   lastYear: number;
   countries: any[];
+  deliveryPrice: number;
   shoppingCartPrice: number;
   paymentFormGroup: FormGroup;
   deliveryFormGroup: FormGroup;
   clientDataFormGroup: FormGroup;
+  shoppingCart: Array<ShoppingCart>;
   supplyAddressFormGroup: FormGroup;
   financialDataFormGroup: FormGroup;
 
+  productList = [];
   clientDataErrors = [];
   deliveryTypeError = '';
   deliveryAddressError = '';
   PaymentType = PaymentType;
   DeliveryType = DeliveryType;
 
-  constructor(private fb: FormBuilder, public api: ApiUrlsService, private router: Router, public dialogService: MatDialog) {
+  constructor(private fb: FormBuilder, public api: ApiUrlsService, private router: Router, public dialogService: MatDialog,
+              private domSanitizer: DomSanitizer) {
     this.countries = this.api.getCountries();
   }
 
@@ -74,6 +82,11 @@ export class CompleteTheOrderComponent implements OnInit {
       this.deliveryTypeError = '';
       this.deliveryAddressError = '';
     }
+    if (this.deliveryFormGroup.value.deliveryType === DeliveryType.PERSONAL) {
+      this.deliveryPrice = 0;
+    } else {
+      this.deliveryPrice = 20;
+    }
   }
 
   validateDeliveryAddress() {
@@ -90,6 +103,38 @@ export class CompleteTheOrderComponent implements OnInit {
 
   validatePayment() {
 
+  }
+
+  getProducts() {
+    return new Promise((resolve, reject) => {
+      this.shoppingCart.forEach((el, index) => {
+        let product: any;
+        this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {
+          if (res.success) {
+            product = res.data;
+            product.quantity = el.quantity;
+            product.unitPrice = Number(product.price);
+            product.totalPrice = product.quantity * product.price;
+            product.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
+              res.data._attachments.productImage.buffer);
+            this.productList.push(product);
+          }
+        }, (err) => reject);
+      });
+      const getProductsInterval = setInterval(() => {
+        if (this.shoppingCart.length === this.productList.length) {
+          clearInterval(getProductsInterval);
+          resolve();
+        }
+      }, 200);
+    });
+  }
+
+  // Funkcja do pobierania ceny, aby nikt jej nie zmienił w localStorage
+  getProductsPrice() {
+    this.productList.forEach(product => {
+      this.orderPrice += product.totalPrice;
+    });
   }
 
   submitOrder() {
@@ -119,6 +164,10 @@ export class CompleteTheOrderComponent implements OnInit {
     if (this.api.user) {
       this.client = this.api.user;
     }
+    this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart')) !== null ? JSON.parse(localStorage.getItem('shoppingCart')) : [];
+    this.getProducts().then(() => {
+      this.getProductsPrice();
+    });
     this.lastYear = new Date().getFullYear() - 1;
     this.shoppingCartPrice = localStorage.getItem('shoppingCartPrice') ? parseInt(localStorage.getItem('shoppingCartPrice'), 10) : 0;
     this.clientDataFormGroup = this.fb.group({

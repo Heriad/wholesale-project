@@ -73,7 +73,7 @@
     "clientDataStep": "Twoje dane",
     "deliveryStep": "Dostawa",
     "paymentStep": "Płatność",
-    "orderNotesStep": "Uwagi do zamówienia",
+    "orderSummaryStep": "Podsumowanie",
     "verifyDataCorrectness": "Zweryfikuj poprawność danych",
     "nameLabel": "Imię",
     "surnameLabel": "Nazwisko",

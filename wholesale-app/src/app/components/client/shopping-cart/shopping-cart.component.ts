@@ -27,6 +27,7 @@ export class ShoppingCartComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   productList = [];
+  quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
   displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'totalPrice', 'delete'];
 
   @ViewChild('navBar', { static: true }) navBar: NavigationBarComponent;
@@ -61,13 +62,13 @@ export class ShoppingCartComponent implements OnInit {
     dialogRef.componentInstance.content =  this.notifications.confirmationDialogComponent.removeItemFromCartDescription;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.shoppingCart.splice(this.shoppingCart.findIndex(product => product.id === element._id), 1);
         this.productList.splice(this.productList.findIndex(product => product._id === element._id), 1);
-        this.shoppingCartQuantity -= element.quantity;
+        this.shoppingCart.splice(this.shoppingCart.findIndex(product => product.id === element._id), 1);
         this.shoppingCartPrice -= element.totalPrice;
+        this.shoppingCartQuantity -= element.quantity;
         localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
-        localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
         localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
+        localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
         this.productList.sort(this.compareProductList);
         this.dataSource.data.forEach((el: any, index) => {
           el.position = index + 1;
@@ -95,10 +96,10 @@ export class ShoppingCartComponent implements OnInit {
           }
         }, (err) => reject);
       });
-      setInterval(() => {
+      const getProductsInterval = setInterval(() => {
         if (this.shoppingCart.length === this.productList.length) {
+          clearInterval(getProductsInterval);
           resolve();
-          clearInterval();
         }
       }, 200);
     });
@@ -120,6 +121,20 @@ export class ShoppingCartComponent implements OnInit {
       return 1;
     }
     return 0;
+  }
+
+  quantityChange(product) {
+    const shoppingCartElement = this.shoppingCart.find(shoppingCart => shoppingCart.id === product._id);
+    this.shoppingCartQuantity -= shoppingCartElement.quantity;
+    this.shoppingCartPrice -= shoppingCartElement.quantity * product.price;
+    this.shoppingCartQuantity += product.quantity;
+    this.shoppingCartPrice += product.quantity * product.price;
+    product.totalPrice = product.quantity * product.price;
+    shoppingCartElement.quantity = product.quantity;
+    localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
+    localStorage.setItem('shoppingCartPrice', JSON.stringify(this.shoppingCartPrice));
+    localStorage.setItem('shoppingCartQuantity', JSON.stringify(this.shoppingCartQuantity));
+    this.navBar.updateCart();
   }
 
   ngOnInit(): void {

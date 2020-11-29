@@ -73,7 +73,7 @@
     "clientDataStep": "Your data",
     "deliveryStep": "Delivery",
     "paymentStep": "Payment",
-    "orderNotesStep": "Order notes",
+    "orderSummaryStep": "Summary",
     "verifyDataCorrectness": "Verify data correctness",
     "nameLabel": "Name",
     "surnameLabel": "Surname",

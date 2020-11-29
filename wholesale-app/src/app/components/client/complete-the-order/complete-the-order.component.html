@@ -10,8 +10,7 @@
         <div [formGroup]="clientDataFormGroup">
           <span class="headline center-content">{{ notifications.completeTheOrderComponent.verifyDataCorrectness }}</span>
           <div class="row user-data-form">
-            <div class="col-3"></div>
-            <div class="col-6 center-content">
+            <div class="col-6 mx-auto center-content">
               <div class="row">
                 <div class="col-6">
                   <mat-form-field class="data-label user-data-label-space">
@@ -55,7 +54,6 @@
                 </div>
               </div>
             </div>
-            <div class="col-3"></div>
           </div>
           <div class="row center-content">
             <div *ngIf="clientDataErrors.length > 0">
@@ -68,7 +66,7 @@
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY ? deliveryFormGroup && supplyAddressFormGroup : deliveryFormGroup" label="{{ notifications.completeTheOrderComponent.deliveryStep}}">
+      <mat-step [stepControl]="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY ? deliveryFormGroup && supplyAddressFormGroup : deliveryFormGroup" label="{{ notifications.completeTheOrderComponent.deliveryStep}}" (click)="validateDeliveryAddress()">
         <div [formGroup]="deliveryFormGroup" class="center-content">
           <span class="headline">{{ notifications.completeTheOrderComponent.chooseDeliveryMethod }}</span>
           <mat-radio-group color="primary" class="delivery-type" formControlName="deliveryType" (change)="validateDeliveryType()" required>
@@ -83,24 +81,22 @@
         <div [formGroup]="supplyAddressFormGroup" class="center-content">
           <div *ngIf="deliveryFormGroup.value.deliveryType === DeliveryType.SUPPLY">
             <div class="row">
-              <div class="col-4"></div>
-              <div class="col-4">
+              <div class="col-4 mx-auto">
                 <mat-form-field class="address-data">
                   <input matInput #streetAndNumber type="text" placeholder="{{ notifications.completeTheOrderComponent.streetAndNumber }}" formControlName="streetAndNumber" [maxLength]="streetAndNumberMaxLength" required>
                 </mat-form-field>
                 <span *ngIf="streetAndNumber.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ streetAndNumber.value.length }}/{{ streetAndNumberMaxLength }}</span>
               </div>
-              <div class="col-4"></div>
             </div>
             <div class="row">
               <div class="col-4"></div>
-              <div class="col-2">
+              <div class="col-2 mx-auto">
                 <mat-form-field class="address-data">
                   <input matInput #postalCode type="text" placeholder="{{ notifications.completeTheOrderComponent.postalCode }}" formControlName="postalCode" [maxLength]="postalCodeMaxLength" required>
                 </mat-form-field>
                 <span *ngIf="postalCode.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ postalCode.value.length }}/{{ postalCodeMaxLength }}</span>
               </div>
-              <div class="col-2">
+              <div class="col-2 mx-auto">
                 <mat-form-field class="address-data">
                   <input matInput #townName type="text" placeholder="{{ notifications.completeTheOrderComponent.townName }}" formControlName="townName" [maxLength]="townNameMaxLength" required>
                 </mat-form-field>
@@ -109,8 +105,7 @@
               <div class="col-4"></div>
             </div>
             <div class="row">
-              <div class="col-4"></div>
-              <div class="col-4">
+              <div class="col-4 mx-auto">
                 <mat-form-field class="address-data">
                   <mat-label>{{ notifications.completeTheOrderComponent.country }}</mat-label>
                   <mat-select formControlName="country" required>
@@ -118,7 +113,6 @@
                   </mat-select>
                 </mat-form-field>
               </div>
-              <div class="col-4"></div>
             </div>
             <div *ngIf="deliveryAddressError.length > 0"><span class="error">{{ deliveryAddressError }}</span></div>
           </div>
@@ -142,119 +136,101 @@
         <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.TRANSFER" class="center-content">
           <span>{{ notifications.completeTheOrderComponent.transferDataViaMail }}</span>
         </div>
-        <div class="center-content">
+
           <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
-            <span>Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
 
             <div class="row">
-              <div class="col-12">
-                <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
-                <mat-slider style="min-width: 32%;"
-                  color="primary"
-                  [min]="0"
-                  [max]="24"
-                  [step]="1"
-                  [tickInterval]="1"
-                  [thumbLabel]="true"
-                  [(ngModel)]="numberOfInstallments">
-                </mat-slider>
-                <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
+              <div class="col-6 mx-auto">
+                <span style="display: block; text-align: center; font-weight: bold;">Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
+                <div>
+                  <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
+                  <mat-slider style="min-width: 70%;"
+                    color="primary"
+                    [min]="0"
+                    [max]="24"
+                    [step]="1"
+                    [tickInterval]="1"
+                    [thumbLabel]="true"
+                    [(ngModel)]="numberOfInstallments">
+                  </mat-slider>
+                  <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
+                </div>
+                <p *ngIf="numberOfInstallments > 0">Wysokość raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</p>
               </div>
             </div>
 
-            <div *ngIf="numberOfInstallments > 0" class="row">
-              <div class="col-12">
-                <span style="padding-right: 22%;">Wysokość pojedyńczej raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</span>
+            <div class="center-content">
+              <div style="margin-top: 10px;">
+                <span>Uzupełnij poniższe pola wykorzystując dane ze złożonego sprawozdania finansowego za {{ lastYear }} rok.</span>
               </div>
-            </div>
-
-            <div style="margin-top: 10px;">
-              <span>Uzupełnij poniższe pola wykorzystując dane ze złożonego sprawozdania finansowego z {{ lastYear }} roku.</span>
-            </div>
 
             <div [formGroup]="paymentFormGroup">
 
               <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
+                <div class="col-6 mx-auto">
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="data1">
+                        <input matInput placeholder="Aktywa ogółem">
                       </mat-form-field>
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="data2">
+                        <input matInput placeholder="Aktywa obrotowe">
                       </mat-form-field>
                     </div>
                   </div>
                 </div>
-                <div class="col-3"></div>
               </div>
-              
+
 
               <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
+                <div class="col-6 mx-auto">
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="data1">
+                        <input matInput placeholder="Zobowiązania krótkoterminowe">
                       </mat-form-field>
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="data2">
+                        <input matInput placeholder="Kapitał obcy">
                       </mat-form-field>
                     </div>
                   </div>
                 </div>
-                <div class="col-3"></div>
               </div>
 
               <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
+                <div class="col-6 mx-auto">
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="data1">
+                        <input matInput placeholder="Zysk (strata) netto">
                       </mat-form-field>
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="data2">
+                        <input matInput placeholder="Przychody ze sprzedaży">
                       </mat-form-field>
                     </div>
                   </div>
                 </div>
-                <div class="col-3"></div>
-              </div>
-
-              <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-                  <div class="row">
-                    <div class="col-6">
-                      <mat-form-field class="data-label">
-                        <input matInput placeholder="data1">
-                      </mat-form-field>
-                    </div>
-                    <div class="col-6">
-                      <mat-form-field class="data-label">
-                        <input matInput placeholder="data2">
-                      </mat-form-field>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-3"></div>
               </div>
 
             </div>
 
+            <div class="row center-content">
+              <span class="col-6 mx-auto defer-payment-warning">
+                *Opcja płatności dostepna jednie dla przedsiębiorstw, które:<br>
+                1. posiadają złozone sprawozdanie finansowe za poprzedni rok.<br>
+                2. nie są w trakcie postępowania upadłościowego.
+              </span>
+            </div>
+
           </div>
         </div>
+
         <div class="row center-content">
           <div class="col-12">
             <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePayment()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
@@ -262,17 +238,52 @@
         </div>
       </mat-step>
 
-      <mat-step label="{{ notifications.completeTheOrderComponent.orderNotesStep }}">
+      <mat-step label="{{ notifications.completeTheOrderComponent.orderSummaryStep }}">
+
+        <div class="row center-content">
+          <span class="headline">Szczegóły zamówienia</span>
+        </div>
+
+        <div *ngFor="let product of productList" class="row">
+          <div class="col-6 mx-auto border">
+            <div class="row">
+              <div class="col-4 remove-padding">
+                <img [src]="product.image" class="product-image">
+              </div>
+              <div class="col-8 col-padding-top">
+                <p class="product-name">{{ product.name }}</p>
+                <p>Ilość: {{ product.quantity }}</p>
+                <p>Łączna cena: {{ product.totalPrice }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-6">
+          <div class="col-3 mx-auto border">
+            <div class="row">
+              <div class="col-8 col-padding-top">
+                <p>Wartość zamówienia:</p>
+                <p>Koszt dostawy:</p>
+                <p class="final-price">Suma:</p>
+              </div>
+              <div class="col-4 col-padding-top">
+                <p>{{ orderPrice }} zł</p>
+                <p>{{ deliveryPrice }} zł</p>
+                <p class="final-price">{{ orderPrice + deliveryPrice }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6 mx-auto">
             <mat-form-field class="order-notes">
               <mat-label>{{ notifications.completeTheOrderComponent.orderNotesLabel }}</mat-label>
               <textarea #notesToOrder cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" [maxLength]="notesToOrderMaxLength" matInput></textarea>
             </mat-form-field>
             <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
           </div>
-          <div class="col-3"></div>
         </div>
         <div class="row center-content">
           <button mat-raised-button color="primary" type="button" (click)="submitOrder()">{{ notifications.completeTheOrderComponent.submitOrder }}<mat-icon matSuffix class="shipping-icon">local_shipping</mat-icon></button>

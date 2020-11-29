@@ -78,6 +78,12 @@
   padding-bottom: 0px;
 }
 
+.card-product-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .card-product-price {
   font-weight: bold;
 }
