@@ -138,23 +138,24 @@
         </div>
 
           <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
-
+            <div class="row">
+              <div class="col-12">
+                <span style="display: block; text-align: center; font-weight: bold;">Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
+              </div>
+            </div>
             <div class="row">
               <div class="col-6 mx-auto">
-                <span style="display: block; text-align: center; font-weight: bold;">Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
-                <div>
-                  <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
-                  <mat-slider style="min-width: 70%;"
-                    color="primary"
-                    [min]="0"
-                    [max]="24"
-                    [step]="1"
-                    [tickInterval]="1"
-                    [thumbLabel]="true"
-                    [(ngModel)]="numberOfInstallments">
-                  </mat-slider>
-                  <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
-                </div>
+                <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
+                <mat-slider style="min-width: 70%;"
+                  color="primary"
+                  [min]="0"
+                  [max]="24"
+                  [step]="1"
+                  [tickInterval]="1"
+                  [thumbLabel]="true"
+                  [(ngModel)]="numberOfInstallments">
+                </mat-slider>
+                <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
                 <p *ngIf="numberOfInstallments > 0">Wysokość raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</p>
               </div>
             </div>
