@@ -15,7 +15,7 @@ poprawic col-3/6 wszedzie z mx-auto
 dodac isLoading nw podsumowaniu finalizacji zamówienia
 ogarnac info z kosztem dostawy
 poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button
-
+usunac style -> class
 
 ** W TRAKCIE
 dodac lazy-loading

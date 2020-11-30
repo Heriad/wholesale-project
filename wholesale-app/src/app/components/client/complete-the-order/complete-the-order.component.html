@@ -242,7 +242,7 @@
       <mat-step label="{{ notifications.completeTheOrderComponent.orderSummaryStep }}">
 
         <div class="row center-content">
-          <span class="headline">Szczegóły zamówienia</span>
+          <span class="headline">{{ notifications.completeTheOrderComponent.orderDetails }}</span>
         </div>
 
         <div *ngFor="let product of productList" class="row">
@@ -253,8 +253,8 @@
               </div>
               <div class="col-8 col-padding-top">
                 <p class="product-name">{{ product.name }}</p>
-                <p>Ilość: {{ product.quantity }}</p>
-                <p>Łączna cena: {{ product.totalPrice }} zł</p>
+                <p>{{ this.notifications.completeTheOrderComponent.quantity }} {{ product.quantity }}</p>
+                <p>{{ this.notifications.completeTheOrderComponent.totalPrice }} {{ product.totalPrice }} zł</p>
               </div>
             </div>
           </div>
@@ -264,9 +264,9 @@
           <div class="col-3 mx-auto border">
             <div class="row">
               <div class="col-8 col-padding-top">
-                <p>Wartość zamówienia:</p>
-                <p>Koszt dostawy:</p>
-                <p class="final-price">Suma:</p>
+                <p>{{ this.notifications.completeTheOrderComponent.orderValue }}</p>
+                <p>{{ this.notifications.completeTheOrderComponent.shippingCost }}</p>
+                <p class="final-price">{{ this.notifications.completeTheOrderComponent.sum }}</p>
               </div>
               <div class="col-4 col-padding-top">
                 <p>{{ orderPrice }} zł</p>

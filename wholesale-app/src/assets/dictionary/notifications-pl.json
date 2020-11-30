@@ -102,7 +102,13 @@
     "uponDeliveryPayment": "Płatność przy odbiorze",
     "deferredPayment": "Odroczona płatność",
     "transferDataViaMail": "Dane do przelewu zostaną wysłane mailowo.",
-    "paymentTooltip": "Raty uwzględnione są w kontekście miesięcznym."
+    "paymentTooltip": "Raty uwzględnione są w kontekście miesięcznym.",
+    "orderDetails": "Szczegóły zamówienia",
+    "quantity": "Ilość:",
+    "totalPrice": "Łączna cena:",
+    "orderValue": "Wartość zamówienia:",
+    "shippingCost": "Koszt dostawy:",
+    "sum": "Suma:"
   },
   "navigationBarComponent": {
     "backBtn": "Wstecz",
