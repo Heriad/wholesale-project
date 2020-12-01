@@ -124,127 +124,116 @@
         </div>
       </mat-step>
 
-      <mat-step [stepControl]="paymentFormGroup" label="{{ notifications.completeTheOrderComponent.paymentStep }}">
+      <mat-step [stepControl]="paymentFormGroup.value.paymentType === PaymentType.DEFER ? paymentFormGroup && financialDataFormGroup : paymentFormGroup" label="{{ notifications.completeTheOrderComponent.paymentStep }}">
         <div [formGroup]="paymentFormGroup" class="center-content" required>
           <span class="headline">{{ notifications.completeTheOrderComponent.paymentType }}</span>
-          <mat-radio-group color="primary" formControlName="paymentType">
+          <mat-radio-group color="primary" formControlName="paymentType" (change)="validatePaymentType()" required>
             <mat-radio-button [value]="PaymentType.TRANSFER">{{ notifications.completeTheOrderComponent.bankTransferPayment }}</mat-radio-button>
             <mat-radio-button [value]="PaymentType.RECEIPT" class="checkbox-type-label">{{ notifications.completeTheOrderComponent.uponDeliveryPayment }}</mat-radio-button>
             <mat-radio-button [value]="PaymentType.DEFER" class="checkbox-type-label">{{ notifications.completeTheOrderComponent.deferredPayment }}</mat-radio-button>
           </mat-radio-group>
+          <div *ngIf="paymentTypeError.length > 0"><span class="error">{{ paymentTypeError }}</span></div>
         </div>
         <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.TRANSFER" class="center-content">
           <span>{{ notifications.completeTheOrderComponent.transferDataViaMail }}</span>
         </div>
-
-          <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
-            <div class="row">
-              <div class="col-12">
-                <span style="display: block; text-align: center; font-weight: bold;">Uzupełnienie dodatkowych danych jest wymagane dla tej formy płatności.</span>
-              </div>
+        <div *ngIf="paymentFormGroup.value.paymentType === PaymentType.DEFER">
+          <div class="row">
+            <div class="col-12">
+              <span class="defer-payment-description">{{ notifications.completeTheOrderComponent.deferPaymentDescription }}</span>
             </div>
-            <div class="row">
-              <div class="col-6 mx-auto">
-                <span>Wybierz ilość rat: {{ numberOfInstallments }}</span>
-                <mat-slider style="min-width: 70%;"
-                  color="primary"
-                  [min]="0"
-                  [max]="24"
-                  [step]="1"
-                  [tickInterval]="1"
-                  [thumbLabel]="true"
-                  [(ngModel)]="numberOfInstallments">
-                </mat-slider>
-                <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
-                <p *ngIf="numberOfInstallments > 0">Wysokość raty: {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</p>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-6 mx-auto">
+              <span>{{ notifications.completeTheOrderComponent.numberOfInstallments }} {{ numberOfInstallments }}</span>
+              <mat-slider style="min-width: 70%;"
+                color="primary"
+                [min]="0"
+                [max]="24"
+                [step]="1"
+                [tickInterval]="1"
+                [thumbLabel]="true"
+                [(ngModel)]="numberOfInstallments">
+              </mat-slider>
+              <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
+              <p *ngIf="numberOfInstallments > 0">{{ notifications.completeTheOrderComponent.instalmentAmount }} {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</p>
             </div>
-
-            <div class="center-content">
-              <div style="margin-top: 10px;">
-                <span>Uzupełnij poniższe pola wykorzystując dane ze złożonego sprawozdania finansowego za {{ lastYear }} rok.</span>
-              </div>
-
-            <div [formGroup]="paymentFormGroup">
-
+          </div>
+          <div class="center-content">
+            <div style="margin-top: 10px;">
+              <span>{{ notifications.completeTheOrderComponent.financialReportDescription1 }} {{ lastYear }} {{ notifications.completeTheOrderComponent.financialReportDescription2 }}</span>
+            </div>
+            <div [formGroup]="financialDataFormGroup" class="defer-payment-form">
               <div class="row">
                 <div class="col-6 mx-auto">
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="Aktywa ogółem">
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.totalAssets }}" formControlName="totalAssets" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="Aktywa obrotowe">
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.currentAssets }}" formControlName="currentAssets" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                   </div>
                 </div>
               </div>
-
-
               <div class="row">
                 <div class="col-6 mx-auto">
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="Zobowiązania krótkoterminowe">
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.currentLiabilities }}" formControlName="currentLiabilities" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="Kapitał obcy">
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.foreignCapital }}" formControlName="foreignCapital" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <div class="col-6 mx-auto">
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="Zysk (strata) netto">
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.netProfit }}" formControlName="netProfit" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="Przychody ze sprzedaży">
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.salesRevenue }}" formControlName="salesRevenue" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
-
             <div class="row center-content">
               <span class="col-6 mx-auto defer-payment-warning">
-                *Opcja płatności dostepna jednie dla przedsiębiorstw, które:<br>
-                1. posiadają złozone sprawozdanie finansowe za poprzedni rok.<br>
-                2. nie są w trakcie postępowania upadłościowego.
+                {{ notifications.completeTheOrderComponent.deferPaymentWarning }}<br>
+                {{ notifications.completeTheOrderComponent.deferPaymentWarning1 }}<br>
+                {{ notifications.completeTheOrderComponent.deferPaymentWarning2 }}
               </span>
             </div>
-
+            <div *ngIf="financialDataError.length > 0"><span class="error">{{ financialDataError }}</span></div>
           </div>
         </div>
-
         <div class="row center-content">
           <div class="col-12">
-            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePayment()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
+            <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePaymentFinancialData()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
           </div>
         </div>
       </mat-step>
 
       <mat-step label="{{ notifications.completeTheOrderComponent.orderSummaryStep }}">
-
         <div class="row center-content">
           <span class="headline">{{ notifications.completeTheOrderComponent.orderDetails }}</span>
         </div>
-
         <div *ngFor="let product of productList" class="row">
           <div class="col-6 mx-auto border">
             <div class="row">
@@ -259,7 +248,6 @@
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-3 mx-auto border">
             <div class="row">
@@ -276,7 +264,6 @@
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-6 mx-auto">
             <mat-form-field class="order-notes">

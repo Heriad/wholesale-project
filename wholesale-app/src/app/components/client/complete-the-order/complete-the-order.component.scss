@@ -75,10 +75,21 @@
   padding-left: 5px;
 }
 
+.defer-payment-description {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+}
+
+.defer-payment-form {
+  margin-top: 10px;
+}
+
 .defer-payment-warning {
   color: gray;
   font-size: 12px;
   text-align: left;
+  margin-bottom: 10px;
 }
 
 .border {

@@ -46,7 +46,9 @@ export class CompleteTheOrderComponent implements OnInit {
 
   productList = [];
   clientDataErrors = [];
+  paymentTypeError = '';
   deliveryTypeError = '';
+  financialDataError = '';
   deliveryAddressError = '';
   PaymentType = PaymentType;
   DeliveryType = DeliveryType;
@@ -101,8 +103,22 @@ export class CompleteTheOrderComponent implements OnInit {
     }
   }
 
-  validatePayment() {
+  validatePaymentType() {
+    if (this.paymentFormGroup.controls.paymentType) {
+      this.paymentTypeError = '';
+    }
+  }
 
+  validatePaymentFinancialData() {
+    if (this.paymentFormGroup.controls.paymentType.invalid) {
+      this.paymentTypeError = this.notifications.completeTheOrderComponent.paymentTypeRequired;
+    } else if (this.financialDataFormGroup.invalid) {
+       this.financialDataError = this.notifications.completeTheOrderComponent.requiredFields;
+       this.paymentTypeError = '';
+    } else {
+      this.paymentTypeError = '';
+      this.financialDataError = '';
+    }
   }
 
   getProducts() {
@@ -191,14 +207,12 @@ export class CompleteTheOrderComponent implements OnInit {
       paymentType: ['', Validators.required]
     });
     this.financialDataFormGroup = this.fb.group({
-      data1: ['', Validators.required],
-      data2: ['', Validators.required],
-      data3: ['', Validators.required],
-      data4: ['', Validators.required],
-      data5: ['', Validators.required],
-      data6: ['', Validators.required],
-      data7: ['', Validators.required],
-      data8: ['', Validators.required]
+      totalAssets: ['', Validators.required],
+      currentAssets: ['', Validators.required],
+      currentLiabilities: ['', Validators.required],
+      foreignCapital: ['', Validators.required],
+      netProfit: ['', Validators.required],
+      salesRevenue: ['', Validators.required]
     });
   }
 
