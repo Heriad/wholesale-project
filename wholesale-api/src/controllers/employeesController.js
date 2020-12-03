@@ -52,14 +52,14 @@ export default {
     // Remove employee
     async remove(req, res, next) {
         if (!req.params.id) {
-            return res.status(400).send({ message: 'Required data: id' });
+          return res.status(400).send({ message: 'Required data missing: id' });
         }
         let dbResponse = await removeEmployee(req.params.id);
         console.log('api /removeEmployee', dbResponse);
         if (dbResponse.success) {
-            return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+          return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
         } else {
-            return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+          return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
         }
     }
 

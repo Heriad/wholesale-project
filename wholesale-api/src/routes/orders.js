@@ -9,11 +9,11 @@ export default () => {
     // POST /orders
     api.post('/', catchAsync(ordersController.create));
 
-    // GET /orders/:id
-    // api.get('/:id', catchAsync(ordersController.getOne));
+    // GET /orders/:email
+    api.get('/:email', catchAsync(ordersController.getForSpecificUser));
 
     // GET /orders
-    // api.get('/', catchAsync(ordersController.getAll));
+    api.get('/', catchAsync(ordersController.getAll));
 
     // PUT /orders/:id
     // api.put('/:id', catchAsync(ordersController.update));

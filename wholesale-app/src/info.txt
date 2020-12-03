@@ -11,7 +11,7 @@ dodac isLoading nw podsumowaniu finalizacji zamówienia
 ogarnac info z kosztem dostawy
 poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button
 usunac style -> class
-
+typy res/reponse per kazdą zwrotke
 
 ** W TRAKCIE
 dodac lazy-loading

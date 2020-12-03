@@ -22,7 +22,7 @@ export default {
     // Get product
     async getOne(req, res, next) {
         if (!req.params.id) {
-            return res.status(400).send({ message: 'Required data: id' });
+            return res.status(400).send({ message: 'Required data missing: id' });
         }
         let dbResponse = await getOneProduct(req.params.id);
         console.log('api /getOneProduct', dbResponse);
@@ -64,7 +64,7 @@ export default {
     // Remove product
     async remove(req, res, next) {
         if (!req.params.id) {
-            return res.status(400).send({ message: 'Required data: id' });
+            return res.status(400).send({ message: 'Required data missing: id' });
         }
         let dbResponse = await removeProduct(req.params.id);
         console.log('api /removeProduct', dbResponse);

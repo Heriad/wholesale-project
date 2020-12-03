@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col-5">
+  <div class="col-5 additional-menu">
     <button *ngIf="isBackBtnAvailable && !isAccountCreated" mat-raised-button color="primary" type="button" class="back-btn" (click)="goBack()"><mat-icon matSuffix>keyboard_arrow_left</mat-icon>{{ notifications.navigationBarComponent.backBtn }}</button>
+    <a *ngIf="api.user" routerLink="/orders-preview" routerLinkActive="active" class="router-link"><mat-icon class="main-menu-icon">list</mat-icon><span>{{ this.notifications.ordersPreviewComponent.myOrders }}</span></a>
   </div>
   <div class="col-2">
     <mat-card-header class="logo">

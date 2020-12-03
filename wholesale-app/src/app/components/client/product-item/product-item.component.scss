@@ -1,8 +1,4 @@
-.background-page {
-  height: 100vh;
-  background-image: linear-gradient(320deg, #0d2046, 55%, #011438 55%);
-  overflow: auto;
-}
+@import '../../../styles/background-page.scss';
 
 .card-panel {
   width: 80%;

@@ -47,7 +47,7 @@
           </div>
           <div class="col-6">
             <mat-form-field class="data-label">
-              <input matInput #companyName type="text" placeholder="{{ notifications.registerComponent.companyLabel }}" [maxLength]="companyNameMaxLength" formControlName="companyName">
+              <input matInput #companyName type="text" placeholder="{{ notifications.registerComponent.companyLabel }}" [maxLength]="companyNameMaxLength" formControlName="companyName" required>
             </mat-form-field>
             <span *ngIf="companyName.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ companyName.value.length }}/{{ companyNameMaxLength }}</span>
           </div>

@@ -215,6 +215,7 @@ export class CompleteTheOrderComponent implements OnInit {
       ...(this.riskValue && {
         riskValue: this.riskValue
       }),
+      orderDate: new Date(),
       orderStatus: OrderStatus.NEW
     };
     this.api.createOrder(newOrder).subscribe((res: ApiResponse) => {

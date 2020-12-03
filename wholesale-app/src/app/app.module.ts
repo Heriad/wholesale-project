@@ -14,8 +14,11 @@ import { CustomMaterialModule } from './custom-material/custom-material-module';
 import { RegisterComponent } from './components/shared/register/register.component';
 import { SentenceCaseTypeDirective } from './directives/sentence-case-type.directive';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
+import { TransformOrderStatusPipe } from './components/pipes/transform-order-status.pipe';
+import { TransformPaymentTypePipe } from './components/pipes/transform-payment-type.pipe';
 import { ProductItemComponent } from './components/client/product-item/product-item.component';
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
+import { OrdersPreviewComponent } from './components/client/orders-preview/orders-preview.component';
 import { NavigationBarComponent } from './components/fragments/navigation-bar/navigation-bar.component';
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
 import { AdministratorComponent } from './components/administrator/administrator/administrator.component';
@@ -43,10 +46,13 @@ import { NavigationBarAdministratorComponent } from './components/fragments/navi
     ProductItemComponent,
     NumbersOnlyDirective,
     ShoppingCartComponent,
+    OrdersPreviewComponent,
     NavigationBarComponent,
     AdministratorComponent,
     RemindPasswordComponent,
     ManageProductsComponent,
+    TransformOrderStatusPipe,
+    TransformPaymentTypePipe,
     ManageEmployeesComponent,
     CompleteTheOrderComponent,
     AddProductDialogComponent,

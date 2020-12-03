@@ -117,6 +117,14 @@ export class ApiUrlsService {
     return this.httpClient.post(environment.baseUrl + '/api/orders', order);
   }
 
+  getUserOrders(email: string) {
+    return this.httpClient.get(environment.baseUrl + '/api/orders/' + email);
+  }
+
+  getOrders() {
+    return this.httpClient.get(environment.baseUrl + '/api/orders');
+  }
+
   // Countries api
 
   getCountries() {

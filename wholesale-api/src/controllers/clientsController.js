@@ -22,7 +22,7 @@ export default {
   // Find client
   async getOne(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data: id' });
+      return res.status(400).send({ message: 'Required data missing: id' });
     }
     let dbResponse = await getOneClient(req.params.id);
     console.log('api /getOneClient - ', dbResponse);
@@ -48,7 +48,7 @@ export default {
   // Update client
   async update(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data: id' });
+      return res.status(400).send({ message: 'Required data missing: id' });
     }
     let dbResponse = await updateClient(req.params.id);
     if (dbResponse.success) {
@@ -61,7 +61,7 @@ export default {
   // Delete client
   async remove(req, res, next) {
     if (!req.params.id) {
-      return res.status(400).send({ message: 'Required data: id' });
+      return res.status(400).send({ message: 'Required data missing: id' });
     }
     let dbResponse = await removeClient(req.params.id);
     console.log('api /removeClient - ', dbResponse);

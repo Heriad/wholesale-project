@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/shared/register/register.compone
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
 import { ProductItemComponent } from './components/client/product-item/product-item.component';
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
+import { OrdersPreviewComponent } from './components/client/orders-preview/orders-preview.component';
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
 import { AdministratorComponent } from './components/administrator/administrator/administrator.component';
 import { CompleteTheOrderComponent } from './components/client/complete-the-order/complete-the-order.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoggedInAuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [LoggedInAuthGuard] },
   { path: 'administrator', component: AdministratorComponent, canActivate: [AuthGuard] },
-  { path: 'complete-the-order', component: CompleteTheOrderComponent, canActivate: [AuthGuard] },
+  { path: 'orders-preview', component: OrdersPreviewComponent, canActivate: [AuthGuard] },
+  { path: 'complete-the-order', component: CompleteTheOrderComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

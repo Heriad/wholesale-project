@@ -101,6 +101,10 @@ export class NavigationBarComponent implements OnInit {
         this.subtitle = this.notifications.shoppingCartComponent.cart;
         break;
       }
+      case 'orders-preview': {
+        this.subtitle = this.notifications.ordersPreviewComponent.myOrders;
+        break;
+      }
       case 'complete-the-order': {
         this.subtitle = this.notifications.completeTheOrderComponent.completeTheOrder;
         break;

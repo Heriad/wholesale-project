@@ -5,7 +5,7 @@ export enum OrderStatus {
   NEW = 'new',
   INPROGRESS = 'inProgress',
   COMPLETED = 'completed',
-  REJECTED = 'rejected'
+  CANCELED = 'canceled'
 }
 
 export class OrderedProducts {
@@ -44,5 +44,6 @@ export class Order {
   deliveryCost: number;
   totalPrice: number;
   riskValue?: number;
+  orderDate: Date;
   orderStatus: OrderStatus;
 }

@@ -24,6 +24,7 @@
 }
 
 .back-btn {
+  float: left;
   padding-left: 5px;
 }
 
@@ -42,4 +43,8 @@
   margin-top: -5px;
   margin-bottom: 16px;
   justify-content: center;
+}
+
+.additional-menu {
+  text-align: center;
 }

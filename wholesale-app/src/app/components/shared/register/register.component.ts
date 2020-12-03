@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      companyName: [''],
+      companyName: ['', Validators.required],
       regon: [''],
       krs: [''],
       type: [''],
