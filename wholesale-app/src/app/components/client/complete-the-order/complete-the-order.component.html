@@ -258,8 +258,8 @@
               </div>
               <div class="col-4 col-padding-top">
                 <p>{{ orderPrice }} zł</p>
-                <p>{{ deliveryPrice }} zł</p>
-                <p class="final-price">{{ orderPrice + deliveryPrice }} zł</p>
+                <p>{{ deliveryCost }} zł</p>
+                <p class="final-price">{{ orderPrice + deliveryCost }} zł</p>
               </div>
             </div>
           </div>
@@ -268,7 +268,7 @@
           <div class="col-6 mx-auto">
             <mat-form-field class="order-notes">
               <mat-label>{{ notifications.completeTheOrderComponent.orderNotesLabel }}</mat-label>
-              <textarea #notesToOrder cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" [maxLength]="notesToOrderMaxLength" matInput></textarea>
+              <textarea #notesToOrder cdkTextareaAutosize cdkAutosizeMinRows="3" cdkAutosizeMaxRows="6" [maxLength]="notesToOrderMaxLength" [(ngModel)]="orderComments" matInput></textarea>
             </mat-form-field>
             <span *ngIf="notesToOrder.value.length > 0" class="float-right character-counter">{{ notifications.characterCounter.characterLimit }} {{ notesToOrder.value.length }}/{{ notesToOrderMaxLength }}</span>
           </div>

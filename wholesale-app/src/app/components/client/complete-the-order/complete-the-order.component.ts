@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ShoppingCart } from 'src/app/models/product.model';
-import { GetProductResponse } from 'src/app/models/response.model';
+import { PaymentType } from 'src/app/models/payment-type.model';
+import { DeliveryType } from 'src/app/models/delivery-type.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DeliveryType, PaymentType } from './../../../models/order.model';
+import { GetProductResponse, ApiResponse } from 'src/app/models/response.model';
+import { Order, OrderedProducts, OrderStatus } from './../../../models/order.model';
 import { WaitResponseDialogComponent } from '../../fragments/wait-response-dialog/wait-response-dialog.component';
 import { OrderNotificationDialogComponent } from '../../fragments/order-notification-dialog/order-notification-dialog.component';
 
@@ -35,7 +37,9 @@ export class CompleteTheOrderComponent implements OnInit {
 
   lastYear: number;
   countries: any[];
-  deliveryPrice: number;
+  riskValue: number;
+  deliveryCost: number;
+  orderComments: string;
   shoppingCartPrice: number;
   paymentFormGroup: FormGroup;
   deliveryFormGroup: FormGroup;
@@ -52,6 +56,8 @@ export class CompleteTheOrderComponent implements OnInit {
   deliveryAddressError = '';
   PaymentType = PaymentType;
   DeliveryType = DeliveryType;
+
+  orderedProducts: Array<OrderedProducts> = [];
 
   constructor(private fb: FormBuilder, public api: ApiUrlsService, private router: Router, public dialogService: MatDialog,
               private domSanitizer: DomSanitizer) {
@@ -85,9 +91,9 @@ export class CompleteTheOrderComponent implements OnInit {
       this.deliveryAddressError = '';
     }
     if (this.deliveryFormGroup.value.deliveryType === DeliveryType.PERSONAL) {
-      this.deliveryPrice = 0;
+      this.deliveryCost = 0;
     } else {
-      this.deliveryPrice = 20;
+      this.deliveryCost = 20;
     }
   }
 
@@ -134,6 +140,10 @@ export class CompleteTheOrderComponent implements OnInit {
             product.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' +
               res.data._attachments.productImage.buffer);
             this.productList.push(product);
+            this.orderedProducts.push({
+              productId: res.data._id,
+              quantity: el.quantity
+            });
           }
         }, (err) => reject);
       });
@@ -153,26 +163,74 @@ export class CompleteTheOrderComponent implements OnInit {
     });
   }
 
-  submitOrder() {
-    // todo w srodku subscribe po wywolaniu api z zlozeniem zamowienia
+  calculateRiskValue() {
+    //todo model ryzyka zaimplementowac tutaj
+    this.riskValue = 51;
+  }
 
+  submitOrder() {
     const waitDialogRef = this.dialogService.open((WaitResponseDialogComponent), {
       width: '500px',
       disableClose: true
     });
     waitDialogRef.componentInstance.headerText = this.notifications.completeTheOrderComponent.orderProcess;
     waitDialogRef.componentInstance.contentText = this.notifications.completeTheOrderComponent.wait;
-
-    localStorage.removeItem('shoppingCart');
-    localStorage.removeItem('shoppingCartPrice');
-    localStorage.removeItem('shoppingCartQuantity');
-
-    const dialogRef = this.dialogService.open((OrderNotificationDialogComponent), {
-      width: '500px',
-      disableClose: true
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.router.navigate(['/']);
+    this.calculateRiskValue();
+    const newOrder: Order = {
+      orderedProducts: this.orderedProducts,
+      clientData: {
+        name: this.clientDataFormGroup.controls.name.value,
+        surname: this.clientDataFormGroup.controls.surname.value,
+        email: this.clientDataFormGroup.controls.email.value,
+        companyName: this.clientDataFormGroup.controls.companyName.value,
+        regon: this.clientDataFormGroup.controls.regon.value,
+        krs: this.clientDataFormGroup.controls.krs.value
+      },
+      deliveryType: this.deliveryFormGroup.controls.deliveryType.value,
+      ...(this.deliveryFormGroup.controls.deliveryType.value === DeliveryType.SUPPLY && this.deliveryFormGroup.valid && {
+        deliveryAddress: {
+          streetAndNumber: this.supplyAddressFormGroup.controls.streetAndNumber.value,
+          postalCode: this.supplyAddressFormGroup.controls.postalCode.value,
+          townName: this.supplyAddressFormGroup.controls.townName.value,
+          country: this.supplyAddressFormGroup.controls.country.value
+        },
+      }),
+      paymentType: this.paymentFormGroup.controls.paymentType.value,
+      ...(this.paymentFormGroup.controls.paymentType.value === PaymentType.DEFER && this.financialDataFormGroup.valid && {
+        financialData: {
+          totalAssets: this.financialDataFormGroup.controls.totalAssets.value,
+          currentAssets: this.financialDataFormGroup.controls.currentAssets.value,
+          currentLiabilities: this.financialDataFormGroup.controls.currentLiabilities.value,
+          foreignCapital: this.financialDataFormGroup.controls.foreignCapital.value,
+          netProfit: this.financialDataFormGroup.controls.netProfit.value,
+          salesRevenue: this.financialDataFormGroup.controls.salesRevenue.value
+        }
+      }),
+      ...(this.orderComments && {
+        comments: this.orderComments
+      }),
+      orderValue: this.orderPrice,
+      deliveryCost: this.deliveryCost,
+      totalPrice: this.orderPrice + this.deliveryCost,
+      ...(this.riskValue && {
+        riskValue: this.riskValue
+      }),
+      orderStatus: OrderStatus.NEW
+    };
+    this.api.createOrder(newOrder).subscribe((res: ApiResponse) => {
+      if (res.success) {
+        localStorage.removeItem('shoppingCart');
+        localStorage.removeItem('shoppingCartPrice');
+        localStorage.removeItem('shoppingCartQuantity');
+        waitDialogRef.close();
+        const dialogRef = this.dialogService.open((OrderNotificationDialogComponent), {
+          width: '500px',
+          disableClose: true
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['/']);
+        });
+      }
     });
   }
 

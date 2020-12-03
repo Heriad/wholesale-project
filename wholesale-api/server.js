@@ -13,6 +13,7 @@ initializePassport(passport);
 
 // Routes import
 import login from './src/routes/login';
+import orders from './src/routes/orders';
 import clients from './src/routes/clients';
 import products from './src/routes/products';
 import employees from './src/routes/employees';
@@ -41,6 +42,7 @@ server.use(passport.session());
 const port = process.env.port || 3000;
 
 // Routes config
+server.use('/api/orders', orders());
 server.use('/api/clients', clients());
 server.use('/api/products', products());
 server.use('/api/employees', employees());

@@ -34,7 +34,7 @@ export default {
 },
 
 
-  // Find client
+  // Find clients
   async getAll(req, res, next) {
     let dbResponse = await getAllClients();
     console.log('api /getAllClients - ', dbResponse);

@@ -1,10 +1,11 @@
-import { environment } from './../../environments/environment';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Order } from '../models/order.model';
+import { Client } from '../models/client.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 import { Product, UpdatedProduct } from '../models/product.model';
 import { Employee, UpdatedEmployee } from '../models/employee.model';
-import { Client } from '../models/client.model';
-import { Observable } from 'rxjs';
 import notificationsPl from '../../assets/dictionary/notifications-pl.json';
 import notificationsEn from '../../assets/dictionary/notifications-en.json';
 
@@ -108,6 +109,12 @@ export class ApiUrlsService {
 
   removeProduct(id: string) {
     return this.httpClient.delete(environment.baseUrl + '/api/products/' + id);
+  }
+
+  // Order api
+
+  createOrder(order: Order) {
+    return this.httpClient.post(environment.baseUrl + '/api/orders', order);
   }
 
   // Countries api

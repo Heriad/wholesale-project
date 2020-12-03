@@ -1,4 +1,4 @@
-export const userType = {
+export const UserRole = {
   ALL: 'all',
   CLIENT: 'client',
   EMPLOYEE: 'employee',
