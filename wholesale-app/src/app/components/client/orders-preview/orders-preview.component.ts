@@ -1,15 +1,28 @@
+import { MatSort } from '@angular/material/sort';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeliveryType } from 'src/app/models/delivery-type.model';
+import { GetProductResponse } from 'src/app/models/response.model';
 import { Order, OrderStatus } from './../../../models/order.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
-import { DeliveryType } from 'src/app/models/delivery-type.model';
-import { MatSort } from '@angular/material/sort';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
+
 
 @Component({
   selector: 'app-orders-preview',
   templateUrl: './orders-preview.component.html',
-  styleUrls: ['./orders-preview.component.scss']
+  styleUrls: ['./orders-preview.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
+
 export class OrdersPreviewComponent implements OnInit {
 
   @ViewChild(MatSort) set content1(sort: MatSort) { this.dataSourceAll.sort = sort; }
@@ -18,6 +31,10 @@ export class OrdersPreviewComponent implements OnInit {
   @ViewChild(MatSort) set content4(sort: MatSort) { this.dataSourceInProgress.sort = sort; }
 
   notifications;
+  expandedElement;
+  selectedOrderDetails;
+
+  memorizedIndex: number;
 
   allOrders: Array<Order> = [];
   canceledOrders: Array<Order> = [];
@@ -32,14 +49,28 @@ export class OrdersPreviewComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'orderDate', 'deliveryInformation', 'totalPrice', 'paymentType', 'status', 'orderDetails'];
 
-  constructor(public api: ApiUrlsService) { }
+  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer) { }
 
   getNotifications(notifications) {
     this.notifications = notifications;
   }
 
-  orderDetails(order) {
-    console.log('implement me');
+  orderDetails(order, index) {
+    if (order && this.memorizedIndex !== index) {
+      this.memorizedIndex = index;
+      this.selectedOrderDetails = [];
+      order.orderedProducts.forEach(productBasicData => {
+        let product: any;
+        this.api.getProduct(productBasicData.productId).subscribe((res: GetProductResponse) => {
+          if (res.success) {
+            product = res.data;
+            product.quantity = productBasicData.quantity;
+            product.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + res.data._attachments.productImage.buffer);
+            this.selectedOrderDetails.push(product);
+          }
+        });
+      });
+    }
   }
 
   assignOrders() {

@@ -91,7 +91,10 @@
     "deferPaymentStatus": "Odroczona płatność",
     "deliveryAddress": "Adres wysyłki",
     "details": "Szczegóły",
-    "personalCollection": "Odbiór osobisty"
+    "personalCollection": "Odbiór osobisty",
+    "quantity": "Ilość:",
+    "unitPrice": "Cena jednostkowa:",
+    "totalPrice": "Łączna cena:"
   },
   "completeTheOrderComponent": {
     "completeTheOrder": "Finalizacja zamówienia",

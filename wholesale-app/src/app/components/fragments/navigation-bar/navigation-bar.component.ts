@@ -80,6 +80,7 @@ export class NavigationBarComponent implements OnInit {
         this.subtitle = this.notifications.application.name;
         break;
       }
+      case 'login?returnUrl=%2Fcomplete-the-order':
       case 'login': {
         this.subtitle = this.notifications.loginComponent.loginLabel;
         break;

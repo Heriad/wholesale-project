@@ -91,7 +91,10 @@
     "deferPaymentStatus": "Deferred payment",
     "deliveryAddress": "Delivery address",
     "details": "Details",
-    "personalCollection": "Personal collection"
+    "personalCollection": "Personal collection",
+    "quantity": "Quantity:",
+    "unitPrice": "Unit price:",
+    "totalPrice": "Total price:"
   },
   "completeTheOrderComponent": {
     "completeTheOrder": "Order finalization",

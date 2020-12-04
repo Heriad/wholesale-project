@@ -1,22 +1,20 @@
 ** DO ZROBIENIA
 panel do wysyłania maila oraz szkielet maila przygotować do zrobienia
 usunąć wszystkie todo i consolelogi
-
 dodac kółeczko do scrollowania w góre może na ekranie admina?
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 z roli klienta posusuwac zbędne klasy CSS
 ogarnac u admina kolory i panel
-poprawic col-3/6 wszedzie z mx-auto
-dodac isLoading nw podsumowaniu finalizacji zamówienia
 ogarnac info z kosztem dostawy
-poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button
 usunac style -> class
 typy res/reponse per kazdą zwrotke
+przy podlgadaniu szczegółów w zamówien zrobic tak, ze jak raz sie juz je pobierze, to sie gdzies na boku zapisuja, by nie mocna byla ciagle api wywolywac
+
 
 ** W TRAKCIE
 dodac lazy-loading
+poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button
 stworzyc model ryzyka -> usprawnić go
-podglad złozonych zamówień, podział na obecne/historia
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 
@@ -99,6 +97,9 @@ rozplanowac dane do modelu ryzyka
 napisac formularze na ekranie finalizacji zamowienia (twoje dane-> done, dostawa-> done, płatność-> done, uwagi do zamówienia -> done)
 poprawić model order -> osobno model do platnosci i zamowien
 zmienic type user na role user-a -> na końcu pracy
+podglad złozonych zamówień, podział na obecne/historia
+dodac isLoading nw podsumowaniu finalizacji zamówienia -> dialog ze złożeniem zamówienia
+poprawic col-3/6 wszedzie z mx-auto
 
 
 ***WYMAGANIA

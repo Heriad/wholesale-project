@@ -1,5 +1,5 @@
-import { PaymentType } from './../../models/payment-type.model';
 import { Pipe, PipeTransform } from '@angular/core';
+import { PaymentType } from '../models/payment-type.model';
 
 @Pipe({
   name: 'transformPaymentType'

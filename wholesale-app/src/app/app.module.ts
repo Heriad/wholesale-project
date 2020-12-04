@@ -9,13 +9,13 @@ import { PriceOnlyDirective } from './directives/price-only.directive';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { LoginComponent } from './components/shared/login/login.component';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { TransformOrderStatusPipe } from './pipes/transform-order-status.pipe';
+import { TransformPaymentTypePipe } from './pipes/transform-payment-type.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './custom-material/custom-material-module';
 import { RegisterComponent } from './components/shared/register/register.component';
 import { SentenceCaseTypeDirective } from './directives/sentence-case-type.directive';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
-import { TransformOrderStatusPipe } from './components/pipes/transform-order-status.pipe';
-import { TransformPaymentTypePipe } from './components/pipes/transform-payment-type.pipe';
 import { ProductItemComponent } from './components/client/product-item/product-item.component';
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { OrdersPreviewComponent } from './components/client/orders-preview/orders-preview.component';
@@ -33,6 +33,7 @@ import { ImagePreviewDialogComponent } from './components/fragments/image-previe
 import { CartNotificationDialogComponent } from './components/fragments/cart-notification-dialog/cart-notification-dialog.component';
 import { OrderNotificationDialogComponent } from './components/fragments/order-notification-dialog/order-notification-dialog.component';
 import { NavigationBarAdministratorComponent } from './components/fragments/navigation-bar-administrator/navigation-bar-administrator.component';
+
 
 @NgModule({
   declarations: [
