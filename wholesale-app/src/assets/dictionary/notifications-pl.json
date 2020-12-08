@@ -171,5 +171,13 @@
     "removeItemFromCartDescription": "Czy aby na pewno? Potwierdzenie spowoduje usunięcie produktu z koszyka.",
     "cancel": "Anuluj",
     "confirm": "Zatwierdź"
+  },
+  "orderNotificationDialogComponent": {
+    "orderSubmitted": "Złożono zamówienie",
+    "dialogNotificationContent": "Twoje zamówienie zostało złożone. Dziękujemy.",
+    "close": "Zamknij"
+  },
+  "errorsHandlerService": {
+    "errorOccur": "Wystąpił błąd"
   }
 }

@@ -1,9 +1,8 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AuthService } from 'src/app/services/auth.service';
 import { GetProductsResponse } from 'src/app/models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
 
 @Component({
   selector: 'app-main-page',
@@ -18,8 +17,7 @@ export class MainPageComponent implements OnInit {
   isLoading: boolean;
   isScrollBtnAvailable: boolean;
 
-  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, private router: Router,
-              private authService: AuthService) {}
+  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, public errHandler: ErrorsHandlerService) {}
 
   onScroll(event) {
     if ((event.target as Element).scrollTop > 0) {
@@ -52,7 +50,12 @@ export class MainPageComponent implements OnInit {
         });
       }
       this.isLoading = false;
-    });
+    }, () => {
+      const errorBar = this.errHandler.openErrorBar(this.notifications.errorsHandlerService.errorOccur);
+      errorBar.onAction().subscribe(() => {
+        this.ngOnInit();
+      });
+     });
   }
 
 }

@@ -14,3 +14,43 @@ table {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.mat-column-position {
+  width: 5%;
+}
+
+.mat-column-clientName {
+  width: 10%;
+}
+
+.mat-column-clientSurname {
+  width: 10%;
+}
+
+.mat-column-clientEmail {
+  width: 15%;
+}
+
+.mat-column-orderDate {
+  width: 10%;
+}
+
+.mat-column-deliveryInformation {
+  width: 15%;
+}
+
+.mat-column-totalPrice {
+  width: 5%;
+}
+
+.mat-column-status {
+  width: 10%;
+}
+
+.mat-column-orderDetails {
+  width: 10%;
+}
+
+.mat-column-cancelOrder {
+  width: 10%;
+}

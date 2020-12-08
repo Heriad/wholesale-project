@@ -1,15 +1,14 @@
 <div class="dialog">
   <div class="dialog-header">
-    <h4 class="dialog-title">Złożono zamówienie</h4>
+    <h4 class="dialog-title">{{ header }}</h4>
     <button type="button" class="close" mat-dialog-close>
       <span>&times;</span>
     </button>
   </div>
   <div class="dialog-content">
-    <span>Twoje zamówienie zostało złożone. Dziękujemy.</span>
+    <span>{{ content }}</span>
   </div>
   <div class="dialog-actions">
-    <button mat-raised-button type="button" color="primary" mat-dialog-close>Zamknij</button>
+    <button mat-raised-button type="button" color="primary" mat-dialog-close>{{ closeBtn }}</button>
   </div>
 </div>
-  

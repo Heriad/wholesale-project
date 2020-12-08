@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShoppingCart } from './../../../models/product.model';
 import { GetProductResponse } from './../../../models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
 import { CartNotificationDialogComponent } from '../../fragments/cart-notification-dialog/cart-notification-dialog.component';
 
@@ -29,7 +30,7 @@ export class ProductItemComponent implements OnInit {
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
 
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,
-              public dialogService: MatDialog) {}
+              public dialogService: MatDialog, public errHandler: ErrorsHandlerService) {}
 
   getNotifications(notifications) {
     this.notifications = notifications;
@@ -92,7 +93,12 @@ export class ProductItemComponent implements OnInit {
           this.updateCart();
         }
         this.isLoading = false;
-      });
+      }, () => {
+        const errorBar = this.errHandler.openErrorBar(this.notifications.errorsHandlerService.errorOccur);
+        errorBar.onAction().subscribe(() => {
+          this.ngOnInit();
+        });
+       });
     });
   }
 

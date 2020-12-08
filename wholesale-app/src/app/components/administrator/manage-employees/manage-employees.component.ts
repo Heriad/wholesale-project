@@ -1,13 +1,14 @@
-import { WorkType } from './../../../models/employee.model';
-import { AddEmployeeDialogComponent } from './../../fragments/add-employee-dialog/add-employee-dialog.component';
-import { DialogHelperService } from './../../../services/dialog-helper.service';
-import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiUrlsService } from './../../../services/api-urls.service';
-import { MatDialog } from '@angular/material/dialog';
-import { GetEmployeesResponse, ApiResponse } from 'src/app/models/response.model';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { WorkType } from './../../../models/employee.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ApiUrlsService } from './../../../services/api-urls.service';
+import { GetEmployeesResponse, ApiResponse } from 'src/app/models/response.model';
+import { DialogHelperService } from './../../../services/dialog-helper.service';
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
+import { AddEmployeeDialogComponent } from './../../fragments/add-employee-dialog/add-employee-dialog.component';
+import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-manage-employees',
@@ -16,15 +17,18 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ManageEmployeesComponent implements OnInit {
 
-  constructor(public api: ApiUrlsService, public dialogService: MatDialog, public dialogHelper: DialogHelperService) { }
-
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['position', 'name', 'surname', 'email', 'workType', 'edit', 'delete'];
-  dataSource = new MatTableDataSource();
-  workType: typeof WorkType = WorkType;
   isLoading: boolean;
+
   isOpened = true;
+  dataSource = new MatTableDataSource();
+
+  workType: typeof WorkType = WorkType;
+  displayedColumns: string[] = ['position', 'name', 'surname', 'email', 'workType', 'edit', 'delete'];
+
+  constructor(public api: ApiUrlsService, public dialogService: MatDialog, public dialogHelper: DialogHelperService,
+              public errHandler: ErrorsHandlerService) { }
 
   filterData(event: Event) {
     const value = (event.target as HTMLInputElement).value;
@@ -101,6 +105,11 @@ export class ManageEmployeesComponent implements OnInit {
         });
       }
       this.isLoading = false;
+    }, () => {
+      const errorBar = this.errHandler.openErrorBar('Wystąpił błąd');
+      errorBar.onAction().subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 

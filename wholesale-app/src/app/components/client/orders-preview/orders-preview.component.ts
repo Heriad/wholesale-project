@@ -7,8 +7,7 @@ import { GetProductResponse } from 'src/app/models/response.model';
 import { Order, OrderStatus } from './../../../models/order.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-
-
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
 
 @Component({
   selector: 'app-orders-preview',
@@ -50,7 +49,7 @@ export class OrdersPreviewComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'orderDate', 'deliveryInformation', 'totalPrice', 'paymentType', 'status', 'orderDetails'];
 
-  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer) { }
+  constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, public errHandler: ErrorsHandlerService) { }
 
   getNotifications(notifications) {
     this.notifications = notifications;
@@ -107,7 +106,12 @@ export class OrdersPreviewComponent implements OnInit {
         this.assignOrders();
         this.isLoading = false;
       }
-    });
+    }, () => {
+      const errorBar = this.errHandler.openErrorBar(this.notifications.errorsHandlerService.errorOccur);
+      errorBar.onAction().subscribe(() => {
+        this.ngOnInit();
+      });
+     });
   }
 
 }

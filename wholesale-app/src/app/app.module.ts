@@ -16,6 +16,7 @@ import { CustomMaterialModule } from './custom-material/custom-material-module';
 import { RegisterComponent } from './components/shared/register/register.component';
 import { SentenceCaseTypeDirective } from './directives/sentence-case-type.directive';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
+import { ErrorBarComponent } from './components/fragments/error-bar/error-bar.component';
 import { ProductItemComponent } from './components/client/product-item/product-item.component';
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { OrdersPreviewComponent } from './components/client/orders-preview/orders-preview.component';
@@ -41,6 +42,7 @@ import { NavigationBarAdministratorComponent } from './components/fragments/navi
     AppComponent,
     LoginComponent,
     ClientComponent,
+    ErrorBarComponent,
     RegisterComponent,
     MainPageComponent,
     EmployeeComponent,

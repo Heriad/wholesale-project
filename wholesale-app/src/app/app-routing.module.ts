@@ -7,6 +7,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 import { RegisterComponent } from './components/shared/register/register.component';
 import { MainPageComponent } from './components/shared/main-page/main-page.component';
+import { CompleteTheOrderAuthGuard } from './services/complete-the-order-auth-guard.service';
 import { ProductItemComponent } from './components/client/product-item/product-item.component';
 import { ShoppingCartComponent } from './components/client/shopping-cart/shopping-cart.component';
 import { OrdersPreviewComponent } from './components/client/orders-preview/orders-preview.component';
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [LoggedInAuthGuard] },
   { path: 'administrator', component: AdministratorComponent, canActivate: [AuthGuard] },
   { path: 'orders-preview', component: OrdersPreviewComponent, canActivate: [AuthGuard] },
-  { path: 'complete-the-order', component: CompleteTheOrderComponent, canActivate: [AuthGuard] }
+  { path: 'complete-the-order', component: CompleteTheOrderComponent, canActivate: [CompleteTheOrderAuthGuard] }
 ];
 
 @NgModule({

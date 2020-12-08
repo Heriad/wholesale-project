@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ShoppingCart } from './../../../models/product.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { GetProductResponse } from 'src/app/models/response.model';
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
 import { NavigationBarComponent } from '../../fragments/navigation-bar/navigation-bar.component';
 import { ConfirmationDialogComponent } from '../../fragments/confirmation-dialog/confirmation-dialog.component';
 import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialog/image-preview-dialog.component';
@@ -34,7 +35,7 @@ export class ShoppingCartComponent implements OnInit {
   @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, public dialogService: MatDialog,
-              private router: Router) {}
+              private router: Router, public errHandler: ErrorsHandlerService) {}
 
 
   getNotifications(notifications) {
@@ -94,7 +95,12 @@ export class ShoppingCartComponent implements OnInit {
               res.data._attachments.productImage.buffer);
             this.productList.push(product);
           }
-        }, (err) => reject);
+        }, () => {
+          const errorBar = this.errHandler.openErrorBar(this.notifications.errorsHandlerService.errorOccur);
+          errorBar.onAction().subscribe(() => {
+            this.getProducts();
+          });
+         });
       });
       const getProductsInterval = setInterval(() => {
         if (this.shoppingCart.length === this.productList.length) {

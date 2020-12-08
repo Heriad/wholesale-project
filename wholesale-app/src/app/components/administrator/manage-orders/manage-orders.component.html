@@ -5,6 +5,21 @@
     <td mat-cell *matCellDef="let element; let i = index;" >{{ i + 1 }}</td>
   </ng-container>
 
+  <ng-container matColumnDef="clientName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+    <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="clientSurname">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+    <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.surname }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="clientEmail">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+    <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.email }}</td>
+  </ng-container>
+
   <ng-container matColumnDef="orderDate">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
     <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderDate | date: 'dd-MM-yyyy HH:mm' }}</td>
@@ -15,34 +30,14 @@
     <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryType === DeliveryType.PERSONAL ? notifications.ordersPreviewComponent.personalCollection : element.deliveryAddress.streetAndNumber + ' ' + element.deliveryAddress.postalCode + ' ' + element.deliveryAddress.townName }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="deliveryCost">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Koszt dostawy</th>
-    <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryCost }} zł</td>
-  </ng-container>
-
   <ng-container matColumnDef="totalPrice">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
     <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.totalPrice }} zł</td>
   </ng-container>
 
-  <ng-container matColumnDef="riskValue">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Ryzyko</th>
-    <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.riskValue }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="paymentType">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sposób płatności</th>
-    <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.paymentType | transformPaymentType: notifications }}</td>
-  </ng-container>
-
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
     <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderStatus | transformOrderStatus: notifications }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="comments">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Uwagi</th>
-    <td mat-cell *matCellDef="let element" class="truncate-table-data padding-table-data" matTooltipClass="tooltip-table-data" [matTooltip]="element.comments">{{ element.comments ? element.comments : 'Brak' }}</td>
   </ng-container>
 
   <ng-container matColumnDef="orderDetails">
@@ -52,7 +47,7 @@
 
   <ng-container matColumnDef="cancelOrder">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Anuluj</th>
-    <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" [disabled]="element.orderStatus === OrderStatus.CANCELED" (click)="cancelOrder(element._id)">Anuluj zamówienie</button></td>
+    <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" [disabled]="element.orderStatus === OrderStatus.CANCELED || element.orderStatus === OrderStatus.COMPLETED" (click)="cancelOrder(element._id)">Anuluj zamówienie</button></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>

@@ -1,13 +1,14 @@
-import { ImagePreviewDialogComponent } from './../../fragments/image-preview-dialog/image-preview-dialog.component';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AddProductDialogComponent } from './../../fragments/add-product-dialog/add-product-dialog.component';
-import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
-import { ApiUrlsService } from './../../../services/api-urls.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import { ApiUrlsService } from './../../../services/api-urls.service';
 import { GetProductsResponse, ApiResponse } from 'src/app/models/response.model';
-import { MatDialog } from '@angular/material/dialog';
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
+import { AddProductDialogComponent } from './../../fragments/add-product-dialog/add-product-dialog.component';
+import { ConfirmationDialogComponent } from './../../fragments/confirmation-dialog/confirmation-dialog.component';
+import { ImagePreviewDialogComponent } from './../../fragments/image-preview-dialog/image-preview-dialog.component';
 
 @Component({
   selector: 'app-manage-products',
@@ -16,13 +17,16 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ManageProductsComponent implements OnInit {
 
-  constructor(public api: ApiUrlsService, public dialogService: MatDialog, private domSanitizer: DomSanitizer) { }
-
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  displayedColumns: string[] = ['position', 'name', 'image', 'description', 'price', 'producer', 'date', 'edit', 'delete'];
-  dataSource = new MatTableDataSource();
   isLoading: boolean;
+
+  dataSource = new MatTableDataSource();
+
+  displayedColumns: string[] = ['position', 'name', 'image', 'description', 'price', 'producer', 'date', 'edit', 'delete'];
+
+  constructor(public api: ApiUrlsService, public dialogService: MatDialog, private domSanitizer: DomSanitizer,
+              public errHandler: ErrorsHandlerService) { }
 
   filterData(event: Event) {
     const value = (event.target as HTMLInputElement).value;
@@ -94,6 +98,11 @@ export class ManageProductsComponent implements OnInit {
         });
       }
       this.isLoading = false;
+    }, () => {
+      const errorBar = this.errHandler.openErrorBar('Wystąpił błąd');
+      errorBar.onAction().subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 

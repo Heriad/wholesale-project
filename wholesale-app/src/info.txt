@@ -8,15 +8,13 @@ ogarnac u admina kolory i panel
 ogarnac info z kosztem dostawy
 usunac style -> class
 typy res/reponse per kazdą zwrotke
-przy podlgadaniu szczegółów w zamówien zrobic tak, ze jak raz sie juz je pobierze, to sie gdzies na boku zapisuja, by nie mocna byla ciagle api wywolywac
 loading-spinner -> wyodrebnic te klase jest czesto uzywana
-info jak wystapi api z bledem i przycisk odswiez na snackbarem
 u admina nadać kolumnom tabeli odpowiednie szerokosci
+przetłumaczyc snackbar z bledem + przycisk odswiez
 
 
 ** W TRAKCIE
 dodac lazy-loading
-poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button
 stworzyc model ryzyka -> usprawnić go
 ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
@@ -103,6 +101,9 @@ zmienic type user na role user-a -> na końcu pracy
 podglad złozonych zamówień, podział na obecne/historia
 dodac isLoading nw podsumowaniu finalizacji zamówienia -> dialog ze złożeniem zamówienia
 poprawic col-3/6 wszedzie z mx-auto
+przy podlgadaniu szczegółów w zamówien zrobic tak, ze jak raz sie juz je pobierze, to sie gdzies na boku zapisuja, by nie mocna byla ciagle api wywolywac
+poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button -> jednak nie da się, validacja działa
+info jak wystapi api z bledem i przycisk odswiez na snackbarem
 
 
 ***WYMAGANIA

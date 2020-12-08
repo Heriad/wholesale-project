@@ -8,6 +8,7 @@ import { DeliveryType } from 'src/app/models/delivery-type.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GetProductResponse, ApiResponse } from 'src/app/models/response.model';
+import { ErrorsHandlerService } from './../../../services/errors-handler.service';
 import { Order, OrderedProducts, OrderStatus } from './../../../models/order.model';
 import { WaitResponseDialogComponent } from '../../fragments/wait-response-dialog/wait-response-dialog.component';
 import { OrderNotificationDialogComponent } from '../../fragments/order-notification-dialog/order-notification-dialog.component';
@@ -60,7 +61,7 @@ export class CompleteTheOrderComponent implements OnInit {
   orderedProducts: Array<OrderedProducts> = [];
 
   constructor(private fb: FormBuilder, public api: ApiUrlsService, private router: Router, public dialogService: MatDialog,
-              private domSanitizer: DomSanitizer) {
+              private domSanitizer: DomSanitizer, public errHandler: ErrorsHandlerService) {
     this.countries = this.api.getCountries();
   }
 
@@ -145,7 +146,12 @@ export class CompleteTheOrderComponent implements OnInit {
               quantity: el.quantity
             });
           }
-        }, (err) => reject);
+        }, () => {
+          const errorBar = this.errHandler.openErrorBar(this.notifications.errorsHandlerService.errorOccur);
+          errorBar.onAction().subscribe(() => {
+            this.getProducts();
+          });
+         });
       });
       const getProductsInterval = setInterval(() => {
         if (this.shoppingCart.length === this.productList.length) {
@@ -228,6 +234,9 @@ export class CompleteTheOrderComponent implements OnInit {
           width: '500px',
           disableClose: true
         });
+        dialogRef.componentInstance.header = this.notifications.orderNotificationDialogComponent.orderSubmitted;
+        dialogRef.componentInstance.content = this.notifications.orderNotificationDialogComponent.dialogNotificationContent;
+        dialogRef.componentInstance.closeBtn = this.notifications.orderNotificationDialogComponent.close;
         dialogRef.afterClosed().subscribe(() => {
           this.router.navigate(['/']);
         });

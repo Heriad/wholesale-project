@@ -32,7 +32,7 @@
     "mainPageBtn": "Home",
     "loginLink": "Log in",
     "loginBtn": "Log in",
-    "accountCreatedSuccessfully": "Account has been created.",
+    "accountCreatedSuccessfully": "Account Has Been Created.",
     "requiredFields": "Complete required fields",
     "wrongEmail": "Please enter a valid email address",
     "passwordToShort": "The password should have a minimum of 8 characters",
@@ -171,5 +171,13 @@
     "removeItemFromCartDescription": "Are you sure? Confirmation will remove the item from the cart.",
     "cancel": "Cancel",
     "confirm": "Confirm"
+  },
+  "orderNotificationDialogComponent": {
+    "orderSubmitted": "Order was placed",
+    "dialogNotificationContent": "Your order has been placed. Thank you.",
+    "close": "Close"
+  },
+  "errorsHandlerService": {
+    "errorOccur": "Error occur"
   }
 }
