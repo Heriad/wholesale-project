@@ -41,12 +41,12 @@
   </ng-container>
 
   <ng-container matColumnDef="orderDetails">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Szczegóły</th>
+    <th mat-header-cell *matHeaderCellDef>Szczegóły</th>
     <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button">Szczegóły<mat-icon>keyboard_arrow_down</mat-icon></button></td>
   </ng-container>
 
   <ng-container matColumnDef="cancelOrder">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Anuluj</th>
+    <th mat-header-cell *matHeaderCellDef>Anuluj</th>
     <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" [disabled]="element.orderStatus === OrderStatus.CANCELED || element.orderStatus === OrderStatus.COMPLETED" (click)="cancelOrder(element._id)">Anuluj zamówienie</button></td>
   </ng-container>
 

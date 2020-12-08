@@ -1,29 +1,29 @@
 @import '../../../styles/data-table.scss';
 
 .mat-column-position {
-  width: 10%;
+  min-width: 10%;
 }
 
 .mat-column-name {
-  width: 17.5%;
+  min-width: 17.5%;
 }
 
 .mat-column-surname {
-  width: 17.5%;
+  min-width: 17.5%;
 }
 
 .mat-column-email {
-  width: 15%;
+  min-width: 15%;
 }
 
 .mat-column-workType {
-  width: 15%;
+  min-width: 15%;
 }
 
 .mat-column-edit {
-  width: 12.5%;
+  min-width: 12.5%;
 }
 
 .mat-column-delete {
-  width: 12.5%;
+  min-width: 12.5%;
 }
