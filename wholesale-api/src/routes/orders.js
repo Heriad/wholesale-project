@@ -16,7 +16,7 @@ export default () => {
     api.get('/', catchAsync(ordersController.getAll));
 
     // PUT /orders/:id
-    // api.put('/:id', catchAsync(ordersController.update));
+    api.put('/:id', catchAsync(ordersController.changeStatus));
 
     // DELETE /orders/:id
     // api.delete('/:id', catchAsync(ordersController.remove));

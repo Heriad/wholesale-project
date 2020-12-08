@@ -2,7 +2,7 @@
   <div class="col">
     <button mat-raised-button color="primary" class="btn-add-data" (click)="addEmployee()">
       <mat-icon>add</mat-icon>
-      Dodaj pracownika
+      <span>Dodaj pracownika</span>
     </button>
     <mat-form-field class="filter-data">
       <mat-label>Filtruj</mat-label>
@@ -54,7 +54,7 @@
 </table>
 
 <div *ngIf="this.dataSource.data.length === 0 && !this.isLoading" class="empty-data-source">
-  <span>Brak danych</span>
+  <span>Brak danych.</span>
 </div>
 
 <div *ngIf="isLoading" class="loading-spinner">

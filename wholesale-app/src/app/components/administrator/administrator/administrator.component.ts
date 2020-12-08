@@ -7,10 +7,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class AdministratorComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'name', 'login', 'edit', 'delete'];
   isOpened = true;
-  rememberedTab: string;
+
   activeTab: string;
+  rememberedTab: string;
+
+  displayedColumns: string[] = ['id', 'name', 'login', 'edit', 'delete'];
 
   constructor() {
 
@@ -27,11 +29,9 @@ export class AdministratorComponent implements OnInit, OnDestroy {
     } else if (event && itemName === 'manage-employees') {
       this.activeTab = 'manage-employees';
       localStorage.setItem('activeTab', 'manage-employees');
-    } else if (event && itemName === 'tab3') {
-      this.activeTab = 'tab3';
-      localStorage.setItem('activeTab', 'tab3');
-    } else {
-      console.log('error');
+    } else if (event && itemName === 'manage-orders') {
+      this.activeTab = 'manage-orders';
+      localStorage.setItem('activeTab', 'manage-orders');
     }
   }
 

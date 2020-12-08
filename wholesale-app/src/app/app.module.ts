@@ -21,6 +21,7 @@ import { ShoppingCartComponent } from './components/client/shopping-cart/shoppin
 import { OrdersPreviewComponent } from './components/client/orders-preview/orders-preview.component';
 import { NavigationBarComponent } from './components/fragments/navigation-bar/navigation-bar.component';
 import { RemindPasswordComponent } from './components/shared/remind-password/remind-password.component';
+import { ManageOrdersComponent } from './components/administrator/manage-orders/manage-orders.component';
 import { AdministratorComponent } from './components/administrator/administrator/administrator.component';
 import { ManageProductsComponent } from './components/administrator/manage-products/manage-products.component';
 import { CompleteTheOrderComponent } from './components/client/complete-the-order/complete-the-order.component';
@@ -46,6 +47,7 @@ import { NavigationBarAdministratorComponent } from './components/fragments/navi
     PriceOnlyDirective,
     ProductItemComponent,
     NumbersOnlyDirective,
+    ManageOrdersComponent,
     ShoppingCartComponent,
     OrdersPreviewComponent,
     NavigationBarComponent,

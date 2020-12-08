@@ -125,6 +125,12 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/orders');
   }
 
+  updateOrderStatus(rev, newStatus) {
+    return this.httpClient.put(environment.baseUrl + '/api/orders/' + rev, {
+      status: newStatus
+    });
+  }
+
   // Countries api
 
   getCountries() {

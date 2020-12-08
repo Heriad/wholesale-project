@@ -9,6 +9,9 @@ ogarnac info z kosztem dostawy
 usunac style -> class
 typy res/reponse per kazdą zwrotke
 przy podlgadaniu szczegółów w zamówien zrobic tak, ze jak raz sie juz je pobierze, to sie gdzies na boku zapisuja, by nie mocna byla ciagle api wywolywac
+loading-spinner -> wyodrebnic te klase jest czesto uzywana
+info jak wystapi api z bledem i przycisk odswiez na snackbarem
+u admina nadać kolumnom tabeli odpowiednie szerokosci
 
 
 ** W TRAKCIE

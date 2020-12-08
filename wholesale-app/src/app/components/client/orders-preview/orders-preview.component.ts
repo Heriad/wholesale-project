@@ -34,6 +34,7 @@ export class OrdersPreviewComponent implements OnInit {
   expandedElement;
   selectedOrderDetails;
 
+  isLoading: boolean;
   memorizedIndex: number;
 
   allOrders: Array<Order> = [];
@@ -57,6 +58,8 @@ export class OrdersPreviewComponent implements OnInit {
 
   orderDetails(order, index) {
     if (order && this.memorizedIndex !== index) {
+      this.isLoading = true;
+      const productsArr = [];
       this.memorizedIndex = index;
       this.selectedOrderDetails = [];
       order.orderedProducts.forEach(productBasicData => {
@@ -66,9 +69,16 @@ export class OrdersPreviewComponent implements OnInit {
             product = res.data;
             product.quantity = productBasicData.quantity;
             product.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/*;base64,' + res.data._attachments.productImage.buffer);
-            this.selectedOrderDetails.push(product);
+            productsArr.push(product);
           }
         });
+        const getProductsInterval = setInterval(() => {
+          if (productsArr.length === order.orderedProducts.length) {
+            clearInterval(getProductsInterval);
+            this.isLoading = false;
+            this.selectedOrderDetails = productsArr;
+          }
+        }, 200);
       });
     }
   }
@@ -90,10 +100,12 @@ export class OrdersPreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.api.getUserOrders(this.api.user.email).subscribe((res: any) => {
       if (res.success) {
         this.allOrders = res.data;
         this.assignOrders();
+        this.isLoading = false;
       }
     });
   }

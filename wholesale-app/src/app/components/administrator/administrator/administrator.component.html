@@ -4,13 +4,12 @@
    <mat-nav-list>
     <a mat-list-item (click)="changeTab($event, 'manage-products')" [ngClass]="{'tab-selected': activeTab === 'manage-products'}">Zarządzaj produktami</a>
     <a mat-list-item (click)="changeTab($event, 'manage-employees')" [ngClass]="{'tab-selected': activeTab === 'manage-employees'}">Zarządzaj pracownikami</a>
-    <a mat-list-item (click)="changeTab($event, 'tab3')" [ngClass]="{'tab-selected': activeTab === 'tab3'}">Zarządzaj zamówieniami</a>
+    <a mat-list-item (click)="changeTab($event, 'manage-orders')" [ngClass]="{'tab-selected': activeTab === 'manage-orders'}">Zarządzaj zamówieniami</a>
    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main-content">
     <app-manage-products *ngIf="activeTab === 'manage-products'"></app-manage-products>
     <app-manage-employees *ngIf="activeTab === 'manage-employees'"></app-manage-employees>
+    <app-manage-orders *ngIf="activeTab === 'manage-orders'"></app-manage-orders>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-

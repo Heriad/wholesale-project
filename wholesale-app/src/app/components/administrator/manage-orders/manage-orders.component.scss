@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+}
+
+.truncate-table-data {
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

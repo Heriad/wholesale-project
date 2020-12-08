@@ -32,7 +32,7 @@
     "mainPageBtn": "Home",
     "loginLink": "Log in",
     "loginBtn": "Log in",
-    "accountCreatedSuccessfully": "Account Has Been Created.",
+    "accountCreatedSuccessfully": "Account has been created.",
     "requiredFields": "Complete required fields",
     "wrongEmail": "Please enter a valid email address",
     "passwordToShort": "The password should have a minimum of 8 characters",

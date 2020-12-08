@@ -1,7 +1,7 @@
 import { createOrder } from '../models/orderModel';
 import { PaymentType } from '../models/paymentTypeModel';
 import { DeliveryType } from '../models/deliveryTypeModel';
-import { addOrder, getUserOrders, getAllOrders } from '../couchdb/orderDB';
+import { addOrder, getUserOrders, getAllOrders, changeOrderStatus } from '../couchdb/orderDB';
 
 export default {
 
@@ -36,9 +36,22 @@ export default {
     }
   },
 
-  async getAll() {
+  async getAll(req, res, next) {
     let dbResponse = await getAllOrders();
     console.log('api /getAllOrders - ', dbResponse);
+    if (dbResponse.success) {
+      return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    } else {
+      return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
+    }
+  },
+
+  async changeStatus(req, res, next) {
+    if (!req.params.id || !req.body.status) {
+      return res.status(400).send({ message: 'Required data: id, status' });
+    }
+    let dbResponse = await changeOrderStatus(req.params.id, req.body.status);
+    console.log('api /changeOrderStatus - ', dbResponse);
     if (dbResponse.success) {
       return res.status(200).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {

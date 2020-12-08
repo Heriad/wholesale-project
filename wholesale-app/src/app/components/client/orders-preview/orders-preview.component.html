@@ -8,7 +8,7 @@
     </app-navigation-bar>
     <mat-tab-group>
       <mat-tab label="{{ notifications.ordersPreviewComponent.allOrders }}">
-        <div *ngIf="allOrders.length === 0">
+        <div *ngIf="allOrders.length === 0 && !isLoading">
           <span>{{ notifications.ordersPreviewComponent.emptyOrders }}</span>
         </div>
         <div *ngIf="allOrders.length > 0">
@@ -46,11 +46,14 @@
 
             <ng-container matColumnDef="orderDetails">
               <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
             </ng-container>
 
             <ng-container matColumnDef="expandedDetail">
-              <td mat-cell *matCellDef="let element" [colSpan]="displayedColumns.length">
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+                <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+                  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <div *ngFor="let product of selectedOrderDetails" class="row">
                     <div class="col-auto">
@@ -72,6 +75,9 @@
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
 
           </table>
+        </div>
+        <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
         </div>
       </mat-tab>
       <mat-tab label="{{ notifications.ordersPreviewComponent.inProgress }}">
@@ -113,11 +119,14 @@
 
             <ng-container matColumnDef="orderDetails">
               <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
             </ng-container>
 
             <ng-container matColumnDef="expandedDetail">
-              <td mat-cell *matCellDef="let element" [colSpan]="displayedColumns.length">
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+                <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+                  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <div *ngFor="let product of selectedOrderDetails" class="row">
                     <div class="col-auto">
@@ -139,6 +148,9 @@
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
 
           </table>
+        </div>
+        <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
         </div>
       </mat-tab>
       <mat-tab label="{{ notifications.ordersPreviewComponent.completed }}">
@@ -180,11 +192,14 @@
 
             <ng-container matColumnDef="orderDetails">
               <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
             </ng-container>
 
             <ng-container matColumnDef="expandedDetail">
-              <td mat-cell *matCellDef="let element" [colSpan]="displayedColumns.length">
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+                <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+                  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <div *ngFor="let product of selectedOrderDetails" class="row">
                     <div class="col-auto">
@@ -207,6 +222,9 @@
 
           </table>
         </div>
+        <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+        </div>
       </mat-tab>
       <mat-tab label="{{ notifications.ordersPreviewComponent.canceled }}">
         <div *ngIf="canceledOrders.length === 0">
@@ -214,7 +232,7 @@
         </div>
         <div *ngIf="canceledOrders.length > 0">
           <table mat-table matSort [dataSource]="dataSourceAll" multiTemplateDataRows>
-
+            
             <ng-container matColumnDef="position">
               <th mat-header-cell *matHeaderCellDef>Index</th>
               <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
@@ -247,11 +265,14 @@
 
             <ng-container matColumnDef="orderDetails">
               <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">{{ notifications.ordersPreviewComponent.details }}<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
             </ng-container>
 
             <ng-container matColumnDef="expandedDetail">
-              <td mat-cell *matCellDef="let element" [colSpan]="displayedColumns.length">
+              <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+                <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+                  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+                </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <div *ngFor="let product of selectedOrderDetails" class="row">
                     <div class="col-auto">
@@ -273,6 +294,9 @@
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
 
           </table>
+        </div>
+        <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+          <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
         </div>
       </mat-tab>
     </mat-tab-group>

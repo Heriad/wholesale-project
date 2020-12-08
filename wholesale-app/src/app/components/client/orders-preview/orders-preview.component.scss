@@ -56,3 +56,10 @@ tr.detail-row {
 .product-router-link {
   color: inherit;
 }
+
+.loading-spinner {
+  display: flex;
+  margin-top: 20px;
+  min-height: 125px;
+  justify-content: center;
+}
