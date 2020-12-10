@@ -32,8 +32,10 @@ import { AddEmployeeDialogComponent } from './components/fragments/add-employee-
 import { ConfirmationDialogComponent } from './components/fragments/confirmation-dialog/confirmation-dialog.component';
 import { WaitResponseDialogComponent } from './components/fragments/wait-response-dialog/wait-response-dialog.component';
 import { ImagePreviewDialogComponent } from './components/fragments/image-preview-dialog/image-preview-dialog.component';
+import { NavigationBarEmployeeComponent } from './components/fragments/navigation-bar-employee/navigation-bar-employee.component';
 import { CartNotificationDialogComponent } from './components/fragments/cart-notification-dialog/cart-notification-dialog.component';
 import { OrderNotificationDialogComponent } from './components/fragments/order-notification-dialog/order-notification-dialog.component';
+import { ChangeOrderStatusDialogComponent } from './components/fragments/change-order-status-dialog/change-order-status-dialog.component';
 import { NavigationBarAdministratorComponent } from './components/fragments/navigation-bar-administrator/navigation-bar-administrator.component';
 
 
@@ -69,6 +71,8 @@ import { NavigationBarAdministratorComponent } from './components/fragments/navi
     CartNotificationDialogComponent,
     OrderNotificationDialogComponent,
     NavigationBarAdministratorComponent,
+    NavigationBarEmployeeComponent,
+    ChangeOrderStatusDialogComponent,
   ],
   imports: [
     FormsModule,

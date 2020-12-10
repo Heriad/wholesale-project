@@ -5,11 +5,11 @@ export default {
 
   // Create client
   async create(req, res, next) {
-    if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.type) {
-      return res.status(400).send({ message: 'Required data: name, surname, email, password, type' });
+    if (!req.body.name || !req.body.surname || !req.body.email || !req.body.password || !req.body.role) {
+      return res.status(400).send({ message: 'Required data: name, surname, email, password, role' });
     }
     let newClient = createClient(req.body.name, req.body.surname, req.body.email, 
-      req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.type);
+      req.body.password, req.body.companyName, req.body.regon, req.body.krs, req.body.role);
     let dbResponse = await addClient(newClient);
     console.log('api /addClient -  ', dbResponse);
     if (dbResponse.success) {

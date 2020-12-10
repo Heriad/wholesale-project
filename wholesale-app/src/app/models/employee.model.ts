@@ -6,7 +6,7 @@ export class Employee {
   password: string;
   email: string;
   workType: WorkType;
-  type: UserRole;
+  role: UserRole;
 }
 
 export class UpdatedEmployee {
@@ -17,7 +17,7 @@ export class UpdatedEmployee {
   password: string;
   email: string;
   workType: WorkType;
-  type: UserRole;
+  role: UserRole;
 }
 
 export enum WorkType {

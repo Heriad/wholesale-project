@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
       companyName: this.registerForm.controls.companyName.value,
       regon: this.registerForm.controls.regon.value,
       krs: this.registerForm.controls.krs.value,
-      type: UserRole.CLIENT,
+      role: UserRole.CLIENT,
     };
     if (this.registerForm.valid && this.registerErrors.length === 0) {
       this.api.createClient(client).subscribe((res: ApiResponse) => {
@@ -97,7 +97,7 @@ export class RegisterComponent implements OnInit {
       companyName: ['', Validators.required],
       regon: [''],
       krs: [''],
-      type: [''],
+      role: [''],
     });
   }
 

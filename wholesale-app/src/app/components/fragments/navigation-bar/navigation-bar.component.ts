@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Language } from 'src/app/models/language.model';
+import { UserRole } from 'src/app/models/user-role.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
@@ -27,6 +28,8 @@ export class NavigationBarComponent implements OnInit {
   shoppingCartPrice: number;
   selectedLanguage: Language;
   shoppingCartQuantity: number;
+
+  UserRole = UserRole;
 
   constructor(public api: ApiUrlsService, private authService: AuthService, private router: Router,
               private location: Location) {

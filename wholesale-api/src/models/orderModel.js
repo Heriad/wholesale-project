@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
-function Order(orderedProducts, clientData, deliveryType, deliveryAddress, paymentType,
-    financialData, comments, orderValue, deliveryCost, totalPrice, riskValue, orderDate, orderStatus) {
+function Order(orderedProducts, clientData, deliveryType, deliveryAddress, paymentType, financialData,
+   comments, orderValue, deliveryCost, numberOfInstallments, totalPrice, riskValue, orderDate, orderStatus) {
   this._id = uuid();
   this.orderedProducts = orderedProducts;
   this.clientData = clientData;
@@ -13,14 +13,15 @@ function Order(orderedProducts, clientData, deliveryType, deliveryAddress, payme
   this.comments = comments;
   this.orderValue = orderValue;
   this.deliveryCost = deliveryCost;
+  this.numberOfInstallments = numberOfInstallments;
   this.totalPrice = totalPrice;
   this.riskValue = riskValue;
   this.orderDate = orderDate
   this.orderStatus = orderStatus;
 }
 
-export function createOrder(orderedProducts, clientData, deliveryType, deliveryAddress, paymentType, 
-    financialData, comments, orderValue, deliveryCost, totalPrice, riskValue, orderDate, orderStatus) {
-  return new Order(orderedProducts, clientData, deliveryType, deliveryAddress, paymentType,
-    financialData, comments, orderValue, deliveryCost, totalPrice, riskValue, orderDate, orderStatus);
+export function createOrder(orderedProducts, clientData, deliveryType, deliveryAddress, paymentType, financialData,
+    comments, orderValue, deliveryCost, numberOfInstallments, totalPrice, riskValue, orderDate, orderStatus) {
+  return new Order(orderedProducts, clientData, deliveryType, deliveryAddress, paymentType, financialData,
+    comments, orderValue, deliveryCost, numberOfInstallments, totalPrice, riskValue, orderDate, orderStatus);
 }

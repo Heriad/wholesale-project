@@ -111,7 +111,7 @@ export class OrdersPreviewComponent implements OnInit {
       errorBar.onAction().subscribe(() => {
         this.ngOnInit();
       });
-     });
+    });
   }
 
 }

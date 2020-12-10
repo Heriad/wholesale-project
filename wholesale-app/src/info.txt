@@ -4,20 +4,17 @@ usunąć wszystkie todo i consolelogi
 dodac kółeczko do scrollowania w góre może na ekranie admina?
 Dokończyć modal z dodawaniem produktu, naprawić dodanie image, dykretywa na cenę, dokończyć edytowanie -> zostało: dykrektywa na cene by mozna było gorsze wpisać, przy edytowaniu, wyświetlać obrazek i nie wymagać dodania nowego, tu chyba zmiana w api?
 z roli klienta posusuwac zbędne klasy CSS
-ogarnac u admina kolory i panel
-ogarnac info z kosztem dostawy
 usunac style -> class
 typy res/reponse per kazdą zwrotke
 loading-spinner -> wyodrebnic te klase jest czesto uzywana
-u admina nadać kolumnom tabeli odpowiednie szerokosci
 przetłumaczyc snackbar z bledem + przycisk odswiez
-
+wyciagnac orderDetails do service -> jest uzywane w 3 miejscach z tabelkami
 
 ** W TRAKCIE
 dodac lazy-loading
 stworzyc model ryzyka -> usprawnić go
-ekran u administratora z podgladem zamówień
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
+ogarnac info z kosztem dostawy
 
 
 ** ZROBIONE
@@ -104,6 +101,9 @@ poprawic col-3/6 wszedzie z mx-auto
 przy podlgadaniu szczegółów w zamówien zrobic tak, ze jak raz sie juz je pobierze, to sie gdzies na boku zapisuja, by nie mocna byla ciagle api wywolywac
 poprawic bo da sie obejsc walidacje, klikajac na element na stepperze a nie na button -> jednak nie da się, validacja działa
 info jak wystapi api z bledem i przycisk odswiez na snackbarem
+ekran u administratora z podgladem zamówień
+ogarnac u admina kolory i panel
+u admina nadać kolumnom tabeli odpowiednie szerokosci
 
 
 ***WYMAGANIA

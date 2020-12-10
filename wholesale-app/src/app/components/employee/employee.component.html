@@ -1,1 +1,518 @@
-<p>employee works!</p>
+<app-navigation-bar-employee></app-navigation-bar-employee>
+<mat-tab-group>
+  <mat-tab label="Wszystkie">
+    <div *ngIf="allOrders.length === 0 && !isLoading">
+      <span>Brak zamówień.</span>
+    </div>
+    <table *ngIf="allOrders.length > 0" mat-table matSort [dataSource]="dataSourceAll" multiTemplateDataRows>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientSurname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.surname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderDate | date: 'dd-MM-yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryInformation">
+        <th mat-header-cell *matHeaderCellDef>Adres wysyłki</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryType === DeliveryType.PERSONAL ? notifications.ordersPreviewComponent.personalCollection : element.deliveryAddress.streetAndNumber + ' ' + element.deliveryAddress.postalCode + ' ' + element.deliveryAddress.townName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.totalPrice }} zł</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderStatus | transformOrderStatus: notifications }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDetails">
+        <th mat-header-cell *matHeaderCellDef>Szczegóły</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">Szczegóły<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="changeStatus">
+        <th mat-header-cell *matHeaderCellDef>Zmien status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="changeOrderStatus(element._id)">Zmień status</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+          <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="row">
+              <div class="col-6">
+                <div *ngFor="let product of selectedOrderDetails" class="row">
+                  <div class="col-auto">
+                    <img [src]="product.image" class="product-image">
+                  </div>
+                  <div class="col" class="product-details">
+                    <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="bold">{{ product.name }}</p></a>
+                    <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                    <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                    <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isLoading" class="col-6">
+                <div class="col">
+                  <p class="bold">Informacje dodatkowe:</p>
+                  <p>Nazwa firmy: {{ element.clientData.companyName }}</p>
+                  <p>Koszt dostawy: {{ element.deliveryCost }} zł</p>
+                  <p>Sposób płatności: {{ element.paymentType | transformPaymentType: notifications }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Ilość rat: {{ element.numberOfInstallments }}</p>
+                  <p *ngIf="element.clientData.krs">KRS: {{ element.clientData.krs }}</p>
+                  <p *ngIf="element.clientData.regon">Regon: {{ element.clientData.regon }}</p>
+                  <p>Uwagi: {{ element.comments ? element.comments : 'Brak'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row" [class.expanded-row]="expandedElement === element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
+
+    </table>
+    <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-tab>
+  <mat-tab label="Nowe">
+    <div *ngIf="newOrders.length === 0 && !isLoading">
+      <span>Brak nowych zamówień.</span>
+    </div>
+    <table *ngIf="newOrders.length > 0" mat-table matSort [dataSource]="dataSourceNew" multiTemplateDataRows>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientSurname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.surname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderDate | date: 'dd-MM-yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryInformation">
+        <th mat-header-cell *matHeaderCellDef>Adres wysyłki</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryType === DeliveryType.PERSONAL ? notifications.ordersPreviewComponent.personalCollection : element.deliveryAddress.streetAndNumber + ' ' + element.deliveryAddress.postalCode + ' ' + element.deliveryAddress.townName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.totalPrice }} zł</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderStatus | transformOrderStatus: notifications }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDetails">
+        <th mat-header-cell *matHeaderCellDef>Szczegóły</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">Szczegóły<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="changeStatus">
+        <th mat-header-cell *matHeaderCellDef>Zmien status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="changeOrderStatus(element._id)">Zmień status</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+          <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="row">
+              <div class="col-6">
+                <div *ngFor="let product of selectedOrderDetails" class="row">
+                  <div class="col-auto">
+                    <img [src]="product.image" class="product-image">
+                  </div>
+                  <div class="col" class="product-details">
+                    <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="bold">{{ product.name }}</p></a>
+                    <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                    <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                    <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isLoading" class="col-6">
+                <div class="col">
+                  <p class="bold">Informacje dodatkowe:</p>
+                  <p>Nazwa firmy: {{ element.clientData.companyName }}</p>
+                  <p>Koszt dostawy: {{ element.deliveryCost }} zł</p>
+                  <p>Sposób płatności: {{ element.paymentType | transformPaymentType: notifications }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Ilość rat: {{ element.numberOfInstallments }}</p>
+                  <p *ngIf="element.clientData.krs">KRS: {{ element.clientData.krs }}</p>
+                  <p *ngIf="element.clientData.regon">Regon: {{ element.clientData.regon }}</p>
+                  <p>Uwagi: {{ element.comments ? element.comments : 'Brak'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row" [class.expanded-row]="expandedElement === element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
+
+    </table>
+    <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-tab>
+  <mat-tab label="W trakcie realizacji">
+    <div *ngIf="inProgressOrders.length === 0 && !isLoading">
+      <span>Brak zamówień w trakcie realizacji.</span>
+    </div>
+    <table *ngIf="inProgressOrders.length > 0" mat-table matSort [dataSource]="dataSourceInProgress" multiTemplateDataRows>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientSurname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.surname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderDate | date: 'dd-MM-yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryInformation">
+        <th mat-header-cell *matHeaderCellDef>Adres wysyłki</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryType === DeliveryType.PERSONAL ? notifications.ordersPreviewComponent.personalCollection : element.deliveryAddress.streetAndNumber + ' ' + element.deliveryAddress.postalCode + ' ' + element.deliveryAddress.townName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.totalPrice }} zł</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderStatus | transformOrderStatus: notifications }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDetails">
+        <th mat-header-cell *matHeaderCellDef>Szczegóły</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">Szczegóły<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="changeStatus">
+        <th mat-header-cell *matHeaderCellDef>Zmien status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="changeOrderStatus(element._id)">Zmień status</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+          <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="row">
+              <div class="col-6">
+                <div *ngFor="let product of selectedOrderDetails" class="row">
+                  <div class="col-auto">
+                    <img [src]="product.image" class="product-image">
+                  </div>
+                  <div class="col" class="product-details">
+                    <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="bold">{{ product.name }}</p></a>
+                    <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                    <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                    <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isLoading" class="col-6">
+                <div class="col">
+                  <p class="bold">Informacje dodatkowe:</p>
+                  <p>Nazwa firmy: {{ element.clientData.companyName }}</p>
+                  <p>Koszt dostawy: {{ element.deliveryCost }} zł</p>
+                  <p>Sposób płatności: {{ element.paymentType | transformPaymentType: notifications }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Ilość rat: {{ element.numberOfInstallments }}</p>
+                  <p *ngIf="element.clientData.krs">KRS: {{ element.clientData.krs }}</p>
+                  <p *ngIf="element.clientData.regon">Regon: {{ element.clientData.regon }}</p>
+                  <p>Uwagi: {{ element.comments ? element.comments : 'Brak'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row" [class.expanded-row]="expandedElement === element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
+
+    </table>
+    <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-tab>
+  <mat-tab label="Zrealizowane">
+    <div *ngIf="completedOrders.length === 0 && !isLoading">
+      <span>Brak zrealizowanych zamówień.</span>
+    </div>
+    <table *ngIf="completedOrders.length > 0" mat-table matSort [dataSource]="dataSourceCompleted" multiTemplateDataRows>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientSurname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.surname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderDate | date: 'dd-MM-yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryInformation">
+        <th mat-header-cell *matHeaderCellDef>Adres wysyłki</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryType === DeliveryType.PERSONAL ? notifications.ordersPreviewComponent.personalCollection : element.deliveryAddress.streetAndNumber + ' ' + element.deliveryAddress.postalCode + ' ' + element.deliveryAddress.townName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.totalPrice }} zł</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderStatus | transformOrderStatus: notifications }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDetails">
+        <th mat-header-cell *matHeaderCellDef>Szczegóły</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">Szczegóły<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="changeStatus">
+        <th mat-header-cell *matHeaderCellDef>Zmien status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="changeOrderStatus(element._id)">Zmień status</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+          <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="row">
+              <div class="col-6">
+                <div *ngFor="let product of selectedOrderDetails" class="row">
+                  <div class="col-auto">
+                    <img [src]="product.image" class="product-image">
+                  </div>
+                  <div class="col" class="product-details">
+                    <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="bold">{{ product.name }}</p></a>
+                    <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                    <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                    <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isLoading" class="col-6">
+                <div class="col">
+                  <p class="bold">Informacje dodatkowe:</p>
+                  <p>Nazwa firmy: {{ element.clientData.companyName }}</p>
+                  <p>Koszt dostawy: {{ element.deliveryCost }} zł</p>
+                  <p>Sposób płatności: {{ element.paymentType | transformPaymentType: notifications }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Ilość rat: {{ element.numberOfInstallments }}</p>
+                  <p *ngIf="element.clientData.krs">KRS: {{ element.clientData.krs }}</p>
+                  <p *ngIf="element.clientData.regon">Regon: {{ element.clientData.regon }}</p>
+                  <p>Uwagi: {{ element.comments ? element.comments : 'Brak'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row" [class.expanded-row]="expandedElement === element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
+
+    </table>
+    <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-tab>
+  <mat-tab label="Anulowane">
+    <div *ngIf="canceledOrders.length === 0 && !isLoading">
+      <span>Brak anulowanych zamówień.</span>
+    </div>
+    <table *ngIf="canceledOrders.length > 0" mat-table matSort [dataSource]="dataSourceCanceled" multiTemplateDataRows>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientSurname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.surname }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="clientEmail">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.clientData.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderDate | date: 'dd-MM-yyyy HH:mm' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="deliveryInformation">
+        <th mat-header-cell *matHeaderCellDef>Adres wysyłki</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.deliveryType === DeliveryType.PERSONAL ? notifications.ordersPreviewComponent.personalCollection : element.deliveryAddress.streetAndNumber + ' ' + element.deliveryAddress.postalCode + ' ' + element.deliveryAddress.townName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Wartość</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.totalPrice }} zł</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data">{{ element.orderStatus | transformOrderStatus: notifications }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderDetails">
+        <th mat-header-cell *matHeaderCellDef>Szczegóły</th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="expandedElement = expandedElement === element ? null : element; orderDetails(expandedElement, i + 1);">Szczegóły<mat-icon matSuffix>{{ (expandedElement && i + 1 === memorizedIndex) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="changeStatus">
+        <th mat-header-cell *matHeaderCellDef>Zmien status</th>
+        <td mat-cell *matCellDef="let element" class="padding-table-data"><button mat-raised-button color="primary" type="button" (click)="changeOrderStatus(element._id)">Zmień status</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element; let i = dataIndex;" [colSpan]="displayedColumns.length">
+          <div *ngIf="isLoading && i+1 === memorizedIndex && expandedElement" class="loading-spinner">
+            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+          </div>
+          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="row">
+              <div class="col-6">
+                <div *ngFor="let product of selectedOrderDetails" class="row">
+                  <div class="col-auto">
+                    <img [src]="product.image" class="product-image">
+                  </div>
+                  <div class="col" class="product-details">
+                    <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="bold">{{ product.name }}</p></a>
+                    <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                    <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                    <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isLoading" class="col-6">
+                <div class="col">
+                  <p class="bold">Informacje dodatkowe:</p>
+                  <p>Nazwa firmy: {{ element.clientData.companyName }}</p>
+                  <p>Koszt dostawy: {{ element.deliveryCost }} zł</p>
+                  <p>Sposób płatności: {{ element.paymentType | transformPaymentType: notifications }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }}</p>
+                  <p *ngIf="element.paymentType === PaymentType.DEFER">Ilość rat: {{ element.numberOfInstallments }}</p>
+                  <p *ngIf="element.clientData.krs">KRS: {{ element.clientData.krs }}</p>
+                  <p *ngIf="element.clientData.regon">Regon: {{ element.clientData.regon }}</p>
+                  <p>Uwagi: {{ element.comments ? element.comments : 'Brak'}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="element-row" [class.expanded-row]="expandedElement === element"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
+
+    </table>
+    <div *ngIf="isLoading && !memorizedIndex" class="loading-spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </mat-tab>
+</mat-tab-group>

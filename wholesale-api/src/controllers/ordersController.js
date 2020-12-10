@@ -8,12 +8,12 @@ export default {
   // Create order
   async create(req, res, next) {
     if (!req.body.orderedProducts || !req.body.clientData || !req.body.deliveryType || (req.body.deliveryType === DeliveryType.SUPPLY && !req.body.deliveryAddress) || !req.body.paymentType ||
-        (req.body.paymentType === PaymentType.DEFER && !req.body.financialData) || !req.body.orderValue || (req.body.deliveryCost == undefined) || !req.body.totalPrice || !req.body.riskValue ||
+        (req.body.paymentType === PaymentType.DEFER && (!req.body.financialData || !req.body.numberOfInstallments)) || !req.body.orderValue || (req.body.deliveryCost == undefined) || !req.body.totalPrice || !req.body.riskValue ||
         !req.body.orderDate || !req.body.orderStatus ) {
       return res.status(400).send({ message: 'Required data missing' });
     }
     let newOrder = createOrder(req.body.orderedProducts, req.body.clientData, req.body.deliveryType, req.body.deliveryAddress, req.body.paymentType, req.body.financialData,
-      req.body.comments, req.body.orderValue, req.body.deliveryCost, req.body.totalPrice, req.body.riskValue, req.body.orderDate, req.body.orderStatus);
+      req.body.comments, req.body.orderValue, req.body.deliveryCost, req.body.numberOfInstallments, req.body.totalPrice, req.body.riskValue, req.body.orderDate, req.body.orderStatus);
     let dbResponse = await addOrder(newOrder);
     console.log('api /addOrder -  ', dbResponse);
     if (dbResponse.success) {
@@ -22,7 +22,8 @@ export default {
       return res.status(400).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     }
   },
-
+  
+  // Find order
   async getForSpecificUser(req, res, next) {
     if (!req.params.email) {
       return res.status(400).send({ message: 'Required data missing: email' });
@@ -36,6 +37,7 @@ export default {
     }
   },
 
+  // Find orders
   async getAll(req, res, next) {
     let dbResponse = await getAllOrders();
     console.log('api /getAllOrders - ', dbResponse);
@@ -46,6 +48,7 @@ export default {
     }
   },
 
+  // Update order (status)
   async changeStatus(req, res, next) {
     if (!req.params.id || !req.body.status) {
       return res.status(400).send({ message: 'Required data: id, status' });
@@ -59,8 +62,5 @@ export default {
     }
   }
 
-  // Find order
-  // Find orders
-  // Update order (status)
   // Delete order
 }

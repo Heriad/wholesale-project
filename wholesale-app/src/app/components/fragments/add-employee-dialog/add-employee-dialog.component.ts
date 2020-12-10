@@ -58,7 +58,7 @@ export class AddEmployeeDialogComponent implements OnInit {
           password: this.addEmployeeForm.controls.password.value,
           email: this.addEmployeeForm.controls.email.value,
           workType: this.addEmployeeForm.controls.workType.value,
-          type: UserRole.EMPLOYEE
+          role: UserRole.EMPLOYEE
         };
         this.dialogRef.close(employee);
       } else {
@@ -70,7 +70,7 @@ export class AddEmployeeDialogComponent implements OnInit {
           password: this.addEmployeeForm.controls.password.value,
           email: this.addEmployeeForm.controls.email.value,
           workType: this.addEmployeeForm.controls.workType.value,
-          type: UserRole.EMPLOYEE
+          role: UserRole.EMPLOYEE
         };
         this.dialogRef.close(updatedEmployee);
       }

@@ -8,5 +8,5 @@ export class Client {
   companyName?: string;
   regon?: string;
   krs?: string;
-  type: UserRole;
+  role: UserRole;
 }

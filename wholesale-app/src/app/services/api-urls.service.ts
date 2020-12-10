@@ -47,7 +47,7 @@ export class ApiUrlsService {
       companyName: client.companyName,
       regon: client.regon,
       krs: client.krs,
-      type: client.type
+      role: client.role
     });
   }
 
@@ -64,7 +64,7 @@ export class ApiUrlsService {
       password: employee.password,
       email: employee.email,
       workType: employee.workType,
-      type: employee.type
+      role: employee.role
     });
   }
 
@@ -81,7 +81,7 @@ export class ApiUrlsService {
       password: updatedEmployee.password,
       email: updatedEmployee.email,
       workType: updatedEmployee.workType,
-      type: updatedEmployee.type
+      role: updatedEmployee.role
     });
   }
 
@@ -125,8 +125,8 @@ export class ApiUrlsService {
     return this.httpClient.get(environment.baseUrl + '/api/orders');
   }
 
-  updateOrderStatus(rev, newStatus) {
-    return this.httpClient.put(environment.baseUrl + '/api/orders/' + rev, {
+  updateOrderStatus(id, newStatus) {
+    return this.httpClient.put(environment.baseUrl + '/api/orders/' + id, {
       status: newStatus
     });
   }

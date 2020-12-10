@@ -20,7 +20,7 @@ export class GetEmployeesResponse {
     surname: string;
     password: string;
     email: string;
-    type: UserRole;
+    role: UserRole;
     workType: WorkType
   }>;
 }

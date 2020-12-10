@@ -170,7 +170,7 @@ export class CompleteTheOrderComponent implements OnInit {
   }
 
   calculateRiskValue() {
-    //todo model ryzyka zaimplementowac tutaj
+    // todo model ryzyka zaimplementowac tutaj
     this.riskValue = 51;
   }
 
@@ -217,6 +217,9 @@ export class CompleteTheOrderComponent implements OnInit {
       }),
       orderValue: this.orderPrice,
       deliveryCost: this.deliveryCost,
+      ...(this.paymentFormGroup.controls.paymentType.value === PaymentType.DEFER && {
+        numberOfInstallments: this.numberOfInstallments
+      }),
       totalPrice: this.orderPrice + this.deliveryCost,
       ...(this.riskValue && {
         riskValue: this.riskValue

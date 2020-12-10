@@ -49,16 +49,10 @@ export async function getAllOrders() {
 
 export async function changeOrderStatus(id, newStatus) {
   try {
-    await database.get(id).then((doc) => {
-      doc.orderStatus = newStatus;
-      database.insert(doc).then((response) => {
-        console.log(response)
-        console.log("Udalo sie")
-        return createResponseController(responseStatus.SUCCESS, 'Order status has been updated', null);
-      });
-    });
-    console.log("Udalo sie2")
-    
+    const doc = await database.get(id);
+    doc.orderStatus = newStatus;
+    await database.insert(doc);
+    return createResponseController(responseStatus.SUCCESS, 'Order status has been changed', null);
   } catch (err) {
     return createResponseController(responseStatus.ERROR, err, null);
   }
