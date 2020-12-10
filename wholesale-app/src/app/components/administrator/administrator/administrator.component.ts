@@ -7,16 +7,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class AdministratorComponent implements OnInit, OnDestroy {
 
-  isOpened = true;
-
   activeTab: string;
   rememberedTab: string;
 
+  isOpened = true;
+
   displayedColumns: string[] = ['id', 'name', 'login', 'edit', 'delete'];
 
-  constructor() {
-
-  }
+  constructor() {}
 
   openMenuSideBar(isMenuOpened: boolean) {
     this.isOpened = isMenuOpened;

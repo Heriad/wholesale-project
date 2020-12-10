@@ -9,20 +9,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddProductDialogComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddProductDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  @Input() title: string;
   @Input() text: string;
+  @Input() title: string;
   @Input() isEdit: boolean;
 
   addProductForm: FormGroup;
-  addProductErrors: Array<string> = [];
 
+  priceMaxLength = 8;
   productNameMaxLength = 55;
   producerNameMaxLength = 25;
-  priceMaxLength = 8;
   descriptionMaxLength = 1000;
+
+  addProductErrors: Array<string> = [];
+
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddProductDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onFileSelected(event) {
     console.log(event.loaded);

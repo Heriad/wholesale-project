@@ -1,8 +1,7 @@
-import { ApiUrlsService } from 'src/app/services/api-urls.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { ApiUrlsService } from 'src/app/services/api-urls.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navigation-bar-administrator',

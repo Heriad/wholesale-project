@@ -1,4 +1,3 @@
-import { PaymentType } from './../../../models/payment-type.model';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderStatus } from 'src/app/models/order.model';
@@ -6,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DeliveryType } from 'src/app/models/delivery-type.model';
+import { PaymentType } from './../../../models/payment-type.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
 import { ErrorsHandlerService } from 'src/app/services/errors-handler.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -32,13 +32,14 @@ export class ManageOrdersComponent implements OnInit {
   expandedElement;
   selectedOrderDetails;
 
+  isLoading: boolean;
+  memorizedIndex: number;
+
   PaymentType = PaymentType;
   OrderStatus = OrderStatus;
   DeliveryType = DeliveryType;
   dataSource = new MatTableDataSource();
 
-  isLoading: boolean;
-  memorizedIndex: number;
   displayedColumns: string[] = ['position', 'clientName', 'clientSurname', 'clientEmail', 'orderDate', 'deliveryInformation',
                                 'totalPrice', 'status', 'orderDetails', 'cancelOrder'];
 

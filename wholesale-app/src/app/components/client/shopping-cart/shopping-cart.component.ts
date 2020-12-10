@@ -19,20 +19,22 @@ import { ImagePreviewDialogComponent } from '../../fragments/image-preview-dialo
 })
 export class ShoppingCartComponent implements OnInit {
 
+  @ViewChild('navBar', { static: true }) navBar: NavigationBarComponent;
+  @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
+
   notifications;
+
   isLoading: boolean;
   shoppingCartPrice: number;
   shoppingCartQuantity: number;
   updatedCart: Array<ShoppingCart>;
   shoppingCart: Array<ShoppingCart>;
-  dataSource = new MatTableDataSource();
 
   productList = [];
+  dataSource = new MatTableDataSource();
+
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
   displayedColumns: string[] = ['position', 'image', 'name', 'unitPrice', 'quantity', 'totalPrice', 'delete'];
-
-  @ViewChild('navBar', { static: true }) navBar: NavigationBarComponent;
-  @ViewChild(MatSort) set content(sort: MatSort) { this.dataSource.sort = sort; }
 
   constructor(public api: ApiUrlsService, private domSanitizer: DomSanitizer, public dialogService: MatDialog,
               private router: Router, public errHandler: ErrorsHandlerService) {}

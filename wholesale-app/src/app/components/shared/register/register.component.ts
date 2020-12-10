@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isAccountCreated: boolean;
   userAlreadyExists: boolean;
-  registerErrors: Array<string> = [];
 
   krsMaxLength = 10;
   regonMaxLength = 14;
@@ -26,6 +25,8 @@ export class RegisterComponent implements OnInit {
   companyNameMaxLength = 30;
   clientSurnameMaxLength = 15;
   clientPasswordMaxLength = 20;
+
+  registerErrors: Array<string> = [];
 
   constructor(private fb: FormBuilder, public api: ApiUrlsService) {}
 

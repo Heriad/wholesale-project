@@ -1,7 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { ShoppingCart } from './../../../models/product.model';
 import { GetProductResponse } from './../../../models/response.model';
 import { ApiUrlsService } from './../../../services/api-urls.service';
@@ -27,6 +27,7 @@ export class ProductItemComponent implements OnInit {
   idKey = 'id';
   selectedQuantity = 1;
   shoppingCart: Array<ShoppingCart> = [];
+
   quantity: Array<number> = [1, 2, 3, 4, 5, 6 , 7, 8, 9, 10];
 
   constructor(public api: ApiUrlsService, private route: ActivatedRoute, public domSanitizer: DomSanitizer,

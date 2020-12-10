@@ -14,13 +14,12 @@ export class ChangeOrderStatusDialogComponent implements OnInit {
   errorStatus: string;
   newStatus: OrderStatus;
 
+  OrderStatus = OrderStatus;
   statusList = [
     OrderStatus.INPROGRESS,
     OrderStatus.COMPLETED,
     OrderStatus.CANCELED
   ];
-
-  OrderStatus = OrderStatus;
 
   constructor(public api: ApiUrlsService, public matDialogRef: MatDialogRef<ChangeOrderStatusDialogComponent>) { }
 

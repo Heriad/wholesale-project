@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ClientComponent } from './components/client/client.component';
 import { LoginComponent } from './components/shared/login/login.component';
 import { LoggedInAuthGuard } from './services/logged-in-auth-guard.service';
 import { EmployeeComponent } from './components/employee/employee.component';
@@ -17,7 +16,6 @@ import { CompleteTheOrderComponent } from './components/client/complete-the-orde
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
-  { path: 'client', component: ClientComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'product-item/:id', component: ProductItemComponent },
   { path: 'remind-password', component: RemindPasswordComponent },

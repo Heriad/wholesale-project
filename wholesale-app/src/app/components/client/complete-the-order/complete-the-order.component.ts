@@ -23,19 +23,6 @@ export class CompleteTheOrderComponent implements OnInit {
   client; // todo type
   notifications;
 
-  orderPrice = 0;
-  krsMaxLength = 10;
-  regonMaxLength = 14;
-  townNameMaxLength = 20;
-  postalCodeMaxLength = 6;
-  clientNameMaxLength = 15;
-  numberOfInstallments = 0;
-  clientEmailMaxLength = 30;
-  companyNameMaxLength = 30;
-  clientSurnameMaxLength = 15;
-  notesToOrderMaxLength = 1000;
-  streetAndNumberMaxLength = 40;
-
   lastYear: number;
   countries: any[];
   riskValue: number;
@@ -48,6 +35,19 @@ export class CompleteTheOrderComponent implements OnInit {
   shoppingCart: Array<ShoppingCart>;
   supplyAddressFormGroup: FormGroup;
   financialDataFormGroup: FormGroup;
+
+  orderPrice = 0;
+  krsMaxLength = 10;
+  regonMaxLength = 14;
+  townNameMaxLength = 20;
+  postalCodeMaxLength = 6;
+  clientNameMaxLength = 15;
+  numberOfInstallments = 0;
+  clientEmailMaxLength = 30;
+  companyNameMaxLength = 30;
+  clientSurnameMaxLength = 15;
+  notesToOrderMaxLength = 1000;
+  streetAndNumberMaxLength = 40;
 
   productList = [];
   clientDataErrors = [];

@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClientComponent } from './components/client/client.component';
 import { PriceOnlyDirective } from './directives/price-only.directive';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import { LoginComponent } from './components/shared/login/login.component';
@@ -43,7 +42,6 @@ import { NavigationBarAdministratorComponent } from './components/fragments/navi
   declarations: [
     AppComponent,
     LoginComponent,
-    ClientComponent,
     ErrorBarComponent,
     RegisterComponent,
     MainPageComponent,

@@ -23,14 +23,13 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   wrongCredentials: boolean;
   selectedLanguage: Language;
-  loginErrors: Array<string> = [];
-
-  isRememberSelected = false;
-
-  emailMaxLength = 30;
-  passwordMaxLength = 20;
 
   returnUrlKey = 'returnUrl';
+  emailMaxLength = 30;
+  passwordMaxLength = 20;
+  isRememberSelected = false;
+
+  loginErrors: Array<string> = [];
 
   constructor(private router: Router, private fb: FormBuilder, private location: Location, private authService: AuthService,
               public api: ApiUrlsService, private route: ActivatedRoute) {}

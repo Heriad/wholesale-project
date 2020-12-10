@@ -1,13 +1,13 @@
-import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatTableDataSource } from '@angular/material/table';
 import { Order, OrderStatus } from 'src/app/models/order.model';
 import { PaymentType } from 'src/app/models/payment-type.model';
 import { DeliveryType } from 'src/app/models/delivery-type.model';
 import { ApiUrlsService } from './../../services/api-urls.service';
-import { ApiResponse, GetProductResponse } from 'src/app/models/response.model';
 import { ErrorsHandlerService } from './../../services/errors-handler.service';
+import { ApiResponse, GetProductResponse } from 'src/app/models/response.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeOrderStatusDialogComponent } from './../fragments/change-order-status-dialog/change-order-status-dialog.component';
 
@@ -32,12 +32,6 @@ export class EmployeeComponent implements OnInit {
   isLoading: boolean;
   memorizedIndex: number;
 
-  allOrders: Array<Order> = [];
-  newOrders: Array<Order> = [];
-  canceledOrders: Array<Order> = [];
-  completedOrders: Array<Order> = [];
-  inProgressOrders: Array<Order> = [];
-
   PaymentType = PaymentType;
   OrderStatus = OrderStatus;
   DeliveryType = DeliveryType;
@@ -46,6 +40,12 @@ export class EmployeeComponent implements OnInit {
   dataSourceCanceled = new MatTableDataSource();
   dataSourceCompleted = new MatTableDataSource();
   dataSourceInProgress = new MatTableDataSource();
+
+  allOrders: Array<Order> = [];
+  newOrders: Array<Order> = [];
+  canceledOrders: Array<Order> = [];
+  completedOrders: Array<Order> = [];
+  inProgressOrders: Array<Order> = [];
 
   displayedColumns: string[] = ['position', 'clientName', 'clientSurname', 'clientEmail', 'orderDate', 'deliveryInformation',
                                 'totalPrice', 'status', 'orderDetails', 'changeStatus'];
