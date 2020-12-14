@@ -8,20 +8,20 @@ const upload = multer();
 
 export default () => {
 
-    // POST /products
-    api.post('/', upload.single('productImage'), catchAsync(productsController.create));
+  // POST /products
+  api.post('/', upload.single('productImage'), catchAsync(productsController.create));
 
-    // GET /products/:id
-    api.get('/:id', catchAsync(productsController.getOne));
-    
-    // GET /products
-    api.get('/', catchAsync(productsController.getAll));
+  // GET /products/:id
+  api.get('/:id', catchAsync(productsController.getOne));
+  
+  // GET /products
+  api.get('/', catchAsync(productsController.getAll));
 
-    // PUT /products/:id
-    api.put('/:id', catchAsync(productsController.update));
+  // PUT /products/:id
+  api.put('/:id', catchAsync(productsController.update));
 
-    // DELETE /products/:id
-    api.delete('/:id', catchAsync(productsController.remove));
+  // DELETE /products/:id
+  api.delete('/:id', catchAsync(productsController.remove));
 
-    return api
+  return api
 }

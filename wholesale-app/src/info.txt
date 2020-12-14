@@ -10,11 +10,10 @@ loading-spinner -> wyodrebnic te klase jest czesto uzywana
 przetłumaczyc snackbar z bledem + przycisk odswiez
 wyciagnac orderDetails do service -> jest uzywane w 3 miejscach z tabelkami
 
+
 ** W TRAKCIE
 dodac lazy-loading
 stworzyc model ryzyka -> usprawnić go
-ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
-ogarnac info z kosztem dostawy
 
 
 ** ZROBIONE
@@ -104,6 +103,9 @@ info jak wystapi api z bledem i przycisk odswiez na snackbarem
 ekran u administratora z podgladem zamówień
 ogarnac u admina kolory i panel
 u admina nadać kolumnom tabeli odpowiednie szerokosci
+ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
+dodano nowy ekran notfound po przejscu na zły route
+ogarnac info z kosztem dostawy
 
 
 ***WYMAGANIA

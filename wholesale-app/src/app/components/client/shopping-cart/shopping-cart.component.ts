@@ -83,7 +83,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getProducts() {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       this.shoppingCart.forEach((el, index) => {
         let product: any;
         this.api.getProduct(el.id).subscribe((res: GetProductResponse) => {

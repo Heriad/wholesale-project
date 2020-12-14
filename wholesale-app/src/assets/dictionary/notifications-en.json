@@ -151,7 +151,8 @@
     "orderValue": "Order value:",
     "shippingCost": "Shipping cost:",
     "sum": "Sum:",
-    "paymentTypeRequired": "You must select a payment method to proceed."
+    "paymentTypeRequired": "You must select a payment method to proceed.",
+    "supplyAddressWarning": "*The order will receive a delivery cost of 20 PLN."
   },
   "navigationBarComponent": {
     "backBtn": "Back",
@@ -179,5 +180,8 @@
   },
   "errorsHandlerService": {
     "errorOccur": "Error occur"
+  },
+  "notFoundComponent": {
+    "pageUnavailable": " Page not available"
   }
 }

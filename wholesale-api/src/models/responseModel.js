@@ -1,5 +1,5 @@
 export default {
-    SUCCESS: "success",
-    INVALID: "invalid",
-    ERROR: "error"
+  SUCCESS: "success",
+  INVALID: "invalid",
+  ERROR: "error"
 };

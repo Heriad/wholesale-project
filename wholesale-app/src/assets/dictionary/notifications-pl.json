@@ -151,7 +151,8 @@
     "orderValue": "Wartość zamówienia:",
     "shippingCost": "Koszt dostawy:",
     "sum": "Suma:",
-    "paymentTypeRequired": "Wybranie sposobu płatności jest wymagane, aby przejść dalej."
+    "paymentTypeRequired": "Wybranie sposobu płatności jest wymagane, aby przejść dalej.",
+    "supplyAddressWarning": "*Do zamówienia zostanie doliczony koszt dostawy w wysokości 20zł."
   },
   "navigationBarComponent": {
     "backBtn": "Wstecz",
@@ -179,5 +180,8 @@
   },
   "errorsHandlerService": {
     "errorOccur": "Wystąpił błąd"
+  },
+  "notFoundComponent": {
+    "pageUnavailable": "Strona niedostępna"
   }
 }

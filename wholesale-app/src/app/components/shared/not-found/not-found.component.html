@@ -1,0 +1,19 @@
+<div class="background-page">
+  <mat-card class="card-panel">
+    <app-navigation-bar
+      (emitNotifications)="getNotifications($event)">
+    </app-navigation-bar>
+    <mat-card-content>
+      <div class="row error-row">
+        <div class="col-6 mx-auto center">
+          <mat-icon class="error-icon">error_outline</mat-icon>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 mx-auto center">
+          <span class="error-content">{{ notifications.notFoundComponent.pageUnavailable }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

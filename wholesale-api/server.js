@@ -28,12 +28,12 @@ server.use(cors());
 server.use(bodyParser.json());
 server.use(flash());
 server.use(session({
-    secret: uuid(),
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24
-    }
+  secret: uuid(),
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24
+  }
 }));
 server.use(passport.initialize());
 server.use(passport.session());

@@ -16,8 +16,9 @@ export class NavigationBarComponent implements OnInit {
   @Input() isAccountCreated: boolean;
   @Input() isBackBtnAvailable: boolean;
   @Input() isLoginLinkAvailable: boolean;
-  @Input() isRegisterLinkAvailable: boolean;
   @Input() isLogoutLinkAvailable: boolean;
+  @Input() isRegisterLinkAvailable: boolean;
+  @Input() isOrdersPreviewAvailable: boolean;
   @Input() isShoppingCartLinkAvailable: boolean;
   @Input() isShoppingCartPriceLinkAvailable: boolean;
 
@@ -111,6 +112,10 @@ export class NavigationBarComponent implements OnInit {
       }
       case 'complete-the-order': {
         this.subtitle = this.notifications.completeTheOrderComponent.completeTheOrder;
+        break;
+      }
+      default: {
+        this.subtitle = this.notifications.application.name;
         break;
       }
     }

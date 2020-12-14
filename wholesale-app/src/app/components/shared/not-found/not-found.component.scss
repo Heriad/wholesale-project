@@ -1,0 +1,23 @@
+@import '../../../styles/card.scss';
+@import '../../../styles/background-page.scss';
+
+mat-card-content {
+  margin-top: 30px;
+}
+
+.error-row {
+  height: 50px;
+}
+
+.error-icon {
+  transform: scale(2.5);
+}
+
+.center {
+  text-align: center;
+}
+
+.error-content {
+  font-weight: 200;
+  font-size: 34px;
+}

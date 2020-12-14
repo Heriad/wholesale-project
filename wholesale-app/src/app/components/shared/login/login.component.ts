@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
           this.authService.setUserData(response.data);
           this.api.login(response.data);
           if (this.api.user) {
-            switch (this.api.user.type) {
+            switch (this.api.user.role) {
             case UserRole.CLIENT:
               this.router.navigateByUrl(this.returnUrl);
               break;

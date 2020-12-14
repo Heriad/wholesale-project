@@ -3,6 +3,7 @@
     <app-navigation-bar
       [isBackBtnAvailable]="true"
       [isLogoutLinkAvailable]="true"
+      [isOrdersPreviewAvailable]="true"
       (emitNotifications)="getNotifications($event)">
     </app-navigation-bar>
     <mat-horizontal-stepper [linear]="true">
@@ -114,6 +115,11 @@
                 </mat-form-field>
               </div>
             </div>
+            <div class="row center-content">
+              <span class="col-4 mx-auto warning">
+                {{ notifications.completeTheOrderComponent.supplyAddressWarning }}
+              </span>
+            </div>
             <div *ngIf="deliveryAddressError.length > 0"><span class="error">{{ deliveryAddressError }}</span></div>
           </div>
         </div>
@@ -214,7 +220,7 @@
               </div>
             </div>
             <div class="row center-content">
-              <span class="col-6 mx-auto defer-payment-warning">
+              <span class="col-6 mx-auto warning">
                 {{ notifications.completeTheOrderComponent.deferPaymentWarning }}<br>
                 {{ notifications.completeTheOrderComponent.deferPaymentWarning1 }}<br>
                 {{ notifications.completeTheOrderComponent.deferPaymentWarning2 }}
