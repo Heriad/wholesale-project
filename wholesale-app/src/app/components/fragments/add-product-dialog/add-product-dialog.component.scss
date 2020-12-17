@@ -1,3 +1,23 @@
 @import '../../../styles/dialog.scss';
 @import '../../../styles/input-autofill.scss';
 @import '../../../styles/character-counter.scss';
+
+.custom-file-input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: calc(1.5em + 1.3rem + 2px);
+  margin: 0;
+  opacity: 0;
+}
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  height: calc(1.5em + 1.3rem + 2px);
+  margin-bottom: 0;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+  content: 'Przeglądaj';
+}

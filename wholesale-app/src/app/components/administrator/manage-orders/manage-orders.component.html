@@ -72,7 +72,7 @@
                 <img [src]="product.image" class="product-image">
               </div>
               <div class="col" class="product-details">
-                <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="bold">{{ product.name }}</p></a>
+                <p class="bold">{{ product.name }}</p>
                 <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
                 <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
                 <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
