@@ -180,7 +180,7 @@
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.currentAssets }}" formControlName="currentAssets" appNumbersOnly required>
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.equityCapital }}" formControlName="equityCapital" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                   </div>
@@ -191,7 +191,7 @@
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.currentLiabilities }}" formControlName="currentLiabilities" appNumbersOnly required>
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.salesRevenue }}" formControlName="salesRevenue" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                     <div class="col-6">
@@ -205,14 +205,9 @@
               <div class="row">
                 <div class="col-6 mx-auto">
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.netProfit }}" formControlName="netProfit" appNumbersOnly required>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-6">
-                      <mat-form-field class="data-label">
-                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.salesRevenue }}" formControlName="salesRevenue" appNumbersOnly required>
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.netProfit }}" formControlName="netProfit" required>
                       </mat-form-field>
                     </div>
                   </div>
@@ -230,6 +225,7 @@
           </div>
         </div>
         <div class="row center-content">
+          <button (click)="calculateRiskValue()">test</button>
           <div class="col-12">
             <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePaymentFinancialData()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
           </div>

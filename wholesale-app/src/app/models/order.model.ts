@@ -33,8 +33,7 @@ export class Order {
   paymentType: PaymentType;
   financialData?: {
     totalAssets: number,
-    currentAssets: number,
-    currentLiabilities: number,
+    equityCapital: number,
     foreignCapital: number,
     netProfit: number,
     salesRevenue: number

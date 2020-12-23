@@ -170,8 +170,22 @@ export class CompleteTheOrderComponent implements OnInit {
   }
 
   calculateRiskValue() {
-    // todo model ryzyka zaimplementowac tutaj
-    this.riskValue = 51;
+    const x1 = 3.178;
+    const x2 = -3.995;
+    const x3 = 1.625;
+    const x4 = -1.498;
+    const e = -3.336;
+    const w1 = this.financialDataFormGroup.controls.foreignCapital.value / this.financialDataFormGroup.controls.totalAssets.value;
+    const w2 = this.financialDataFormGroup.controls.netProfit.value / this.financialDataFormGroup.controls.salesRevenue.value;
+    const w3 = this.financialDataFormGroup.controls.netProfit.value / this.financialDataFormGroup.controls.totalAssets.value;
+    const w4 = this.financialDataFormGroup.controls.netProfit.value / this.financialDataFormGroup.controls.equityCapital.value;
+    const valueSum =
+    parseFloat((x1 * w1).toFixed(4)) +
+    parseFloat((x2 * w2).toFixed(4)) +
+    parseFloat((x3 * w3).toFixed(4)) +
+    parseFloat((x4 * w4).toFixed(4)) + e;
+    this.riskValue = Math.exp(valueSum) / (1 + Math.exp(valueSum));
+    console.log('Model ryzyka - ', this.riskValue);
   }
 
   submitOrder() {
@@ -205,8 +219,7 @@ export class CompleteTheOrderComponent implements OnInit {
       ...(this.paymentFormGroup.controls.paymentType.value === PaymentType.DEFER && this.financialDataFormGroup.valid && {
         financialData: {
           totalAssets: this.financialDataFormGroup.controls.totalAssets.value,
-          currentAssets: this.financialDataFormGroup.controls.currentAssets.value,
-          currentLiabilities: this.financialDataFormGroup.controls.currentLiabilities.value,
+          equityCapital: this.financialDataFormGroup.controls.equityCapital.value,
           foreignCapital: this.financialDataFormGroup.controls.foreignCapital.value,
           netProfit: this.financialDataFormGroup.controls.netProfit.value,
           salesRevenue: this.financialDataFormGroup.controls.salesRevenue.value
@@ -279,8 +292,7 @@ export class CompleteTheOrderComponent implements OnInit {
     });
     this.financialDataFormGroup = this.fb.group({
       totalAssets: ['', Validators.required],
-      currentAssets: ['', Validators.required],
-      currentLiabilities: ['', Validators.required],
+      equityCapital: ['', Validators.required],
       foreignCapital: ['', Validators.required],
       netProfit: ['', Validators.required],
       salesRevenue: ['', Validators.required]

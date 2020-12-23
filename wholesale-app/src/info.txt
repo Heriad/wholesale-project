@@ -9,6 +9,9 @@ typy res/reponse per kazdą zwrotke
 loading-spinner -> wyodrebnic te klase jest czesto uzywana
 przetłumaczyc snackbar z bledem + przycisk odswiez
 wyciagnac orderDetails do service -> jest uzywane w 3 miejscach z tabelkami
+stworzyc dyrektowe dla zysku(straty) netto by mogły być tylko liczby ujemne/dodatnie
+zaokrąglic liczby w modelu ryzyka do 4 miejsc po przecniku bo moze byc sytuacja, że obliczona liczba przekroczy 16 miejssc -> js max int dlugosc to 16 cyfr
+zrobic dyrektywe na liczbe z dwoma miesjcami po przecinku
 
 
 ** W TRAKCIE
