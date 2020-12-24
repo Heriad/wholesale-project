@@ -6,7 +6,7 @@
       [isOrdersPreviewAvailable]="true"
       (emitNotifications)="getNotifications($event)">
     </app-navigation-bar>
-    <mat-horizontal-stepper [linear]="true">
+    <mat-horizontal-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="clientDataFormGroup" label="{{ notifications.completeTheOrderComponent.clientDataStep }}">
         <div [formGroup]="clientDataFormGroup">
           <span class="headline center-content">{{ notifications.completeTheOrderComponent.verifyDataCorrectness }}</span>
@@ -154,7 +154,7 @@
               <span>{{ notifications.completeTheOrderComponent.numberOfInstallments }} {{ numberOfInstallments }}</span>
               <mat-slider style="min-width: 70%;"
                 color="primary"
-                [min]="0"
+                [min]="1"
                 [max]="24"
                 [step]="1"
                 [tickInterval]="1"
@@ -180,7 +180,7 @@
                     </div>
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.equityCapital }}" formControlName="equityCapital" appNumbersOnly required>
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.salesRevenue }}" formControlName="salesRevenue" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                   </div>
@@ -191,7 +191,7 @@
                   <div class="row">
                     <div class="col-6">
                       <mat-form-field class="data-label">
-                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.salesRevenue }}" formControlName="salesRevenue" appNumbersOnly required>
+                        <input matInput placeholder="{{ notifications.completeTheOrderComponent.equityCapital }}" formControlName="equityCapital" appNumbersOnly required>
                       </mat-form-field>
                     </div>
                     <div class="col-6">
@@ -225,7 +225,6 @@
           </div>
         </div>
         <div class="row center-content">
-          <button (click)="calculateRiskValue()">test</button>
           <div class="col-12">
             <button mat-raised-button color="primary" type="button" class="next-stepper-btn" matStepperNext (click)="validatePaymentFinancialData()">{{ notifications.completeTheOrderComponent.goFurther }}</button>
           </div>

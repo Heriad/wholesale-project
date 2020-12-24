@@ -8,8 +8,8 @@ export default {
   // Create order
   async create(req, res, next) {
     if (!req.body.orderedProducts || !req.body.clientData || !req.body.deliveryType || (req.body.deliveryType === DeliveryType.SUPPLY && !req.body.deliveryAddress) || !req.body.paymentType ||
-        (req.body.paymentType === PaymentType.DEFER && (!req.body.financialData || !req.body.numberOfInstallments)) || !req.body.orderValue || (req.body.deliveryCost == undefined) || !req.body.totalPrice || !req.body.riskValue ||
-        !req.body.orderDate || !req.body.orderStatus ) {
+        (req.body.paymentType === PaymentType.DEFER && (!req.body.financialData || !req.body.numberOfInstallments || !req.body.riskValue)) || !req.body.orderValue || (req.body.deliveryCost == undefined) || !req.body.totalPrice ||
+        !req.body.orderDate || !req.body.orderStatus) {
       return res.status(400).send({ message: 'Required data missing' });
     }
     let newOrder = createOrder(req.body.orderedProducts, req.body.clientData, req.body.deliveryType, req.body.deliveryAddress, req.body.paymentType, req.body.financialData,

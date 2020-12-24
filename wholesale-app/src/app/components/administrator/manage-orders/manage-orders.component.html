@@ -85,7 +85,7 @@
               <p>Nazwa firmy: {{ element.clientData.companyName }}</p>
               <p>Koszt dostawy: {{ element.deliveryCost }} zł</p>
               <p>Sposób płatności: {{ element.paymentType | transformPaymentType: notifications }}</p>
-              <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }}</p>
+              <p *ngIf="element.paymentType === PaymentType.DEFER">Model ryzyka: {{ element.riskValue }} {{ element.riskValue < 0.5 ? ' - akceptowalne' : ' - nieakceptowalne'}}</p>
               <p *ngIf="element.paymentType === PaymentType.DEFER">Ilość rat: {{ element.numberOfInstallments }}</p>
               <p>Uwagi: {{ element.comments ? element.comments : 'Brak'}}</p>
             </div>

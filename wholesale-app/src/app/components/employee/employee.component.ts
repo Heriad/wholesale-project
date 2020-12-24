@@ -115,10 +115,18 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  clearOrdersArray() {
+    this.newOrders = [];
+    this.inProgressOrders = [];
+    this.completedOrders = [];
+    this.canceledOrders = [];
+  }
+
   getOrders() {
     this.api.getOrders().subscribe((res: any) => {
       if (res.success) {
         this.allOrders = res.data;
+        this.clearOrdersArray();
         this.assignOrders(res.data);
         this.isLoading = false;
       }

@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ShoppingCart } from 'src/app/models/product.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PaymentType } from 'src/app/models/payment-type.model';
 import { DeliveryType } from 'src/app/models/delivery-type.model';
 import { ApiUrlsService } from 'src/app/services/api-urls.service';
@@ -19,6 +20,8 @@ import { OrderNotificationDialogComponent } from '../../fragments/order-notifica
   styleUrls: ['./complete-the-order.component.scss']
 })
 export class CompleteTheOrderComponent implements OnInit {
+
+  @ViewChild('stepper') stepper: MatStepper;
 
   client; // todo type
   notifications;
@@ -42,7 +45,7 @@ export class CompleteTheOrderComponent implements OnInit {
   townNameMaxLength = 20;
   postalCodeMaxLength = 6;
   clientNameMaxLength = 15;
-  numberOfInstallments = 0;
+  numberOfInstallments = 1;
   clientEmailMaxLength = 30;
   companyNameMaxLength = 30;
   clientSurnameMaxLength = 15;
@@ -129,6 +132,8 @@ export class CompleteTheOrderComponent implements OnInit {
   }
 
   getProducts() {
+    this.productList = [];
+    this.orderedProducts = [];
     return new Promise<void>((resolve, reject) => {
       this.shoppingCart.forEach((el, index) => {
         let product: any;
@@ -184,8 +189,7 @@ export class CompleteTheOrderComponent implements OnInit {
     parseFloat((x2 * w2).toFixed(4)) +
     parseFloat((x3 * w3).toFixed(4)) +
     parseFloat((x4 * w4).toFixed(4)) + e;
-    this.riskValue = Math.exp(valueSum) / (1 + Math.exp(valueSum));
-    console.log('Model ryzyka - ', this.riskValue);
+    this.riskValue = parseFloat((Math.exp(valueSum) / (1 + Math.exp(valueSum))).toFixed(4));
   }
 
   submitOrder() {
@@ -257,7 +261,14 @@ export class CompleteTheOrderComponent implements OnInit {
           this.router.navigate(['/']);
         });
       }
-    });
+    }, () => {
+      const errorBar = this.errHandler.openErrorBar(this.notifications.errorsHandlerService.errorOccur);
+      errorBar.onAction().subscribe(() => {
+        this.ngOnInit();
+        waitDialogRef.close();
+        this.stepper.selectedIndex = 0;
+      });
+     });
   }
 
   ngOnInit(): void {

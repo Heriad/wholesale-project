@@ -13,7 +13,7 @@ import { ConfirmationDialogComponent } from './../../fragments/confirmation-dial
 @Component({
   selector: 'app-manage-employees',
   templateUrl: './manage-employees.component.html',
-  styleUrls: ['./manage-employees.component.scss']
+  styleUrls: ['./manage-employees.component.scss'],
 })
 export class ManageEmployeesComponent implements OnInit {
 
