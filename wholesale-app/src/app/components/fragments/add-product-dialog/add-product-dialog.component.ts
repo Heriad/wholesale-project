@@ -26,9 +26,9 @@ export class AddProductDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onFileSelected(event) {
-    console.log(event.loaded);
-    console.log(event.total);
     const selectedFile = event.target.files[0];
+    const fileName = selectedFile.name;
+    event.target.nextElementSibling.innerText = fileName;
     this.addProductForm.get('productImage').setValue(selectedFile);
   }
 

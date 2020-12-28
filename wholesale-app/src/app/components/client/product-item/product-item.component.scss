@@ -54,19 +54,24 @@
 
 .product-name {
   margin: 0px;
-  font-size: 2rem;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: bold;
   color: #333333;
+}
+
+.product-producer {
+  font-size: 14px;
 }
 
 .product-description {
   margin-top: 2%;
+  font-size: 14px;
   word-break: break-word;
 }
 
 .product-price {
+  font-size: 18px;
   font-weight: bold;
-  font-size: 1.5rem;
 }
 
 .quantity {
@@ -91,6 +96,7 @@
 }
 
 .wrap-text {
+  height: 100%;
   word-break: break-all;
 }
 

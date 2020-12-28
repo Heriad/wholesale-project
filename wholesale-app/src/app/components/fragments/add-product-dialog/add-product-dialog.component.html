@@ -46,8 +46,8 @@
       <div class="row">
         <div class="col-12">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" accept="image/*" (change)="onFileSelected($event)" required>
-            <label class="custom-file-label">Wybierz plik</label>
+            <input type="file" class="custom-file-input" id="customFile" accept="image/*" (change)="onFileSelected($event)" required>
+            <label class="custom-file-label" for="customFile">Wybierz plik</label>
           </div>
         </div>
       </div>

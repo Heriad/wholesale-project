@@ -10,13 +10,11 @@ loading-spinner -> wyodrebnic te klase jest czesto uzywana
 przetłumaczyc snackbar z bledem + przycisk odswiez
 wyciagnac orderDetails do service -> jest uzywane w 3 miejscach z tabelkami
 stworzyc dyrektowe dla zysku(straty) netto by mogły być tylko liczby ujemne/dodatnie
-zaokrąglic liczby w modelu ryzyka do 4 miejsc po przecniku bo moze byc sytuacja, że obliczona liczba przekroczy 16 miejssc -> js max int dlugosc to 16 cyfr
 zrobic dyrektywe na liczbe z dwoma miesjcami po przecinku
+dodac lazy-loading
 
 
 ** W TRAKCIE
-dodac lazy-loading
-stworzyc model ryzyka -> usprawnić go
 
 
 ** ZROBIONE
@@ -109,6 +107,8 @@ u admina nadać kolumnom tabeli odpowiednie szerokosci
 ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wyslane
 dodano nowy ekran notfound po przejscu na zły route
 ogarnac info z kosztem dostawy
+stworzyc model ryzyka -> usprawnić go
+zaokrąglic liczby w modelu ryzyka do 4 miejsc po przecniku bo moze byc sytuacja, że obliczona liczba przekroczy 16 miejssc -> js max int dlugosc to 16 cyfr
 
 
 ***WYMAGANIA
