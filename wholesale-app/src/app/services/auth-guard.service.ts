@@ -15,7 +15,7 @@ export class AuthGuardService implements CanActivate {
     if (this.authService.isAuthenticated() && this.api.user) {
       switch (this.api.user.role) {
         case UserRole.CLIENT: {
-          if (route.routeConfig.path === 'complete-the order' || route.routeConfig.path === 'orders-preview'||
+          if (route.routeConfig.path === 'complete-the order' || route.routeConfig.path === 'orders-preview' ||
               route.routeConfig.path === '' || route.routeConfig.path === 'shopping-cart' ||
               route.routeConfig.path === 'product-item/:id') {
             return true;
