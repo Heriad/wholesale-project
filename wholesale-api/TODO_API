@@ -1,11 +1,9 @@
-*** TODO LIST ASAP
+*** TODO LIST
 update user api
 getOne employee api
 update product api
 create product dodanie zdjęcia jako attachment
 w api w którym pobieramy dane jednego elementu getOne, przy podaniu id obsłuzyć błąd
-zrobić autentykacje za pomocą passport
-odpowiednie przekierowywac uzytkowników po typie - front end
 getProducts jak pusty request to all zwraca, a jak w requescie jest tablica z idkami to konkretne
 
 
@@ -16,9 +14,8 @@ wyrzucic funckje checkifDataalredy exist przekazać tam database i selector i wr
 hash hasła po update employee -> zrobione
 jeżeli checkbox z zapamietaj mnie jest zaznaczony i logowanie udane, to do pamieci podręczej przeglądarki zapisujemy nazwe użytkownika czyli maila
 zrobić obsługę błedów errHandler -> na gui i porobić sceeny by do dokumentu wstawić, bo przecież aplikacja bedzie działac tak super, że nigdy błedu api nie bedzie
-
-
-** TODO LATER
+odpowiednie przekierowywac uzytkowników po typie - front end
+zrobić autentykacje za pomocą passport
 
 
 - RES CODY

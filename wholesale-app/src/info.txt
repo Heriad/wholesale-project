@@ -108,11 +108,11 @@ ekran pracownika z podgladem zamówien i zmianą statusu na gotowe do odbioru/wy
 dodano nowy ekran notfound po przejscu na zły route
 ogarnac info z kosztem dostawy
 stworzyc model ryzyka -> usprawnić go
-zaokrąglic liczby w modelu ryzyka do 4 miejsc po przecniku bo moze byc sytuacja, że obliczona liczba przekroczy 16 miejssc -> js max int dlugosc to 16 cyfr
+zaokrąglic liczby w modelu ryzyka do 4 miejsc po przecniku bo moze byc sytuacja, że obliczona liczba przekroczy 16 miejsc -> js max int dlugosc to 16 cyfr
 
 
 ***WYMAGANIA
 -Angular ^9
 -Node ^12
--Docker
+-Docker (obraz couchdb)
 
