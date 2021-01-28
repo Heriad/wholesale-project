@@ -56,16 +56,25 @@
                   <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
                 </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <div *ngFor="let product of selectedOrderDetails" class="row">
-                    <div class="col-auto">
-                      <img [src]="product.image" class="product-image">
+                  <div class="row">
+                    <div class="col-6">
+                      <div *ngFor="let product of selectedOrderDetails" class="row">
+                        <div class="col-auto">
+                          <img [src]="product.image" class="product-image">
+                        </div>
+                        <div class="col" class="product-details">
+                          <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
+                          <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                          <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                          <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col" class="product-details">
-                      <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
-                      <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
-                      <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
-                      <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
-                      <p>Ilość rat: {{ element.numberOfInstallments }}</p>
+                    <div *ngIf="!isLoading && element.numberOfInstallments" class="col-6">
+                      <div class="col additional-information">
+                        <p style="font-weight: bold;">{{ notifications.ordersPreviewComponent.additionalInformation}}</p>
+                        <p>{{ notifications.ordersPreviewComponent.installmentsNumber}}: {{ element.numberOfInstallments }}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -130,16 +139,25 @@
                   <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
                 </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <div *ngFor="let product of selectedOrderDetails" class="row">
-                    <div class="col-auto">
-                      <img [src]="product.image" class="product-image">
+                  <div class="row">
+                    <div class="col-6">
+                      <div *ngFor="let product of selectedOrderDetails" class="row">
+                        <div class="col-auto">
+                          <img [src]="product.image" class="product-image">
+                        </div>
+                        <div class="col" class="product-details">
+                          <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
+                          <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                          <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                          <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col" class="product-details">
-                      <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
-                      <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
-                      <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
-                      <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
-                      <p>Ilość rat: {{ element.numberOfInstallments }}</p>
+                    <div *ngIf="!isLoading && element.numberOfInstallments" class="col-6">
+                      <div class="col additional-information">
+                        <p style="font-weight: bold;">{{ notifications.ordersPreviewComponent.additionalInformation}}</p>
+                        <p>{{ notifications.ordersPreviewComponent.installmentsNumber}}: {{ element.numberOfInstallments }}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -204,16 +222,25 @@
                   <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
                 </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <div *ngFor="let product of selectedOrderDetails" class="row">
-                    <div class="col-auto">
-                      <img [src]="product.image" class="product-image">
+                  <div class="row">
+                    <div class="col-6">
+                      <div *ngFor="let product of selectedOrderDetails" class="row">
+                        <div class="col-auto">
+                          <img [src]="product.image" class="product-image">
+                        </div>
+                        <div class="col" class="product-details">
+                          <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
+                          <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                          <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                          <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col" class="product-details">
-                      <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
-                      <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
-                      <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
-                      <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
-                      <p>Ilość rat: {{ element.numberOfInstallments }}</p>
+                    <div *ngIf="!isLoading && element.numberOfInstallments" class="col-6">
+                      <div class="col additional-information">
+                        <p style="font-weight: bold;">{{ notifications.ordersPreviewComponent.additionalInformation}}</p>
+                        <p>{{ notifications.ordersPreviewComponent.installmentsNumber}}: {{ element.numberOfInstallments }}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -278,16 +305,25 @@
                   <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
                 </div>
                 <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <div *ngFor="let product of selectedOrderDetails" class="row">
-                    <div class="col-auto">
-                      <img [src]="product.image" class="product-image">
+                  <div class="row">
+                    <div class="col-6">
+                      <div *ngFor="let product of selectedOrderDetails" class="row">
+                        <div class="col-auto">
+                          <img [src]="product.image" class="product-image">
+                        </div>
+                        <div class="col" class="product-details">
+                          <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
+                          <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
+                          <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
+                          <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col" class="product-details">
-                      <a [routerLink]="['/product-item', product._id]" class="product-router-link"><p class="product-name">{{ product.name }}</p></a>
-                      <p>{{ notifications.ordersPreviewComponent.quantity }} {{ product.quantity }}</p>
-                      <p>{{ notifications.ordersPreviewComponent.unitPrice }} {{ product.price }} zł</p>
-                      <p>{{ notifications.ordersPreviewComponent.totalPrice }} {{ product.price * product.quantity }} zł</p>
-                      <p>Ilość rat: {{ element.numberOfInstallments }}</p>
+                    <div *ngIf="!isLoading && element.numberOfInstallments" class="col-6">
+                      <div class="col additional-information">
+                        <p style="font-weight: bold;">{{ notifications.ordersPreviewComponent.additionalInformation}}</p>
+                        <p>{{ notifications.ordersPreviewComponent.installmentsNumber}}: {{ element.numberOfInstallments }}</p>
+                      </div>
                     </div>
                   </div>
                 </div>

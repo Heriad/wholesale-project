@@ -94,7 +94,9 @@
     "personalCollection": "Personal collection",
     "quantity": "Quantity:",
     "unitPrice": "Unit price:",
-    "totalPrice": "Total price:"
+    "totalPrice": "Total price:",
+    "installmentsNumber": "Number of installments",
+    "additionalInformation": "Additional information"
   },
   "completeTheOrderComponent": {
     "completeTheOrder": "Order finalization",

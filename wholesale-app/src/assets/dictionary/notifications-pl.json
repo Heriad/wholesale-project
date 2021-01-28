@@ -94,7 +94,9 @@
     "personalCollection": "Odbiór osobisty",
     "quantity": "Ilość:",
     "unitPrice": "Cena jednostkowa:",
-    "totalPrice": "Łączna cena:"
+    "totalPrice": "Łączna cena:",
+    "installmentsNumber": "Ilość rat",
+    "additionalInformation": "Informacje dodatkowe"
   },
   "completeTheOrderComponent": {
     "completeTheOrder": "Finalizacja zamówienia",
