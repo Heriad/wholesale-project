@@ -114,6 +114,7 @@ export class ManageOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.notifications = this.api.getNotificationsPL();
     this.getOrders();
+    this.dataSource.sort = this.sort;
   }
 
 }

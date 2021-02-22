@@ -162,7 +162,7 @@
                 [(ngModel)]="numberOfInstallments">
               </mat-slider>
               <mat-icon matSuffix color="primary" matTooltip="{{ notifications.completeTheOrderComponent.paymentTooltip }}" [matTooltipPosition]="'above'" style="cursor: pointer">info</mat-icon>
-              <p *ngIf="numberOfInstallments > 0">{{ notifications.completeTheOrderComponent.instalmentAmount }} {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }}zł</p>
+              <p *ngIf="numberOfInstallments > 0">{{ notifications.completeTheOrderComponent.instalmentAmount }} {{ shoppingCartPrice/numberOfInstallments | number: '1.2-2' }} zł</p>
             </div>
           </div>
           <div class="center-content">

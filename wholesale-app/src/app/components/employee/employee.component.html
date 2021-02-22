@@ -7,7 +7,7 @@
     <table *ngIf="allOrders.length > 0" mat-table matSort [dataSource]="dataSourceAll" multiTemplateDataRows>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>
         <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
       </ng-container>
 
@@ -110,7 +110,7 @@
     <table *ngIf="newOrders.length > 0" mat-table matSort [dataSource]="dataSourceNew" multiTemplateDataRows>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>
         <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
       </ng-container>
 
@@ -213,7 +213,7 @@
     <table *ngIf="inProgressOrders.length > 0" mat-table matSort [dataSource]="dataSourceInProgress" multiTemplateDataRows>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>
         <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
       </ng-container>
 
@@ -316,7 +316,7 @@
     <table *ngIf="completedOrders.length > 0" mat-table matSort [dataSource]="dataSourceCompleted" multiTemplateDataRows>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>
         <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
       </ng-container>
 
@@ -419,7 +419,7 @@
     <table *ngIf="canceledOrders.length > 0" mat-table matSort [dataSource]="dataSourceCanceled" multiTemplateDataRows>
 
       <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>Index</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Index</th>
         <td mat-cell *matCellDef="let element; let i = dataIndex;" >{{ i + 1 }}</td>
       </ng-container>
 
