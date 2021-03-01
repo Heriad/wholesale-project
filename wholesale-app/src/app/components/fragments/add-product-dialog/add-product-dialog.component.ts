@@ -30,6 +30,9 @@ export class AddProductDialogComponent implements OnInit {
     const fileName = selectedFile.name;
     event.target.nextElementSibling.innerText = fileName;
     this.addProductForm.get('productImage').setValue(selectedFile);
+    if (this.addProductErrors.length !== 0) {
+      this.addProductErrors.pop();
+    }
   }
 
   addProduct() {

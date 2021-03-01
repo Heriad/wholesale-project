@@ -1,4 +1,4 @@
-import { createProduct } from '../models/productModel';
+import { createProduct, updateProductData } from '../models/productModel';
 import { addProduct, getOneProduct, getAllProducts, updateProduct, removeProduct } from '../couchdb/productDB'; 
 
 export default {
@@ -53,7 +53,7 @@ export default {
     let updatedProduct = updateProductData(req.body.id, req.body.rev, req.body.name, req.body.description,
       req.body.price, req.body.producer, req.body.createdDate);
     let updatedProductImage = req.file;
-    let dbResponse = updateProduct(updatedProduct, updatedProductImage);
+    let dbResponse = await updateProduct(updatedProduct, updatedProductImage);
     if (dbResponse.success) {
       return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {
@@ -67,7 +67,6 @@ export default {
       return res.status(400).send({ message: 'Required data missing: id' });
     }
     let dbResponse = await removeProduct(req.params.id);
-    console.log('api /removeProduct', dbResponse);
     if (dbResponse.success) {
       return res.status(201).send({ success: dbResponse.success, message: dbResponse.message, data: dbResponse.data });
     } else {

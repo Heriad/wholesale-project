@@ -11,13 +11,13 @@ function Employee(name, surname, email, password, workType, role) {
 }
 
 function UpdatedEmployee(id, rev, name, surname, email, password, workType, role) {
-  this._id = id,
-  this._rev = rev,
-  this.name = name,
-  this.surname = surname,
-  this.email = email,
-  this.password = password,
-  this.workType = workType,
+  this._id = id;
+  this._rev = rev;
+  this.name = name;
+  this.surname = surname;
+  this.email = email;
+  this.password = password;
+  this.workType = workType;
   this.role = role;
 }
 

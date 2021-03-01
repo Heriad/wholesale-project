@@ -18,7 +18,7 @@ export default () => {
   api.get('/', catchAsync(productsController.getAll));
 
   // PUT /products/:id
-  api.put('/:id', catchAsync(productsController.update));
+  api.put('/', upload.single('productImage'), catchAsync(productsController.update));
 
   // DELETE /products/:id
   api.delete('/:id', catchAsync(productsController.remove));

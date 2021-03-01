@@ -62,7 +62,7 @@ export async function getAllProducts(productList) {
 
 export async function updateProduct(updatedProduct, updatedImageProduct) {
   try {
-    await database.multipart.insert(updatedProduct, [{ name: updatedImageProduct.fieldname, data: updatedImageProduct.buffer, content_type: updatedImageProduct.mimetype }], product._id);
+    await database.multipart.insert(updatedProduct, [{ name: updatedImageProduct.fieldname, data: updatedImageProduct.buffer, content_type: updatedImageProduct.mimetype }], updatedProduct._id);
     return createResponseController(responseStatus.SUCCESS, 'Product has been updated', null);
   } catch (err) {
     return createResponseController(responseStatus.ERROR, err, null);
