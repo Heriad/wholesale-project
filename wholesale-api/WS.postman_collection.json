@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "776ae9a5-5cb9-4bb9-8b15-63cb99e1a304",
+		"name": "WS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createClient",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Tomasz\",\n\t\"surname\": \"Tomaszewski\",\n\t\"email\": \"tomasz.tomaszewski@gmail.pl\",\n\t\"password\": \"passwd\",\n\t\"companyName\": \"MetAil\",\n\t\"regon\": 123123,\n\t\"krs\": 112,\n\t\"role\": \"client\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getClients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\": \"all\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Koszula\",\r\n    \"description\": \"Bardzo wygodna koszula\",\r\n    \"price\": 120,\r\n    \"productImage\": \"test_image\",\r\n    \"producer\": \"Kamilo\",\r\n    \"timestamp\": 1594285485708\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProduct",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/products/180ce59e-5e15-4732-a462-ebbec8ce1e61",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products",
+						"180ce59e-5e15-4732-a462-ebbec8ce1e61"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateProduct",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"180ce59e-5e15-4732-a462-ebbec8ce1e61\",\r\n    \"rev\": \"1-19f3a703d19a6ac6f9b4ac63d9d54b0b\",\r\n    \"name\": \"Koszula\",\r\n    \"description\": \"Bardzo wygodna koszula\",\r\n    \"price\": 120,\r\n    \"image\": \"test_image\",\r\n    \"producer\": \"Kamilo\",\r\n    \"timestamp\": 1594285485708\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeProduct",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/products/06f12028-5d99-4c4f-b4c1-2eabc921cf73",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"products",
+						"06f12028-5d99-4c4f-b4c1-2eabc921cf73"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"name\": \"Pracownik\",\r\n\t\"surname\": \"Pracowniczy\",\r\n\t\"email\": \"pracownik@gmail.pl\",\r\n\t\"password\": \"passwd\",\r\n\t\"workType\": \"part-time\",\r\n\t\"role\": \"employee\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployees",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEmployee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"6bcc711f-905a-4099-a33e-915b019827c6\",\r\n    \"rev\": \"1-01f8a57134a485a219f6f18a0d5033dc\",\r\n\t\"name\": \"Zaktualizowany\",\r\n\t\"surname\": \"Pracownik\",\r\n\t\"email\": \"zaktualizowany.pracownik@gmail.pl\",\r\n\t\"password\": \"passwd\",\r\n\t\"workType\": \"part-time\",\r\n\t\"role\": \"employee\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/employees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeEmployee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/employees/6bcc711f-905a-4099-a33e-915b019827c6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"employees",
+						"6bcc711f-905a-4099-a33e-915b019827c6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"orderedProducts\": [\r\n    {\r\n      \"productId\": \"180ce59e-5e15-4732-a462-ebbec8ce1e61\",\r\n      \"quantity\": 2\r\n    }\r\n  ],\r\n  \"clientData\": {\r\n    \"name\": \"Kamil\",\r\n    \"surname\": \"Ganko\",\r\n    \"email\": \"kamil.ganko@gmail.com\",\r\n    \"companyName\": \"WholesaleCompany\",\r\n    \"regon\": \"12345678910111\",\r\n    \"krs\": \"1234567890\"\r\n  },\r\n  \"deliveryType\": \"personal\",\r\n  \"paymentType\": \"transfer\",\r\n  \"orderValue\": 240,\r\n  \"deliveryCost\": 0,\r\n  \"totalPrice\": 240,\r\n  \"orderDate\": \"2021-03-01T14:14:53.335Z\",\r\n  \"orderStatus\": \"new\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders/kamil.ganko@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"kamil.ganko@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrderStatus",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"new\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/orders/2109242a-e73b-4473-bb61-87bdfcffc17b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"orders",
+						"2109242a-e73b-4473-bb61-87bdfcffc17b"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -51,6 +51,7 @@ export class ApiUrlsService {
     });
   }
 
+  // Not used
   getClients() {
     return this.httpClient.get(environment.baseUrl + '/api/clients');
   }

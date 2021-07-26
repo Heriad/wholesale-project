@@ -22,6 +22,7 @@ export async function addClient(client) {
       const saltRounds = 10;
       client.password = await bcrypt.hash(client.password, saltRounds);
       await database.insert(client);
+      delete client.password;
       return createResponseController(responseStatus.SUCCESS, 'The client has been created', client);
     }
   } catch (err) {

@@ -1,0 +1,468 @@
+{
+  "id": "dddcdf8e-eac3-4c24-93ad-aa41fff35d2e",
+  "version": "2.0",
+  "name": "WholeSale_GUI",
+  "url": "http://localhost:4200",
+  "tests": [{
+    "id": "af2dc719-499c-415a-8792-ce0a7edd1e4c",
+    "name": "ClientLogin",
+    "commands": [{
+      "id": "d5f44411-df79-4396-af36-8993a76dfc01",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8a80ed79-5722-46e6-8297-7fb40ff5a1b6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e08a8e35-0861-49d5-95cc-4f689fb55658",
+      "comment": "",
+      "command": "click",
+      "target": "css=.router-link:nth-child(1) > .mat-icon",
+      "targets": [
+        ["css=.router-link:nth-child(1) > .mat-icon", "css:finder"],
+        ["xpath=//mat-icon", "xpath:position"],
+        ["xpath=//mat-icon[contains(.,'account_box')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2d12fda-0ce5-4f5f-98af-49f458bf08ff",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-input-0",
+      "targets": [
+        ["id=mat-input-0", "id"],
+        ["css=#mat-input-0", "css:finder"],
+        ["xpath=//input[@id='mat-input-0']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff35d4d5-bcb2-47c3-9dd4-a2f2872ccca6",
+      "comment": "",
+      "command": "type",
+      "target": "id=mat-input-0",
+      "targets": [
+        ["id=mat-input-0", "id"],
+        ["css=#mat-input-0", "css:finder"],
+        ["xpath=//input[@id='mat-input-0']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "kamil.ganko@gmail.com"
+    }, {
+      "id": "54f33f99-0bf6-4e60-89f0-4ae2f0435b1b",
+      "comment": "",
+      "command": "type",
+      "target": "id=mat-input-1",
+      "targets": [
+        ["id=mat-input-1", "id"],
+        ["css=#mat-input-1", "css:finder"],
+        ["xpath=//input[@id='mat-input-1']", "xpath:attributes"],
+        ["xpath=//mat-form-field[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "qqqqqqqqqqqqqqqqqqqq"
+    }, {
+      "id": "b47e74a6-9c05-477f-b010-0728b36bbee0",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Zapamiętaj mnie')]",
+      "targets": [
+        ["css=.mat-checkbox-label", "css:finder"],
+        ["xpath=//mat-checkbox[@id='mat-checkbox-1']/label/span", "xpath:idRelative"],
+        ["xpath=//mat-checkbox/label/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Zapamiętaj mnie')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "79369d56-1734-4fff-8476-c220cae189c0",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Zaloguj')]",
+      "targets": [
+        ["css=.login-btn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//form/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Zaloguj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "66f26c0d-47ee-42a4-a3f7-3dc4d8d469e6",
+    "name": "ClientAddProdutToCart",
+    "commands": [{
+      "id": "d6119b95-cf22-439e-b6f9-af2ce579f86a",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f6638418-a3cd-400c-bfe4-9e4910b4c993",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "40698a9d-be40-4446-a156-7c5189cb0371",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-3:nth-child(2) > .router-product .router-product",
+      "targets": [
+        ["css=.col-md-3:nth-child(2) > .router-product .router-product", "css:finder"],
+        ["xpath=//img[@alt='Przedni zderzak Audi A3']", "xpath:img"],
+        ["xpath=//div[2]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a26990d4-bb62-4fa5-bb5e-5637afcbdf23",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mat-select-value",
+      "targets": [
+        ["css=.mat-select-value", "css:finder"],
+        ["xpath=//mat-select[@id='mat-select-0']/div/div", "xpath:idRelative"],
+        ["xpath=//mat-select/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "13292b50-9748-4ec1-9bc8-2a7bade13ef0",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//mat-option[@id='mat-option-1']/span",
+      "targets": [
+        ["css=#mat-option-1 > .mat-option-text", "css:finder"],
+        ["xpath=//mat-option[@id='mat-option-1']/span", "xpath:idRelative"],
+        ["xpath=//mat-option[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "905671aa-f3da-4332-9c98-ec7492a15ac3",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Dodaj do koszyka')]",
+      "targets": [
+        ["css=.btn-add-product > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[3]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Dodaj do koszyka')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e63dd7b-0dde-4ddd-b725-3dae0d42f6b1",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Przejdź do koszyka')]",
+      "targets": [
+        ["css=.navigate-to-cart-btn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-0']/app-cart-notification-dialog/div/div[3]/button/span", "xpath:idRelative"],
+        ["xpath=//app-cart-notification-dialog/div/div[3]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Przejdź do koszyka')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "0a929009-23cc-402c-95bd-5bd3a4c95bce",
+    "name": "ClientDeleteProductFromCart",
+    "commands": [{
+      "id": "89265644-a987-436b-ab9b-4dd1540b235f",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c826f141-62a7-4767-b543-1ecb16b5cbd0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1040",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "34488703-45cb-4c60-9924-40ad89f06049",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//mat-icon[contains(.,'shopping_cart')]",
+      "targets": [
+        ["css=.main-menu > .router-link:nth-child(1) > .mat-icon", "css:finder"],
+        ["xpath=//div[3]/a/mat-icon", "xpath:position"],
+        ["xpath=//mat-icon[contains(.,'shopping_cart')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6b0da5f1-a8a6-49e0-a7a5-6c012fee70d5",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Usuń produkt')]",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//td[7]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Usuń produkt')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bcaad641-d8e0-42e7-9add-71d8aa045f64",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Zatwierdź')]",
+      "targets": [
+        ["css=.btn-accept > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-0']/app-confirmation-dialog/div/div[3]/button[2]/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Zatwierdź')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "b516eb55-07ca-45ca-bd75-dba76084d98d",
+    "name": "ClientSubmitAnOrder",
+    "commands": [{
+      "id": "0e60bf59-1b34-4965-86eb-479b059957e5",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43a69e7f-59b3-4690-85f1-744a7c577280",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "269a831b-ca3a-4f65-a29c-f850dfe6f0fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-3:nth-child(3) > .router-product .router-product",
+      "targets": [
+        ["css=.col-md-3:nth-child(3) > .router-product .router-product", "css:finder"],
+        ["xpath=//img[@alt='Prawe drzwi opel astra']", "xpath:img"],
+        ["xpath=//div[3]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43aee429-678d-4988-a19b-ae4115fc2e39",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Dodaj do koszyka')]",
+      "targets": [
+        ["css=.btn-add-product > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[3]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Dodaj do koszyka')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "de01191a-782e-4e51-994b-9a67c6237d84",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Kontynuuj zakupy')]",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-0']/app-cart-notification-dialog/div/div[3]/button[2]/span", "xpath:idRelative"],
+        ["xpath=//button[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Kontynuuj zakupy')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "26a19181-e837-4378-8375-b7d0bd602a70",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'keyboard_arrow_leftWstecz')]",
+      "targets": [
+        ["css=.back-btn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'keyboard_arrow_leftWstecz')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3d8ee0f-cbc5-4d5f-9d29-45f682934bca",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-3:nth-child(4) > .router-product .router-product",
+      "targets": [
+        ["css=.col-md-3:nth-child(4) > .router-product .router-product", "css:finder"],
+        ["xpath=//img[@alt='Reflektor przedni Volvo']", "xpath:img"],
+        ["xpath=//div[4]/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a13da305-95d0-4a64-b48c-cd77d1842762",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mat-form-field-infix",
+      "targets": [
+        ["css=.mat-form-field-infix", "css:finder"],
+        ["xpath=//mat-form-field/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b727a8fc-2121-4465-8f8e-25b12fb4e72f",
+      "comment": "",
+      "command": "click",
+      "target": "css=#mat-option-11 > .mat-option-text",
+      "targets": [
+        ["css=#mat-option-11 > .mat-option-text", "css:finder"],
+        ["xpath=//mat-option[@id='mat-option-11']/span", "xpath:idRelative"],
+        ["xpath=//mat-option[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9d1070f-3bb8-480f-a9fe-11cc646810f6",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Dodaj do koszyka')]",
+      "targets": [
+        ["css=.btn-add-product > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[3]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Dodaj do koszyka')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ce6d3ce3-c119-47fc-a96c-11cb743d222e",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Przejdź do koszyka')]",
+      "targets": [
+        ["css=.navigate-to-cart-btn > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-1']/app-cart-notification-dialog/div/div[3]/button/span", "xpath:idRelative"],
+        ["xpath=//app-cart-notification-dialog/div/div[3]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Przejdź do koszyka')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c169fbf-846b-4423-ac09-a45524f70465",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Przejdź do finalizacji zamówienia')]",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[2]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Przejdź do finalizacji zamówienia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "57cc8cf4-7b2c-4095-95fd-0fe949f3cd85",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Przejdź dalej')]",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[@id='cdk-step-content-0-0']/div/div[2]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Przejdź dalej')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6428292-4a94-464a-b22a-f1121721235a",
+      "comment": "",
+      "command": "click",
+      "target": "css=#mat-radio-2 .mat-radio-label-content",
+      "targets": [
+        ["css=#mat-radio-2 .mat-radio-label-content", "css:finder"],
+        ["xpath=//mat-radio-button[@id='mat-radio-2']/label/div[2]", "xpath:idRelative"],
+        ["xpath=//label/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "76e0227d-7e6a-490d-8ac5-c90827f43c72",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[4]/div/button/span",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[@id='cdk-step-content-0-1']/div[4]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[4]/div/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c661459-9887-4bd5-b832-7b488da9cfa4",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[3]/div/mat-radio-group/mat-radio-button/label/div[2]",
+      "targets": [
+        ["css=#mat-radio-5 .mat-radio-label-content", "css:finder"],
+        ["xpath=//mat-radio-button[@id='mat-radio-5']/label/div[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/div/mat-radio-group/mat-radio-button/label/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb17e6da-1a6c-43d9-8d4a-e5fe6a1a7807",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[3]/div/button/span",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[@id='cdk-step-content-0-2']/div[3]/div/button/span", "xpath:idRelative"],
+        ["xpath=//div[3]/div/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a1975c5b-cd12-494a-b19f-589d181325d5",
+      "comment": "",
+      "command": "click",
+      "target": "id=mat-input-6",
+      "targets": [
+        ["id=mat-input-6", "id"],
+        ["css=#mat-input-6", "css:finder"],
+        ["xpath=//textarea[@id='mat-input-6']", "xpath:attributes"],
+        ["xpath=//div[@id='cdk-step-content-0-3']/div[5]/div/mat-form-field/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1364fa6b-4140-485b-a9a5-a574e6110477",
+      "comment": "",
+      "command": "type",
+      "target": "id=mat-input-6",
+      "targets": [
+        ["id=mat-input-6", "id"],
+        ["css=#mat-input-6", "css:finder"],
+        ["xpath=//textarea[@id='mat-input-6']", "xpath:attributes"],
+        ["xpath=//div[@id='cdk-step-content-0-3']/div[5]/div/mat-form-field/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Brak"
+    }, {
+      "id": "0b0bc32a-c152-43f7-a1c8-cface8655a23",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Złóż zamówienielocal_shipping')]",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//div[@id='cdk-step-content-0-3']/div[6]/button/span", "xpath:idRelative"],
+        ["xpath=//div[6]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Złóż zamówienielocal_shipping')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5a921495-e403-4261-b257-28d6a94b8710",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Zamknij')]",
+      "targets": [
+        ["css=.cdk-focused > .mat-button-wrapper", "css:finder"],
+        ["xpath=//mat-dialog-container[@id='mat-dialog-3']/app-order-notification-dialog/div/div[3]/button/span", "xpath:idRelative"],
+        ["xpath=//div[3]/button/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Zamknij')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "3c405073-1da2-4b1c-8ea5-389a7f25447f",
+    "name": "Client",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["af2dc719-499c-415a-8792-ce0a7edd1e4c", "66f26c0d-47ee-42a4-a3f7-3dc4d8d469e6", "0a929009-23cc-402c-95bd-5bd3a4c95bce", "b516eb55-07ca-45ca-bd75-dba76084d98d"]
+  }],
+  "urls": ["http://localhost:4200/"],
+  "plugins": []
+}
